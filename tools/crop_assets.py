@@ -29,6 +29,9 @@ WIDTHS: dict[str, int] = {
     "explore-bottom": 1900, "tools-bottom": 2200, "scottish-bowls": 2200, "scottish-loch": 2400,
     "coffee-bottom": 2200, "cync-bottom": 2200, "question-hero": 1900, "story-main": 1900,
     "becoming-product-hero": 1900, "glowing-hero": 1900, "tools-hero": 1900, "chapters-hero": 1900,
+    # the closing band of each chapter page runs the full width
+    "becoming-4": 2000, "resetting-4": 2000, "blooming-4": 2000, "rising-1": 2000,
+    "letting-go-5": 2000, "beginning-again-4": 2000, "rising-4": 2000,
 }
 PREFIX_WIDTHS: tuple[tuple[str, int], ...] = (
     ("tile-", 760), ("conv-", 760), ("q-", 760), ("related-", 760), ("qrelated-", 760),
@@ -85,7 +88,7 @@ CROPS: dict[str, tuple[str, tuple[int, int, int, int]]] = {
     "becoming-gather": ("becoming", (158, 880, 275, 945)),
     "becoming-tools": ("becoming", (295, 880, 412, 945)),
     # Resetting
-    "resetting-hero": ("resetting", (190, 42, 428, 280)),
+    "resetting-hero": ("resetting", (252, 42, 428, 280)),
     "resetting-1": ("resetting", (0, 290, 214, 420)),
     "resetting-2": ("resetting", (218, 420, 428, 575)),
     "resetting-3": ("resetting", (0, 585, 214, 700)),
@@ -106,8 +109,8 @@ CROPS: dict[str, tuple[str, tuple[int, int, int, int]]] = {
     "rising-hero": ("rising", (330, 55, 734, 360)),
     "rising-1": ("rising", (0, 390, 367, 660)),
     "rising-2": ("rising", (367, 675, 734, 905)),
-    "rising-3": ("rising", (0, 925, 367, 1150)),
-    "rising-4": ("rising", (380, 1105, 734, 1255)),
+    "rising-3": ("rising", (0, 925, 367, 1098)),
+    "rising-4": ("rising", (382, 1152, 734, 1358)),
     "rising-5": ("rising", (0, 1420, 734, 1500)),
     "rising-explore": ("rising", (55, 1660, 247, 1760)),
     "rising-gather": ("rising", (272, 1660, 462, 1760)),
@@ -123,7 +126,7 @@ CROPS: dict[str, tuple[str, tuple[int, int, int, int]]] = {
     "letting-go-gather": ("lettinggo", (185, 1140, 320, 1225)),
     "letting-go-tools": ("lettinggo", (340, 1140, 475, 1225)),
     # Beginning Again
-    "beginning-again-hero": ("beginning", (245, 50, 508, 300)),
+    "beginning-again-hero": ("beginning", (335, 50, 508, 300)),
     "beginning-again-1": ("beginning", (255, 305, 508, 455)),
     "beginning-again-2": ("beginning", (0, 460, 255, 650)),
     "beginning-again-3": ("beginning", (255, 660, 508, 800)),

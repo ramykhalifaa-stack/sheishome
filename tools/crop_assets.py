@@ -22,12 +22,9 @@ SCALE: dict[str, float] = {"gather": 1024 / 922, "retreats": 1225 / 735}
 
 # How wide the finished file should be. Full-bleed photographs need the most, small
 # thumbnails the least. Anything not listed uses DEFAULT.
-DEFAULT = 1500
+DEFAULT = 1700
 WIDTHS: dict[str, int] = {
-    "home-hero": 2600, "home-join": 2400, "about-hero": 2400, "about-strip": 2400,
-    "about-bottom": 2200, "join-bottom": 2200, "chapters-bottom": 2200, "gather-hero": 2600,
-    "explore-bottom": 1900, "tools-bottom": 2200, "scottish-bowls": 2200, "scottish-loch": 2400,
-    "coffee-bottom": 2200, "cync-bottom": 2200, "question-hero": 1900, "story-main": 1900,
+    "home-hero": 3200, "home-join": 2800, "about-hero": 2800, "about-strip": 2600, "about-bottom": 2600, "join-bottom": 2600, "chapters-bottom": 2600, "gather-hero": 3200, "explore-bottom": 1900, "tools-bottom": 2600, "scottish-bowls": 2600, "scottish-loch": 2800, "coffee-bottom": 2600, "cync-bottom": 2600, "question-hero": 1900, "story-main": 1900,
     "becoming-product-hero": 1900, "glowing-hero": 1900, "tools-hero": 1900, "chapters-hero": 1900,
     # the closing band of each chapter page runs the full width
     "becoming-4": 2000, "resetting-4": 2000, "blooming-4": 2000, "rising-1": 2000,
@@ -97,7 +94,7 @@ CROPS: dict[str, tuple[str, tuple[int, int, int, int]]] = {
     "resetting-gather": ("resetting", (153, 880, 270, 945)),
     "resetting-tools": ("resetting", (290, 880, 410, 945)),
     # Blooming
-    "blooming-hero": ("blooming", (200, 42, 429, 280)),
+    "blooming-hero": ("blooming", (258, 42, 429, 280)),
     "blooming-1": ("blooming", (214, 283, 429, 415)),
     "blooming-2": ("blooming", (0, 420, 214, 580)),
     "blooming-3": ("blooming", (214, 585, 429, 695)),
@@ -136,7 +133,7 @@ CROPS: dict[str, tuple[str, tuple[int, int, int, int]]] = {
     "beginning-again-gather": ("beginning", (185, 1140, 320, 1225)),
     "beginning-again-tools": ("beginning", (340, 1140, 475, 1225)),
     # Explore
-    "explore-hero": ("explore", (475, 60, 971, 490)),
+    "explore-hero": ("explore", (520, 60, 971, 490)),
     "conv-1": ("explore", (400, 545, 565, 715)),
     "conv-2": ("explore", (580, 545, 745, 715)),
     "conv-3": ("explore", (760, 545, 925, 715)),
@@ -176,7 +173,7 @@ CROPS: dict[str, tuple[str, tuple[int, int, int, int]]] = {
     "coffee-hero": ("coffee", (425, 55, 1024, 515)),
     "coffee-about": ("coffee", (393, 525, 720, 840)),
     "coffee-left": ("coffee", (0, 850, 360, 1180)),
-    "coffee-right": ("coffee", (708, 850, 1024, 1180)),
+    "coffee-right": ("coffee", (700, 995, 900, 1180)),
     "coffee-bottom": ("coffee", (320, 1185, 1024, 1440)),
     # Retreats landing (right-hand version of the two-up mockup)
     # The Scottish Hills

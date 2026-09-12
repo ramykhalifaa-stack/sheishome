@@ -41,8 +41,18 @@
   // The light: a slow, warm 3D orb behind hero text (Three.js, only where a .orb canvas is requested)
   var orbs = document.querySelectorAll('canvas.orb');
   if (!orbs.length || !window.THREE) return;
-  orbs.forEach(function (canvas) {
-    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  orbs.forEach(function (original) {
+    // Swap in a fresh canvas: anything that already asked this one for a 2D context
+    // would stop WebGL from starting.
+    var canvas = original.cloneNode(false);
+    original.parentNode.replaceChild(canvas, original);
+    var renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    } catch (e) {
+      canvas.style.display = 'none';
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     var scene = new THREE.Scene();
     var cam = new THREE.PerspectiveCamera(32, 1, .1, 100); cam.position.z = 6;

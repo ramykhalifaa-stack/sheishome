@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import http.server
+import os
 import importlib
 import shutil
 import sys
@@ -41,9 +42,9 @@ def build() -> int:
     env = Environment(loader=FileSystemLoader(str(SRC / "templates")), autoescape=select_autoescape(["html"]),
                       trim_blocks=True, lstrip_blocks=True)
     # Build into a temporary folder, then swap it in, so the served site is never half-built.
-    TMP = DIST.with_name(DIST.name + ".building")
+    TMP = DIST.with_name(f"{DIST.name}.building-{os.getpid()}")
     shutil.rmtree(TMP, ignore_errors=True)
-    TMP.mkdir()
+    TMP.mkdir(parents=True, exist_ok=True)
     shutil.copytree(SRC / "static", TMP / "static")
     for extra in ("CNAME", "robots.txt"):
         if (SRC / extra).exists():
@@ -58,7 +59,7 @@ def build() -> int:
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{SITE['domain']}{p['path']}</loc></url>\n" for p in pages) + "</urlset>\n")
     (TMP / "404.html").write_text(env.get_template("404.html").render(site=SITE, page={"title": "Not found", "path": "/404"}))
-    OLD = DIST.with_name(DIST.name + ".old")
+    OLD = DIST.with_name(f"{DIST.name}.old-{os.getpid()}")
     shutil.rmtree(OLD, ignore_errors=True)
     if DIST.exists():
         DIST.rename(OLD)

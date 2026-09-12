@@ -30,6 +30,7 @@ SITE = {
     "join_url": "/join/",
     # Set when the community exists. Leave blank and the WhatsApp button says "coming soon".
     "whatsapp_url": "https://wa.me/447904582443",
+    "beacons_url": "https://beacons.ai/sacredhumanexperience",
     # The Join form posts here (a small endpoint on the ROSE by SHE app). Blank disables the form.
     "signup_endpoint": "https://reviews-and-response-system-production.up.railway.app/she/join",
     "social": {"instagram": "https://instagram.com/", "pinterest": "https://pinterest.com/", "youtube": "https://youtube.com/"},

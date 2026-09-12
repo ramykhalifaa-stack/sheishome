@@ -1,0 +1,44 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
+{% block content %}
+<section class="hero-split" style="min-height:min(80vh,720px)">
+  <div class="tx"><nav class="crumb rv"><a href="/tools/">Tools</a> / The Becoming</nav>{{ lines("A journal for\na more intentional\nlife.", "h1") }}<p class="lede rv d1">A space to pause, reflect, gain clarity and take aligned action, wherever you are on your journey.</p><div class="rv d2" style="display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="#why">Explore the journal {{ arrow() }}</a><a class="btn ghost" href="#editions">Shop now {{ arrow() }}</a></div></div>
+  <div class="ph parallax grain rv"><img src="/static/img/becoming-product-hero.webp" alt="The Becoming journal standing on a marble table"></div>
+</section>
+<section class="split rev" id="why">
+  {{ img("becoming-why", "A woman looking over the sea at sunset", parallax=True) }}
+  <div class="tx stack"><span class="k rv">Why it exists</span>{{ lines("It started with\na question.", "h2") }}<div class="prose rv d1"><p>The Becoming began as a personal tool, a way to make sense of my own life, my thoughts and what I wanted next.</p><p>It quickly became so much more. A space for honest reflection, deeper questions and real change.</p><p>This journal is here to support you through the in-between, the unknown and the becoming.</p></div></div>
+</section>
+<section class="split cream2">
+  {{ img("becoming-page", "An open page of The Becoming, A quieter you", parallax=True) }}
+  <div class="tx stack"><span class="k rv">When something needs to change</span>{{ lines("A space for what\ncomes next.", "h2") }}<div class="prose rv d1"><p>Maybe there's a part of you that feels restless.</p><p>Maybe you're ready for more, but you're not sure what.</p><p>Maybe you just need space to hear yourself again.</p><p>The Becoming gives you the time, structure and gentle guidance to reconnect with what matters and start creating a life that feels like you.</p></div></div>
+</section>
+<section class="sec"><div class="wrap">
+  <div class="grid g2" style="align-items:end;margin-bottom:36px"><div><span class="k rv">What's inside</span><h2 class="rv d1" style="margin-top:12px">Thoughtful pages. Real progress.</h2><p class="muted rv d2" style="margin-top:10px">A mix of reflection prompts, simple tools and space to think, feel and plan.</p></div><div class="rv d2" style="text-align:right"><a class="tlink" href="#editions">Explore more pages {{ arrow() }}</a></div></div>
+  <div class="grid g4">
+    {% for t in ["Check in", "My energy", "A clearer perspective", "The next step"] %}
+    <div class="rv d{{ loop.index0 }}"><div class="ph grain" style="aspect-ratio:1;margin-bottom:14px"><img src="/static/img/becoming-inside-{{ loop.index }}.webp" alt="{{ t }} page" loading="lazy"></div><span class="k soft">{{ t }}</span></div>
+    {% endfor %}
+  </div>
+</div></section>
+<section class="sec cream2"><div class="wrap">
+  <div class="grid g2" style="align-items:end;margin-bottom:36px"><div><span class="k rv">Kind words</span><h2 class="rv d1" style="margin-top:12px">From women who've used The Becoming.</h2></div></div>
+  <div class="testi">
+    <blockquote class="rv">"I love the energy of The Becoming. It feels really intentional and grounding, more like a space for reflection and expansion than just a journal.<br><br>The 'connecting to her' page really stood out to me. It's such a beautiful reminder to slow down and actually listen to your body, not just your thoughts."</blockquote>
+    <blockquote class="rv d1">"I've really been enjoying The Becoming Journal. The prompts are thoughtful without being overwhelming, and it's helped me become more aware of my thoughts, patterns and goals in a way that feels natural and easy to stick with.<br><br>I'm already planning to purchase the Power Pages too!"</blockquote>
+    <blockquote class="rv d2">"I absolutely loved the becoming journal so much, I'm all about stepping into my power as a woman and this journal helps you make small intentional steps everyday to feel whole and empowered. I also love the founder Emily and her energy full of love and light :) x"</blockquote>
+  </div>
+</div></section>
+<section class="sec" id="editions"><div class="wrap">
+  <div style="margin-bottom:40px"><span class="k rv">Choose your edition</span><h2 class="rv d1" style="margin-top:12px">Two ways to work with The Becoming.</h2></div>
+  <div class="grid g2" style="gap:clamp(24px,4vw,56px)">
+    <div class="rv" style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/becoming-physical.webp" alt="The Becoming, physical journal" loading="lazy"></div><div><h3>Physical Journal</h3><p class="muted" style="margin:10px 0 18px">A beautifully bound, high-quality journal to keep by your side. Designed for real life, at home, on the go, or wherever you find your thinking space.</p><a class="btn" href="/join/#contact">Buy physical {{ arrow() }}</a></div></div>
+    <div class="rv d1" style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/becoming-digital.webp" alt="The Becoming, digital edition on a tablet" loading="lazy"></div><div><h3>Digital Edition<br>(Power Pages)</h3><p class="muted" style="margin:10px 0 18px">A focused digital edition of The Becoming, bringing together selected tools and pages from the journal in a smaller, more accessible format. Print the pages you need, use them in your own time, and return to them whenever you want.</p><a class="btn ghost" href="/join/#contact">Buy digital {{ arrow() }}</a></div></div>
+  </div>
+  <p class="small muted rv" style="margin-top:22px">The online shop opens soon. Until then, get in touch and we'll set one aside for you.</p>
+</div></section>
+<section class="hero" style="min-height:440px">
+  <div class="ph parallax grain"><img src="/static/img/becoming-why.webp" alt="" loading="lazy"></div>
+  <div class="veil" style="background:rgba(247,244,239,.66)"></div>
+  <div class="wrap" style="text-align:center"><h2 class="rv" style="margin-bottom:26px">A more intentional you is possible.</h2><a class="btn rv d1" href="#editions">Shop The Becoming {{ arrow() }}</a></div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, ico %}
+{% block content %}
+<section class="hero-split" style="min-height:min(80vh,720px)">
+  <div class="tx"><nav class="crumb rv"><a href="/gather/">Gather</a> / <a href="/gather/retreats/">Retreats</a></nav>{{ lines(r.title, "h1") }}<span class="k soft rv d1">{{ r.theme }}</span><p class="lede rv d2">{{ r.intro }}</p><div class="rv d3"><a class="btn" href="/join/#contact">Book your place {{ arrow() }}</a></div></div>
+  <div class="ph parallax grain rv"><img src="/static/img/scottish-hero.webp" alt="A woman walking through Highland heather"></div>
+</section>
+<section class="bar"><div class="wrap grid g4">
+  <div><span class="i">{{ ico("calendar") }}</span><b>{{ r.dates }}</b><span>{{ r.nights }}</span></div>
+  <div><span class="i">{{ ico("pin") }}</span><b>{{ r.place }}</b><span>{{ r.stay }}</span></div>
+  <div><span class="i">{{ ico("people") }}</span><b>{{ r.group }}</b><span></span></div>
+  <div><span class="i">{{ ico("pound") }}</span><b>{{ r.investment }}</b><span>{{ r.investment_sub }}</span></div>
+</div></section>
+<section class="split">
+  {{ img("scottish-about", "A Highland lodge", parallax=True) }}
+  <div class="tx stack">{{ lines("About this retreat", "h2") }}<div class="prose rv d1">{% for p in r.about %}<p>{{ p }}</p>{% endfor %}</div></div>
+</section>
+<section class="sec cream2"><div class="wrap grid" style="grid-template-columns:1fr 1.2fr;align-items:center;gap:clamp(28px,5vw,72px)">
+  <div class="stack rv"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/scottish-cup.webp" alt="" loading="lazy"></div></div>
+  <div class="stack">{{ lines("What you can expect", "h2") }}<div class="numbered col rv d1">{% for t, s in r.expect %}<div><span class="n">0{{ loop.index }}</span><h3>{{ t }}</h3><p class="muted">{{ s }}</p></div>{% endfor %}</div></div>
+</div></section>
+<section class="split rev">
+  {{ img("scottish-journal", "SHE journals in four colours", parallax=True) }}
+  <div class="tx stack">{{ lines("Your SHE Journal", "h2") }}<p class="lede rv d1">{{ r.journal }}</p><div class="swatches rv d2">{% for n, c in r.swatches %}<span><i style="background:{{ c }}"></i>{{ n }}</span>{% endfor %}</div></div>
+</section>
+<section class="hero" style="min-height:480px">
+  <div class="ph parallax grain"><img src="/static/img/scottish-bowls.webp" alt="Sound healing bowls" loading="lazy"></div>
+  <div class="veil" style="background:rgba(247,244,239,.6)"></div>
+  <div class="wrap" style="text-align:center"><blockquote class="quote rv" style="border:0;padding:0;max-width:30ch;margin:0 auto 26px">{{ r.quote }}</blockquote><a class="btn rv d1" href="/join/#contact">Book your place {{ arrow() }}</a></div>
+</section>
+{% endblock %}

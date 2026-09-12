@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
+{% block content %}
+<section class="hero-split" style="min-height:min(72vh,640px)">
+  <div class="tx"><span class="k soft rv">Explore</span>{{ lines("Real\nconversations.\nBigger questions.", "h1") }}<p class="serif-lede rv d1">Explore honest conversations and thought-provoking questions for women navigating change, at any stage of life.</p></div>
+  <div class="ph parallax grain rv"><img src="/static/img/explore-hero.webp" alt="A woman with her hair up, looking out over the sea at dusk"></div>
+</section>
+<section class="sec"><div class="wrap grid" style="grid-template-columns:.9fr 1.6fr;align-items:start">
+  <div class="stack rv"><span class="k">SHE Conversations</span>{{ lines("Real women.\nReal conversations.", "h2") }}<p class="serif-lede">In-depth conversations with women about the moments, decisions and shifts that shape their lives.</p><a class="tlink" href="/explore/conversations/{{ conversations[0].slug }}/">Explore conversations {{ arrow() }}</a></div>
+  <div class="grid g3">{% for s in conversations %}<a class="rv d{{ loop.index0 }}" href="/explore/conversations/{{ conversations[0].slug }}/"><div class="ph grain" style="aspect-ratio:1;margin-bottom:14px"><img src="/static/img/{{ s.img }}.webp" alt="" loading="lazy"></div><span class="k soft" style="font-size:9.5px">{{ s.cat }}</span><h3 style="margin:8px 0 10px;font-size:22px">{{ s.title }}</h3><span class="k soft" style="font-size:9.5px">{{ s.read }}</span></a>{% endfor %}</div>
+</div></section>
+<section class="sec cream2"><div class="wrap grid" style="grid-template-columns:.9fr 1.6fr;align-items:start">
+  <div class="stack rv"><span class="k">SHE Questions</span>{{ lines("Questions that\nmake you stop\nand think.", "h2") }}<p class="serif-lede">Thought-provoking questions, inspired by real women and real life. Different perspectives. A deeper you.</p><a class="tlink" href="/explore/questions/{{ questions[0].slug }}/">Explore questions {{ arrow() }}</a></div>
+  <div class="grid g3">{% for q in questions %}<a class="rv d{{ loop.index0 }}" href="/explore/questions/{{ questions[0].slug }}/"><div class="ph grain" style="aspect-ratio:1;margin-bottom:14px"><img src="/static/img/{{ q.img }}.webp" alt="" loading="lazy"></div><h3 style="margin:8px 0 10px;font-size:22px">{{ q.title }}</h3><span class="k soft" style="font-size:9.5px">{{ q.read }}</span></a>{% endfor %}</div>
+</div></section>
+<section class="split">
+  {{ img("explore-bottom", "Books, a cup and a plant on a desk in soft light", parallax=True) }}
+  <div class="tx stack">{{ lines("Different women.\nA deeper you.", "h2") }}<div class="rule"></div><p class="lede rv d1">Explore conversations and questions to help you feel more connected, more curious and more like yourself.</p><div class="rv d2"><a class="btn" href="/explore/conversations/{{ conversations[0].slug }}/">Explore now {{ arrow() }}</a></div></div>
+</section>
+{% endblock %}

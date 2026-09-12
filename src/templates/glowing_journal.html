@@ -1,0 +1,44 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, ico %}
+{% block content %}
+<section class="hero-split" style="min-height:min(80vh,720px)">
+  <div class="tx"><nav class="crumb rv"><a href="/tools/">Tools</a> / She's Glowing</nav>{{ lines("She's Glowing", "h1") }}<span class="k rv d1" style="line-height:1.9">A journal for pregnancy,<br>motherhood and your<br>own evolution.</span><p class="lede rv d2">A space to feel, reflect and stay connected to yourself through a chapter that changes everything.</p><div class="rv d3"><a class="tlink" href="#about">Scroll to explore ↓</a></div></div>
+  <div class="ph parallax grain rv"><img src="/static/img/glowing-hero.webp" alt="The She's Glowing journal in soft pink"></div>
+</section>
+<section class="split rev" id="about">
+  {{ img("glowing-belly", "A pregnant woman resting her hands on her belly", parallax=True) }}
+  <div class="tx stack"><span class="k rv">This isn't just about the baby.</span>{{ lines("It's about you, too.", "h2") }}<div class="prose rv d1"><p>Pregnancy can be beautiful, overwhelming, exhausting, emotional and exciting, sometimes all at once.</p><p>There are days when you feel completely yourself. And days when you don't recognise yourself at all.</p><p>She's Glowing gives you a place for all of it.</p></div></div>
+</section>
+<section class="split cream2">
+  {{ img("glowing-page", "A hand writing in the Today I feel page", parallax=True) }}
+  <div class="tx stack"><span class="k rv">No weeks to catch up on.<br>No days to fall behind on.</span>{{ lines("I made this journal\nwhile I was pregnant.", "h2") }}<div class="prose rv d1"><p>Pregnancy doesn't really happen in neat little weeks. Some days felt almost exactly like the day before. Some days felt completely different. And some days, honestly, I didn't get out of bed.</p><p>So I made the journal differently. You choose the pages. You choose the day. You choose when you come back.</p><p>This isn't a journal about being productive during pregnancy. It's about understanding yourself, feeling yourself, and giving yourself space while everything is changing.</p></div></div>
+</section>
+<section class="sec"><div class="wrap">
+  <div style="text-align:center;margin-bottom:40px"><span class="k rv">You don't have to keep up with pregnancy here.</span><h2 class="rv d1" style="margin-top:12px">A journal for whatever today looks like.</h2></div>
+  <div class="icons4">
+    {% for i, t, s in [("heart", "Check in", "Notice your body, your energy, your emotions and what you need today."), ("sun", "Slow down", "A place to breathe and let things be exactly as they are."), ("leaf", "Feel connected", "Space to reflect on your pregnancy, your baby and the woman you're becoming."), ("mug", "You matter too", "Small acts of self-care, kindness and rest, things that nourish you without becoming another thing to achieve.")] %}
+    <div class="rv d{{ loop.index0 }}"><span class="i">{{ ico(i) }}</span><span class="k">{{ t }}</span><p class="small muted">{{ s }}</p></div>
+    {% endfor %}
+  </div>
+</div></section>
+<section class="split rev cream2">
+  {{ img("glowing-inside", "Open pages: My body today, One kind thing for myself", parallax=True) }}
+  <div class="tx stack"><span class="k rv">Explore what's inside</span>{{ lines("Gentle prompts.\nMeaningful pages.", "h2") }}<div class="prose rv d1"><p>Thoughtfully designed pages to help you reflect, process and stay connected, from daily check-ins and body awareness to gratitude, self-care and space for your thoughts.</p></div><div class="rv d2"><a class="btn ghost" href="#editions">Explore what's inside</a></div></div>
+</section>
+<section class="sec"><div class="wrap grid" style="grid-template-columns:1fr 1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center">
+  <div class="ph grain rv" style="aspect-ratio:4/5"><img src="/static/img/glowing-cup.webp" alt="A woman holding a speckled mug" loading="lazy"></div>
+  <div class="stack rv d1"><span class="k">Big changes.</span>{{ lines("Still you.", "h2") }}<div class="prose"><p>Pregnancy doesn't mean leaving yourself behind. It's meeting a version of you that you haven't known before.</p><p>A softer strength.<br>A deeper wisdom.<br>A different kind of power.</p><p>You're not someone new.<br>You're more of yourself.</p></div></div>
+  <div class="testi col rv d2">
+    <blockquote>"This journal gave me a space to be honest, about everything. It felt like a friend."<footer>Sarah</footer></blockquote>
+    <blockquote>"I loved that there was no pressure to keep up. I could just come back when I needed to."<footer>Lucy</footer></blockquote>
+    <blockquote>"It helped me feel more connected to myself during a time when I felt so lost."<footer>Hannah</footer></blockquote>
+  </div>
+</div></section>
+<section class="sec cream2" id="editions"><div class="wrap">
+  <div style="text-align:center;margin-bottom:40px"><span class="k rv">Choose your edition</span><h2 class="rv d1" style="margin-top:12px">She's Glowing</h2><p class="muted rv d2" style="margin-top:8px">A journal for the woman becoming a mother.</p></div>
+  <div class="grid g2" style="gap:clamp(24px,4vw,56px)">
+    <div class="rv" style="display:grid;grid-template-columns:1fr 1.3fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/glowing-physical.webp" alt="She's Glowing, physical journal" loading="lazy"></div><div><span class="k">Physical journal</span><p class="muted" style="margin:10px 0 14px">A beautiful journal to keep beside you through pregnancy and beyond.</p><b style="font-size:22px;display:block;margin-bottom:14px">£32.00</b><a class="btn" style="background:var(--blush);color:var(--ink);width:100%;text-align:center" href="/join/#contact">Add to bag</a></div></div>
+    <div class="rv d1" style="display:grid;grid-template-columns:1fr 1.3fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/glowing-digital.webp" alt="She's Glowing, digital edition on a tablet" loading="lazy"></div><div><span class="k">Digital edition</span><p class="muted" style="margin:10px 0 14px">A focused digital edition with selected pages in a printable format.</p><b style="font-size:22px;display:block;margin-bottom:14px">£18.00</b><a class="btn" style="background:var(--blush);color:var(--ink);width:100%;text-align:center" href="/join/#contact">Add to bag</a></div></div>
+  </div>
+  <p class="small muted rv" style="text-align:center;margin-top:22px">The online shop opens soon. Until then, get in touch and we'll set one aside for you.</p>
+</div></section>
+{% endblock %}

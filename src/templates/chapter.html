@@ -1,0 +1,43 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
+{% block content %}
+<section class="hero-split" style="min-height:min(78vh,700px)">
+  <div class="tx"><span class="k soft rv">The chapter</span>{{ lines(c.name, "h1") }}<p class="serif-lede rv d1" style="font-size:clamp(22px,2.2vw,30px);line-height:1.25">{{ c.sub }}</p><p class="lede rv d2">{{ c.intro }}</p><div class="rv d3"><a class="btn" href="#explore">Explore {{ c.name }} {{ arrow() }}</a></div></div>
+  <div class="ph parallax grain rv"><img src="/static/img/{{ c.slug }}-hero.webp" alt="{{ c.name }}"></div>
+</section>
+<div id="explore"></div>
+{% for s in c.sections %}
+{% if s.wide %}
+<section class="hero" style="min-height:560px">
+  <div class="ph parallax grain"><img src="/static/img/{{ s.img }}.webp" alt="" loading="lazy"></div>
+  <div class="veil" style="background:linear-gradient(180deg,rgba(247,244,239,.97) 0,rgba(247,244,239,.85) 45%,rgba(247,244,239,0))"></div>
+  <div class="wrap grid g2" style="align-self:start;padding-top:56px;align-items:start"><div class="rv"><span class="k soft" style="display:block;margin-bottom:14px">{{ s.k }}</span><h2>{{ s.h }}</h2></div><div class="prose rv d1">{% for p in s.paras %}<p>{{ p|replace("\n", "<br>")|safe }}</p>{% endfor %}</div></div>
+</section>
+{% else %}
+<section class="split{% if loop.index0 % 2 == 1 %} rev{% endif %}{% if loop.index0 % 2 == 1 %} cream2{% endif %}">
+  {{ img(s.img, "", parallax=True) }}
+  <div class="tx stack"><span class="k rv">{{ s.k }}</span>{% if s.h %}{{ lines(s.h, "h2") }}{% endif %}<div class="prose rv d1">{% for p in s.paras %}<p>{{ p|replace("\n", "<br>")|safe }}</p>{% endfor %}</div></div>
+</section>
+{% endif %}
+{% if loop.index == 1 %}
+<section class="split rev cream2">
+  {{ img(c.here_img, "", parallax=True) }}
+  <div class="tx stack"><span class="k rv">You might be here if...</span><ul class="chk rv d1">{% for h in c.here %}<li>{{ h }}</li>{% endfor %}</ul><div class="rv d2"><a class="btn" href="/join/">Yes, this feels like me</a></div></div>
+</section>
+{% endif %}
+{% endfor %}
+<section class="sec">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:36px"><span class="k rv">Where {{ c.name|lower }} can take you</span><p class="muted rv d1" style="margin-top:10px">Explore, gather and access tools to support you on this chapter.</p></div>
+    <div class="grid g3">
+      {% for key, label, href, cta in [("explore", "Explore", "/explore/", "Explore"), ("gather", "Gather", "/gather/", "See what's happening"), ("tools", "Tools", "/tools/", "Browse tools")] %}
+      <a class="rv d{{ loop.index0 }}" href="{{ href }}"><div class="ph grain" style="aspect-ratio:16/10;margin-bottom:18px"><img src="/static/img/{{ c.slug }}-{{ key }}.webp" alt="" loading="lazy"></div><h3 style="margin-bottom:8px">{{ label }}</h3><p class="muted" style="margin-bottom:14px">{{ c.ways[key] }}</p><span class="tlink">{{ cta }} {{ arrow() }}</span></a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="hero" style="min-height:460px">
+  <div class="ph parallax grain"><img src="/static/img/{{ c.close }}.webp" alt="" loading="lazy"></div>
+  <div class="veil" style="background:rgba(247,244,239,.72)"></div>
+  <div class="wrap" style="text-align:center"><h2 class="rv" style="max-width:24ch;margin:0 auto 26px">{{ c.closing|replace("\n", "<br>")|safe }}</h2><a class="btn rv d1" href="/chapters/">Explore all chapters {{ arrow() }}</a></div>
+</section>
+{% endblock %}

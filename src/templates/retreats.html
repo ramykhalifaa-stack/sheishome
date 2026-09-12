@@ -1,0 +1,36 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, ico %}
+{% block content %}
+<section class="hero" style="min-height:min(78vh,700px)">
+  <div class="ph parallax grain"><img src="/static/img/scottish-loch.webp" alt="A loch in the Scottish Highlands"></div>
+  <div class="veil" style="background:linear-gradient(90deg,rgba(247,244,239,.94) 0,rgba(247,244,239,.82) 40%,rgba(247,244,239,.05) 75%)"></div>
+  <div class="wrap"><div class="stack" style="max-width:520px"><nav class="crumb rv"><a href="/gather/">Gather</a> / Retreats</nav>{{ lines("SHE Retreats", "h1") }}<p class="serif-lede rv d1">Different places. Different experiences.<br>Something to explore.</p>{% for p_ in intro %}<p class="lede rv d2">{{ p_ }}</p>{% endfor %}</div></div>
+</section>
+<section class="sec"><div class="wrap">
+  <span class="k rv" style="display:block;margin-bottom:26px">Current retreat</span>
+  {% if current %}
+  <a class="grid g2 rv d1" href="{{ current.href }}" style="align-items:center;gap:clamp(24px,4vw,56px)">
+    <div class="ph grain" style="aspect-ratio:4/3"><img src="/static/img/{{ current.img }}.webp" alt="" loading="lazy"></div>
+    <div class="stack"><h2>{{ current.name }}</h2><span class="k soft">{{ current.theme }}</span><div class="meta"><span>{{ current.dates }}</span><span>{{ current.place }}</span><span>{{ current.group }}</span></div><span class="tlink">Explore this retreat {{ arrow() }}</span></div>
+  </a>
+  {% else %}
+  <div class="rv d1" style="max-width:52ch"><h2>No retreats currently booking.</h2><p class="muted" style="margin:12px 0 22px">We're always dreaming up what's next. Join SHE and you'll be the first to know when a new retreat is announced.</p><a class="btn" href="/join/">Join SHE {{ arrow() }}</a></div>
+  {% endif %}
+</div></section>
+<section class="sec cream2"><div class="wrap">
+  <div style="text-align:center;margin-bottom:40px;max-width:64ch;margin-left:auto;margin-right:auto"><span class="k rv">What makes a SHE retreat?</span><h2 class="rv d1" style="margin-top:12px">More than just time away.</h2>{% for p_ in what %}<p class="muted rv d2" style="margin-top:12px">{{ p_ }}</p>{% endfor %}</div>
+  <div class="grid pillars5">
+    {% for i, t, s in pillars %}
+    <div class="rv d{{ loop.index0 }}"><span class="k" style="display:block;margin-bottom:10px">{{ t }}</span><p class="small muted">{{ s }}</p></div>
+    {% endfor %}
+  </div>
+</div></section>
+<section class="split">
+  {{ img("scottish-journal", "A SHE journal with a pen", parallax=True) }}
+  <div class="tx stack"><span class="k rv">The SHE journal</span>{{ lines("A space for your story.", "h2") }}<p class="lede rv d1">{{ journal }}</p><div class="rv d2"><a class="tlink" href="/tools/">Learn more {{ arrow() }}</a></div></div>
+</section>
+<section class="hero" style="min-height:440px">
+  <div class="ph parallax grain"><img src="/static/img/scottish-bowls.webp" alt="" loading="lazy"></div>
+  <div class="veil" style="background:rgba(247,244,239,.62)"></div>
+  <div class="wrap" style="align-self:start;padding-top:56px"><span class="k rv" style="display:block;margin-bottom:14px">Different retreats. Different women. Different places.</span><h2 class="rv d1" style="max-width:22ch">Keep your eyes open for the one that feels right for you.</h2></div>
+</section>
+{% endblock %}

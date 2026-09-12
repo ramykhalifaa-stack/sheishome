@@ -1,0 +1,21 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
+{% block content %}
+<section class="hero-split" style="min-height:min(80vh,720px)">
+  <div class="tx">{{ lines("A space for\nevery chapter\nof you", "h1") }}<p class="lede rv d1">SHE is a community and resource hub for women to explore, reflect, grow and create a life that feels aligned, on your terms.</p><div class="rv d2"><a class="btn" href="#chapters">Explore the chapters</a></div></div>
+  <div class="ph parallax grain rv"><img src="/static/img/chapters-hero.webp" alt="A woman sitting on a cliff edge at sunrise, looking out to sea"></div>
+</section>
+<section class="sec" id="chapters">
+  <div class="wrap" style="text-align:center">
+    <span class="k soft rv">The chapters</span><h2 class="rv d1" style="margin:14px 0 12px">Wherever you are, you belong here</h2>
+    <p class="lede rv d2" style="margin:0 auto 40px;text-align:center">Six themes. Infinite possibilities. Explore the chapters and find the support, inspiration and tools for where you are right now.</p>
+    <div class="cards3">
+      {% for c in chapters %}<a class="ccard rv d{{ loop.index0 % 3 }}" href="/chapters/{{ c.slug }}/"><img src="/static/img/{{ c.card }}.webp" alt="{{ c.name }}" loading="lazy"><div class="cap"><h3>{{ c.name }}</h3><span class="k">{{ c.tag }}</span><div class="circ">{{ arrow() }}</div></div></a>{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="hero" style="min-height:520px">
+  <div class="ph parallax grain"><img src="/static/img/chapters-bottom.webp" alt="A coastline at sunset" loading="lazy"></div>
+  <div class="veil" style="background:linear-gradient(180deg,rgba(247,244,239,.96) 0,rgba(247,244,239,.75) 50%,rgba(247,244,239,.1))"></div>
+  <div class="wrap" style="text-align:center;align-self:start;padding-top:64px"><h2 class="rv" style="font-size:clamp(26px,3.4vw,40px)">Real women. Deeper conversations. A more aligned you.</h2><p class="lede rv d1" style="margin:14px auto 28px;text-align:center">Join a supportive community, access practical resources and be part of a space where every version of you is welcome.</p><a class="btn rv d2" href="/join/">Join the community</a></div>
+</section>
+{% endblock %}

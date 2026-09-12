@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, ico %}
+{% block content %}
+<section class="hero-split" style="min-height:min(80vh,720px)">
+  <div class="tx"><nav class="crumb rv"><a href="/gather/">Gather</a> / {{ ev.kicker }}</nav>{{ lines(ev.title, "h1") }}<span class="k soft rv d1">{{ ev.tags }}</span>{% if ev.tags2 %}<p class="serif-lede rv d1">{{ ev.tags2 }}</p>{% endif %}<p class="lede rv d2">{{ ev.intro }}</p><div class="rv d3"><a class="btn" href="/join/#contact">{{ ev.cta }} {{ arrow() }}</a></div></div>
+  <div class="ph parallax grain rv"><img src="/static/img/{{ ev.hero }}.webp" alt=""></div>
+</section>
+<section class="bar"><div class="wrap grid g4">
+  <div><span class="i">{{ ico("calendar") }}</span><b>{{ ev.when }}</b><span>{{ ev.time }}</span></div>
+  <div><span class="i">{{ ico("pin") }}</span><b>{{ ev.where }}</b><span>{{ ev.where_sub }}</span></div>
+  <div><span class="i">{{ ico("people") }}</span><b>{{ ev.group }}</b><span></span></div>
+  <div><span class="i">{{ ico("cup" if not ev.price else "pound") }}</span><b>{{ ev.price or ev.extra }}</b><span>{{ ev.price_sub if ev.price else "" }}</span></div>
+</div></section>
+<section class="split">
+  {{ img(ev.about_img, "", parallax=True) }}
+  <div class="tx stack">{{ lines(ev.about_title, "h2") }}<div class="prose rv d1">{% for p in ev.about %}<p>{{ p }}</p>{% endfor %}</div></div>
+</section>
+<section class="sec cream2"><div class="wrap grid" style="grid-template-columns:1fr 1.2fr;align-items:center;gap:clamp(28px,5vw,72px)">
+  <div class="ph grain rv" style="aspect-ratio:4/5">{% if ev.expect_img2 %}<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;height:100%"><img src="/static/img/{{ ev.expect_img }}.webp" alt="" loading="lazy" style="height:100%"><img src="/static/img/{{ ev.expect_img2 }}.webp" alt="" loading="lazy" style="height:100%"></div>{% else %}<img src="/static/img/{{ ev.expect_img }}.webp" alt="" loading="lazy">{% endif %}</div>
+  <div class="stack">{{ lines("What to expect", "h2") }}<div class="numbered col rv d1">{% for t, s in ev.expect %}<div><span class="n">0{{ loop.index }}</span><h3>{{ t }}</h3><p class="muted">{{ s }}</p></div>{% endfor %}</div></div>
+</div></section>
+{% if ev.who %}
+<section class="sec"><div class="wrap grid g2" style="align-items:start">
+  <div class="stack rv"><h2>Who is this for?</h2><ul class="chk">{% for w in ev.who %}<li>{{ w }}</li>{% endfor %}</ul></div>
+  <div class="stack rv d1"><h2>Questions?</h2><p class="lede">If you have any questions, please get in touch.</p><a class="tlink" href="/join/#contact">Get in touch {{ arrow() }}</a></div>
+</div></section>
+{% endif %}
+<section class="hero" style="min-height:480px">
+  <div class="ph parallax grain"><img src="/static/img/{{ ev.bottom }}.webp" alt="" loading="lazy"></div>
+  <div class="veil" style="background:rgba(247,244,239,.6)"></div>
+  <div class="wrap" style="text-align:center"><h2 class="rv" style="margin-bottom:26px">{{ ev.closing|replace("\n", "<br>")|safe }}</h2><a class="btn rv d1" href="/join/#contact">{{ ev.cta }} {{ arrow() }}</a></div>
+</section>
+{% endblock %}

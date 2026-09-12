@@ -1,0 +1,27 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
+{% block content %}
+<section class="hero-split" style="min-height:min(78vh,700px)">
+  <div class="tx"><span class="k soft rv">Tools</span>{{ lines("More than\na journal.", "h1") }}<div class="prose rv d1"><p>A place to pause.<br>A place to ask better questions.<br>A place to notice what's changing.<br>A place to imagine what's possible.<br>A place to come back to yourself.</p></div><div class="rv d2"><a class="btn" href="#journals">Explore the collection {{ arrow() }}</a></div></div>
+  <div class="ph parallax grain rv"><img src="/static/img/tools-hero.webp" alt="The Becoming journal standing on a marble table beside a bowl and an olive branch"></div>
+</section>
+<section class="split">
+  {{ img("tools-story", "A woman looking out over the sea at dusk", parallax=True) }}
+  <div class="tx stack"><span class="k rv">The story</span>{{ lines("Two different moments.\nThe same belief.", "h2") }}<div class="prose rv d1"><p>The Becoming came from a time when I needed to understand myself more deeply: my days, my energy, what was shaping my life and what I wanted to change. I needed a space to slow down, notice what was really going on and become more intentional about what came next.</p><p>She's Glowing came later, during my second pregnancy. I knew how easy it was to become completely focused on the baby and lose sight of the woman experiencing it all. I wanted something that would help me stay connected to myself, and something I wished other women had.</p><p>They are different journals for different moments.<br>But underneath both is the same idea: knowing yourself matters.</p></div></div>
+</section>
+<section class="sec cream2" id="journals"><div class="wrap grid g2" style="gap:clamp(24px,4vw,56px)">
+  <a class="rv" href="/tools/the-becoming/"><div class="ph grain" style="aspect-ratio:4/5;margin-bottom:20px"><img src="/static/img/tools-becoming.webp" alt="The Becoming journal" loading="lazy"></div><span class="k soft">The Becoming</span><h2 style="font-size:clamp(26px,3vw,36px);margin:10px 0 12px">For a more intentional you.</h2><p class="muted" style="margin-bottom:14px">A 24-week guided journal to help you look at your life, your patterns, your energy, your goals and what you want to change.</p><span class="tlink">Learn more {{ arrow() }}</span></a>
+  <a class="rv d1" href="/tools/shes-glowing/"><div class="ph grain" style="aspect-ratio:4/5;margin-bottom:20px"><img src="/static/img/tools-glowing.webp" alt="The She's Glowing journal" loading="lazy"></div><span class="k soft">She's Glowing</span><h2 style="font-size:clamp(26px,3vw,36px);margin:10px 0 12px">For every version of your motherhood journey.</h2><p class="muted" style="margin-bottom:14px">A guided journal to help you stay connected to yourself during pregnancy and beyond, with space to reflect, nurture your mind, body and identity.</p><span class="tlink">Learn more {{ arrow() }}</span></a>
+</div></section>
+<section class="sec"><div class="wrap">
+  <div style="margin-bottom:40px"><span class="k rv">The SHE journal collection</span><h2 class="rv d1" style="margin-top:12px">The journals, in physical or digital.</h2></div>
+  <div class="products">
+    {% for img_, name, ed, sub, href, cta in [("prod-becoming-physical", "The Becoming", "Physical Journal", "A beautifully bound journal to keep by your side.", "/tools/the-becoming/#editions", "Buy physical"), ("prod-becoming-digital", "The Becoming", "Digital Edition", "A flexible digital version to use on your device, or both.", "/tools/the-becoming/#editions", "Buy digital"), ("prod-glowing-physical", "She's Glowing", "Physical Journal", "A beautifully bound journal for your pregnancy and beyond.", "/tools/shes-glowing/#editions", "Buy physical"), ("prod-glowing-digital", "She's Glowing", "Digital Edition", "A flexible digital version to use on your device, or both.", "/tools/shes-glowing/#editions", "Buy digital")] %}
+    <a class="tilt rv d{{ loop.index0 }}" href="{{ href }}"><div class="ph grain"><img src="/static/img/{{ img_ }}.webp" alt="{{ name }}, {{ ed }}" loading="lazy"></div><h3>{{ name }}<br>{{ ed }}</h3><p class="small muted" style="margin:8px 0 14px">{{ sub }}</p><span class="btn{% if 'digital' in cta %} ghost{% endif %}" style="width:100%;text-align:center">{{ cta }} {{ arrow() }}</span></a>
+    {% endfor %}
+  </div>
+</div></section>
+<section class="split rev cream2">
+  {{ img("tools-bottom", "An open SHE journal in soft light", parallax=True) }}
+  <div class="tx stack"><span class="k rv">Made from real life</span>{{ lines("Made to return to.", "h2") }}<p class="lede rv d1">These aren't journals for having the perfect routine. They're places to come back to when you want to understand yourself a little better.</p><div class="rv d2"><a class="btn" href="#journals">Explore the collection {{ arrow() }}</a></div></div>
+</section>
+{% endblock %}

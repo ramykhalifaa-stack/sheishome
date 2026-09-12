@@ -1,0 +1,46 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
+{% block content %}
+<section class="hero centre" style="min-height:min(86vh,820px)">
+  <div class="ph parallax grain"><img src="/static/img/home-hero.webp" alt="A calm room at golden hour, an open window onto the sea" fetchpriority="high"></div>
+  <div class="veil glow"></div>
+  <canvas class="orb" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-type">
+      <div class="wordmark rv">SHE</div>
+      <span class="k rv d1">For every chapter of becoming.</span>
+      <p class="serif-lede rv d2" style="text-align:center">Start where you are.</p>
+      <a class="btn ghost rv d3" href="/chapters/" style="margin-top:10px">Find your chapter</a>
+    </div>
+  </div>
+  <div class="side rv d3">A space<br>to feel.<br>Explore.<br>And come<br>back to<br>yourself.</div>
+</section>
+
+<section class="sec">
+  <div class="wrap" style="text-align:center">
+    <h2 class="rv">Where are you right now?</h2>
+    <p class="serif-lede rv d1" style="margin:14px auto 40px;text-align:center">You don't need to know exactly where you're going.<br>Find the chapter that feels most like you.</p>
+    <div class="tiles">
+      {% for c in chapters %}<a class="tile rv d{{ loop.index0 }}" href="/chapters/{{ c.slug }}/">{{ img(c.tile, c.name) }}<span class="k">{{ c.name }}</span><i></i></a>{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="split">
+  {{ img("home-gather", "A long table set for dinner at sunset, candles lit", parallax=True) }}
+  <div class="tx stack"><span class="k soft rv">Gather</span>{{ lines("Come together.\nIn real life.", "h2") }}<p class="lede rv d1">Gatherings, circles, workshops and retreats. Places to meet, connect and experience SHE beyond the screen.</p><div class="rv d2"><a class="btn ghost" href="/gather/">See what's happening {{ arrow() }}</a></div></div>
+</section>
+<section class="split rev cream2">
+  {{ img("home-explore", "Two women in conversation, microphones between them", parallax=True) }}
+  <div class="tx stack"><span class="k soft rv">Explore</span>{{ lines("Conversations.\nQuestions. Deeper living.", "h2") }}<p class="lede rv d1">Stories, conversations and questions to make you pause, think and see something differently.</p><div class="rv d2"><a class="btn ghost" href="/explore/">Explore now {{ arrow() }}</a></div></div>
+</section>
+<section class="split">
+  {{ img("home-tools", "The SHE journal resting on a stone table in soft light", parallax=True) }}
+  <div class="tx stack"><span class="k soft rv">Tools</span>{{ lines("Something to come back to.", "h2") }}<p class="lede rv d1">Journals and resources designed to help you reflect, process and stay connected, for the chapters you're living.</p><div class="rv d2"><a class="btn ghost" href="/tools/">Explore tools {{ arrow() }}</a></div></div>
+</section>
+
+<section class="hero" style="min-height:520px">
+  <div class="ph parallax grain"><img src="/static/img/home-join.webp" alt="Five women arm in arm, watching the sun set over the sea" loading="lazy"></div>
+  <div class="veil" style="background:linear-gradient(90deg,rgba(247,244,239,.92) 0,rgba(247,244,239,.75) 38%,rgba(247,244,239,0) 70%)"></div>
+  <div class="wrap"><div class="stack" style="max-width:460px">{{ lines("Come as you are.\nFind your people.", "h2") }}<div class="rv d1"><a class="btn ghost" href="/join/">Join SHE</a></div></div></div>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
+{% block content %}
+<section class="sec tight cream2" style="text-align:center;padding-bottom:40px">
+  <div class="wrap" style="display:flex;flex-direction:column;align-items:center;gap:14px">
+    <div class="wordmark rv" style="font-size:clamp(56px,8vw,96px)">SHE</div>
+    <span class="k rv d1">Sacred Human Experience</span>
+    <p class="serif-lede rv d2" style="text-align:center;max-width:60ch;margin-top:10px">What started with a journal became an experience.<br>The experience became gatherings, conversations, retreats, questions, journals and everything that SHE continues to grow into.</p>
+  </div>
+</section>
+<div class="ph parallax grain rv" style="height:min(62vh,600px)"><img src="/static/img/about-hero.webp" alt="Four women sitting together on rocks, watching the sun set over the sea"></div>
+
+<section class="sec cream2">
+  <div class="wrap grid g2" style="max-width:1000px">
+    <div class="prose rv"><p>I was trying to understand my own life. How I was spending my days, how I was feeling, what was affecting my energy and what I wanted to change.</p><p>I started making myself a plan.</p><p>I broke my days down, paid attention to my cycle and began noticing the relationship between what was happening in my life and how I was feeling.</p></div>
+    <div class="prose rv d1" style="border-left:1px solid var(--line);padding-left:clamp(20px,3vw,44px)"><p>Then I turned it into a journal.</p><p>I shared it with a friend, and the idea grew.</p><p>I started imagining something bigger around it, bringing together reflection, photography, integrated healing and the Power Journal to create an experience that women could actually step into.</p></div>
+  </div>
+</section>
+
+<section class="strip"><div class="ph parallax grain"><img src="/static/img/about-strip.webp" alt="Sunset over a calm sea" loading="lazy"></div><div class="veil" style="position:absolute;inset:0;background:rgba(247,244,239,.35)"></div><span class="k rv">Same questions.<br>Brighter horizons.</span></section>
+
+<section class="sec">
+  <div class="wrap grid g2" style="align-items:start">
+    <div class="rv"><h2 style="margin-bottom:22px">The people.</h2><div class="prose"><p>Because SHE was never only about becoming a better version of yourself.</p><p>It was about the people that you meet along the way as well. The women who make life feel a little lighter, a little deeper, a little more you.</p><p>The friends who hold space, who challenge you with love, who inspire you, who see you, who remind you what matters, and who are simply good to be around.</p><p>The kind of women you can talk to for hours, go away with, laugh with, learn from, and come home feeling like you've found something real.</p><p>That's the part we didn't plan for.<br>And perhaps the part that matters most.</p></div></div>
+    <div class="rv d1" style="border-left:1px solid var(--line);padding-left:clamp(24px,4vw,64px)">{{ lines("That's why\nSHE is home.", "h2") }}<p class="serif-lede" style="margin-top:26px">Because home isn't always a place.<br>Sometimes it's the feeling of finding your people.</p><p class="serif-lede" style="margin-top:22px">Come as you are.<br>Find your people.</p><div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="/explore/">Explore SHE</a><a class="btn ghost" href="/join/">Join SHE</a></div></div>
+  </div>
+</section>
+
+<section class="hero" style="min-height:420px">
+  <div class="ph parallax grain"><img src="/static/img/about-bottom.webp" alt="A rocky coastline at dusk" loading="lazy"></div>
+  <div class="veil" style="background:linear-gradient(180deg,rgba(247,244,239,.95) 0,rgba(247,244,239,.6) 45%,rgba(247,244,239,0))"></div>
+  <div class="wrap" style="align-self:start;padding-top:56px"><div class="pillars rv"><div><b>GATHER</b><span>Find your people.</span></div><div><b>EXPLORE</b><span>Ask better questions.</span></div><div><b>BECOME</b><span>Keep discovering what's possible.</span></div></div></div>
+</section>
+{% endblock %}

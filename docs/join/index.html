@@ -57,7 +57,7 @@
 
 <section class="split">
   <div class="ph  parallax grain rv"><img src="/static/img/join-whatsapp.webp" alt="A phone held in a lap, showing the SHE WhatsApp community" loading="lazy"></div>
-  <div class="tx stack"><span class="k soft rv">Want to come a little closer?</span><h2 class="lines "><span class="ln"><span>Join the SHE</span></span><span class="ln"><span>WhatsApp community.</span></span></h2><p class="lede rv d1">A more informal space, for real conversations, recommendations, reminders and the occasional 'you need to see this' moment.</p><div class="rv d2"><a class="btn ghost" href="https://wa.me/447904582443" target="_blank" rel="noopener">Join the community <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div></div>
+  <div class="tx stack"><span class="k soft rv">Want to come a little closer?</span><h2 class="lines "><span class="ln"><span>Join the SHE</span></span><span class="ln"><span>WhatsApp community.</span></span></h2><p class="lede rv d1">A more informal space, for real conversations, recommendations, reminders and the occasional 'you need to see this' moment.</p><div class="rv d2"><a class="btn ghost" href="#signup">Join the community <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a><p class="small muted" style="margin-top:12px">The WhatsApp community opens soon. Join the list above and you'll be first in.</p></div></div>
 </section>
 
 <section class="hero" style="min-height:480px" id="contact">
@@ -79,7 +79,7 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script><script src="/static/js/site.js" defer></script>
 <script>
-(function(){var f=document.getElementById('joinform');if(!f||!f.action||f.action.indexOf('http')!==0)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.msg');b.disabled=true;b.textContent='Coming in...';var fd=new FormData(f);fetch(f.action,{method:'POST',body:fd,mode:'cors'}).then(function(r){return r.json()}).then(function(d){m.textContent=d.message||'Welcome in. Taking you through to SHE now...';b.textContent='You are in';setTimeout(function(){window.location.href='https://beacons.ai/sacredhumanexperience';},900);}).catch(function(){b.disabled=false;b.textContent='Come in';m.textContent='Something went wrong just now. Please try again in a moment.';});});})();
+(function(){var f=document.getElementById('joinform');if(!f||!f.action||f.action.indexOf('http')!==0)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.msg');b.disabled=true;b.textContent='Coming in...';var fd=new FormData(f);fetch(f.action,{method:'POST',body:fd,mode:'cors'}).then(function(r){return r.json()}).then(function(d){m.textContent=d.message||'Welcome in. Taking you through to SHE now...';b.textContent='You are in';}).catch(function(){b.disabled=false;b.textContent='Come in';m.textContent='Something went wrong just now. Please try again in a moment.';});});})();
 </script>
 </body>
 </html>

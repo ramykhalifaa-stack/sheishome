@@ -42,6 +42,6 @@
 {% endblock %}
 {% block scripts %}
 <script>
-(function(){var f=document.getElementById('joinform');if(!f||!f.action||f.action.indexOf('http')!==0)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.msg');b.disabled=true;b.textContent='Coming in...';var fd=new FormData(f);fetch(f.action,{method:'POST',body:fd,mode:'cors'}).then(function(r){return r.json()}).then(function(d){m.textContent=d.message||'Welcome in. You will hear from us when there is something worth sharing.';b.textContent='You are in';}).catch(function(){b.disabled=false;b.textContent='Come in';m.textContent='Something went wrong just now. Please try again in a moment.';});});})();
+(function(){var f=document.getElementById('joinform');if(!f||!f.action||f.action.indexOf('http')!==0)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.msg');b.disabled=true;b.textContent='Coming in...';var fd=new FormData(f);fetch(f.action,{method:'POST',body:fd,mode:'cors'}).then(function(r){return r.json()}).then(function(d){m.textContent=d.message||'Welcome in. Taking you through to the WhatsApp community...';b.textContent='You are in';{% if site.whatsapp_url %}setTimeout(function(){window.location.href='{{ site.whatsapp_url }}';},1400);{% endif %}}).catch(function(){b.disabled=false;b.textContent='Come in';m.textContent='Something went wrong just now. Please try again in a moment.';});});})();
 </script>
 {% endblock %}

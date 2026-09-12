@@ -29,7 +29,7 @@ SITE = {
     "footer_nav": [("Home", "/"), ("About", "/about/"), ("The Chapters", "/chapters/"), ("Explore", "/explore/"), ("Gather", "/gather/"), ("Tools", "/tools/"), ("Contact", "/join/#contact")],
     "join_url": "/join/",
     # Set when the community exists. Leave blank and the WhatsApp button says "coming soon".
-    "whatsapp_url": "",
+    "whatsapp_url": "https://wa.me/447904582443",
     # The Join form posts here (a small endpoint on the ROSE by SHE app). Blank disables the form.
     "signup_endpoint": "https://reviews-and-response-system-production.up.railway.app/she/join",
     "social": {"instagram": "https://instagram.com/", "pinterest": "https://pinterest.com/", "youtube": "https://youtube.com/"},

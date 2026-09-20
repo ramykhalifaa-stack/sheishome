@@ -1,0 +1,25 @@
+# How the host should cache the site. Cloudflare Pages and Netlify read this file; build.py
+# copies it into dist and the local preview server obeys the same rules.
+# Styles, scripts and typefaces carry a fingerprint in their address, so a visitor can keep
+# them for a year and still get the new ones the moment they change. The pages themselves are
+# checked again every few minutes, so an edit shows up quickly.
+
+/static/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/static/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/static/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/static/img/*
+  Cache-Control: public, max-age=2592000
+
+/static/*
+  Cache-Control: public, max-age=2592000
+
+/*
+  Cache-Control: public, max-age=300, must-revalidate
+  X-Content-Type-Options: nosniff

@@ -2,7 +2,7 @@
 {% block content %}
 <section class="hero-split" style="min-height:min(80vh,720px)">
   <div class="tx"><nav class="crumb rv"><a href="/gather/">Gather</a> / {{ ev.kicker }}</nav>{{ lines(ev.title, "h1") }}<span class="k soft rv d1">{{ ev.tags }}</span>{% if ev.tags2 %}<p class="serif-lede rv d1">{{ ev.tags2 }}</p>{% endif %}<p class="lede rv d2">{{ ev.intro }}</p><div class="rv d3"><a class="btn" href="/join/#contact">{{ ev.cta }} {{ arrow() }}</a></div></div>
-  <div class="ph parallax grain rv"><img src="/static/img/{{ ev.hero }}.webp" alt=""></div>
+  <div class="ph parallax grain rv"><img src="/static/img/{{ ev.hero }}.webp" alt="" sizes="(max-width:1000px) 100vw, 50vw"></div>
 </section>
 <section class="bar"><div class="wrap grid g4">
   <div><span class="i">{{ ico("calendar") }}</span><b>{{ ev.when }}</b><span>{{ ev.time }}</span></div>
@@ -14,8 +14,8 @@
   {{ img(ev.about_img, "", parallax=True) }}
   <div class="tx stack">{{ lines(ev.about_title, "h2") }}<div class="prose rv d1">{% for p in ev.about %}<p>{{ p }}</p>{% endfor %}</div></div>
 </section>
-<section class="sec cream2"><div class="wrap grid" style="grid-template-columns:1fr 1.2fr;align-items:center;gap:clamp(28px,5vw,72px)">
-  <div class="ph grain rv" style="aspect-ratio:4/5">{% if ev.expect_img2 %}<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;height:100%"><img src="/static/img/{{ ev.expect_img }}.webp" alt="" loading="lazy" style="height:100%"><img src="/static/img/{{ ev.expect_img2 }}.webp" alt="" loading="lazy" style="height:100%"></div>{% else %}<img src="/static/img/{{ ev.expect_img }}.webp" alt="" loading="lazy">{% endif %}</div>
+<section class="sec cream2"><div class="wrap grid stackable" style="grid-template-columns:1fr 1.2fr;align-items:center;gap:clamp(28px,5vw,72px)">
+  <div class="ph grain rv" style="aspect-ratio:4/5">{% if ev.expect_img2 %}<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;height:100%" class="stackable"><img src="/static/img/{{ ev.expect_img }}.webp" alt="" sizes="(max-width:820px) 100vw, 45vw" loading="lazy" style="height:100%"><img src="/static/img/{{ ev.expect_img2 }}.webp" alt="" sizes="(max-width:820px) 100vw, 45vw" loading="lazy" style="height:100%"></div>{% else %}<img src="/static/img/{{ ev.expect_img }}.webp" alt="" loading="lazy">{% endif %}</div>
   <div class="stack">{{ lines("What to expect", "h2") }}<div class="numbered col rv d1">{% for t, s in ev.expect %}<div><span class="n">0{{ loop.index }}</span><h3>{{ t }}</h3><p class="muted">{{ s }}</p></div>{% endfor %}</div></div>
 </div></section>
 {% if ev.who %}

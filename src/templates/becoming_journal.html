@@ -2,7 +2,7 @@
 {% block content %}
 <section class="hero-split" style="min-height:min(80vh,720px)">
   <div class="tx"><nav class="crumb rv"><a href="/tools/">Tools</a> / The Becoming</nav>{{ lines("A journal for\na more intentional\nlife.", "h1") }}<p class="lede rv d1">A space to pause, reflect, gain clarity and take aligned action, wherever you are on your journey.</p><div class="rv d2" style="display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="#why">Explore the journal {{ arrow() }}</a><a class="btn ghost" href="{{ site.beacons_url }}" target="_blank" rel="noopener">Shop now {{ arrow() }}</a></div></div>
-  <div class="ph parallax grain rv"><img src="/static/img/becoming-product-hero.webp" alt="The Becoming journal standing on a marble table"></div>
+  <div class="ph parallax grain rv"><img src="/static/img/becoming-product-hero.webp" alt="The Becoming journal standing on a marble table" sizes="(max-width:1000px) 100vw, 50vw"></div>
 </section>
 <section class="split rev" id="why">
   {{ img("becoming-why", "A woman looking over the sea at sunset", parallax=True) }}
@@ -16,7 +16,7 @@
   <div class="grid g2" style="align-items:end;margin-bottom:36px"><div><span class="k rv">What's inside</span><h2 class="rv d1" style="margin-top:12px">Thoughtful pages. Real progress.</h2><p class="muted rv d2" style="margin-top:10px">A mix of reflection prompts, simple tools and space to think, feel and plan.</p></div><div class="rv d2" style="text-align:right"><a class="tlink" href="#editions">Explore more pages {{ arrow() }}</a></div></div>
   <div class="grid g4">
     {% for t in ["Check in", "My energy", "A clearer perspective", "The next step"] %}
-    <div class="rv d{{ loop.index0 }}"><div class="ph grain" style="aspect-ratio:1;margin-bottom:14px"><img src="/static/img/becoming-inside-{{ loop.index }}.webp" alt="{{ t }} page" loading="lazy"></div><span class="k soft">{{ t }}</span></div>
+    <div class="rv d{{ loop.index0 }}"><div class="ph grain" style="aspect-ratio:1;margin-bottom:14px"><img src="/static/img/becoming-inside-{{ loop.index }}.webp" alt="{{ t }} page" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px" loading="lazy"></div><span class="k soft">{{ t }}</span></div>
     {% endfor %}
   </div>
 </div></section>
@@ -31,8 +31,8 @@
 <section class="sec" id="editions"><div class="wrap">
   <div style="margin-bottom:40px"><span class="k rv">Choose your edition</span><h2 class="rv d1" style="margin-top:12px">Two ways to work with The Becoming.</h2></div>
   <div class="grid g2" style="gap:clamp(24px,4vw,56px)">
-    <div class="rv" style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/becoming-physical.webp" alt="The Becoming, physical journal" loading="lazy"></div><div><h3>Physical Journal</h3><p class="muted" style="margin:10px 0 18px">A beautifully bound, high-quality journal to keep by your side. Designed for real life, at home, on the go, or wherever you find your thinking space.</p><a class="btn" href="{{ site.beacons_url }}" target="_blank" rel="noopener">Buy physical {{ arrow() }}</a></div></div>
-    <div class="rv d1" style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/becoming-digital.webp" alt="The Becoming, digital edition on a tablet" loading="lazy"></div><div><h3>Digital Edition<br>(Power Pages)</h3><p class="muted" style="margin:10px 0 18px">A focused digital edition of The Becoming, bringing together selected tools and pages from the journal in a smaller, more accessible format. Print the pages you need, use them in your own time, and return to them whenever you want.</p><a class="btn ghost" href="{{ site.beacons_url }}" target="_blank" rel="noopener">Buy digital {{ arrow() }}</a></div></div>
+    <div class="rv stackable" style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/becoming-physical.webp" alt="The Becoming, physical journal" sizes="(max-width:820px) 100vw, 45vw" loading="lazy"></div><div><h3>Physical Journal</h3><p class="muted" style="margin:10px 0 18px">A beautifully bound, high-quality journal to keep by your side. Designed for real life, at home, on the go, or wherever you find your thinking space.</p><a class="btn" href="{{ site.beacons_url }}" target="_blank" rel="noopener">Buy physical {{ arrow() }}</a></div></div>
+    <div class="rv d1 stackable" style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/becoming-digital.webp" alt="The Becoming, digital edition on a tablet" sizes="(max-width:820px) 100vw, 45vw" loading="lazy"></div><div><h3>Digital Edition<br>(Power Pages)</h3><p class="muted" style="margin:10px 0 18px">A focused digital edition of The Becoming, bringing together selected tools and pages from the journal in a smaller, more accessible format. Print the pages you need, use them in your own time, and return to them whenever you want.</p><a class="btn ghost" href="{{ site.beacons_url }}" target="_blank" rel="noopener">Buy digital {{ arrow() }}</a></div></div>
   </div>
 </div></section>
 <section class="hero" style="min-height:440px">

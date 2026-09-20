@@ -11,9 +11,9 @@
 <link rel="icon" href="/static/img/she-mark-ink.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EF">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/site.css">
+<style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=9ad199c9">
+<link rel="preload" as="image" imagesrcset="/static/img/about-hero-420.webp 420w, /static/img/about-hero-640.webp 640w, /static/img/about-hero-900.webp 900w, /static/img/about-hero-1280.webp 1280w, /static/img/about-hero-1800.webp 1800w, /static/img/about-hero.webp 2800w" imagesizes="100vw" fetchpriority="high">
 </head>
 <body>
 <header class="hdr">
@@ -32,7 +32,7 @@
     <p class="serif-lede rv d2" style="text-align:center;max-width:60ch;margin-top:10px">What started with a journal became an experience.<br>The experience became gatherings, conversations, retreats, questions, journals and everything that SHE continues to grow into.</p>
   </div>
 </section>
-<div class="ph parallax grain rv" style="height:min(62vh,600px)"><img src="/static/img/about-hero.webp" alt="Four women sitting together on rocks, watching the sun set over the sea"></div>
+<div class="ph parallax grain rv" style="height:min(62vh,600px)"><picture><source media="(max-width:820px)" srcset="/static/img/about-hero-tall.webp" width="900" height="1126"><img src="/static/img/about-hero.webp" alt="Four women sitting together on rocks, watching the sun set over the sea" srcset="/static/img/about-hero-420.webp 420w, /static/img/about-hero-640.webp 640w, /static/img/about-hero-900.webp 900w, /static/img/about-hero-1280.webp 1280w, /static/img/about-hero-1800.webp 1800w, /static/img/about-hero.webp 2800w" sizes="100vw" width="2800" height="820" decoding="async" fetchpriority="high"></picture></div>
 
 <section class="sec cream2">
   <div class="wrap grid g2" style="max-width:1000px">
@@ -41,7 +41,7 @@
   </div>
 </section>
 
-<section class="strip"><div class="ph parallax grain"><img src="/static/img/about-strip.webp" alt="Sunset over a calm sea" loading="lazy"></div><div class="veil" style="position:absolute;inset:0;background:rgba(247,244,239,.35)"></div><span class="k rv">Same questions.<br>Brighter horizons.</span></section>
+<section class="strip"><div class="ph parallax grain"><img src="/static/img/about-strip.webp" alt="Sunset over a calm sea" loading="lazy" srcset="/static/img/about-strip-420.webp 420w, /static/img/about-strip-640.webp 640w, /static/img/about-strip-900.webp 900w, /static/img/about-strip-1280.webp 1280w, /static/img/about-strip-1800.webp 1800w, /static/img/about-strip.webp 2600w" sizes="100vw" width="2600" height="368" decoding="async"></div><div class="veil" style="position:absolute;inset:0;background:rgba(247,244,239,.35)"></div><span class="k rv">Same questions.<br>Brighter horizons.</span></section>
 
 <section class="sec">
   <div class="wrap grid g2" style="align-items:start">
@@ -51,7 +51,7 @@
 </section>
 
 <section class="hero" style="min-height:420px">
-  <div class="ph parallax grain"><img src="/static/img/about-bottom.webp" alt="A rocky coastline at dusk" loading="lazy"></div>
+  <div class="ph parallax grain"><img src="/static/img/about-bottom.webp" alt="A rocky coastline at dusk" loading="lazy" srcset="/static/img/about-bottom-420.webp 420w, /static/img/about-bottom-640.webp 640w, /static/img/about-bottom-900.webp 900w, /static/img/about-bottom-1280.webp 1280w, /static/img/about-bottom-1800.webp 1800w, /static/img/about-bottom.webp 2600w" sizes="100vw" width="2600" height="345" decoding="async"></div>
   <div class="veil" style="background:linear-gradient(180deg,rgba(247,244,239,.95) 0,rgba(247,244,239,.6) 45%,rgba(247,244,239,0))"></div>
   <div class="wrap" style="align-self:start;padding-top:56px"><div class="pillars rv"><div><b>GATHER</b><span>Find your people.</span></div><div><b>EXPLORE</b><span>Ask better questions.</span></div><div><b>BECOME</b><span>Keep discovering what's possible.</span></div></div></div>
 </section>
@@ -68,6 +68,6 @@
     <div class="line">A more conscious, connected way of being.</div>
   </div>
 </footer>
-<script src="/static/js/site.js" defer></script>
+<script src="/static/js/site.js?v=3180fd3c" defer></script>
 </body>
 </html>

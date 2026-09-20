@@ -1,5 +1,9 @@
-{% macro img(name, alt="", cls="", parallax=False, grain=True) -%}
-<div class="ph {{ cls }}{% if parallax %} parallax{% endif %}{% if grain %} grain{% endif %} rv"><img src="/static/img/{{ name }}.webp" alt="{{ alt }}" loading="lazy"></div>
+{# sizes tells the browser how wide this picture will be drawn, so it can fetch a file that
+   fits. The build fills in srcset, width and height. The default suits a split section, which
+   is where this macro is used: half the window on a laptop, all of it on a phone. Pass
+   sizes="100vw" for a picture that runs the full width on a laptop too. #}
+{% macro img(name, alt="", cls="", parallax=False, grain=True, sizes="(max-width:1000px) 100vw, 50vw") -%}
+<div class="ph {{ cls }}{% if parallax %} parallax{% endif %}{% if grain %} grain{% endif %} rv"><img src="/static/img/{{ name }}.webp" alt="{{ alt }}"{% if sizes %} sizes="{{ sizes }}"{% endif %} loading="lazy"></div>
 {%- endmacro %}
 {% macro arrow() -%}<svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>{%- endmacro %}
 {% macro lines(text, tag="h1", cls="") -%}

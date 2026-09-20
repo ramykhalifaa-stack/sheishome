@@ -9,19 +9,71 @@
     entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   document.querySelectorAll('.rv, .lines').forEach(function (el) { io.observe(el); });
+
+  // Moving between pages. When a finger touches a link, or a pointer rests on one, fetch that
+  // page quietly in the background so it is already here when she taps. Only our own pages,
+  // once each, and never when the phone is on a slow connection or saving data.
+  var link = navigator.connection || {};
+  var thrifty = link.saveData === true || /(^|-)2g$/.test(link.effectiveType || '');
+  if (!thrifty) {
+    var asked = {}, budget = 10;
+    var probe = document.createElement('link');
+    var hints = probe.relList && probe.relList.supports && probe.relList.supports('prefetch');
+    var warm = function (event) {
+      var a = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+      if (!a || budget < 1 || a.hasAttribute('download') || a.target === '_blank') return;
+      var url;
+      try { url = new URL(a.href, location.href); } catch (e) { return; }
+      if (url.origin !== location.origin) return;
+      if (url.pathname === location.pathname || asked[url.pathname]) return;
+      asked[url.pathname] = true; budget--;
+      var href = url.pathname + url.search;
+      if (hints) {
+        var hint = document.createElement('link');
+        hint.rel = 'prefetch'; hint.as = 'document'; hint.href = href;
+        document.head.appendChild(hint);
+      } else if (window.fetch) {
+        // Safari has no prefetch hint. Asking for the page quietly puts it in the browser's
+        // own cache, which the next tap then reads instead of the network.
+        try { fetch(href, { credentials: 'same-origin', priority: 'low' }); } catch (e) { }
+      }
+    };
+    ['pointerover', 'pointerenter', 'touchstart', 'focusin'].forEach(function (name) {
+      document.addEventListener(name, warm, { capture: true, passive: true });
+    });
+  }
+
   if (reduce) return;
-  // Gentle parallax on tagged photographs
+  // Gentle parallax on tagged photographs. Only the pictures actually on screen are measured,
+  // so scrolling a long page on a phone stays smooth.
   var pls = Array.prototype.slice.call(document.querySelectorAll('.ph.parallax img'));
+  var onScreen = [];
+  var watcher = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var img = e.target.querySelector('img');
+      var at = onScreen.indexOf(img);
+      if (e.isIntersecting && at < 0) onScreen.push(img);
+      else if (!e.isIntersecting && at > -1) onScreen.splice(at, 1);
+    });
+    parallax();
+  }, { rootMargin: '10% 0px' });
+  pls.forEach(function (img) { watcher.observe(img.parentElement); });
+  var ticking = false;
   function parallax() {
+    ticking = false;
     var vh = window.innerHeight;
-    pls.forEach(function (img) {
+    onScreen.forEach(function (img) {
       var r = img.parentElement.getBoundingClientRect();
       if (r.bottom < 0 || r.top > vh) return;
       var t = (r.top + r.height / 2 - vh / 2) / vh; // -1 .. 1
       img.style.transform = 'scale(1.08) translateY(' + (t * -18).toFixed(2) + 'px)';
     });
   }
-  window.addEventListener('scroll', function () { window.requestAnimationFrame(parallax); }, { passive: true });
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(parallax);
+  }, { passive: true });
   parallax();
   // Cursor light (desktop only)
   if (window.matchMedia('(pointer: fine)').matches) {
@@ -38,9 +90,27 @@
     });
     el.addEventListener('mouseleave', function () { el.style.transform = 'perspective(1100px) rotateY(0) rotateX(0)'; });
   });
-  // The light: a slow, warm 3D orb behind hero text (Three.js, only where a .orb canvas is requested)
+  // The light: a slow, warm 3D orb behind hero text. The library it needs is large and comes
+  // from another site, so it is fetched only on a wide screen with a mouse, only when the page
+  // is already usable, and never on a phone or on a thrifty connection.
   var orbs = document.querySelectorAll('canvas.orb');
-  if (!orbs.length || !window.THREE) return;
+  if (orbs.length && !thrifty && window.matchMedia('(min-width:1000px) and (pointer:fine)').matches) {
+    var start = function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
+      script.async = true;
+      script.onload = function () { if (window.THREE) lightOrbs(orbs); };
+      document.head.appendChild(script);
+    };
+    var later = function () {
+      if (window.requestIdleCallback) requestIdleCallback(start, { timeout: 2500 });
+      else setTimeout(start, 1200);
+    };
+    if (document.readyState === 'complete') later();
+    else window.addEventListener('load', later);
+  }
+
+  function lightOrbs(orbs) {
   orbs.forEach(function (original) {
     // Swap in a fresh canvas: anything that already asked this one for a 2D context
     // would stop WebGL from starting.
@@ -74,4 +144,5 @@
       ring.rotation.z = ts / 20000; renderer.render(scene, cam); requestAnimationFrame(frame);
     })(0);
   });
+  }
 })();

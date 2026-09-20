@@ -2,7 +2,7 @@
 {% block content %}
 <section class="hero-split" style="min-height:min(80vh,720px)">
   <div class="tx"><nav class="crumb rv"><a href="/gather/">Gather</a> / <a href="/gather/retreats/">Retreats</a></nav>{{ lines(r.title, "h1") }}<span class="k soft rv d1">{{ r.theme }}</span><p class="lede rv d2">{{ r.intro }}</p><div class="rv d3"><a class="btn" href="/join/#contact">Book your place {{ arrow() }}</a></div></div>
-  <div class="ph parallax grain rv"><img src="/static/img/scottish-hero.webp" alt="A woman walking through Highland heather"></div>
+  <div class="ph parallax grain rv"><img src="/static/img/scottish-hero.webp" alt="A woman walking through Highland heather" sizes="(max-width:1000px) 100vw, 50vw"></div>
 </section>
 <section class="bar"><div class="wrap grid g4">
   <div><span class="i">{{ ico("calendar") }}</span><b>{{ r.dates }}</b><span>{{ r.nights }}</span></div>
@@ -14,7 +14,7 @@
   {{ img("scottish-about", "A Highland lodge", parallax=True) }}
   <div class="tx stack">{{ lines("About this retreat", "h2") }}<div class="prose rv d1">{% for p in r.about %}<p>{{ p }}</p>{% endfor %}</div></div>
 </section>
-<section class="sec cream2"><div class="wrap grid" style="grid-template-columns:1fr 1.2fr;align-items:center;gap:clamp(28px,5vw,72px)">
+<section class="sec cream2"><div class="wrap grid stackable" style="grid-template-columns:1fr 1.2fr;align-items:center;gap:clamp(28px,5vw,72px)">
   <div class="stack rv"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/scottish-cup.webp" alt="" loading="lazy"></div></div>
   <div class="stack">{{ lines("What you can expect", "h2") }}<div class="numbered col rv d1">{% for t, s in r.expect %}<div><span class="n">0{{ loop.index }}</span><h3>{{ t }}</h3><p class="muted">{{ s }}</p></div>{% endfor %}</div></div>
 </div></section>

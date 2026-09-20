@@ -11,9 +11,9 @@
 <link rel="icon" href="/static/img/she-mark-ink.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EF">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/site.css">
+<style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=9ad199c9">
+<link rel="preload" as="image" imagesrcset="/static/img/retreats-hero-420.webp 420w, /static/img/retreats-hero-640.webp 640w, /static/img/retreats-hero-900.webp 900w, /static/img/retreats-hero-1280.webp 1280w, /static/img/retreats-hero.webp 2000w" imagesizes="100vw" fetchpriority="high">
 </head>
 <body>
 <header class="hdr">
@@ -26,14 +26,14 @@
 <nav class="mnav" aria-label="Mobile"><a href="/">Home</a><a href="/about/">About</a><a href="/chapters/">The Chapters</a><a href="/explore/">Explore</a><a href="/gather/">Gather</a><a href="/tools/">Tools</a><a href="/join/">Join SHE</a></nav>
 <main>
 <section class="hero" style="min-height:min(78vh,700px)">
-  <div class="ph parallax grain"><img src="/static/img/retreats-hero.webp" alt="A stone house with a terrace above a lake"></div>
+  <div class="ph parallax grain"><img src="/static/img/retreats-hero.webp" alt="A stone house with a terrace above a lake" srcset="/static/img/retreats-hero-420.webp 420w, /static/img/retreats-hero-640.webp 640w, /static/img/retreats-hero-900.webp 900w, /static/img/retreats-hero-1280.webp 1280w, /static/img/retreats-hero.webp 2000w" sizes="100vw" width="2000" height="1100" decoding="async" fetchpriority="high"></div>
   <div class="veil left"></div>
   <div class="wrap"><div class="stack" style="max-width:520px"><nav class="crumb rv"><a href="/gather/">Gather</a> / Retreats</nav><h1 class="lines "><span class="ln"><span>SHE Retreats</span></span></h1><p class="serif-lede rv d1">Different places. Different experiences.<br>Something to explore.</p><p class="lede rv d2">SHE retreats are created for women who want to step away from everyday life and experience something a little different. Beautiful places. Interesting women. Space to breathe, think and reconnect. Experiences that invite you to explore what matters to you.</p><p class="lede rv d2">And no two retreats are the same.</p></div></div>
 </section>
 <section class="sec"><div class="wrap">
   <span class="k rv" style="display:block;margin-bottom:26px">Current retreat</span>
   <a class="grid g2 rv d1" href="/gather/retreats/the-scottish-hills/" style="align-items:center;gap:clamp(24px,4vw,56px)">
-    <div class="ph grain" style="aspect-ratio:4/3"><img src="/static/img/scottish-about.webp" alt="" loading="lazy"></div>
+    <div class="ph grain" style="aspect-ratio:4/3"><img src="/static/img/scottish-about.webp" alt="" loading="lazy" srcset="/static/img/scottish-about-420.webp 420w, /static/img/scottish-about-640.webp 640w, /static/img/scottish-about-900.webp 900w, /static/img/scottish-about.webp 1420w" sizes="100vw" width="1420" height="1260" decoding="async"></div>
     <div class="stack"><h2>The Scottish Hills</h2><span class="k soft">Sound · Stillness · Connection</span><div class="meta"><span>17 to 21 April 2026</span><span>Scottish Highlands, UK</span><span>A small group experience</span></div><span class="tlink">Explore this retreat <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></div>
   </a>
 </div></section>
@@ -48,11 +48,11 @@
   </div>
 </div></section>
 <section class="split">
-  <div class="ph  parallax grain rv"><img src="/static/img/retreats-journal.webp" alt="Three SHE journals in blush, blue and ivory" loading="lazy"></div>
+  <div class="ph  parallax grain rv"><img src="/static/img/retreats-journal.webp" alt="Three SHE journals in blush, blue and ivory" sizes="(max-width:1000px) 100vw, 50vw" loading="lazy" srcset="/static/img/retreats-journal-420.webp 420w, /static/img/retreats-journal-640.webp 640w, /static/img/retreats-journal-900.webp 900w, /static/img/retreats-journal.webp 1336w" width="1336" height="800" decoding="async"></div>
   <div class="tx stack"><span class="k rv">The SHE journal</span><h2 class="lines "><span class="ln"><span>A space for your story.</span></span></h2><p class="lede rv d1">Every woman receives a SHE journal as part of the retreat experience. Choose your colour before you arrive, and make it yours, a place for thoughts, reflections, creativity and memories.</p><div class="rv d2"><a class="tlink" href="/tools/">Learn more <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div></div>
 </section>
 <section class="hero" style="min-height:440px">
-  <div class="ph parallax grain"><img src="/static/img/retreats-view.webp" alt="A woman sitting above a lake at sunset" loading="lazy"></div>
+  <div class="ph parallax grain"><img src="/static/img/retreats-view.webp" alt="A woman sitting above a lake at sunset" loading="lazy" srcset="/static/img/retreats-view-420.webp 420w, /static/img/retreats-view-640.webp 640w, /static/img/retreats-view-900.webp 900w, /static/img/retreats-view-1280.webp 1280w, /static/img/retreats-view.webp 1900w" sizes="100vw" width="1900" height="901" decoding="async"></div>
   <div class="veil" style="background:rgba(247,244,239,.62)"></div>
   <div class="wrap" style="align-self:start;padding-top:56px"><span class="k rv" style="display:block;margin-bottom:14px">Different retreats. Different women. Different places.</span><h2 class="rv d1" style="max-width:22ch">Keep your eyes open for the one that feels right for you.</h2></div>
 </section>
@@ -69,6 +69,6 @@
     <div class="line">A more conscious, connected way of being.</div>
   </div>
 </footer>
-<script src="/static/js/site.js" defer></script>
+<script src="/static/js/site.js?v=3180fd3c" defer></script>
 </body>
 </html>

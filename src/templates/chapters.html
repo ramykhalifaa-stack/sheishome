@@ -9,7 +9,7 @@
     <span class="k soft rv">The chapters</span><h2 class="rv d1" style="margin:14px 0 12px">Wherever you are, you belong here</h2>
     <p class="lede rv d2" style="margin:0 auto 40px;text-align:center">Six themes. Infinite possibilities. Explore the chapters and find the support, inspiration and tools for where you are right now.</p>
     <div class="cards3">
-      {% for c in chapters %}<a class="ccard rv d{{ loop.index0 % 3 }}" href="/chapters/{{ c.slug }}/"><img src="/static/img/{{ c.card }}.webp" alt="{{ c.name }}" loading="lazy"><div class="cap"><h3>{{ c.name }}</h3><span class="k">{{ c.tag }}</span><div class="circ">{{ arrow() }}</div></div></a>{% endfor %}
+      {% for c in chapters %}<a class="ccard rv d{{ loop.index0 % 3 }}" href="/chapters/{{ c.slug }}/"><img src="/static/img/{{ c.card }}.webp" alt="{{ c.name }}" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px" loading="lazy"><div class="cap"><h3>{{ c.name }}</h3><span class="k">{{ c.tag }}</span><div class="circ">{{ arrow() }}</div></div></a>{% endfor %}
     </div>
   </div>
 </section>

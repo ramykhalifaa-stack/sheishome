@@ -11,9 +11,9 @@
 <link rel="icon" href="/static/img/she-mark-ink.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EF">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/site.css">
+<style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=9ad199c9">
+<link rel="preload" as="image" imagesrcset="/static/img/join-hero-420.webp 420w, /static/img/join-hero-640.webp 640w, /static/img/join-hero-900.webp 900w, /static/img/join-hero-1280.webp 1280w, /static/img/join-hero.webp 1700w" imagesizes="(max-width:1000px) 100vw, 50vw" fetchpriority="high">
 </head>
 <body>
 <header class="hdr">
@@ -27,7 +27,7 @@
 <main>
 <section class="hero-split">
   <div class="tx"><span class="k soft rv">Join SHE</span><h1 class="lines "><span class="ln"><span>Come in.</span></span><span class="ln"><span>Stay a while.</span></span></h1><p class="lede rv d1">SHE is made for women at all sorts of points in life: women figuring things out, starting again, changing direction, becoming someone new, or simply wanting more from the life they're already living.</p><p class="lede rv d2">You don't need to be in a particular chapter.<br>You don't need to know what you're looking for.</p><p class="lede rv d3">You can just come in.</p><div class="rv d4"><a class="btn" href="#signup">Join SHE <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div></div>
-  <div class="ph parallax grain rv" style="position:relative"><img src="/static/img/join-hero.webp" alt="An open wooden door, an olive tree in a stone vase, the sea beyond"><div class="side">Same<br>women.<br>Different<br>chapters.</div></div>
+  <div class="ph parallax grain rv" style="position:relative"><img src="/static/img/join-hero.webp" alt="An open wooden door, an olive tree in a stone vase, the sea beyond" sizes="(max-width:1000px) 100vw, 50vw" srcset="/static/img/join-hero-420.webp 420w, /static/img/join-hero-640.webp 640w, /static/img/join-hero-900.webp 900w, /static/img/join-hero-1280.webp 1280w, /static/img/join-hero.webp 1700w" width="1700" height="1116" decoding="async" fetchpriority="high"></div>
 </section>
 
 <section class="sec">
@@ -56,12 +56,12 @@
 </section>
 
 <section class="split">
-  <div class="ph  parallax grain rv"><img src="/static/img/join-whatsapp.webp" alt="A phone held in a lap, showing the SHE WhatsApp community" loading="lazy"></div>
+  <div class="ph  parallax grain rv"><img src="/static/img/join-whatsapp.webp" alt="A phone held in a lap, showing the SHE WhatsApp community" sizes="(max-width:1000px) 100vw, 50vw" loading="lazy" srcset="/static/img/join-whatsapp-420.webp 420w, /static/img/join-whatsapp-640.webp 640w, /static/img/join-whatsapp-900.webp 900w, /static/img/join-whatsapp-1280.webp 1280w, /static/img/join-whatsapp.webp 1700w" width="1700" height="811" decoding="async"></div>
   <div class="tx stack"><span class="k soft rv">Want to come a little closer?</span><h2 class="lines "><span class="ln"><span>Join the SHE</span></span><span class="ln"><span>WhatsApp community.</span></span></h2><p class="lede rv d1">A more informal space, for real conversations, recommendations, reminders and the occasional 'you need to see this' moment.</p><div class="rv d2"><a class="btn ghost" href="https://wa.me/447904582443" target="_blank" rel="noopener">Join the community <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div></div>
 </section>
 
 <section class="hero" style="min-height:480px" id="contact">
-  <div class="ph parallax grain"><img src="/static/img/join-bottom.webp" alt="Three women laughing together over coffee" loading="lazy"></div>
+  <div class="ph parallax grain"><img src="/static/img/join-bottom.webp" alt="Three women laughing together over coffee" loading="lazy" srcset="/static/img/join-bottom-420.webp 420w, /static/img/join-bottom-640.webp 640w, /static/img/join-bottom-900.webp 900w, /static/img/join-bottom-1280.webp 1280w, /static/img/join-bottom-1800.webp 1800w, /static/img/join-bottom.webp 2600w" sizes="100vw" width="2600" height="740" decoding="async"></div>
   <div class="side">Different<br>women.<br>Same space.</div>
 </section>
 </main>
@@ -77,7 +77,7 @@
     <div class="line">A more conscious, connected way of being.</div>
   </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script><script src="/static/js/site.js" defer></script>
+<script src="/static/js/site.js?v=3180fd3c" defer></script>
 <script>
 (function(){var f=document.getElementById('joinform');if(!f||!f.action||f.action.indexOf('http')!==0)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.msg');b.disabled=true;b.textContent='Coming in...';var fd=new FormData(f);fetch(f.action,{method:'POST',body:fd,mode:'cors'}).then(function(r){return r.json()}).then(function(d){m.textContent=d.message||'Welcome in. Taking you through to SHE now...';b.textContent='You are in';setTimeout(function(){window.location.href='https://beacons.ai/sacredhumanexperience';},900);}).catch(function(){b.disabled=false;b.textContent='Come in';m.textContent='Something went wrong just now. Please try again in a moment.';});});})();
 </script>

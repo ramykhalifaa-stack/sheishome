@@ -1,7 +1,7 @@
 {% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
 {% block content %}
 <section class="hero centre" style="min-height:min(86vh,820px)">
-  <div class="ph parallax grain"><img src="/static/img/home-hero.webp" alt="A calm room at golden hour, an open window onto the sea" fetchpriority="high"></div>
+  <div class="ph parallax grain"><picture><source media="(max-width:820px)" srcset="/static/img/home-hero-tall.webp" width="900" height="1180"><img src="/static/img/home-hero.webp" alt="A calm room at golden hour, an open window onto the sea" fetchpriority="high"></picture></div>
   <div class="veil glow"></div>
   <canvas class="orb" aria-hidden="true"></canvas>
   <div class="wrap">
@@ -19,7 +19,7 @@
     <h2 class="rv">Where are you right now?</h2>
     <p class="serif-lede rv d1" style="margin:14px auto 40px;text-align:center">You don't need to know exactly where you're going.<br>Find the chapter that feels most like you.</p>
     <div class="tiles">
-      {% for c in chapters %}<a class="tile rv d{{ loop.index0 }}" href="/chapters/{{ c.slug }}/">{{ img(c.tile, c.name) }}<span class="k">{{ c.name }}</span><i></i></a>{% endfor %}
+      {% for c in chapters %}<a class="tile rv d{{ loop.index0 }}" href="/chapters/{{ c.slug }}/">{{ img(c.tile, c.name, sizes="(max-width:620px) 45vw, (max-width:1000px) 30vw, 210px") }}<span class="k">{{ c.name }}</span><i></i></a>{% endfor %}
     </div>
   </div>
 </section>

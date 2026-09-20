@@ -2,7 +2,7 @@
 {% block content %}
 <section class="hero-split" style="min-height:min(80vh,720px)">
   <div class="tx"><nav class="crumb rv"><a href="/tools/">Tools</a> / She's Glowing</nav>{{ lines("She's Glowing", "h1") }}<span class="k rv d1" style="line-height:1.9">A journal for pregnancy,<br>motherhood and your<br>own evolution.</span><p class="lede rv d2">A space to feel, reflect and stay connected to yourself through a chapter that changes everything.</p><div class="rv d3"><a class="tlink" href="#about">Scroll to explore ↓</a></div></div>
-  <div class="ph parallax grain rv"><img src="/static/img/glowing-hero.webp" alt="The She's Glowing journal in soft pink"></div>
+  <div class="ph parallax grain rv"><img src="/static/img/glowing-hero.webp" alt="The She's Glowing journal in soft pink" sizes="(max-width:1000px) 100vw, 50vw"></div>
 </section>
 <section class="split rev" id="about">
   {{ img("glowing-belly", "A pregnant woman resting her hands on her belly", parallax=True) }}
@@ -24,7 +24,7 @@
   {{ img("glowing-inside", "Open pages: My body today, One kind thing for myself", parallax=True) }}
   <div class="tx stack"><span class="k rv">Explore what's inside</span>{{ lines("Gentle prompts.\nMeaningful pages.", "h2") }}<div class="prose rv d1"><p>Thoughtfully designed pages to help you reflect, process and stay connected, from daily check-ins and body awareness to gratitude, self-care and space for your thoughts.</p></div><div class="rv d2"><a class="btn ghost" href="#editions">Explore what's inside</a></div></div>
 </section>
-<section class="sec"><div class="wrap grid" style="grid-template-columns:1fr 1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center">
+<section class="sec"><div class="wrap grid stackable" style="grid-template-columns:1fr 1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center">
   <div class="ph grain rv" style="aspect-ratio:4/5"><img src="/static/img/glowing-cup.webp" alt="A woman holding a speckled mug" loading="lazy"></div>
   <div class="stack rv d1"><span class="k">Big changes.</span>{{ lines("Still you.", "h2") }}<div class="prose"><p>Pregnancy doesn't mean leaving yourself behind. It's meeting a version of you that you haven't known before.</p><p>A softer strength.<br>A deeper wisdom.<br>A different kind of power.</p><p>You're not someone new.<br>You're more of yourself.</p></div></div>
   <div class="testi col rv d2">
@@ -36,8 +36,8 @@
 <section class="sec cream2" id="editions"><div class="wrap">
   <div style="text-align:center;margin-bottom:40px"><span class="k rv">Choose your edition</span><h2 class="rv d1" style="margin-top:12px">She's Glowing</h2><p class="muted rv d2" style="margin-top:8px">A journal for the woman becoming a mother.</p></div>
   <div class="grid g2" style="gap:clamp(24px,4vw,56px)">
-    <div class="rv" style="display:grid;grid-template-columns:1fr 1.3fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/glowing-physical.webp" alt="She's Glowing, physical journal" loading="lazy"></div><div><span class="k">Physical journal</span><p class="muted" style="margin:10px 0 14px">A beautiful journal to keep beside you through pregnancy and beyond.</p><b style="font-size:22px;display:block;margin-bottom:14px">£32.00</b><a class="btn" style="background:var(--blush);color:var(--ink);width:100%;text-align:center" href="{{ site.beacons_url }}" target="_blank" rel="noopener">Add to bag</a></div></div>
-    <div class="rv d1" style="display:grid;grid-template-columns:1fr 1.3fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/glowing-digital.webp" alt="She's Glowing, digital edition on a tablet" loading="lazy"></div><div><span class="k">Digital edition</span><p class="muted" style="margin:10px 0 14px">A focused digital edition with selected pages in a printable format.</p><b style="font-size:22px;display:block;margin-bottom:14px">£18.00</b><a class="btn" style="background:var(--blush);color:var(--ink);width:100%;text-align:center" href="{{ site.beacons_url }}" target="_blank" rel="noopener">Add to bag</a></div></div>
+    <div class="rv stackable" style="display:grid;grid-template-columns:1fr 1.3fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/glowing-physical.webp" alt="She's Glowing, physical journal" sizes="(max-width:820px) 100vw, 45vw" loading="lazy"></div><div><span class="k">Physical journal</span><p class="muted" style="margin:10px 0 14px">A beautiful journal to keep beside you through pregnancy and beyond.</p><b style="font-size:22px;display:block;margin-bottom:14px">£32.00</b><a class="btn" style="background:var(--blush);color:var(--ink);width:100%;text-align:center" href="{{ site.beacons_url }}" target="_blank" rel="noopener">Add to bag</a></div></div>
+    <div class="rv d1 stackable" style="display:grid;grid-template-columns:1fr 1.3fr;gap:24px;align-items:center"><div class="ph grain" style="aspect-ratio:4/5"><img src="/static/img/glowing-digital.webp" alt="She's Glowing, digital edition on a tablet" sizes="(max-width:820px) 100vw, 45vw" loading="lazy"></div><div><span class="k">Digital edition</span><p class="muted" style="margin:10px 0 14px">A focused digital edition with selected pages in a printable format.</p><b style="font-size:22px;display:block;margin-bottom:14px">£18.00</b><a class="btn" style="background:var(--blush);color:var(--ink);width:100%;text-align:center" href="{{ site.beacons_url }}" target="_blank" rel="noopener">Add to bag</a></div></div>
   </div>
 </div></section>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, ico %}
 {% block content %}
 <section class="hero" style="min-height:min(78vh,700px)">
-  <div class="ph parallax grain"><img src="/static/img/scottish-loch.webp" alt="A loch in the Scottish Highlands"></div>
+  <div class="ph parallax grain"><img src="/static/img/retreats-hero.webp" alt="A stone house with a terrace above a lake"></div>
   <div class="veil left"></div>
   <div class="wrap"><div class="stack" style="max-width:520px"><nav class="crumb rv"><a href="/gather/">Gather</a> / Retreats</nav>{{ lines("SHE Retreats", "h1") }}<p class="serif-lede rv d1">Different places. Different experiences.<br>Something to explore.</p>{% for p_ in intro %}<p class="lede rv d2">{{ p_ }}</p>{% endfor %}</div></div>
 </section>
@@ -25,11 +25,11 @@
   </div>
 </div></section>
 <section class="split">
-  {{ img("scottish-journal", "A SHE journal with a pen", parallax=True) }}
+  {{ img("retreats-journal", "Three SHE journals in blush, blue and ivory", parallax=True) }}
   <div class="tx stack"><span class="k rv">The SHE journal</span>{{ lines("A space for your story.", "h2") }}<p class="lede rv d1">{{ journal }}</p><div class="rv d2"><a class="tlink" href="/tools/">Learn more {{ arrow() }}</a></div></div>
 </section>
 <section class="hero" style="min-height:440px">
-  <div class="ph parallax grain"><img src="/static/img/scottish-bowls.webp" alt="" loading="lazy"></div>
+  <div class="ph parallax grain"><img src="/static/img/retreats-view.webp" alt="A woman sitting above a lake at sunset" loading="lazy"></div>
   <div class="veil" style="background:rgba(247,244,239,.62)"></div>
   <div class="wrap" style="align-self:start;padding-top:56px"><span class="k rv" style="display:block;margin-bottom:14px">Different retreats. Different women. Different places.</span><h2 class="rv d1" style="max-width:22ch">Keep your eyes open for the one that feels right for you.</h2></div>
 </section>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
 {% block content %}
 <section class="hero centre" style="min-height:min(86vh,820px)">
-  <div class="ph parallax grain"><picture><source media="(max-width:820px)" srcset="/static/img/home-hero-tall.webp" width="900" height="1180"><img src="/static/img/home-hero.webp" alt="A calm room at golden hour, an open window onto the sea" fetchpriority="high"></picture></div>
+  <div class="ph parallax grain"><picture><source media="(max-width:820px)" sizes="100vw" width="900" height="1180" srcset="/static/img/home-hero-tall-420.webp 420w, /static/img/home-hero-tall-640.webp 640w, /static/img/home-hero-tall.webp 900w"><img src="/static/img/home-hero.webp" alt="A calm room at golden hour, an open window onto the sea" fetchpriority="high"></picture></div>
   <div class="veil glow"></div>
   <canvas class="orb" aria-hidden="true"></canvas>
   <div class="wrap">

@@ -78,7 +78,22 @@ def responsive_images(html: str, manifest: dict) -> tuple[str, str]:
             # fetching the large original and the right size both.
             where = (f'imagesrcset="{srcset}" imagesizes="{sizes}"' if len(entry["srcset"]) > 1
                      else f'href="{src}"')
-            state["preload"] = f'<link rel="preload" as="image" {where} fetchpriority="high">'
+            # A hero inside a <picture> has a phone version of its own, so the preload must
+            # follow the same rule. Otherwise a phone fetches the wide picture as well.
+            before = html[:match.start()]
+            cut = before.rfind("<picture")
+            source = ""
+            if cut != -1 and before.rfind("</picture>") < cut:
+                head = before[cut:]
+                media = re.search(r'<source[^>]*media="([^"]*)"[^>]*>', head)
+                sset = re.search(r'<source[^>]*srcset="([^"]*)"[^>]*>', head)
+                ssizes = re.search(r'<source[^>]*sizes="([^"]*)"[^>]*>', head)
+                if media and sset:
+                    source = (f'<link rel="preload" as="image" imagesrcset="{sset.group(1)}" '
+                              f'imagesizes="{(ssizes.group(1) if ssizes else sizes)}" '
+                              f'media="{media.group(1)}" fetchpriority="high">')
+                    where += f' media="not all and ({media.group(1).strip("()")})"'
+            state["preload"] = source + f'<link rel="preload" as="image" {where} fetchpriority="high">'
         else:
             put("loading", "lazy", overwrite=False)
         return _render(attrs)

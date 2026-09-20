@@ -76,7 +76,12 @@ CHAPTERS = [
 ]
 
 CONVERSATIONS = [
-    {"slug": "i-left-my-career-at-42", "cat": "Career", "title": "I left my career at 42, and found myself again.", "read": "12 min read", "img": "conv-1", "chapter": "becoming"},
+    # Emily's own story. Her words and her photographs come from the page she designed
+    # ("is this it?" in her pictures folder). It stops where her draft stops, at the phone call.
+    {"slug": "is-this-it", "cat": "Founder conversation", "title": "Is This It?", "read": "10 min read",
+     "img": "conv-isthisit", "chapter": "becoming", "has_page": True,
+     "side": "isthisit-side", "main": "isthisit-main", "band": "isthisit-band"},
+    {"slug": "i-left-my-career-at-42", "cat": "Career", "title": "I left my career at 42, and found myself again.", "read": "12 min read", "img": "conv-1", "chapter": "becoming", "has_page": True},
     {"slug": "until-i-became-a-mother", "cat": "Motherhood", "title": "I didn't realise how lost I felt until I became a mother.", "read": "10 min read", "img": "conv-2", "chapter": "resetting"},
     {"slug": "starting-again-at-50", "cat": "Identity", "title": "Starting again at 50, and finally choosing myself.", "read": "14 min read", "img": "conv-3", "chapter": "beginning-again"},
 ]
@@ -116,7 +121,7 @@ def pages() -> list[dict]:
     out += [
         page("/explore/", "explore.html", "Explore", "Real conversations. Bigger questions. Stories, conversations and questions to make you pause, think and see something differently.", "explore-hero", conversations=CONVERSATIONS, questions=QUESTIONS),
         page("/explore/conversations/i-left-my-career-at-42/", "story.html", "I left my career at 42, and found myself again", "For years I thought I was living the dream. A good job, a steady income, a life that looked successful on paper. But underneath, I was exhausted, resentful and completely disconnected from myself.", "story-main",
-             story=CONVERSATIONS[0], meta="A woman in her forties", chapter=CHAPTERS[0], questions=QUESTIONS, conversations=CONVERSATIONS,
+             story=CONVERSATIONS[1], meta="A woman in her forties", chapter=CHAPTERS[0], questions=QUESTIONS, conversations=CONVERSATIONS,
              standfirst="For years I thought I was living the dream. A good job, a steady income, a life that looked successful on paper. But underneath, I was exhausted, resentful and completely disconnected from myself.",
              body=[
                  {"p": ["I used to be the kind of person who said yes to everything. The promotion. The longer hours. The extra responsibility. I thought that's what you were supposed to do, right? Work hard, keep progressing, be grateful.", "And for a long time, I was.", "But somewhere along the way, I stopped checking in with myself. I was so busy building a life that looked good from the outside, that I didn't notice I was slowly disappearing on the inside."]},
@@ -124,6 +129,24 @@ def pages() -> list[dict]:
                  {"p": ["That night, I wrote a list. Not a practical to-do list, but an honest one. What do I actually want? What makes me feel alive? What would I do if I wasn't so scared?", "It was the first time in years I had allowed myself to really ask those questions.", "The answers didn't come all at once, but that night was the beginning of everything changing."]},
              ],
              sit_with=QUESTIONS[1], familiar="You might want to explore Becoming, stories, tools and guidance for women navigating change, at any stage of life."),
+        page("/explore/conversations/is-this-it/", "story.html", "Is This It?",
+             "Emily, founder of SHE, on leaving England, moving to Dubai, and discovering what can happen when you change your environment.",
+             "isthisit-main",
+             story=CONVERSATIONS[0], meta="Emily, founder of SHE", chapter=CHAPTERS[0], questions=QUESTIONS, conversations=CONVERSATIONS,
+             standfirst="Emily, founder of SHE, on leaving England, moving to Dubai, and discovering what can happen when you change your environment.",
+             body=[
+                 {"k": "01 / The beginning", "h": "I had a good life. So why did it feel like it wasn't enough?",
+                  "p": ["I was young. I was probably a little naive. And if I'm honest, there wasn't anything particularly wrong with my life. I was living in England, I had a good job, a good salary, my Mini Cooper, and I was doing makeup, which I actually enjoyed. And I could see where my life was going. That was the strange thing. It was almost like I could see the next ten or twenty years laid out in front of me. And I remember thinking: Is this it?"],
+                  "quote": "It wasn't that I was unhappy. I just felt like there had to be more.",
+                  "img": "isthisit-1"},
+                 {"k": "02 / The opportunity", "h": "Then the phone rang.",
+                  "p": ["I remember it really clearly. I was walking down a country lane, standing by a gate and looking out across a field. I was thinking about that feeling again. Then my friend called. She had an opportunity for me. It was a sales job in Dubai. Now, this was before Dubai was the place everyone seems to know about now. I honestly didn't really know anything about the UAE. So I did what seemed like the sensible thing. I researched it. And then thought: Why not go for a couple of weeks and see? What's the worst that could happen?"],
+                  "img": "isthisit-2"},
+             ],
+             band="Sometimes the change isn't what you think it is.",
+             more_to_come="More of Emily's story is coming.",
+             sit_with=QUESTIONS[1],
+             familiar="You might want to explore Becoming, stories, tools and guidance for women navigating change, at any stage of life."),
         page("/explore/questions/five-years/", "question.html", "Where do you think you'll be in five years if you keep going the way you are now?", "This was the question that stopped her in her tracks. Here's what she said.", "question-hero",
              q=QUESTIONS[0], meta="Anonymous", chapter=CHAPTERS[0], questions=QUESTIONS, conversations=CONVERSATIONS,
              standfirst="This was the question that stopped her in her tracks. Here's what she said.",

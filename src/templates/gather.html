@@ -1,21 +1,65 @@
 {% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, ico %}
 {% block content %}
-<section class="hero" style="min-height:min(80vh,720px)">
-  <div class="ph parallax grain"><img src="/static/img/gather-hero.webp" alt="Women walking together at sunset"></div>
-  <div class="veil left"></div>
-  <div class="wrap"><div class="stack" style="max-width:520px"><span class="k soft rv">Gather</span>{{ lines("Come together.\nIn real life.", "h1") }}<div class="rule rv d1"></div><p class="serif-lede rv d1">{{ lede|replace("\n", "<br>")|safe }}</p><p class="lede rv d2">{{ intro }}</p><div class="rv d3"><a class="btn" href="#events">See upcoming events {{ arrow() }}</a></div></div></div>
+<section class="hero-split">
+  <div class="tx stack">
+    <span class="k soft rv">Ways to gather</span>
+    {{ lines("Different spaces.\nA deeper connection.", "h1") }}
+    <p class="lede rv d1">{{ ways_note }}</p>
+  </div>
+  <div class="ph parallax grain">
+    <img src="/static/img/gather-hero.webp" alt="Women together at a long table under an olive tree" fetchpriority="high">
+    <div class="side on-dark">Real<br>women.<br>Meaningful<br>experiences.<br>Brighter<br>chapters.</div>
+  </div>
 </section>
+
 <section class="sec"><div class="wrap">
-  <div class="grid stackable" style="grid-template-columns:2fr 1fr;align-items:end;gap:24px;margin-bottom:40px"><div><span class="k rv">Ways to gather</span><h2 class="rv d1" style="margin-top:12px">Different spaces. A deeper connection.</h2></div><p class="serif-lede rv d2" style="font-size:19px">{{ ways_note }}</p></div>
-  <div class="grid g6">{% for w in ways %}<a class="rv d{{ loop.index0 % 5 }}" href="{{ w.href }}"><div class="ph grain" style="aspect-ratio:4/5;margin-bottom:14px"><img src="/static/img/{{ w.img }}.webp" alt="" sizes="(max-width:620px) 45vw, (max-width:1000px) 30vw, 210px" loading="lazy"></div><h3 style="font-size:20px;margin-bottom:6px">{{ w.name }}</h3><p class="small muted" style="margin-bottom:10px">{{ w.sub }}</p><span class="tlink">Learn more {{ arrow() }}</span></a>{% endfor %}</div>
+  <div class="grid g2 two-ways">
+    <a class="rv" href="/gather/experiences/">
+      <div class="ph grain"><img src="/static/img/event-coffee.webp" alt="A table laid for a gathering" sizes="(max-width:1000px) 92vw, 560px" loading="lazy"></div>
+      <h2>SHE Experiences</h2>
+      <span class="k soft">Unique gatherings. Real connections.</span>
+      <p class="lede">Thoughtfully created experiences for women to learn, share, explore and feel more like themselves again. From creative workshops to nature walks, intimate suppers to powerful conversations.</p>
+      <span class="tlink">Explore experiences {{ arrow() }}</span>
+    </a>
+    <a class="rv d1" href="/gather/retreats/">
+      <div class="ph grain"><img src="/static/img/retreats-hero.webp" alt="A stone house with a terrace above a lake" sizes="(max-width:1000px) 92vw, 560px" loading="lazy"></div>
+      <h2>SHE Retreats</h2>
+      <span class="k soft">Time away. Lasting change.</span>
+      <p class="lede">Immersive, small-group retreats in beautiful places, made to help you pause, reflect and reconnect. Space to breathe, think differently and come home with a renewed sense of you.</p>
+      <span class="tlink">Explore retreats {{ arrow() }}</span>
+    </a>
+  </div>
 </div></section>
+
 <section class="sec cream2" id="events"><div class="wrap">
-  <div class="grid stackable" style="grid-template-columns:1fr 2.2fr;gap:clamp(24px,4vw,56px);align-items:start"><div class="stack"><span class="k rv">Upcoming events</span>{{ lines("Come as\nyou are.", "h2") }}<p class="serif-lede rv d1">{{ events_intro }}</p><div class="rv d2"><a class="btn" href="/join/">View all events {{ arrow() }}</a></div></div>
-  {% if events %}<div class="grid g3">{% for e in events %}<a class="rv d{{ loop.index0 }}" href="{{ e.href }}"><div class="ph grain" style="aspect-ratio:4/3;margin-bottom:16px"><img src="/static/img/{{ e.img }}.webp" alt="" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px" loading="lazy"></div><div class="meta" style="margin-bottom:8px"><span>{{ e.date }}</span><span>{{ e.place }}</span></div><h3 style="margin-bottom:8px">{{ e.name }}</h3><p class="muted" style="margin-bottom:12px">{{ e.sub }}</p><span class="tlink">View details {{ arrow() }}</span></a>{% endfor %}</div>
-  {% else %}<div style="text-align:center;max-width:52ch;margin:0 auto"><p class="serif-lede rv">There are no events scheduled right now.</p><p class="muted rv d1" style="margin:12px 0 22px">New gatherings are added throughout the year. Join the community and you'll be the first to hear when the next one opens.</p><a class="btn rv d2" href="/join/">Join the community</a></div>{% endif %}</div>
+  <h2 class="rv">Upcoming gatherings</h2>
+  <p class="lede rv d1" style="margin:10px 0 34px;max-width:52ch">{{ events_intro }}</p>
+  <div class="grid g3">
+    {% for e in events %}
+      {% if e.soon %}
+      <div class="rv d{{ loop.index0 }}">
+        <div class="ph grain" style="aspect-ratio:4/3;margin-bottom:16px"><img src="/static/img/{{ e.img }}.webp" alt="" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px" loading="lazy"></div>
+        <div class="meta" style="margin-bottom:8px"><span>{{ e.date }}</span></div>
+        <h3 style="margin-bottom:8px">{{ e.name }}</h3>
+        <p class="muted" style="margin-bottom:12px">{{ e.sub }}</p>
+        <a class="tlink" href="/join/">Hear about it first {{ arrow() }}</a>
+      </div>
+      {% else %}
+      <a class="rv d{{ loop.index0 }}" href="{{ e.href }}">
+        <div class="ph grain" style="aspect-ratio:4/3;margin-bottom:16px"><img src="/static/img/{{ e.img }}.webp" alt="" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px" loading="lazy"></div>
+        <div class="meta" style="margin-bottom:8px"><span>{{ e.date }}</span>{% if e.place %}<span>{{ e.place }}</span>{% endif %}</div>
+        <h3 style="margin-bottom:8px">{{ e.name }}</h3>
+        <p class="muted" style="margin-bottom:12px">{{ e.sub }}</p>
+        <span class="tlink">Find out more {{ arrow() }}</span>
+      </a>
+      {% endif %}
+    {% endfor %}
+  </div>
 </div></section>
-<section class="split">
-  {{ img("way-retreats", "A Highland lodge above a loch", parallax=True) }}
-  <div class="tx stack"><span class="k soft rv">Retreats</span>{{ lines("Time away to\ncome back to yourself.", "h2") }}<p class="lede rv d1">Different places. Different experiences. Something to explore.</p><div class="rv d2"><a class="btn ghost" href="/gather/retreats/">Explore retreats {{ arrow() }}</a></div></div>
+
+<section class="strip gather-quote">
+  <div class="ph parallax grain"><img src="/static/img/way-special.webp" alt="" loading="lazy"></div>
+  <div class="veil" style="position:absolute;inset:0;background:rgba(247,244,239,.6)"></div>
+  <span class="q rv">{{ closing_quote }}</span>
 </section>
 {% endblock %}

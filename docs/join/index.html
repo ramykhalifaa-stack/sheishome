@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EF">
 <style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
-<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=9ad199c9">
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=ab618c22">
 <link rel="preload" as="image" imagesrcset="/static/img/join-hero-420.webp 420w, /static/img/join-hero-640.webp 640w, /static/img/join-hero-900.webp 900w, /static/img/join-hero-1280.webp 1280w, /static/img/join-hero.webp 1700w" imagesizes="(max-width:1000px) 100vw, 50vw" fetchpriority="high">
 </head>
 <body>
@@ -79,7 +79,39 @@
 </footer>
 <script src="/static/js/site.js?v=3180fd3c" defer></script>
 <script>
-(function(){var f=document.getElementById('joinform');if(!f||!f.action||f.action.indexOf('http')!==0)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.msg');b.disabled=true;b.textContent='Coming in...';var fd=new FormData(f);fetch(f.action,{method:'POST',body:fd,mode:'cors'}).then(function(r){return r.json()}).then(function(d){m.textContent=d.message||'Welcome in. Taking you through to SHE now...';b.textContent='You are in';setTimeout(function(){window.location.href='https://beacons.ai/sacredhumanexperience';},900);}).catch(function(){b.disabled=false;b.textContent='Come in';m.textContent='Something went wrong just now. Please try again in a moment.';});});})();
+/* The form posts to SHE's own list. When it answers, the page says thank you where the form was:
+   nobody is sent off to another site. */
+(function () {
+  var f = document.getElementById('joinform');
+  if (!f || !f.action || f.action.indexOf('http') !== 0) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var b = f.querySelector('button'), m = f.querySelector('.msg');
+    b.disabled = true; b.textContent = 'Coming in...';
+    fetch(f.action, { method: 'POST', body: new FormData(f), mode: 'cors' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.ok === false) {
+          b.disabled = false; b.textContent = 'Come in';
+          m.textContent = d.message || 'That did not go through. Please try again.';
+          return;
+        }
+        var name = (f.querySelector('input[name=name]').value || '').trim().split(' ')[0];
+        var thanks = document.createElement('div');
+        thanks.className = 'thanks';
+        thanks.setAttribute('role', 'status');
+        thanks.innerHTML = '<p class="k">You are in</p>' +
+          '<p class="serif-lede">Thank you' + (name ? ', ' + name.replace(/[<>&]/g, '') : '') + '.</p>' +
+          '<p class="muted">Your place in the SHE community is confirmed. Look out for an email from us: ' +
+          'the SHE Letter arrives once a month, and you will hear about gatherings before anyone else.</p>';
+        f.replaceWith(thanks);
+      })
+      .catch(function () {
+        b.disabled = false; b.textContent = 'Come in';
+        m.textContent = 'Something went wrong just now. Please try again in a moment.';
+      });
+  });
+})();
 </script>
 </body>
 </html>

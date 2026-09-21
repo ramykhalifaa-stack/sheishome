@@ -42,6 +42,38 @@
 {% endblock %}
 {% block scripts %}
 <script>
-(function(){var f=document.getElementById('joinform');if(!f||!f.action||f.action.indexOf('http')!==0)return;f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button'),m=f.querySelector('.msg');b.disabled=true;b.textContent='Coming in...';var fd=new FormData(f);fetch(f.action,{method:'POST',body:fd,mode:'cors'}).then(function(r){return r.json()}).then(function(d){m.textContent=d.message||'Welcome in. Taking you through to SHE now...';b.textContent='You are in';{% if site.beacons_url %}setTimeout(function(){window.location.href='{{ site.beacons_url }}';},900);{% endif %}}).catch(function(){b.disabled=false;b.textContent='Come in';m.textContent='Something went wrong just now. Please try again in a moment.';});});})();
+/* The form posts to SHE's own list. When it answers, the page says thank you where the form was:
+   nobody is sent off to another site. */
+(function () {
+  var f = document.getElementById('joinform');
+  if (!f || !f.action || f.action.indexOf('http') !== 0) return;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var b = f.querySelector('button'), m = f.querySelector('.msg');
+    b.disabled = true; b.textContent = 'Coming in...';
+    fetch(f.action, { method: 'POST', body: new FormData(f), mode: 'cors' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.ok === false) {
+          b.disabled = false; b.textContent = 'Come in';
+          m.textContent = d.message || 'That did not go through. Please try again.';
+          return;
+        }
+        var name = (f.querySelector('input[name=name]').value || '').trim().split(' ')[0];
+        var thanks = document.createElement('div');
+        thanks.className = 'thanks';
+        thanks.setAttribute('role', 'status');
+        thanks.innerHTML = '<p class="k">You are in</p>' +
+          '<p class="serif-lede">Thank you' + (name ? ', ' + name.replace(/[<>&]/g, '') : '') + '.</p>' +
+          '<p class="muted">Your place in the SHE community is confirmed. Look out for an email from us: ' +
+          'the SHE Letter arrives once a month, and you will hear about gatherings before anyone else.</p>';
+        f.replaceWith(thanks);
+      })
+      .catch(function () {
+        b.disabled = false; b.textContent = 'Come in';
+        m.textContent = 'Something went wrong just now. Please try again in a moment.';
+      });
+  });
+})();
 </script>
 {% endblock %}

@@ -90,18 +90,24 @@ QUESTIONS = [
     {"slug": "couldnt-fail", "title": "What would you do if you knew you couldn't fail?", "read": "3 min read", "img": "q-2", "chapter": "rising"},
     {"slug": "living-or-managing", "title": "Are you living your life, or just managing it?", "read": "5 min read", "img": "q-3", "chapter": "resetting"},
 ]
-WAYS = [
-    {"name": "Coffee Mornings", "sub": "Casual meet-ups, real conversations.", "img": "way-coffee", "href": "/gather/london-coffee-morning/"},
-    {"name": "Circles", "sub": "A space to share, listen and be heard.", "img": "way-circles", "href": "/join/"},
-    {"name": "Workshops", "sub": "Practical tools for a more intentional life.", "img": "way-workshops", "href": "/gather/create-your-next-chapter/"},
-    {"name": "Retreats", "sub": "Time away to reconnect, reset and reimagine.", "img": "way-retreats", "href": "/gather/retreats/"},
-    {"name": "Special Events", "sub": "Unique experiences with inspiring women.", "img": "way-special", "href": "/join/"},
-    {"name": "SHE Cities", "sub": "A growing global community.", "img": "way-cities", "href": "/join/"},
+# What a SHE gathering can be. Retreats have their own page, so they are not repeated here.
+EXPERIENCES = [
+    {"name": "Workshops", "sub": "Practical tools for a more intentional life.", "img": "cync-expect", "href": "/gather/create-your-next-chapter/"},
+    {"name": "Walks", "sub": "Time in nature, with conversation that goes deeper.", "img": "resetting-explore", "href": "/gather/experiences/"},
+    {"name": "Coffee mornings", "sub": "Casual meet-ups, real conversations.", "img": "coffee-about", "href": "/gather/experiences/"},
+    {"name": "Suppers", "sub": "A long table, good food and honest talk.", "img": "event-dinner", "href": "/gather/experiences/"},
 ]
 EVENTS = [
-    {"date": "Sat 14 Nov", "place": "London", "name": "SHE Coffee Morning", "sub": "A relaxed morning of conversation and connection in Notting Hill.", "img": "event-coffee", "href": "/gather/london-coffee-morning/"},
-    {"date": "17 to 21 Apr", "place": "Scotland", "name": "The Scottish Hills", "sub": "A four-night retreat to slow down, reconnect and reset.", "img": "event-retreat", "href": "/gather/retreats/the-scottish-hills/"},
-    {"date": "Sun 7 Jun", "place": "Coughton Court", "name": "Create Your Next Chapter", "sub": "A half-morning workshop with practical tools and meaningful conversation.", "img": "event-dinner", "href": "/gather/create-your-next-chapter/"},
+    {"date": "Date to be announced", "place": "Warwick", "name": "Create Your Next Chapter",
+     "sub": "A half-morning workshop with practical tools and meaningful conversation.",
+     "img": "way-workshops", "href": "/gather/create-your-next-chapter/"},
+    # Nothing is booking yet. These say so plainly rather than pretending there is a date.
+    {"date": "Coming soon", "place": "", "name": "Coffee Mornings",
+     "sub": "No coffee mornings just now. Keep an eye out: the next one is coming soon.",
+     "img": "way-coffee", "href": "", "soon": True},
+    {"date": "Coming soon", "place": "", "name": "SHE Retreats",
+     "sub": "No retreats are booking just now. Join SHE and you will hear first.",
+     "img": "way-retreats", "href": "", "soon": True},
 ]
 
 
@@ -109,10 +115,30 @@ def page(path, template, title, description="", image="", orb=False, **data):
     return {"path": path, "template": template, "title": title, "description": description, "image": image, "orb": orb, "data": data}
 
 
+# The Scottish Hills retreat and the London Coffee Morning are not running at the moment
+# (founder's decision, 21 September 2026). Their pages were removed from the site rather than
+# left live with old dates; the Gather page says both are coming soon. Their words are in git
+# history at commit 9286c89 if they are wanted again.
+
 def pages() -> list[dict]:
     out = [
         page("/", "home.html", "SHE is home. For every chapter of becoming", "A space to feel, explore, and come back to yourself. Find your chapter, gather in real life, explore conversations and journals.", "home-hero", orb=True, chapters=CHAPTERS),
         page("/about/", "about.html", "About SHE", "What started with a journal became an experience. Where SHE came from, and why it is about both becoming and belonging.", "about-hero"),
+        page("/gather/create-your-next-chapter/", "event.html", "Create Your Next Chapter, a SHE workshop", "A half-morning workshop to help you pause, reflect and intentionally shape what's next.", "cync-hero",
+             ev={"kicker": "Workshop", "title": "Create Your\nNext Chapter", "tags": "Vision boarding · Manifestation · Mindset", "tags2": "Coffee. Cake. Clarity. You.",
+                 "intro": "A half-morning workshop to help you pause, reflect and intentionally shape what's next, with practical tools, meaningful conversation and a supportive community of women.",
+                 "hero": "cync-hero", "about_img": "cync-about", "expect_img": "cync-expect", "bottom": "cync-bottom", "cta": "Join SHE for the date",
+                 "when": "More details to be released soon", "time": "", "where": "Warwick", "where_sub": "", "group": "A small, intimate group", "extra": "Coffee, tea and cake included", "price": "",
+                 "about_title": "About this event", "about": ["Life moves in seasons, and sometimes we find ourselves at a turning point, not knowing exactly what's next, but feeling ready for something different.", "This workshop is an invitation to step out of the everyday, create space for yourself and explore your next chapter with intention. Through vision boarding, reflection, mindset work and meaningful conversation, you'll leave feeling clearer, more grounded and inspired about what's ahead.", "Whether you're navigating a big change or simply want to realign, this is a morning to invest in you."],
+                 "expect": [("Vision boarding", "Get clear on what you want and bring your next chapter to life."), ("Mindset", "Explore what's possible and shift the beliefs that may be holding you back."), ("Meaningful conversation", "Share, listen and be inspired by like-minded women."), ("Practical tools", "Leave with clarity, intention and simple next steps.")],
+                 "who": ["Women at any stage of life", "Those feeling ready for change", "Anyone who wants more clarity and direction", "Women who value honest conversation and real connection"],
+                 "closing": "A morning for\na brighter you."}),
+        page("/gather/retreats/", "retreats.html", "SHE Retreats", "Different places. Different experiences. Something to explore. SHE retreats are created for women who want to step away from everyday life.", "retreats-hero",
+             intro=["SHE retreats are created for women who want to step away from everyday life and experience something a little different. Beautiful places. Interesting women. Space to breathe, think and reconnect. Experiences that invite you to explore what matters to you.", "And no two retreats are the same."],
+             what=["Every SHE retreat is different, but they all share the same intention, to create space for something to shift. Whether it's a weekend close to home or a longer journey further afield, each retreat offers a considered combination of beauty, experience, and connection."],
+             pillars=[("home", "A beautiful place", "Chosen intentionally for the experience."), ("leaf", "Something to explore", "A theme, a practice or a new perspective."), ("sun", "A SHE experience", "Thoughtfully curated and unique to each retreat."), ("people", "Real connection", "Genuine conversations and a supportive community of women."), ("heart", "Your SHE journal", "A lasting record of your experience to take home.")],
+             journal="Every woman receives a SHE journal as part of the retreat experience. Choose your colour before you arrive, and make it yours, a place for thoughts, reflections, creativity and memories.",
+             current=None, was_current={"name": "The Scottish Hills", "theme": "Sound · Stillness · Connection", "dates": "17 to 21 April 2026", "place": "Scottish Highlands, UK", "group": "A small group experience", "img": "scottish-about", "href": "/gather/retreats/the-scottish-hills/"}),
         page("/join/", "join.html", "Join SHE", "Come in. Stay a while. Join the SHE Letter and the community.", "join-hero", orb=True),
         page("/chapters/", "chapters.html", "The Chapters", "Wherever you are, you belong here. Six chapters. Find the one that feels most like you.", "chapters-hero", chapters=CHAPTERS),
     ]
@@ -153,41 +179,22 @@ def pages() -> list[dict]:
              body_1=["had never really thought about it. I was just getting on with things: work, family, the constant to-do list. But when I actually sat with the question, it made me feel uncomfortable. Because the honest answer was: I'd probably be exhausted. Still saying yes to things I don't really want to do. Still putting myself last.", "I realised I've been living in this cycle of being busy, thinking that means I'm doing okay. But busy isn't the same as fulfilled. I don't want to look back in five years and realise I had the chance to make a change, and I didn't take it.", "That question gave me the clarity I needed to start making different choices. It didn't give me all the answers, but it reminded me that I do have a say in what my life looks like."],
              quote="Busy isn't the same as fulfilled.",
              body_2=["I'm still figuring things out, but I'm asking myself that question more often now. It's a simple one, but it's powerful. Because it makes me take responsibility, and it reminds me that change doesn't have to be dramatic to be meaningful."]),
-        page("/gather/", "gather.html", "Gather", "Come together. In real life. From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.", "gather-hero", ways=WAYS, events=EVENTS,
+        page("/gather/", "gather.html", "Gather", "Come together. In real life. From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.", "gather-hero", experiences=EXPERIENCES, events=EVENTS,
              lede="Meaningful spaces. Real conversations.\nWomen, together.", intro="From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.",
-             ways_note="Each gathering is an invitation to pause, be present and find your people.", events_intro="From local meet-ups to international retreats, find what's happening near you."),
-        page("/gather/create-your-next-chapter/", "event.html", "Create Your Next Chapter, a SHE workshop", "A half-morning workshop to help you pause, reflect and intentionally shape what's next.", "cync-hero",
-             ev={"kicker": "Workshop", "title": "Create Your\nNext Chapter", "tags": "Vision boarding · Manifestation · Mindset", "tags2": "Coffee. Cake. Clarity. You.",
-                 "intro": "A half-morning workshop to help you pause, reflect and intentionally shape what's next, with practical tools, meaningful conversation and a supportive community of women.",
-                 "hero": "cync-hero", "about_img": "cync-about", "expect_img": "cync-expect", "bottom": "cync-bottom", "cta": "Book your place",
-                 "when": "Sun 7 June 2026", "time": "10:00am to 1:00pm", "where": "Coughton Court", "where_sub": "", "group": "A small, intimate group", "extra": "Coffee, tea and cake included", "price": "",
-                 "about_title": "About this event", "about": ["Life moves in seasons, and sometimes we find ourselves at a turning point, not knowing exactly what's next, but feeling ready for something different.", "This workshop is an invitation to step out of the everyday, create space for yourself and explore your next chapter with intention. Through vision boarding, reflection, mindset work and meaningful conversation, you'll leave feeling clearer, more grounded and inspired about what's ahead.", "Whether you're navigating a big change or simply want to realign, this is a morning to invest in you."],
-                 "expect": [("Vision boarding", "Get clear on what you want and bring your next chapter to life."), ("Mindset", "Explore what's possible and shift the beliefs that may be holding you back."), ("Meaningful conversation", "Share, listen and be inspired by like-minded women."), ("Practical tools", "Leave with clarity, intention and simple next steps.")],
-                 "who": ["Women at any stage of life", "Those feeling ready for change", "Anyone who wants more clarity and direction", "Women who value honest conversation and real connection"],
-                 "closing": "A morning for\na brighter you."}),
-        page("/gather/london-coffee-morning/", "event.html", "London Coffee Morning", "Good conversation. Real connection. A relaxed morning to meet like-minded women in Notting Hill.", "coffee-hero",
-             ev={"kicker": "Coffee morning", "title": "London\nCoffee Morning", "tags": "Good conversation. Real connection.", "tags2": "",
-                 "intro": "A relaxed morning to meet like-minded women, share ideas, and feel part of something. Whether you're new to SHE or have been here for a while, you're so welcome.",
-                 "hero": "coffee-hero", "about_img": "coffee-about", "expect_img": "coffee-left", "expect_img2": "coffee-right", "bottom": "coffee-bottom", "cta": "Save your place",
-                 "when": "Sat 14 Nov 2026", "time": "10:00am to 12:00pm", "where": "A neighbourhood café, Notting Hill, London", "where_sub": "Full address shared after booking.", "group": "A small, intimate group", "extra": "", "price": "£18", "price_sub": "Includes a drink and a pastry.",
-                 "about_title": "About this event", "about": ["Our coffee mornings are a chance to slow down, step out of your usual routine and spend time with women who get it.", "There's no set agenda, just good coffee, meaningful conversation and space to be yourself.", "Come on your own or bring a friend. All are welcome."],
-                 "expect": [("Meaningful conversation", "Real talk, new perspectives and shared experiences."), ("A welcoming space", "Come as you are. No pressure, no agenda."), ("Like-minded women", "Women from different chapters, all on their own journey."), ("Good coffee", "Because everything's better over coffee.")],
-                 "who": [], "closing": "Same women.\nDifferent chapters.\nReal connection."}),
-        page("/gather/retreats/", "retreats.html", "SHE Retreats", "Different places. Different experiences. Something to explore. SHE retreats are created for women who want to step away from everyday life.", "retreats-hero",
-             intro=["SHE retreats are created for women who want to step away from everyday life and experience something a little different. Beautiful places. Interesting women. Space to breathe, think and reconnect. Experiences that invite you to explore what matters to you.", "And no two retreats are the same."],
-             what=["Every SHE retreat is different, but they all share the same intention, to create space for something to shift. Whether it's a weekend close to home or a longer journey further afield, each retreat offers a considered combination of beauty, experience, and connection."],
-             pillars=[("home", "A beautiful place", "Chosen intentionally for the experience."), ("leaf", "Something to explore", "A theme, a practice or a new perspective."), ("sun", "A SHE experience", "Thoughtfully curated and unique to each retreat."), ("people", "Real connection", "Genuine conversations and a supportive community of women."), ("heart", "Your SHE journal", "A lasting record of your experience to take home.")],
-             journal="Every woman receives a SHE journal as part of the retreat experience. Choose your colour before you arrive, and make it yours, a place for thoughts, reflections, creativity and memories.",
-             current={"name": "The Scottish Hills", "theme": "Sound · Stillness · Connection", "dates": "17 to 21 April 2026", "place": "Scottish Highlands, UK", "group": "A small group experience", "img": "scottish-about", "href": "/gather/retreats/the-scottish-hills/"}),
-        page("/gather/retreats/the-scottish-hills/", "retreat.html", "The Scottish Hills, a SHE retreat", "Sound. Stillness. Connection. A four-night retreat in the heart of the Scottish Highlands.", "scottish-hero",
-             r={"title": "The\nScottish Hills", "theme": "Sound. Stillness. Connection.",
-                "intro": "A four-night retreat in the heart of the Scottish Highlands for women looking to slow down, breathe deeper and reconnect, with themselves, with nature, and with each other.",
-                "dates": "17 to 21 April 2026", "nights": "4 nights", "place": "Scottish Highlands, UK", "group": "A small group experience", "stay": "Beautifully restored Highland lodge", "investment": "£1,250", "investment_sub": "A deposit will be required to secure your place. Payment plans available.",
-                "about": ["Join us for a four-night experience in a stunning highland setting, where there is time to pause, space to explore, and the opportunity to experience sound, nature and meaningful connection.", "This retreat is gently guided by Janie, a sound healing practitioner, who will hold space for restoration, reflection and shared experience.", "There's no pressure, no expectation, just an invitation to step away from the everyday and give yourself this time."],
-                "expect": [("Sound healing sessions", "Guided by Janie, to help you soften, reset and reconnect."), ("Time in nature", "Walks, fresh air and space to breathe."), ("Meaningful connection", "Genuine conversations with a small group of women."), ("Nourishing food", "Delicious, wholesome meals to support your time away."), ("Space for you", "Time to reflect, explore and simply be.")],
-                "journal": "Every woman receives a SHE journal as part of this retreat. Choose your colour before you arrive, and make it yours, a place for thoughts, reflections, creativity and memories.",
-                "swatches": [("Ivory", "#EDE6DC"), ("Blush", "#D9B2A5"), ("Blue", "#9BA4B4"), ("Black", "#1E1E1C")],
-                "quote": "A chance to step outside, slow down, and come back to what matters."}),
+             ways_note="Our gatherings are an invitation to pause, meet like-minded women and experience something meaningful, in beautiful places, and at every stage of your journey.",
+             events_intro="What is coming up, and what to keep an eye out for.",
+             closing_quote="Shared spaces. Brighter chapters."),
+        page("/gather/experiences/", "experiences.html", "SHE Experiences",
+             "Unique gatherings. Real connections. Workshops, walks, suppers and conversations for women who want to feel more like themselves again.",
+             "way-workshops", experiences=EXPERIENCES, events=EVENTS,
+             intro="Thoughtfully created experiences for women to learn, share, explore and feel more like themselves again. From creative workshops to nature walks, intimate suppers to powerful conversations.",
+             note="Every experience is different, but each one is small, warm and unhurried, with room to think and people worth talking to.",
+             expect=[("A small group", "Never a crowd. Enough people to spark something, few enough to be heard."),
+                     ("Come as you are", "No preparation, no pressure, no performance."),
+                     ("Something to take home", "A tool, a question or a conversation that stays with you."),
+                     ("Women who get it", "Different lives, the same honesty.")],
+             events_intro="What is coming up, and what to keep an eye out for.",
+             closing="Shared spaces.\nBrighter chapters."),
         page("/tools/", "tools.html", "Tools", "More than a journal. A place to pause, ask better questions, notice what's changing, imagine what's possible and come back to yourself.", "tools-hero"),
         page("/tools/the-becoming/", "becoming_journal.html", "The Becoming, a journal for a more intentional life", "A 24-week guided journal to help you look at your life, your patterns, your energy, your goals and what you want to change.", "becoming-product-hero"),
         page("/tools/shes-glowing/", "glowing_journal.html", "She's Glowing, a journal for pregnancy, motherhood and your own evolution", "You're not losing yourself. You're meeting yourself. A space to feel, reflect and stay connected to yourself through a chapter that changes everything.", "glowing-hero"),

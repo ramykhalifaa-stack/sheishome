@@ -6,6 +6,7 @@
 <title>{{ page.title }} | SHE</title>
 <meta name="description" content="{{ page.description or site.description }}">
 <link rel="canonical" href="{{ site.domain }}{{ page.path }}">
+{% if page.unlisted %}<meta name="robots" content="noindex, nofollow">{% endif %}
 <meta property="og:title" content="{{ page.title }} | SHE"><meta property="og:description" content="{{ page.description or site.description }}"><meta property="og:type" content="website"><meta property="og:url" content="{{ site.domain }}{{ page.path }}"><meta property="og:image" content="{{ site.domain }}/static/img/og-she.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="SHE"><meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{ page.title }}"><meta name="twitter:description" content="{{ page.description or site.description }}"><meta name="twitter:image" content="{{ site.domain }}/static/img/og-she.jpg">
 <link rel="icon" href="/static/img/she-mark-ink.svg" type="image/svg+xml">

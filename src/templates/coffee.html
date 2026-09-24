@@ -1,0 +1,111 @@
+{% extends "base.html" %}{% from "_macros.html" import arrow, lines %}
+{% block content %}
+<section class="coffee">
+  <div class="cf">
+    <header class="cf-top">
+      <div class="wordmark">SHE</div>
+      <span class="k soft">Coffee Conversations</span>
+      <hr class="rule" style="margin:20px auto">
+    </header>
+
+    <div class="cf-step" id="cf-intro">
+      <h1 class="cf-h">{{ strap }}</h1>
+      <div class="cf-prose">{% for p in intro %}<p>{{ p }}</p>{% endfor %}</div>
+      <h2 class="cf-h2">How it works</h2>
+      <ol class="cf-steps">
+        {% for n, t, d in steps %}<li><span class="n">{{ n }}</span><b>{{ t }}</b><span class="muted">{{ d }}</span></li>{% endfor %}
+      </ol>
+      <p class="cf-note">{{ note }}</p>
+      <button class="btn cf-btn" type="button" data-go="cf-depth">Got it {{ arrow() }}</button>
+    </div>
+
+    <div class="cf-step" id="cf-depth" hidden>
+      <h2 class="cf-h">What are you<br>in the mood for?</h2>
+      <div class="cf-cards">
+        {% for key, name, sub in depths %}
+        <button class="cf-card" type="button" data-depth="{{ key }}">
+          <span class="t">{{ name }}</span><span class="s">{{ sub|replace("\n", "<br>")|safe }}</span><i class="dot"></i>
+        </button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="cf-step" id="cf-questions" hidden>
+      <h2 class="cf-h2 cf-depth-name"></h2>
+      <p class="muted cf-depth-sub"></p>
+      <div class="cf-list"></div>
+      <div class="cf-nav">
+        <button class="tlink cf-prev" type="button" hidden><span class="flip">{{ arrow() }}</span> Previous</button>
+        <button class="btn cf-more" type="button">More {{ arrow() }}</button>
+      </div>
+      <button class="tlink cf-back" type="button">Choose a different depth</button>
+    </div>
+
+    <div class="cf-step" id="cf-chosen" hidden>
+      <div class="cf-picked"><span class="k">Your question</span><p class="cf-picked-q"></p></div>
+      <div class="cf-away">
+        <span class="k">Question chosen</span>
+        <p class="cf-h">Write it in your<br>SHE notebook.</p>
+        <button class="btn ghost cf-done" type="button">Put your phone away {{ arrow() }}</button>
+      </div>
+      <button class="tlink cf-again" type="button">Choose another question</button>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+/* One page, four steps. Nothing is sent anywhere: the question you choose stays in this phone,
+   and the page keeps no record of it. */
+(function () {
+  var QUESTIONS = {{ questions_json|safe }};
+  var DEPTHS = {{ depths_json|safe }};
+  var page = document.querySelector('.coffee');
+  if (!page) return;
+  var steps = page.querySelectorAll('.cf-step');
+  var list = page.querySelector('.cf-list');
+  var depth = 'surface', from = 0, PER = 3;
+
+  function show(id) {
+    steps.forEach(function (s) { s.hidden = s.id !== id; });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  function draw() {
+    var qs = QUESTIONS[depth] || [];
+    page.querySelector('.cf-depth-name').textContent = DEPTHS[depth].name;
+    page.querySelector('.cf-depth-sub').textContent = DEPTHS[depth].sub.replace('\n', ' ');
+    list.innerHTML = '';
+    qs.slice(from, from + PER).forEach(function (q, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'cf-q';
+      b.innerHTML = '<span class="n">' + String(from + i + 1).padStart(2, '0') + '</span>' +
+                    '<span class="t"></span><i class="dot"></i>';
+      b.querySelector('.t').textContent = q;
+      b.addEventListener('click', function () { choose(q); });
+      list.appendChild(b);
+    });
+    page.querySelector('.cf-prev').hidden = from === 0;
+    page.querySelector('.cf-more').textContent = from + PER >= qs.length ? 'Start again' : 'More';
+  }
+  function choose(q) {
+    page.querySelector('.cf-picked-q').textContent = q;
+    show('cf-chosen');
+  }
+  page.querySelectorAll('[data-go]').forEach(function (b) {
+    b.addEventListener('click', function () { show(b.getAttribute('data-go')); });
+  });
+  page.querySelectorAll('[data-depth]').forEach(function (b) {
+    b.addEventListener('click', function () { depth = b.getAttribute('data-depth'); from = 0; draw(); show('cf-questions'); });
+  });
+  page.querySelector('.cf-more').addEventListener('click', function () {
+    from = from + PER >= (QUESTIONS[depth] || []).length ? 0 : from + PER; draw();
+  });
+  page.querySelector('.cf-prev').addEventListener('click', function () { from = Math.max(0, from - PER); draw(); });
+  page.querySelector('.cf-back').addEventListener('click', function () { show('cf-depth'); });
+  page.querySelector('.cf-again').addEventListener('click', function () { draw(); show('cf-questions'); });
+  page.querySelector('.cf-done').addEventListener('click', function () {
+    page.querySelector('.cf-away').innerHTML = '<span class="k">Enjoy the conversation</span>';
+  });
+})();
+</script>
+{% endblock %}

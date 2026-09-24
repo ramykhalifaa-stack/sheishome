@@ -103,7 +103,8 @@ def build() -> int:
         out.write_text(render(page["template"], page=page, pages=pages, **page.get("data", {})), encoding="utf-8")
     (TMP / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + "".join(f"  <url><loc>{SITE['domain']}{p['path']}</loc></url>\n" for p in pages) + "</urlset>\n")
+        + "".join(f"  <url><loc>{SITE['domain']}{p['path']}</loc></url>\n"
+                   for p in pages if not p.get("unlisted")) + "</urlset>\n")
     (TMP / "404.html").write_text(render("404.html", page={"title": "Not found", "path": "/404"}, pages=pages))
     OLD = DIST.with_name(f"{DIST.name}.old-{os.getpid()}")
     shutil.rmtree(OLD, ignore_errors=True)

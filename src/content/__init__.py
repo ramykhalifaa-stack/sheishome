@@ -3,6 +3,8 @@ SHE_Website_Page_Map_Canva_Ready_FIXED. Edit here; run build.py; the site update
 Images are the crops made by tools/crop_assets.py (names without .webp)."""
 from __future__ import annotations
 
+import json
+
 CHAPTERS = [
     {"slug": "becoming", "close": "becoming-4", "name": "Becoming", "tag": "Discover what's possible", "tile": "tile-becoming", "card": "tile-becoming",
      "sub": "A deeper you is already here.", "intro": "It's time to listen, get curious and reconnect with what really matters to you.",
@@ -111,8 +113,47 @@ EVENTS = [
 ]
 
 
-def page(path, template, title, description="", image="", orb=False, **data):
-    return {"path": path, "template": template, "title": title, "description": description, "image": image, "orb": orb, "data": data}
+# SHE Coffee Conversations: the card on the table carries a QR code to /coffee/. Nothing links
+# to that page from the site. The six Surface questions are the founder's, from the design; the
+# Explore and Go There questions are a first draft for her to approve or replace.
+COFFEE_DEPTHS = [
+    ("surface", "Surface", "Easy. Light. A way in."),
+    ("explore", "Explore", "A little more thought.\nA little more curious."),
+    ("go-there", "Go There", "More reflective.\nOnly if you want to."),
+]
+COFFEE_QUESTIONS = {
+    "surface": [
+        "What has made you smile recently?",
+        "What's something you're looking forward to this season?",
+        "If you could plan a perfect day for yourself tomorrow, what would it include?",
+        "What's a small thing that always makes your day better?",
+        "What's something you've done recently that you're proud of?",
+        "Where would you go if you could take a short escape this weekend?",
+    ],
+    "explore": [
+        "What has changed about you in the last year?",
+        "When do you feel most like yourself?",
+        "What are you saying yes to more often, and what are you saying no to?",
+        "What is something you have outgrown?",
+        "What would you like more of in your life right now?",
+        "Who has shaped the way you think, and how?",
+    ],
+    "go-there": [
+        "What are you still carrying that you would like to put down?",
+        "What would you do if you knew nobody would judge you for it?",
+        "When did you last surprise yourself?",
+        "What do you find hardest to say out loud?",
+        "What would your life look like in five years if nothing changed?",
+        "What do you need that you have never asked for?",
+    ],
+}
+
+
+def page(path, template, title, description="", image="", orb=False, unlisted=False, **data):
+    """One page. unlisted means it is reachable only by its own address: it is kept out of the
+    sitemap and asks search engines not to index it. Nothing on the site links to it."""
+    return {"path": path, "template": template, "title": title, "description": description,
+            "image": image, "orb": orb, "unlisted": unlisted, "data": data}
 
 
 # The Scottish Hills retreat and the London Coffee Morning are not running at the moment
@@ -195,6 +236,25 @@ def pages() -> list[dict]:
                      ("Women who get it", "Different lives, the same honesty.")],
              events_intro="What is coming up, and what to keep an eye out for.",
              closing="Shared spaces.\nBrighter chapters."),
+        # Reachable only through the QR code on the table. Not in the navigation, not on any
+        # page, not in the sitemap, and it asks search engines not to index it.
+        page("/coffee/", "coffee.html", "SHE Coffee Conversations",
+             "Choose a question, write it in your SHE notebook, and put your phone away.",
+             unlisted=True,
+             strap="12 women. One table.\nA lot of questions.",
+             intro=["SHE Coffee Conversations is a simple way to choose a question and start a better conversation.",
+                    "You'll be given a few questions at a time. Choose one that feels right, write it in your SHE notebook, put your phone away and let the conversation unfold.",
+                    "There are three levels, from light and easy to deeper and more reflective. You choose your own depth.",
+                    "No pressure. No forced sharing. No awkward icebreakers.",
+                    "Just good questions, real conversations and a chance to connect with someone new."],
+             steps=[("01", "Choose your depth", "Surface, Explore or Go There."),
+                    ("02", "Choose a question", "Pick the one you're drawn to."),
+                    ("03", "Write it down", "Put the question in your SHE notebook."),
+                    ("04", "Put your phone away", "The question is just the beginning. The conversation is the point.")],
+             note="Your answer is yours. Nothing is recorded or shared.",
+             depths=COFFEE_DEPTHS,
+             questions_json=json.dumps(COFFEE_QUESTIONS),
+             depths_json=json.dumps({k: {"name": n, "sub": s_} for k, n, s_ in COFFEE_DEPTHS})),
         page("/tools/", "tools.html", "Tools", "More than a journal. A place to pause, ask better questions, notice what's changing, imagine what's possible and come back to yourself.", "tools-hero"),
         page("/tools/the-becoming/", "becoming_journal.html", "The Becoming, a journal for a more intentional life", "A 24-week guided journal to help you look at your life, your patterns, your energy, your goals and what you want to change.", "becoming-product-hero"),
         page("/tools/shes-glowing/", "glowing_journal.html", "She's Glowing, a journal for pregnancy, motherhood and your own evolution", "You're not losing yourself. You're meeting yourself. A space to feel, reflect and stay connected to yourself through a chapter that changes everything.", "glowing-hero"),

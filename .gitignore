@@ -1,5 +1,6 @@
 dist/
 dist.building/
+dist.building-*/
 dist.old/
 __pycache__/
 *.pyc

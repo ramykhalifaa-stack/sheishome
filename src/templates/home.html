@@ -28,10 +28,15 @@
   {{ img("home-gather", "A long table set for dinner at sunset, candles lit", parallax=True) }}
   <div class="tx stack"><span class="k soft rv">Gather</span>{{ lines("Come together.\nIn real life.", "h2") }}<p class="lede rv d1">Gatherings, circles, workshops and retreats. Places to meet, connect and experience SHE beyond the screen.</p><div class="rv d2"><a class="btn ghost" href="/gather/">See what's happening {{ arrow() }}</a></div></div>
 </section>
-<section class="split rev cream2">
-  {{ img("home-explore", "Two women in conversation, microphones between them", parallax=True) }}
-  <div class="tx stack"><span class="k soft rv">Explore</span>{{ lines("Conversations.\nQuestions. Deeper living.", "h2") }}<p class="lede rv d1">Stories, conversations and questions to make you pause, think and see something differently.</p><div class="rv d2"><a class="btn ghost" href="/explore/">Explore now {{ arrow() }}</a></div></div>
-</section>
+<section class="sec cream2"><div class="wrap">
+  {# The podcast picture is a wide room with a woman at each end. A tall column would crop them
+     both out, so this band keeps the whole photograph and puts the words underneath it. #}
+  <div class="ph grain rv" style="aspect-ratio:1842/854"><img src="/static/img/home-explore.webp" alt="Two women in conversation, microphones between them" sizes="(max-width:1000px) 92vw, 1160px" loading="lazy"></div>
+  <div class="grid g2" style="margin-top:clamp(24px,3vw,40px);align-items:end">
+    <div class="stack"><span class="k soft rv">Explore</span>{{ lines("Conversations.\nQuestions. Deeper living.", "h2") }}</div>
+    <div class="stack"><p class="lede rv d1">Stories, conversations and questions to make you pause, think and see something differently.</p><div class="rv d2"><a class="btn ghost" href="/explore/">Explore now {{ arrow() }}</a></div></div>
+  </div>
+</div></section>
 <section class="split">
   {{ img("home-tools", "The SHE journal resting on a stone table in soft light", parallax=True) }}
   <div class="tx stack"><span class="k soft rv">Tools</span>{{ lines("Something to\ncome back to.", "h2") }}<p class="lede rv d1">Journals and resources designed to help you reflect, process and stay connected, for the chapters you're living.</p><div class="rv d2"><a class="btn ghost" href="/tools/">Explore tools {{ arrow() }}</a></div></div>

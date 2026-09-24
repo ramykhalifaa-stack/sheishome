@@ -7,10 +7,10 @@
 <div id="explore"></div>
 {% for s in c.sections %}
 {% if s.wide %}
-<section class="hero" style="min-height:560px">
-  <div class="ph parallax grain"><img src="/static/img/{{ s.img }}.webp" alt="" loading="lazy"></div>
-  <div class="veil" style="background:linear-gradient(180deg,rgba(247,244,239,.97) 0,rgba(247,244,239,.85) 45%,rgba(247,244,239,0))"></div>
-  <div class="wrap grid g2" style="align-self:start;padding-top:56px;align-items:start"><div class="rv"><span class="k soft" style="display:block;margin-bottom:14px">{{ s.k }}</span><h2>{{ s.h }}</h2></div><div class="prose rv d1">{% for p in s.paras %}<p>{{ p|replace("\n", "<br>")|safe }}</p>{% endfor %}</div></div>
+<section class="{{ "hero" if s.img else "sec cream2" }}"{% if s.img %} style="min-height:560px"{% endif %}>
+  {% if s.img %}<div class="ph parallax grain"><img src="/static/img/{{ s.img }}.webp" alt="" loading="lazy"></div>
+  <div class="veil" style="background:linear-gradient(180deg,rgba(247,244,239,.97) 0,rgba(247,244,239,.85) 45%,rgba(247,244,239,0))"></div>{% endif %}
+  <div class="wrap grid g2"{% if s.img %} style="align-self:start;padding-top:56px;align-items:start"{% else %} style="align-items:start"{% endif %}><div class="rv"><span class="k soft" style="display:block;margin-bottom:14px">{{ s.k }}</span><h2>{{ s.h }}</h2></div><div class="prose rv d1">{% for p in s.paras %}<p>{{ p|replace("\n", "<br>")|safe }}</p>{% endfor %}</div></div>
 </section>
 {% else %}
 <section class="split{% if loop.index0 % 2 == 1 %} rev{% endif %}{% if loop.index0 % 2 == 1 %} cream2{% endif %}">
@@ -21,7 +21,7 @@
 {% if loop.index == 1 %}
 <section class="split rev cream2">
   {{ img(c.here_img, "", parallax=True) }}
-  <div class="tx stack"><span class="k rv">You might be here if...</span><ul class="chk rv d1">{% for h in c.here %}<li>{{ h }}</li>{% endfor %}</ul><div class="rv d2"><a class="btn" href="/join/">Yes, this feels like me</a></div></div>
+  <div class="tx stack"><span class="k rv">You might be here if...</span><ul class="chk rv d1">{% for h in c.here %}<li>{{ h }}</li>{% endfor %}</ul></div>
 </section>
 {% endif %}
 {% endfor %}

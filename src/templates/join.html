@@ -21,7 +21,7 @@
     <span class="k rv">Stay close to SHE</span>
     <h2 class="rv d1" style="margin:14px 0 12px">Join our community.</h2>
     <p class="lede rv d2" style="margin:0 auto 30px;text-align:center">Be the first to know, receive the SHE Letter and stay connected.</p>
-    <form class="form rv d3" id="joinform" method="post" action="{{ site.signup_endpoint }}">
+    <form class="form rv d3" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Coming in..." data-title="You are in" data-note="Your place in the SHE community is confirmed. Look out for an email from us: the SHE Letter arrives once a month, and you will hear about gatherings before anyone else.">
       <input name="name" placeholder="Your name" autocomplete="name" required><input name="email" type="email" placeholder="Your email" autocomplete="email" required>
       <input type="hidden" name="source" value="sheishome.co.uk"><input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
       <button class="btn" type="submit">Come in {{ arrow() }}</button>
@@ -39,41 +39,4 @@
   <div class="ph parallax grain"><img src="/static/img/join-bottom.webp" alt="Three women laughing together over coffee" loading="lazy"></div>
   <div class="side">Different<br>women.<br>Same space.</div>
 </section>
-{% endblock %}
-{% block scripts %}
-<script>
-/* The form posts to SHE's own list. When it answers, the page says thank you where the form was:
-   nobody is sent off to another site. */
-(function () {
-  var f = document.getElementById('joinform');
-  if (!f || !f.action || f.action.indexOf('http') !== 0) return;
-  f.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var b = f.querySelector('button'), m = f.querySelector('.msg');
-    b.disabled = true; b.textContent = 'Coming in...';
-    fetch(f.action, { method: 'POST', body: new FormData(f), mode: 'cors' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (d && d.ok === false) {
-          b.disabled = false; b.textContent = 'Come in';
-          m.textContent = d.message || 'That did not go through. Please try again.';
-          return;
-        }
-        var name = (f.querySelector('input[name=name]').value || '').trim().split(' ')[0];
-        var thanks = document.createElement('div');
-        thanks.className = 'thanks';
-        thanks.setAttribute('role', 'status');
-        thanks.innerHTML = '<p class="k">You are in</p>' +
-          '<p class="serif-lede">Thank you' + (name ? ', ' + name.replace(/[<>&]/g, '') : '') + '.</p>' +
-          '<p class="muted">Your place in the SHE community is confirmed. Look out for an email from us: ' +
-          'the SHE Letter arrives once a month, and you will hear about gatherings before anyone else.</p>';
-        f.replaceWith(thanks);
-      })
-      .catch(function () {
-        b.disabled = false; b.textContent = 'Come in';
-        m.textContent = 'Something went wrong just now. Please try again in a moment.';
-      });
-  });
-})();
-</script>
 {% endblock %}

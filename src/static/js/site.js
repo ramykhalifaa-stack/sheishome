@@ -43,6 +43,69 @@
     });
   }
 
+  // A thin line across the top while the next page is on its way. Pages with large photographs
+  // can take a moment, and nothing on screen said anything was happening.
+  var bar = null, barTimer = 0;
+  function showBar() {
+    if (bar) return;
+    bar = document.createElement('div');
+    bar.className = 'loadbar';
+    document.body.appendChild(bar);
+    requestAnimationFrame(function () { if (bar) bar.classList.add('go'); });
+  }
+  function hideBar() {
+    clearTimeout(barTimer);
+    if (!bar) return;
+    var going = bar; bar = null;
+    going.classList.add('done');
+    setTimeout(function () { going.remove(); }, 400);
+  }
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+    var url;
+    try { url = new URL(a.href, location.href); } catch (err) { return; }
+    if (url.origin !== location.origin || url.href === location.href) return;
+    if (url.pathname === location.pathname && url.hash) return;   // same page, just a jump
+    barTimer = setTimeout(showBar, 180);                          // a quick page never flickers one
+  }, { capture: true });
+  window.addEventListener('pagehide', hideBar);
+  window.addEventListener('pageshow', hideBar);                   // coming back with the back button
+
+  // The sign-up forms: the list is ours, so the page itself says thank you and nobody is sent
+  // off to another site. Used by Join SHE and by the register-your-interest pages.
+  document.querySelectorAll('form[data-signup]').forEach(function (f) {
+    if (!f.action || f.action.indexOf('http') !== 0) return;
+    var btn = f.querySelector('button'), msg = f.querySelector('.msg'), label = btn ? btn.textContent : '';
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.disabled = true; btn.textContent = f.getAttribute('data-busy') || 'One moment...';
+      fetch(f.action, { method: 'POST', body: new FormData(f), mode: 'cors' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.ok === false) {
+            btn.disabled = false; btn.textContent = label;
+            if (msg) msg.textContent = d.message || 'That did not go through. Please try again.';
+            return;
+          }
+          var field = f.querySelector('input[name=name]');
+          var first = ((field && field.value) || '').trim().split(' ')[0].replace(/[<>&]/g, '');
+          var thanks = document.createElement('div');
+          thanks.className = 'thanks';
+          thanks.setAttribute('role', 'status');
+          thanks.innerHTML = '<p class="k">' + (f.getAttribute('data-title') || 'Thank you') + '</p>' +
+            '<p class="serif-lede">Thank you' + (first ? ', ' + first : '') + '.</p>' +
+            '<p class="muted">' + (f.getAttribute('data-note') || '') + '</p>';
+          f.replaceWith(thanks);
+        })
+        .catch(function () {
+          btn.disabled = false; btn.textContent = label;
+          if (msg) msg.textContent = 'Something went wrong just now. Please try again in a moment.';
+        });
+    });
+  });
+
   if (reduce) return;
   // Gentle parallax on tagged photographs. Only the pictures actually on screen are measured,
   // so scrolling a long page on a phone stays smooth.

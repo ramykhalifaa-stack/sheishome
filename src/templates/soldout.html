@@ -1,0 +1,72 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, ico %}
+{% block content %}
+<section class="sec tight"><div class="wrap">
+  <nav class="crumb rv"><a href="/">Home</a> / <a href="/tools/">Tools</a> / {{ product }}</nav>
+  <div class="pdp">
+    <div class="rv">
+      <div class="ph grain" id="shot" style="aspect-ratio:4/5"><img src="/static/img/{{ hero }}.webp" alt="{{ product }}, the journal" sizes="(max-width:900px) 92vw, 46vw" fetchpriority="high"></div>
+      <div class="thumbs">
+        {% for t in thumbs %}<button class="thumb{% if loop.first %} on{% endif %}" type="button" data-shot="/static/img/{{ t.img }}.webp" aria-label="{{ t.alt }}"><img src="/static/img/{{ t.img }}.webp" alt="{{ t.alt }}" sizes="120px" loading="lazy"></button>{% endfor %}
+      </div>
+    </div>
+    <div class="rv d1 stack">
+      <span class="k soft">SHE Originals</span>
+      {{ lines(product, "h1") }}
+      <p class="serif-lede">{{ sub }}</p>
+      <hr class="rule wide">
+      <p class="band">Currently sold out</p>
+      {% for p in paras %}<p class="muted">{{ p }}</p>{% endfor %}
+      <hr class="rule wide">
+      <h2 style="font-size:clamp(20px,2vw,24px)">Register your interest</h2>
+      <p class="muted">Leave your details and we will let you know when {{ product }} returns.</p>
+      <form class="form one" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Sending..."
+            data-title="You are on the list"
+            data-note="We will email you as soon as {{ product }} is back. Nothing else, unless you have joined the SHE Letter as well.">
+        <input name="name" placeholder="First name" autocomplete="given-name" required>
+        <input name="email" type="email" placeholder="Email address" autocomplete="email" required>
+        <input type="hidden" name="source" value="{{ source }}">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <button class="btn" type="submit">Notify me {{ arrow() }}</button>
+        <p class="msg">No commitment. Just a little note when it is ready.</p>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec tight sand"><div class="wrap">
+  <div class="icons4">
+    {% for i, t in pillars %}<div class="rv d{{ loop.index0 }}"><i>{{ ico(i) }}</i><span class="k">{{ t|replace("\n", "<br>")|safe }}</span></div>{% endfor %}
+  </div>
+</div></section>
+
+<section class="split">
+  {{ img(closer_img, closer_alt, parallax=True) }}
+  <div class="tx stack">
+    <span class="k rv">A closer look</span>
+    {{ lines(closer_h, "h2") }}
+    <p class="lede rv d1">{{ closer }}</p>
+    <div class="rv d2"><a class="tlink" href="{{ product_href }}">View full details {{ arrow() }}</a></div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+/* The small pictures change the big one. Nothing else moves. */
+(function () {
+  var shot = document.querySelector('#shot img');
+  if (!shot) return;
+  document.querySelectorAll('.thumb').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var src = b.getAttribute('data-shot');
+      if (!src || shot.getAttribute('src') === src) return;
+      var small = b.querySelector('img');
+      shot.srcset = small.getAttribute('srcset') || '';
+      shot.sizes = '(max-width:900px) 92vw, 46vw';
+      shot.src = src;
+      document.querySelectorAll('.thumb.on').forEach(function (o) { o.classList.remove('on'); });
+      b.classList.add('on');
+    });
+  });
+})();
+</script>
+{% endblock %}

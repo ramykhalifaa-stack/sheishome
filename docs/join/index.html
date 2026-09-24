@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EF">
 <style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
-<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=ab618c22">
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=2ca78eae">
 <link rel="preload" as="image" imagesrcset="/static/img/join-hero-420.webp 420w, /static/img/join-hero-640.webp 640w, /static/img/join-hero-900.webp 900w, /static/img/join-hero-1280.webp 1280w, /static/img/join-hero.webp 1700w" imagesizes="(max-width:1000px) 100vw, 50vw" fetchpriority="high">
 </head>
 <body>
@@ -46,7 +46,7 @@
     <span class="k rv">Stay close to SHE</span>
     <h2 class="rv d1" style="margin:14px 0 12px">Join our community.</h2>
     <p class="lede rv d2" style="margin:0 auto 30px;text-align:center">Be the first to know, receive the SHE Letter and stay connected.</p>
-    <form class="form rv d3" id="joinform" method="post" action="https://reviews-and-response-system-production.up.railway.app/she/join">
+    <form class="form rv d3" method="post" action="https://reviews-and-response-system-production.up.railway.app/she/join" data-signup data-busy="Coming in..." data-title="You are in" data-note="Your place in the SHE community is confirmed. Look out for an email from us: the SHE Letter arrives once a month, and you will hear about gatherings before anyone else.">
       <input name="name" placeholder="Your name" autocomplete="name" required><input name="email" type="email" placeholder="Your email" autocomplete="email" required>
       <input type="hidden" name="source" value="sheishome.co.uk"><input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
       <button class="btn" type="submit">Come in <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
@@ -77,41 +77,6 @@
     <div class="line">A more conscious, connected way of being.</div>
   </div>
 </footer>
-<script src="/static/js/site.js?v=3180fd3c" defer></script>
-<script>
-/* The form posts to SHE's own list. When it answers, the page says thank you where the form was:
-   nobody is sent off to another site. */
-(function () {
-  var f = document.getElementById('joinform');
-  if (!f || !f.action || f.action.indexOf('http') !== 0) return;
-  f.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var b = f.querySelector('button'), m = f.querySelector('.msg');
-    b.disabled = true; b.textContent = 'Coming in...';
-    fetch(f.action, { method: 'POST', body: new FormData(f), mode: 'cors' })
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (d && d.ok === false) {
-          b.disabled = false; b.textContent = 'Come in';
-          m.textContent = d.message || 'That did not go through. Please try again.';
-          return;
-        }
-        var name = (f.querySelector('input[name=name]').value || '').trim().split(' ')[0];
-        var thanks = document.createElement('div');
-        thanks.className = 'thanks';
-        thanks.setAttribute('role', 'status');
-        thanks.innerHTML = '<p class="k">You are in</p>' +
-          '<p class="serif-lede">Thank you' + (name ? ', ' + name.replace(/[<>&]/g, '') : '') + '.</p>' +
-          '<p class="muted">Your place in the SHE community is confirmed. Look out for an email from us: ' +
-          'the SHE Letter arrives once a month, and you will hear about gatherings before anyone else.</p>';
-        f.replaceWith(thanks);
-      })
-      .catch(function () {
-        b.disabled = false; b.textContent = 'Come in';
-        m.textContent = 'Something went wrong just now. Please try again in a moment.';
-      });
-  });
-})();
-</script>
+<script src="/static/js/site.js?v=1a6e8a01" defer></script>
 </body>
 </html>

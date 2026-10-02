@@ -377,6 +377,8 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 .ins-bar .b i{display:block;height:100%}
 .ins-notes{list-style:none;counter-reset:n;margin:0;padding:0;display:grid;gap:2px}
 .ins-notes li{counter-increment:n;border-bottom:1px solid var(--line);padding:14px 0 14px 44px;position:relative;font-size:15.5px}
+.ins-notes.plain li{padding-left:0;border-bottom:0}
+.ins-notes.plain li::before{content:none}
 .ins-notes li::before{content:counter(n);position:absolute;left:0;top:11px;width:26px;height:26px;border-radius:50%;
   background:var(--blush);color:var(--ink);display:grid;place-items:center;font-size:12px;font-weight:700}
 .ins-feels{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}

@@ -140,6 +140,7 @@
 
     var notes = page.querySelector('.ins-notes'); clear(notes);
     d.host_notes.forEach(function (n) { var li = document.createElement('li'); li.textContent = n; notes.appendChild(li); });
+    notes.classList.toggle('plain', !d.host_notes.length);
     if (!d.host_notes.length) notes.innerHTML = '<li class="muted">Nothing noted for this table yet.</li>';
 
     var feels = page.querySelector('.ins-feels'); clear(feels);

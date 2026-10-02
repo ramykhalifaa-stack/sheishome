@@ -252,10 +252,14 @@ def pages() -> list[dict]:
              get=["Questions worth asking", "Three depths, so you set the pace", "An easy way to feel closer", "A calmer, warmer chat"],
              # The path at the top: one circle per step, the words and minutes shown at each point.
              trail=["Pick depth", "Pick question", "Write it down", "Phone away"],
-             note="Your answer is yours. Nothing is recorded or shared.",
+             note="Your answer is yours. We count which questions get chosen, so we know what women are drawn to. Nothing you write is kept unless you choose to leave it.",
              depths=COFFEE_DEPTHS,
              questions_json=json.dumps(COFFEE_QUESTIONS),
              depths_json=json.dumps({k: {"name": n, "sub": s_} for k, n, s_ in COFFEE_DEPTHS})),
+        # Emily's own page. Unlisted like /coffee/: nothing links to it, it is not in the sitemap and
+        # it asks search engines to stay away. It shows counts and anonymous words only, never an email.
+        page("/insights/", "insights.html", "Coffee Conversations, event insights",
+             "What the table chose, and how it felt.", unlisted=True),
         page("/tools/", "tools.html", "Tools", "More than a journal. A place to pause, ask better questions, notice what's changing, imagine what's possible and come back to yourself.", "tools-hero"),
         page("/tools/the-becoming/", "becoming_journal.html", "The Becoming, a journal for a more intentional life", "A 24-week guided journal to help you look at your life, your patterns, your energy, your goals and what you want to change.", "becoming-product-hero"),
         page("/tools/shes-glowing/", "glowing_journal.html", "She's Glowing, a journal for pregnancy, motherhood and your own evolution", "You're not losing yourself. You're meeting yourself. A space to feel, reflect and stay connected to yourself through a chapter that changes everything.", "glowing-hero"),

@@ -19,7 +19,7 @@
     <div class="cf-step" id="cf-intro">
       <h1 class="cf-h">{{ hero[0] }} <em>{{ hero[1] }}</em><br>{{ hero[2] }}</h1>
       <p class="cf-lead">{{ lead }}</p>
-      <button class="btn cf-btn" type="button" data-go="cf-depth">Choose my question {{ arrow() }}</button>
+      <button class="btn cf-btn" type="button" data-go="cf-depth">Choose your question {{ arrow() }}</button>
 
       <h2 class="cf-h2">What it is</h2>
       <p class="cf-prose">{{ what }}</p>
@@ -36,7 +36,6 @@
       <ul class="cf-get">{% for g in get %}<li>{{ g }}</li>{% endfor %}</ul>
 
       <p class="cf-note">{{ note }}</p>
-      <button class="btn cf-btn" type="button" data-go="cf-depth">Choose your question {{ arrow() }}</button>
     </div>
 
     <div class="cf-step" id="cf-depth" hidden>

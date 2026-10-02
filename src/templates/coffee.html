@@ -5,18 +5,38 @@
     <header class="cf-top">
       <div class="wordmark">SHE</div>
       <span class="k soft">Coffee Conversations</span>
-      <hr class="rule" style="margin:20px auto">
     </header>
 
+    {# The path: where you are, where you are going, and the end. #}
+    <nav class="cf-path" aria-label="Your progress">
+      <ol class="cf-dots">
+        {% for label in trail %}<li><span class="c"><b>{{ loop.index }}</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="l">{{ label }}</span></li>{% endfor %}
+      </ol>
+      <div class="cf-track" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><i></i></div>
+      <p class="cf-say" aria-live="polite"><b class="w">Ready when you are</b><span class="t">Takes about 2 minutes</span></p>
+    </nav>
+
     <div class="cf-step" id="cf-intro">
-      <h1 class="cf-h">{{ strap }}</h1>
-      <div class="cf-prose">{% for p in intro %}<p>{{ p }}</p>{% endfor %}</div>
+      <h1 class="cf-h">{{ hero[0] }} <em>{{ hero[1] }}</em><br>{{ hero[2] }}</h1>
+      <p class="cf-lead">{{ lead }}</p>
+      <button class="btn cf-btn" type="button" data-go="cf-depth">Choose my question {{ arrow() }}</button>
+
+      <h2 class="cf-h2">What it is</h2>
+      <p class="cf-prose">{{ what }}</p>
+
       <h2 class="cf-h2">How it works</h2>
       <ol class="cf-steps">
         {% for n, t, d in steps %}<li><span class="n">{{ n }}</span><b>{{ t }}</b><span class="muted">{{ d }}</span></li>{% endfor %}
       </ol>
+
+      <h2 class="cf-h2">Why it works</h2>
+      <p class="cf-why">{% for w in why %}<span>{{ w }}</span>{% endfor %}</p>
+
+      <h2 class="cf-h2">What you get</h2>
+      <ul class="cf-get">{% for g in get %}<li>{{ g }}</li>{% endfor %}</ul>
+
       <p class="cf-note">{{ note }}</p>
-      <button class="btn cf-btn" type="button" data-go="cf-depth">Got it {{ arrow() }}</button>
+      <button class="btn cf-btn" type="button" data-go="cf-depth">Choose your question {{ arrow() }}</button>
     </div>
 
     <div class="cf-step" id="cf-depth" hidden>
@@ -44,7 +64,7 @@
     <div class="cf-step" id="cf-chosen" hidden>
       <div class="cf-picked"><span class="k">Your question</span><p class="cf-picked-q"></p></div>
       <div class="cf-away">
-        <span class="k">Question chosen</span>
+        <span class="k">Lovely choice</span>
         <p class="cf-h">Write it in your<br>SHE notebook.</p>
         <button class="btn ghost cf-done" type="button">Put your phone away {{ arrow() }}</button>
       </div>
@@ -66,8 +86,32 @@
   var list = page.querySelector('.cf-list');
   var depth = 'surface', from = 0, PER = 3;
 
+  /* Each screen: how many circles are finished, the words, and the time left. */
+  var PROGRESS = {
+    'cf-intro':     { done: 0, now: 0, say: 'Ready when you are', time: 'Takes about 2 minutes' },
+    'cf-depth':     { done: 0, now: 1, say: 'You just started', time: 'Step 1 of 4 · About 2 minutes left' },
+    'cf-questions': { done: 1, now: 2, say: 'You\u2019re midway', time: 'Step 2 of 4 \u00b7 About 1 minute left' },
+    'cf-chosen':    { done: 2, now: 3, say: 'You\u2019re almost there', time: 'Step 3 of 4 \u00b7 Less than a minute left' },
+    'cf-away':      { done: 4, now: 0, say: 'You did it', time: 'All done \u00b7 Enjoy the conversation' }
+  };
+  var dots = page.querySelectorAll('.cf-dots li');
+  var track = page.querySelector('.cf-track');
+  function progress(id) {
+    var p = PROGRESS[id];
+    dots.forEach(function (li, i) {
+      li.className = i < p.done ? 'is-done' : (i + 1 === p.now ? 'is-now' : '');
+      if (i + 1 === p.now) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+    });
+    var filled = p.done >= 4 ? 1 : Math.max(0, (p.now ? p.now - 1 : 0)) / 3;
+    track.style.setProperty('--p', filled);
+    track.setAttribute('aria-valuenow', p.done);
+    page.querySelector('.cf-say .w').textContent = p.say;
+    page.querySelector('.cf-say .t').textContent = p.time;
+  }
+
   function show(id) {
     steps.forEach(function (s) { s.hidden = s.id !== id; });
+    progress(id);
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
   function draw() {
@@ -104,8 +148,14 @@
   page.querySelector('.cf-back').addEventListener('click', function () { show('cf-depth'); });
   page.querySelector('.cf-again').addEventListener('click', function () { draw(); show('cf-questions'); });
   page.querySelector('.cf-done').addEventListener('click', function () {
-    page.querySelector('.cf-away').innerHTML = '<span class="k">Enjoy the conversation</span>';
+    page.querySelector('.cf-away').innerHTML = '<span class="k">Enjoy every minute</span>';
+    progress('cf-away');
   });
+  /* The site header sticks to the top, so the path sticks just below it. */
+  var hdr = document.querySelector('body > header, header.site, header');
+  function stick() { if (hdr) page.style.setProperty('--cf-hh', hdr.offsetHeight + 'px'); }
+  stick(); window.addEventListener('resize', stick);
+  progress('cf-intro');
 })();
 </script>
 {% endblock %}

@@ -277,3 +277,32 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 .cf-away .cf-h{color:var(--cream);margin:14px 0 22px}
 .cf-away .btn.ghost{border-color:rgba(247,244,239,.5);color:var(--cream)}
 .cf-away .btn.ghost:hover{background:rgba(247,244,239,.12)}
+/* Coffee: the path at the top (one circle per step) and the warmer type */
+.cf-top .rule{display:none}
+.cf-path{position:sticky;top:var(--cf-hh,79px);z-index:20;background:var(--cream);margin:14px -24px 26px;padding:14px 24px 14px;border-bottom:1px solid var(--line)}
+.cf-dots{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);position:relative;z-index:1}
+.cf-dots li{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.cf-dots .c{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--paper);border:1.5px solid var(--line);color:var(--muted);font:600 12px var(--sans);transition:background .4s var(--ease),border-color .4s var(--ease),color .4s var(--ease),transform .4s var(--ease)}
+.cf-dots .c svg{grid-area:1/1;width:15px;height:15px;opacity:0}
+.cf-dots .c b{grid-area:1/1;font-weight:600}
+.cf-dots .l{font:500 11.5px/1.25 var(--sans);color:var(--muted);max-width:9ch}
+.cf-dots .is-now .c{border-color:var(--ink);color:var(--ink);background:var(--blush);transform:scale(1.12)}
+.cf-dots .is-now .l{color:var(--ink);font-weight:600}
+.cf-dots .is-done .c{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.cf-dots .is-done .c b{opacity:0} .cf-dots .is-done .c svg{opacity:1}
+.cf-dots .is-done .l{color:var(--ink2)}
+/* the line runs through the middle of the circles: first centre to last centre */
+.cf-track{position:absolute;left:calc(24px + 12.5%);right:calc(24px + 12.5%);top:29px;height:2px;background:var(--line);z-index:0;--p:0}
+.cf-track i{display:block;height:100%;width:calc(var(--p) * 100%);background:var(--ink);transition:width .6s var(--ease)}
+.cf-say{margin:18px 0 0;display:grid;gap:2px}
+.cf-say .w{font-family:var(--serif);font-weight:400;font-size:21px;letter-spacing:-.01em}
+.cf-say .t{color:var(--muted);font-size:14px}
+.cf-h em{font-style:italic;color:var(--gold)}
+.cf-lead{font-family:var(--serif);font-style:italic;font-size:clamp(19px,4.6vw,22px);line-height:1.45;color:var(--ink2);margin:0 0 22px}
+.cf-why{display:grid;gap:8px;margin:10px 0 0;font-family:var(--serif);font-size:19px;line-height:1.4;color:var(--ink2)}
+.cf-get{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px;text-align:left}
+.cf-get li{position:relative;padding:12px 16px 12px 42px;background:var(--paper);border:1px solid var(--line)}
+.cf-get li::before{content:"";position:absolute;left:16px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--blush);border:1.5px solid var(--rose)}
+.cf-btn+.cf-h2{margin-top:44px}
+@media (prefers-reduced-motion:reduce){.cf-dots .c,.cf-track i{transition:none}}
+

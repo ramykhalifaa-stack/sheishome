@@ -5,6 +5,7 @@
     <span class="k soft rv">Ways to gather</span>
     {{ lines("Different spaces.\nA deeper connection.", "h1") }}
     <p class="lede rv d1">{{ ways_note }}</p>
+    {% if coffee.dates %}<a class="tlink rv d2 cc-jump" href="#coffee-conversations">Coffee Conversations: choose your date <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="transform:rotate(90deg)"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>{% endif %}
   </div>
   <div class="ph parallax grain">
     <img src="/static/img/gather-hero.webp" alt="Women together at a long table under an olive tree" fetchpriority="high">
@@ -47,7 +48,7 @@
       {% if coffee.dates %}
       <ul class="cc-dates">
         {% for d in coffee.dates %}
-        <li>
+        <li class="rv d{{ loop.index }}">
           <div class="cc-when"><span>{{ d.dow[:3] }}</span><b>{{ d.day }}</b><span>{{ d.mon[:3] }}</span></div>
           <div class="cc-what">
             <strong>{{ d.town }}</strong>

@@ -125,11 +125,18 @@ _COFFEE_DATES = [
      "url": "https://shop.beacons.ai/sacredhumanexperience/3b40c55c-c44b-419e-8c80-1a375ac52a61"},
 ]
 COFFEE_CONVERSATIONS = {
-    "kicker": "SHE Coffee Conversations",
-    "title": "A different kind\nof morning.",
-    "lines": ["Coffee.", "Questions.", "Real conversations.", "Meet women you haven't met yet."],
-    "how": "Carefully chosen questions. Real conversations. You choose where it goes.",
-    "how_note": "Start light. Go deeper. Stay somewhere in between.",
+    "title": "Coffee Conversations",
+    "strap": "A different kind of coffee morning.",
+    "tagline": "Good coffee. Better questions. Conversations worth having.",
+    "intro": ["A small table. A handful of carefully chosen questions. And a space where you don't have to know anyone before you arrive.",
+              "Come on your own or bring someone you know."],
+    "close": "You don't need to know anyone.\nYou just need to be open.",
+    "steps": [("01", "Take a seat", "Come alone or bring someone you know. You'll join a small table and settle in with your coffee, tea and something sweet."),
+              ("02", "Pick a question", "Choose the one that makes you lean in."),
+              ("03", "Start talking", "The questions give you somewhere to start. From there, let the conversation go where it naturally wants to."),
+              ("04", "See where it goes", "You might discover something new about yourself, have a conversation you weren't expecting, or simply enjoy a really lovely morning.")],
+    "depth": "Start light. Go deeper. Stay somewhere in between.",
+    "notebook": "Your first Coffee Conversation includes a SHE Coffee Notebook, a place to capture the thoughts, ideas and moments you want to remember.",
     "poster": "coffee-poster",
     "poster_alt": ("SHE Community poster. Coffee Conversations: a different kind of morning. Coffee. Questions. "
                    "Real conversations. Meet women you haven't met yet. Three locations: Alcester, Stratford, Warwick. "

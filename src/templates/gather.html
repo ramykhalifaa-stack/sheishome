@@ -36,34 +36,6 @@
   <h2 class="rv">Upcoming gatherings</h2>
   <p class="lede rv d1" style="margin:10px 0 34px;max-width:52ch">{{ events_intro }}</p>
 
-  <article class="cc rv" id="coffee-conversations">
-    <div class="cc-ph ph grain"><img src="/static/img/{{ coffee.poster }}.webp" alt="{{ coffee.poster_alt }}" sizes="(max-width:900px) 92vw, 44vw" loading="lazy"></div>
-    <div class="cc-tx">
-      <span class="k soft">{{ coffee.kicker }}</span>
-      {{ lines(coffee.title, "h2", "cc-h") }}
-      <p class="cc-lines">{% for l in coffee.lines %}<span>{{ l }}</span>{% endfor %}</p>
-      <p class="cc-how"><span>How it works</span>{{ coffee.how }}<em>{{ coffee.how_note }}</em></p>
-
-      <div class="cc-find"><span class="k soft">Choose your coffee conversation</span></div>
-      {% if coffee.dates %}
-      <ul class="cc-dates">
-        {% for d in coffee.dates %}
-        <li class="rv d{{ loop.index }}">
-          <div class="cc-when"><span>{{ d.dow[:3] }}</span><b>{{ d.day }}</b><span>{{ d.mon[:3] }}</span></div>
-          <div class="cc-what">
-            <strong>{{ d.town }}</strong>
-            <span>{{ d.dow }} {{ d.day }} {{ d.mon }}</span>
-          </div>
-          <a class="btn" href="{{ d.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}: {{ d.town }}, {{ d.dow }} {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-      {% else %}
-      <p class="cc-none">The next coffee conversations are coming soon. <a class="tlink" href="/join/">Hear about them first {{ arrow() }}</a></p>
-      {% endif %}
-    </div>
-  </article>
-
   <div class="grid {{ 'g2' if events|length == 2 else 'g3' }}">
     {% for e in events %}
       {% if e.soon %}
@@ -85,6 +57,46 @@
       {% endif %}
     {% endfor %}
   </div>
+</div></section>
+
+<section class="sec" id="coffee-conversations"><div class="wrap">
+  <span class="k soft rv">SHE Coffee Conversations</span>
+  <h2 class="rv d1 cc-title">{{ coffee.title }}</h2>
+  <p class="cc-strap rv d2">{{ coffee.strap }}</p>
+
+  <article class="cc rv">
+    <div class="cc-ph ph grain"><img src="/static/img/{{ coffee.poster }}.webp" alt="{{ coffee.poster_alt }}" sizes="(max-width:900px) 92vw, 44vw" loading="lazy"></div>
+    <div class="cc-tx">
+      <p class="cc-tagline">{{ coffee.tagline }}</p>
+      {% for l in coffee.intro %}<p class="muted">{{ l }}</p>{% endfor %}
+      <p class="cc-close">{{ coffee.close|replace("\n", "<br>")|safe }}</p>
+
+      <div class="cc-find"><span class="k soft">How it works</span></div>
+      <ol class="cc-steps">
+        {% for n, t, d in coffee.steps %}<li><span class="n">{{ n }}</span><b>{{ t }}</b><span class="muted">{{ d }}</span></li>{% endfor %}
+      </ol>
+      <p class="cc-depth">{{ coffee.depth }}</p>
+
+      <div class="cc-find"><span class="k soft">Choose your coffee conversation</span></div>
+      {% if coffee.dates %}
+      <ul class="cc-dates">
+        {% for d in coffee.dates %}
+        <li class="rv d{{ loop.index }}">
+          <div class="cc-when"><span>{{ d.dow[:3] }}</span><b>{{ d.day }}</b><span>{{ d.mon[:3] }}</span></div>
+          <div class="cc-what">
+            <strong>{{ d.town }}</strong>
+            <span>{{ d.dow }} {{ d.day }} {{ d.mon }}</span>
+          </div>
+          <a class="btn" href="{{ d.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}: {{ d.town }}, {{ d.dow }} {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="cc-note">{{ coffee.notebook }}</p>
+      {% else %}
+      <p class="cc-none">The next coffee conversations are coming soon. <a class="tlink" href="/join/">Hear about them first {{ arrow() }}</a></p>
+      {% endif %}
+    </div>
+  </article>
 </div></section>
 
 <section class="strip gather-quote">

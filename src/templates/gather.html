@@ -36,39 +36,30 @@
   <p class="lede rv d1" style="margin:10px 0 34px;max-width:52ch">{{ events_intro }}</p>
 
   <article class="cc rv" id="coffee-conversations">
-    <div class="cc-ph ph grain"><img src="/static/img/coffee-left.webp" alt="Women talking together around a small table with coffee" sizes="(max-width:900px) 92vw, 46vw" loading="lazy"></div>
+    <div class="cc-ph ph grain"><img src="/static/img/{{ coffee.poster }}.webp" alt="{{ coffee.poster_alt }}" sizes="(max-width:900px) 92vw, 44vw" loading="lazy"></div>
     <div class="cc-tx">
       <span class="k soft">{{ coffee.kicker }}</span>
       {{ lines(coffee.title, "h2", "cc-h") }}
-      <p class="cc-strap">{{ coffee.strap }}</p>
-      {% for l in coffee.lines %}<p class="muted">{{ l }}</p>{% endfor %}
-      <p class="cc-close">{{ coffee.close|replace("\n", "<br>")|safe }}</p>
+      <p class="cc-lines">{% for l in coffee.lines %}<span>{{ l }}</span>{% endfor %}</p>
+      <p class="cc-how"><span>How it works</span>{{ coffee.how }}<em>{{ coffee.how_note }}</em></p>
 
-      <div class="cc-find">
-        <span class="k soft">Find your coffee conversation</span>
-        <span class="cc-town">{{ ico("pin") }}{{ coffee.town }}</span>
-      </div>
+      <div class="cc-find"><span class="k soft">Choose your coffee conversation</span></div>
       {% if coffee.dates %}
       <ul class="cc-dates">
         {% for d in coffee.dates %}
         <li>
-          <div class="cc-when"><span>{{ d.dow }}</span><b>{{ d.day }}</b><span>{{ d.mon }}</span></div>
+          <div class="cc-when"><span>{{ d.dow[:3] }}</span><b>{{ d.day }}</b><span>{{ d.mon[:3] }}</span></div>
           <div class="cc-what">
-            <strong>{{ d.venue }}</strong>
-            <span>{{ coffee.time }}</span>
-            <ul class="cc-inc">
-              <li>{{ ico("calendar") }}{{ coffee.length }}</li>
-              {% for i in coffee.includes %}<li>{{ ico("mug" if loop.first else "book") }}{{ i }}</li>{% endfor %}
-            </ul>
+            <strong>{{ d.town }}</strong>
+            <span>{{ d.dow }} {{ d.day }} {{ d.mon }}</span>
           </div>
-          <a class="btn" href="{{ coffee.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}, {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
+          <a class="btn" href="{{ d.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}: {{ d.town }}, {{ d.dow }} {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
         </li>
         {% endfor %}
       </ul>
       {% else %}
       <p class="cc-none">The next coffee conversations are coming soon. <a class="tlink" href="/join/">Hear about them first {{ arrow() }}</a></p>
       {% endif %}
-      <p class="cc-more"><span>More conversations coming soon</span>{{ coffee.more }}</p>
     </div>
   </article>
 

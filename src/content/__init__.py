@@ -177,7 +177,7 @@ UPCOMING = ([{"date": _days(COFFEE_CONVERSATIONS["dates"]),
               "place": " · ".join(d["town"] for d in COFFEE_CONVERSATIONS["dates"]),
               "name": "Coffee Conversations",
               "sub": "A different kind of coffee morning. Carefully chosen questions and real conversations.",
-              "img": "way-coffee", "href": "#coffee-conversations", "cta": "Choose your date"}]
+              "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Choose your date"}]
             if COFFEE_CONVERSATIONS["dates"] else []) + EVENTS
 
 
@@ -320,6 +320,9 @@ def pages() -> list[dict]:
              ways_note="Our gatherings are an invitation to pause, meet like-minded women and experience something meaningful, in beautiful places, and at every stage of your journey.",
              events_intro="What is coming up, and what to keep an eye out for.",
              closing_quote="Shared spaces. Brighter chapters."),
+        page("/gather/coffee-conversations/", "coffee_conversations.html", "SHE Coffee Conversations",
+             "A different kind of coffee morning. Carefully chosen questions, real conversations and a small table, in Alcester, Stratford-upon-Avon and Warwick.",
+             "coffee-hero", coffee=COFFEE_CONVERSATIONS),
         page("/gather/experiences/", "experiences.html", "SHE Experiences",
              "Unique gatherings. Real connections. Workshops, walks, suppers and conversations for women who want to feel more like themselves again.",
              "way-workshops", experiences=EXPERIENCES, events=EVENTS,

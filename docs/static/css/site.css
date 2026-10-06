@@ -425,3 +425,4 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
   .ins-strap{text-align:left}}
 @media (max-width:620px){.ins-cols,.ins-feels,.ins-said,.ins-stats{grid-template-columns:1fr}
   .ins-donut{flex-direction:column;align-items:flex-start}}
+.tlink .flip{display:inline-flex;transform:rotate(180deg)}

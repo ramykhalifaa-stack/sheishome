@@ -58,7 +58,9 @@ SITE = {
     "whatsapp_url": "https://wa.me/447904582443",
     "beacons_url": "https://beacons.ai/sacredhumanexperience",
     # The Join form posts here (a small endpoint on the ROSE by SHE app). Blank disables the form.
-    "signup_endpoint": "https://reviews-and-response-system-production.up.railway.app/she/join",
+    # The Join form and the Coffee Conversations page post here. Set SHE_ROSE to a local Rose
+    # (for example http://127.0.0.1:8000) to try the whole thing offline before it goes live.
+    "signup_endpoint": os.environ.get("SHE_ROSE", "https://reviews-and-response-system-production.up.railway.app").rstrip("/") + "/she/join",
     "social": {"instagram": "https://instagram.com/", "pinterest": "https://pinterest.com/", "youtube": "https://youtube.com/"},
 }
 

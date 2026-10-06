@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="ins">
+  <header class="ins-top">
+    <div>
+      <h1>SHE Coffee Conversations</h1>
+      <p class="ins-sub">Event insights</p>
+    </div>
+    <div class="ins-strap"><span>Real conversations. Real insights.<br>A stronger SHE.</span><b class="ins-when"></b></div>
+  </header>
+
+  <div class="ins-empty" hidden>Nothing has been recorded yet. The figures appear here as soon as a table starts choosing questions.</div>
+
+  <div class="ins-grid">
+    <section class="ins-card ins-overview"><h2><i>01</i>Event overview</h2><p class="ins-note">At a glance.</p>
+      <div class="ins-over">
+        <div class="ins-where"><b class="ins-name"></b><span class="ins-place"></span><span class="ins-date"></span></div>
+        <div class="ins-stats">
+          {% for key, label in [("attendees", "Attendees"), ("new_to_she", "New to SHE"), ("been_before", "Been before"), ("attendance_rate", "Attendance rate")] %}
+          <div class="ins-stat"><b data-stat="{{ key }}">—</b><span>{{ label }}</span></div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="ins-card ins-engage"><h2><i>02</i>Question engagement</h2><p class="ins-note">How the conversation flowed.</p>
+      <div class="ins-donut">
+        <svg viewBox="0 0 42 42" aria-hidden="true"><g class="ins-ring"></g></svg>
+        <div class="ins-total"><b class="ins-total-n">0</b><span>Total selections</span></div>
+      </div>
+      <ul class="ins-legend"></ul>
+    </section>
+
+    <section class="ins-card ins-ranked"><h2><i>03</i>Most selected questions</h2><p class="ins-note">The questions women were drawn to most.</p>
+      <ol class="ins-rank"></ol>
+    </section>
+
+    <section class="ins-card ins-cats"><h2><i>04</i>Selections by category</h2><p class="ins-note">A closer look at each question.</p>
+      <div class="ins-cols"></div>
+    </section>
+
+    <section class="ins-card ins-host"><h2><i>05</i>Questions that created the richest conversations</h2><p class="ins-note">As noted by the host.</p>
+      <ol class="ins-notes"></ol>
+    </section>
+
+    <section class="ins-card ins-feel"><h2><i>06</i>Attendee feedback</h2><p class="ins-note">How the women experienced it.</p>
+      <div class="ins-feels"></div>
+    </section>
+
+    <section class="ins-card ins-quotes"><h2><i>07</i>What stayed with them?</h2><p class="ins-note">Anonymous responses.</p>
+      <div class="ins-said"></div>
+    </section>
+  </div>
+  <p class="ins-foot">Counted from the phones at the table. No names, and nothing that points back to a person. Emails women chose to leave are on the community list in Rose.</p>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+/* The figures come from Rose. This page holds no data of its own and stores nothing. */
+(function () {
+  var ROSE = {{ site.signup_endpoint|tojson }}.replace(/\/she\/join$/, '');
+  var page = document.querySelector('.ins');
+  var code = new URLSearchParams(location.search).get('e') || '';
+  var TONE = { 'surface': '#D9D2C5', 'explore': '#C9A79D', 'go-there': '#8E5B43' };
+
+  function text(sel, value) { var el = page.querySelector(sel); if (el) el.textContent = value; }
+  function clear(el) { while (el.firstChild) el.removeChild(el.firstChild); }
+
+  fetch(ROSE + '/she/coffee/insights' + (code ? '?event=' + encodeURIComponent(code) : ''), { mode: 'cors' })
+    .then(function (r) { return r.json(); })
+    .then(draw)
+    .catch(function () { page.querySelector('.ins-empty').hidden = false; });
+
+  function draw(d) {
+    if (!d || !d.event) { page.querySelector('.ins-empty').hidden = false; return; }
+    var e = d.event;
+    text('.ins-name', e.name); text('.ins-place', e.place); text('.ins-date', e.date);
+    text('.ins-when', e.date);
+    ['attendees', 'new_to_she', 'been_before'].forEach(function (k) {
+      text('[data-stat=' + k + ']', e[k] === null || e[k] === undefined ? '—' : e[k]);
+    });
+    text('[data-stat=attendance_rate]', e.attendance_rate === null ? '—' : e.attendance_rate + '%');
+
+    // the ring: one arc per depth, in the order they were chosen in
+    var total = d.selections.total;
+    text('.ins-total-n', total);
+    var ring = page.querySelector('.ins-ring'); clear(ring);
+    var legend = page.querySelector('.ins-legend'); clear(legend);
+    var at = 25;                                   // 12 o'clock on a 100 unit circle
+    d.selections.by_depth.forEach(function (row) {
+      var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      c.setAttribute('cx', 21); c.setAttribute('cy', 21); c.setAttribute('r', 15.9);
+      c.setAttribute('fill', 'none'); c.setAttribute('stroke', TONE[row.key] || '#C9A79D');
+      c.setAttribute('stroke-width', 6);
+      c.setAttribute('stroke-dasharray', row.share + ' ' + (100 - row.share));
+      c.setAttribute('stroke-dashoffset', at);
+      ring.appendChild(c);
+      at = at - row.share;
+      var li = document.createElement('li');
+      li.innerHTML = '<i></i><span class="n"></span><b></b><span class="s">selections</span>';
+      li.querySelector('i').style.background = TONE[row.key] || '#C9A79D';
+      li.querySelector('.n').textContent = row.name;
+      li.querySelector('b').textContent = row.count;
+      legend.appendChild(li);
+    });
+
+    var rank = page.querySelector('.ins-rank'); clear(rank);
+    d.top.forEach(function (row) {
+      var li = document.createElement('li');
+      li.innerHTML = '<span class="ref"></span><span class="q"></span><b></b><span class="s">selections</span>';
+      li.querySelector('.ref').textContent = row.ref;
+      li.querySelector('.q').textContent = row.question;
+      li.querySelector('b').textContent = row.count;
+      rank.appendChild(li);
+    });
+
+    var cols = page.querySelector('.ins-cols'); clear(cols);
+    var most = 1;
+    Object.keys(d.by_category).forEach(function (key) {
+      d.by_category[key].forEach(function (q) { most = Math.max(most, q.count); });
+    });
+    d.selections.by_depth.forEach(function (depth) {
+      var col = document.createElement('div'); col.className = 'ins-col';
+      var head = document.createElement('b'); head.className = 'ins-colhead';
+      head.textContent = depth.name; head.style.background = TONE[depth.key] || '#C9A79D';
+      col.appendChild(head);
+      (d.by_category[depth.key] || []).forEach(function (q) {
+        var row = document.createElement('div'); row.className = 'ins-bar';
+        row.innerHTML = '<span class="l"></span><span class="v"></span><span class="b"><i></i></span>';
+        row.querySelector('.l').textContent = 'Q' + q.number;
+        row.querySelector('.v').textContent = q.count;
+        row.title = q.question;
+        var fill = row.querySelector('.b i');
+        fill.style.width = Math.round(100 * q.count / most) + '%';
+        fill.style.background = TONE[depth.key] || '#C9A79D';
+        col.appendChild(row);
+      });
+      cols.appendChild(col);
+    });
+
+    var notes = page.querySelector('.ins-notes'); clear(notes);
+    d.host_notes.forEach(function (n) { var li = document.createElement('li'); li.textContent = n; notes.appendChild(li); });
+    notes.classList.toggle('plain', !d.host_notes.length);
+    if (!d.host_notes.length) notes.innerHTML = '<li class="muted">Nothing noted for this table yet.</li>';
+
+    var feels = page.querySelector('.ins-feels'); clear(feels);
+    var f = d.feedback;
+    if (!f) { feels.innerHTML = '<p class="muted">Nobody has said how it felt yet.</p>'; }
+    else {
+      [[f.connection === null ? '—' : f.connection + '\u2009/\u20095', 'Average connection score'],
+       [f.new_conversations === null ? '—' : f.new_conversations + '%', 'Conversations they would not usually have'],
+       [f.would_return === null ? '—' : f.would_return + '%', 'Would come again'],
+       [f.would_recommend === null ? '—' : f.would_recommend + '%', 'Would tell a friend']].forEach(function (pair) {
+        var box = document.createElement('div'); box.className = 'ins-feel-box';
+        box.innerHTML = '<b></b><span></span>';
+        box.querySelector('b').textContent = pair[0];
+        box.querySelector('span').textContent = pair[1];
+        feels.appendChild(box);
+      });
+      var says = document.createElement('p'); says.className = 'muted small';
+      says.textContent = f.responses + (f.responses === 1 ? ' woman answered' : ' women answered');
+      feels.appendChild(says);
+    }
+
+    var said = page.querySelector('.ins-said'); clear(said);
+    d.quotes.forEach(function (q) {
+      var box = document.createElement('blockquote');
+      box.textContent = q;
+      said.appendChild(box);
+    });
+    if (!d.quotes.length) said.innerHTML = '<p class="muted">Nobody has written anything yet.</p>';
+  }
+})();
+</script>
+{% endblock %}

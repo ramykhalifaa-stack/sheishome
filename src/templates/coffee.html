@@ -5,18 +5,37 @@
     <header class="cf-top">
       <div class="wordmark">SHE</div>
       <span class="k soft">Coffee Conversations</span>
-      <hr class="rule" style="margin:20px auto">
     </header>
 
+    {# The path: where you are, where you are going, and the end. #}
+    <nav class="cf-path" aria-label="Your progress">
+      <ol class="cf-dots">
+        {% for label in trail %}<li><span class="c"><b>{{ loop.index }}</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="l">{{ label }}</span></li>{% endfor %}
+      </ol>
+      <div class="cf-track" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><i></i></div>
+      <p class="cf-say" aria-live="polite"><b class="w">Ready when you are</b><span class="t">Takes about 2 minutes</span></p>
+    </nav>
+
     <div class="cf-step" id="cf-intro">
-      <h1 class="cf-h">{{ strap }}</h1>
-      <div class="cf-prose">{% for p in intro %}<p>{{ p }}</p>{% endfor %}</div>
+      <h1 class="cf-h">{{ hero[0] }} <em>{{ hero[1] }}</em><br>{{ hero[2] }}</h1>
+      <p class="cf-lead">{{ lead }}</p>
+
+      <h2 class="cf-h2">What it is</h2>
+      <p class="cf-prose">{{ what }}</p>
+
       <h2 class="cf-h2">How it works</h2>
       <ol class="cf-steps">
         {% for n, t, d in steps %}<li><span class="n">{{ n }}</span><b>{{ t }}</b><span class="muted">{{ d }}</span></li>{% endfor %}
       </ol>
+
+      <h2 class="cf-h2">Why it works</h2>
+      <p class="cf-why">{% for w in why %}<span>{{ w }}</span>{% endfor %}</p>
+
+      <h2 class="cf-h2">What you get</h2>
+      <ul class="cf-get">{% for g in get %}<li>{{ g }}</li>{% endfor %}</ul>
+
       <p class="cf-note">{{ note }}</p>
-      <button class="btn cf-btn" type="button" data-go="cf-depth">Got it {{ arrow() }}</button>
+      <button class="btn cf-btn" type="button" data-go="cf-depth">Choose your question {{ arrow() }}</button>
     </div>
 
     <div class="cf-step" id="cf-depth" hidden>
@@ -44,19 +63,60 @@
     <div class="cf-step" id="cf-chosen" hidden>
       <div class="cf-picked"><span class="k">Your question</span><p class="cf-picked-q"></p></div>
       <div class="cf-away">
-        <span class="k">Question chosen</span>
+        <span class="k">Lovely choice</span>
         <p class="cf-h">Write it in your<br>SHE notebook.</p>
         <button class="btn ghost cf-done" type="button">Put your phone away {{ arrow() }}</button>
       </div>
       <button class="tlink cf-again" type="button">Choose another question</button>
+    </div>
+
+    <div class="cf-step" id="cf-how" hidden>
+      <h2 class="cf-h">How was<br>the table?</h2>
+      <p class="muted">A few taps, if you have a moment. No names, and only if you want to.</p>
+
+      <fieldset class="cf-rate">
+        <legend>How connected did you feel?</legend>
+        <div class="cf-scale">{% for n in [1, 2, 3, 4, 5] %}<button class="cf-chip" type="button" data-score="{{ n }}">{{ n }}</button>{% endfor %}</div>
+        <p class="small muted">1 is not very. 5 is completely.</p>
+      </fieldset>
+
+      <ul class="cf-asks">
+        {% for key, ask in [("new_conversations", "Did you have a conversation you would not usually have?"), ("would_return", "Would you come to another one?"), ("would_recommend", "Would you tell a friend about it?")] %}
+        <li><span>{{ ask }}</span><span class="cf-yn" data-ask="{{ key }}"><button class="cf-chip" type="button" data-yes="1">Yes</button><button class="cf-chip" type="button" data-yes="">Not really</button></span></li>
+        {% endfor %}
+      </ul>
+
+      <label class="cf-field"><span>What stayed with you?</span><textarea class="cf-stayed" rows="3" placeholder="In your own words, if you would like to"></textarea></label>
+      <p class="small muted">What you write here may be shared anonymously with the women who come next. Your name is never attached to it.</p>
+      <button class="btn cf-send" type="button">Send it {{ arrow() }}</button>
+      <button class="tlink cf-skip" type="button">No thank you</button>
+    </div>
+
+    <div class="cf-step" id="cf-end" hidden>
+      <div class="cf-away">
+        <span class="k">Thank you</span>
+        <p class="cf-h">That helps the<br>next table.</p>
+      </div>
+      <form class="cf-mail" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Sending..." data-title="You are on the list" data-note="You will hear about the next Coffee Conversations before anyone else.">
+        <h2 class="cf-h2">Want to hear about the next one?</h2>
+        <p class="muted">Leave your name and email and you will hear first. Nothing else.</p>
+        <input name="name" placeholder="First name" autocomplete="given-name" required>
+        <input name="email" type="email" placeholder="Email address" autocomplete="email" required>
+        <input type="hidden" name="source" value="Coffee Conversations">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+        <button class="btn" type="submit">Keep me posted {{ arrow() }}</button>
+        <p class="msg small muted">You can leave at any time. We never pass your email on.</p>
+      </form>
     </div>
   </div>
 </section>
 {% endblock %}
 {% block scripts %}
 <script>
-/* One page, four steps. Nothing is sent anywhere: the question you choose stays in this phone,
-   and the page keeps no record of it. */
+/* One page, a few steps. Two things leave this phone, both of them anonymous: which question was
+   chosen, so Emily can see what women are drawn to, and the few taps about how the table felt, if
+   she gives them. A name and email leave only when she fills in the form herself. Nothing is tied
+   to a person or a device, and a failed send never stops the page. */
 (function () {
   var QUESTIONS = {{ questions_json|safe }};
   var DEPTHS = {{ depths_json|safe }};
@@ -66,8 +126,34 @@
   var list = page.querySelector('.cf-list');
   var depth = 'surface', from = 0, PER = 3;
 
+  /* Each screen: how many circles are finished, the words, and the time left. */
+  var PROGRESS = {
+    'cf-intro':     { done: 0, now: 0, say: 'Ready when you are', time: 'Takes about 2 minutes' },
+    'cf-depth':     { done: 0, now: 1, say: 'You just started', time: 'Step 1 of 4 · About 2 minutes left' },
+    'cf-questions': { done: 1, now: 2, say: 'You\u2019re midway', time: 'Step 2 of 4 \u00b7 About 1 minute left' },
+    'cf-chosen':    { done: 2, now: 3, say: 'You\u2019re almost there', time: 'Step 3 of 4 \u00b7 Less than a minute left' },
+    'cf-away':      { done: 4, now: 0, say: 'You did it', time: 'All done \u00b7 Enjoy the conversation' },
+    'cf-how':       { done: 4, now: 0, say: 'One last thing, if you have a moment', time: 'Only if you want to' },
+    'cf-end':       { done: 4, now: 0, say: 'Thank you', time: 'That is everything' }
+  };
+  var dots = page.querySelectorAll('.cf-dots li');
+  var track = page.querySelector('.cf-track');
+  function progress(id) {
+    var p = PROGRESS[id];
+    dots.forEach(function (li, i) {
+      li.className = i < p.done ? 'is-done' : (i + 1 === p.now ? 'is-now' : '');
+      if (i + 1 === p.now) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+    });
+    var filled = p.done >= 4 ? 1 : Math.max(0, (p.now ? p.now - 1 : 0)) / 3;
+    track.style.setProperty('--p', filled);
+    track.setAttribute('aria-valuenow', p.done);
+    page.querySelector('.cf-say .w').textContent = p.say;
+    page.querySelector('.cf-say .t').textContent = p.time;
+  }
+
   function show(id) {
     steps.forEach(function (s) { s.hidden = s.id !== id; });
+    progress(id);
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
   function draw() {
@@ -81,14 +167,23 @@
       b.innerHTML = '<span class="n">' + String(from + i + 1).padStart(2, '0') + '</span>' +
                     '<span class="t"></span><i class="dot"></i>';
       b.querySelector('.t').textContent = q;
-      b.addEventListener('click', function () { choose(q); });
+      b.addEventListener('click', function () { choose(q, from + i + 1); });
       list.appendChild(b);
     });
     page.querySelector('.cf-prev').hidden = from === 0;
     page.querySelector('.cf-more').textContent = from + PER >= qs.length ? 'Start again' : 'More';
   }
-  function choose(q) {
+  var ROSE = {{ site.signup_endpoint|tojson }}.replace(/\/she\/join$/, '');
+  function tell(what, body) {
+    if (!ROSE) return;
+    try { fetch(ROSE + '/she/coffee/' + what, { method: 'POST', body: body, mode: 'cors' }).catch(function () { }); }
+    catch (e) { }
+  }
+  function choose(q, number) {
     page.querySelector('.cf-picked-q').textContent = q;
+    var body = new FormData();
+    body.append('depth', depth); body.append('number', number); body.append('question', q);
+    tell('choice', body);
     show('cf-chosen');
   }
   page.querySelectorAll('[data-go]').forEach(function (b) {
@@ -104,8 +199,41 @@
   page.querySelector('.cf-back').addEventListener('click', function () { show('cf-depth'); });
   page.querySelector('.cf-again').addEventListener('click', function () { draw(); show('cf-questions'); });
   page.querySelector('.cf-done').addEventListener('click', function () {
-    page.querySelector('.cf-away').innerHTML = '<span class="k">Enjoy the conversation</span>';
+    page.querySelector('#cf-chosen .cf-away').innerHTML = '<span class="k">Enjoy every minute</span>';
+    progress('cf-away');
+    setTimeout(function () { show('cf-how'); }, 1200);     // the phone goes down; this is here when it comes back
   });
+
+  /* How it felt. Every answer is optional, and nothing here carries a name. */
+  var felt = { connection: '', new_conversations: '', would_return: '', would_recommend: '' };
+  page.querySelectorAll('.cf-scale .cf-chip').forEach(function (b) {
+    b.addEventListener('click', function () {
+      felt.connection = b.getAttribute('data-score');
+      page.querySelectorAll('.cf-scale .cf-chip').forEach(function (o) { o.classList.toggle('on', o === b); });
+    });
+  });
+  page.querySelectorAll('.cf-yn').forEach(function (pair) {
+    var key = pair.getAttribute('data-ask');
+    pair.querySelectorAll('.cf-chip').forEach(function (b) {
+      b.addEventListener('click', function () {
+        felt[key] = b.getAttribute('data-yes') ? '1' : 'no';
+        pair.querySelectorAll('.cf-chip').forEach(function (o) { o.classList.toggle('on', o === b); });
+      });
+    });
+  });
+  page.querySelector('.cf-send').addEventListener('click', function () {
+    var body = new FormData();
+    Object.keys(felt).forEach(function (k) { body.append(k, felt[k] === 'no' ? '0' : felt[k]); });
+    body.append('stayed', page.querySelector('.cf-stayed').value || '');
+    tell('feedback', body);
+    show('cf-end');
+  });
+  page.querySelector('.cf-skip').addEventListener('click', function () { show('cf-end'); });
+  /* The site header sticks to the top, so the path sticks just below it. */
+  var hdr = document.querySelector('body > header, header.site, header');
+  function stick() { if (hdr) page.style.setProperty('--cf-hh', hdr.offsetHeight + 'px'); }
+  stick(); window.addEventListener('resize', stick);
+  progress('cf-intro');
 })();
 </script>
 {% endblock %}

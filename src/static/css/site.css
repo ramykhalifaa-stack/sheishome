@@ -298,7 +298,6 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 .cc-inc svg{width:17px;height:17px;flex:none;stroke:var(--ink);fill:none;stroke-width:1.4}
 .cc-dates .btn{white-space:nowrap}
 .cc-none{margin:22px 0 0;color:var(--muted)}
-.cc-jump{margin-top:6px;align-self:flex-start}
 .cc-end{text-align:center;margin-top:clamp(48px,6vw,80px);display:grid;gap:8px;justify-items:center}
 .cc-end h3{font-size:clamp(28px,3.4vw,40px);margin:0 0 6px}
 .cc-end .btn{margin-top:18px}

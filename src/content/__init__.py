@@ -111,33 +111,52 @@ EVENTS = [
 ]
 
 # SHE Coffee Conversations: the featured block at the top of Upcoming gatherings.
-# Towns, dates and links are the founder's, from her poster (6 October 2026). Each date has its
+# Towns, dates and links are the founder's, from her poster (6 October 2026); venues added 7 October 2026 (she will confirm every date, time and place before sharing the page). Each date has its
 # own booking page on the SHE shop. Only what the poster and the founder state is shown: no
 # venue, time or "what is included" until she supplies them for these three dates. A date drops
 # off the page by itself once it has passed; when none are left the block says the next ones
 # are coming soon.
 _COFFEE_DATES = [
-    {"on": datetime.date(2026, 11, 14), "town": "Alcester",
+    {"on": datetime.date(2026, 11, 14), "town": "Alcester", "venue": "Lounge 26",
      "url": "https://shop.beacons.ai/sacredhumanexperience/c3c23cd9-975d-4ac9-8c10-c03f51617c0c"},
-    {"on": datetime.date(2026, 11, 22), "town": "Stratford-upon-Avon",
+    {"on": datetime.date(2026, 11, 22), "town": "Stratford-upon-Avon", "venue": "Bobbys",
      "url": "https://shop.beacons.ai/sacredhumanexperience/d5f92dc0-ec51-4f04-a138-286b0884c407"},
-    {"on": datetime.date(2026, 11, 29), "town": "Warwick",
+    {"on": datetime.date(2026, 11, 29), "town": "Warwick", "venue": "The Happy Witch",
      "url": "https://shop.beacons.ai/sacredhumanexperience/3b40c55c-c44b-419e-8c80-1a375ac52a61"},
 ]
 COFFEE_CONVERSATIONS = {
-    "kicker": "SHE Coffee Conversations",
-    "title": "A different kind\nof morning.",
-    "lines": ["Coffee.", "Questions.", "Real conversations.", "Meet women you haven't met yet."],
-    "how": "Carefully chosen questions. Real conversations. You choose where it goes.",
-    "how_note": "Start light. Go deeper. Stay somewhere in between.",
-    "poster": "coffee-poster",
-    "poster_alt": ("SHE Community poster. Coffee Conversations: a different kind of morning. Coffee. Questions. "
-                   "Real conversations. Meet women you haven't met yet. Three locations: Alcester, Stratford, Warwick. "
-                   "Three dates: 14 November, 22 November, 29 November."),
+    "title": "Coffee Conversations",
+    "strap": "A different kind of coffee morning.",
+    "tagline": "Good coffee. Better questions. Conversations worth having.",
+    "intro": ["A small table. A handful of carefully chosen questions. And a space where you don't have to know anyone before you arrive.",
+              "Come on your own or bring someone you know."],
+    "close": "You don't need to know anyone.\nYou just need to be open.",
+    "find": "Find your coffee conversation",
+    "what": {"k": "What it is", "title": "A space to meet and\nhave better conversations.",
+             "paras": ["We all know how easy it is to fall into the usual small talk. SHE Coffee Conversations is a simple way to get beyond that and have conversations that feel more interesting, more meaningful and, at times, completely unexpected.",
+                       "Some will make you laugh. Some will make you think. And sometimes, you might leave having met someone who feels like a friend you just hadn't met yet.",
+                       "There's no pressure to share more than you want to. Just come, sit down and see where the conversation takes you."]},
+    "steps": [("01", "Take a seat", "Come alone or bring someone you know. You'll join a small table and settle in with your coffee, tea and something sweet."),
+              ("02", "Pick a question", "Choose the one that makes you lean in."),
+              ("03", "Start talking", "The questions give you somewhere to start. From there, let the conversation go where it naturally wants to."),
+              ("04", "See where it goes", "You might discover something new about yourself, have a conversation you weren't expecting, or simply enjoy a really lovely morning.")],
+    "questions": {"k": "The questions", "title": "Options for where the\nconversation takes you.",
+                  "paras": ["A carefully curated selection of questions gives you options, from light and easy to more curious and thought-provoking.",
+                            "Not every question is for everyone, and that's the point. You choose what feels right in the moment.",
+                            "The idea isn't to force connection. It's simply to give it a chance to happen."]},
+    "notebook": {"k": "Your SHE Coffee Notebook", "title": "A notebook for\nwhat stays with you.",
+                 "paras": ["Your first Coffee Conversation includes a SHE Coffee Notebook.",
+                           "A place to capture the thoughts, ideas and moments you want to remember.",
+                           "Inside, you'll also find your SHE Coffee Journey, a record of the conversations you've been part of and the places you've shared them."]},
+    # The founder, 6 October 2026: a 90 minute session starting at 10am, so 10:00 to 11:30.
+    "time": "10:00 to 11:30", "length": "90 minutes",
+    "includes": ["Coffee, tea and cake", "SHE Coffee Notebook included"],
+    "where": "Where would you like to join us?",
     "cta": "Book your place",
+    "end": {"title": "Come as you are.", "lines": ["Come alone. Bring someone you know.", "Or simply come open to meeting someone you didn't know you were going to meet."], "cta": "Find your table"},
     "dates": [
         {"dow": d["on"].strftime("%A"), "day": d["on"].day, "mon": d["on"].strftime("%B"),
-         "town": d["town"], "url": d["url"]}
+         "town": d["town"], "venue": d["venue"], "url": d["url"]}
         for d in _COFFEE_DATES if d["on"] >= datetime.date.today()
     ],
 }

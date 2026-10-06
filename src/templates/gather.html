@@ -5,7 +5,7 @@
     <span class="k soft rv">Ways to gather</span>
     {{ lines("Different spaces.\nA deeper connection.", "h1") }}
     <p class="lede rv d1">{{ ways_note }}</p>
-    {% if coffee.dates %}<a class="tlink rv d2 cc-jump" href="#coffee-conversations">Coffee Conversations: choose your date <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="transform:rotate(90deg)"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>{% endif %}
+    {% if coffee.dates %}<a class="tlink rv d2 cc-jump" href="#coffee-dates">Coffee Conversations: choose your date <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="transform:rotate(90deg)"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>{% endif %}
   </div>
   <div class="ph parallax grain">
     <img src="/static/img/gather-hero.webp" alt="Women together at a long table under an olive tree" fetchpriority="high">
@@ -36,34 +36,6 @@
   <h2 class="rv">Upcoming gatherings</h2>
   <p class="lede rv d1" style="margin:10px 0 34px;max-width:52ch">{{ events_intro }}</p>
 
-  <article class="cc rv" id="coffee-conversations">
-    <div class="cc-ph ph grain"><img src="/static/img/{{ coffee.poster }}.webp" alt="{{ coffee.poster_alt }}" sizes="(max-width:900px) 92vw, 44vw" loading="lazy"></div>
-    <div class="cc-tx">
-      <span class="k soft">{{ coffee.kicker }}</span>
-      {{ lines(coffee.title, "h2", "cc-h") }}
-      <p class="cc-lines">{% for l in coffee.lines %}<span>{{ l }}</span>{% endfor %}</p>
-      <p class="cc-how"><span>How it works</span>{{ coffee.how }}<em>{{ coffee.how_note }}</em></p>
-
-      <div class="cc-find"><span class="k soft">Choose your coffee conversation</span></div>
-      {% if coffee.dates %}
-      <ul class="cc-dates">
-        {% for d in coffee.dates %}
-        <li class="rv d{{ loop.index }}">
-          <div class="cc-when"><span>{{ d.dow[:3] }}</span><b>{{ d.day }}</b><span>{{ d.mon[:3] }}</span></div>
-          <div class="cc-what">
-            <strong>{{ d.town }}</strong>
-            <span>{{ d.dow }} {{ d.day }} {{ d.mon }}</span>
-          </div>
-          <a class="btn" href="{{ d.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}: {{ d.town }}, {{ d.dow }} {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-      {% else %}
-      <p class="cc-none">The next coffee conversations are coming soon. <a class="tlink" href="/join/">Hear about them first {{ arrow() }}</a></p>
-      {% endif %}
-    </div>
-  </article>
-
   <div class="grid {{ 'g2' if events|length == 2 else 'g3' }}">
     {% for e in events %}
       {% if e.soon %}
@@ -86,6 +58,86 @@
     {% endfor %}
   </div>
 </div></section>
+
+<div id="coffee-conversations">
+<section class="split">
+  <div class="tx stack">
+    <span class="k soft rv">SHE Coffee Conversations</span>
+    {{ lines(coffee.title, "h2") }}
+    <p class="cc-strap rv d1">{{ coffee.strap }}</p>
+    <p class="cc-tagline rv d1">{{ coffee.tagline }}</p>
+    {% for l in coffee.intro %}<p class="muted rv d2">{{ l }}</p>{% endfor %}
+    <p class="cc-close rv d2">{{ coffee.close|replace("\n", "<br>")|safe }}</p>
+    <a class="btn rv d3" style="align-self:flex-start" href="#coffee-dates">{{ coffee.find }} {{ arrow() }}</a>
+  </div>
+  {{ img("coffee-hero", "A small round table with two cups of coffee in warm morning light", parallax=True) }}
+</section>
+
+<section class="split rev">
+  {{ img("coffee-left", "Women talking together around a small table", parallax=True) }}
+  <div class="tx stack">
+    <span class="k soft rv">{{ coffee.what.k }}</span>
+    {{ lines(coffee.what.title, "h2") }}
+    {% for l in coffee.what.paras %}<p class="muted rv d{{ loop.index }}">{{ l }}</p>{% endfor %}
+  </div>
+</section>
+
+<section class="sec cream2"><div class="wrap">
+  <h3 class="rv" style="text-align:center;margin-bottom:34px;font-family:var(--sans);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600">How it works</h3>
+  <div class="numbered four">
+    {% for n, t, d in coffee.steps %}<div class="rv d{{ loop.index }}"><span class="n">{{ n }}</span><h3>{{ t }}</h3><p class="muted">{{ d }}</p></div>{% endfor %}
+  </div>
+</div></section>
+
+<section class="split">
+  <div class="tx stack">
+    <span class="k soft rv">{{ coffee.questions.k }}</span>
+    {{ lines(coffee.questions.title, "h2") }}
+    {% for l in coffee.questions.paras %}<p class="muted rv d{{ loop.index }}">{{ l }}</p>{% endfor %}
+  </div>
+  {{ img("way-coffee", "A cup of coffee and a slice of cake on a tiled table with flowers", parallax=True) }}
+</section>
+
+<section class="split rev">
+  {{ img("coffee-about", "An open SHE notebook beside a cup of coffee", parallax=True) }}
+  <div class="tx stack">
+    <span class="k soft rv">{{ coffee.notebook.k }}</span>
+    {{ lines(coffee.notebook.title, "h2") }}
+    {% for l in coffee.notebook.paras %}<p class="muted rv d{{ loop.index }}">{{ l }}</p>{% endfor %}
+  </div>
+</section>
+
+<section class="sec" id="coffee-dates"><div class="wrap cc-wrap">
+  <span class="k soft rv" style="display:block;text-align:center">{{ coffee.find }}</span>
+  <h2 class="rv d1" style="text-align:center;margin:10px 0 34px">{{ coffee.where }}</h2>
+  {% if coffee.dates %}
+  <ul class="cc-dates">
+    {% for d in coffee.dates %}
+    <li class="rv d{{ loop.index }}">
+      <div class="cc-when"><span>{{ d.dow[:3] }}</span><b>{{ d.day }}</b><span>{{ d.mon[:3] }}</span></div>
+      <div class="cc-what">
+        <strong>{{ d.venue }}, {{ d.town }}</strong>
+        <span>{{ d.dow }} {{ d.day }} {{ d.mon }}</span>
+        <ul class="cc-inc">
+          <li>{{ ico("calendar") }}{{ coffee.time }}, {{ coffee.length }}</li>
+          <li>{{ ico("mug") }}{{ coffee.includes[0] }}</li>
+          <li>{{ ico("book") }}{{ coffee.includes[1] }}</li>
+        </ul>
+      </div>
+      <a class="btn" href="{{ d.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}: {{ d.venue }}, {{ d.town }}, {{ d.dow }} {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="cc-none" style="text-align:center">The next coffee conversations are coming soon. <a class="tlink" href="/join/">Hear about them first {{ arrow() }}</a></p>
+  {% endif %}
+  <div class="cc-end rv">
+    <h3>{{ coffee.end.title }}</h3>
+    {% for l in coffee.end.lines %}<p class="muted">{{ l }}</p>{% endfor %}
+    {% if coffee.dates %}<a class="btn ghost" href="#coffee-dates">{{ coffee.end.cta }} {{ arrow() }}</a>{% endif %}
+  </div>
+</div></section>
+</div>
 
 <section class="strip gather-quote">
   <div class="ph parallax grain"><img src="/static/img/way-special.webp" alt="" loading="lazy"></div>

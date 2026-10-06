@@ -161,6 +161,24 @@ COFFEE_CONVERSATIONS = {
     ],
 }
 
+def _days(dates):
+    """'14, 22 and 29 November' (or '14 November' for one date, or both months if they differ)."""
+    parts = [(d["day"], d["mon"]) for d in dates]
+    if len({m for _, m in parts}) == 1:
+        days = [str(day) for day, _ in parts]
+        return (days[0] if len(days) == 1 else ", ".join(days[:-1]) + " and " + days[-1]) + " " + parts[0][1]
+    return ", ".join(f"{day} {m}" for day, m in parts[:-1]) + f" and {parts[-1][0]} {parts[-1][1]}"
+
+
+# Upcoming gatherings, side by side: Coffee Conversations first (while any date is still ahead),
+# then the workshop and the retreats. Its card takes you down to the full section and the dates.
+UPCOMING = ([{"date": _days(COFFEE_CONVERSATIONS["dates"]),
+              "place": " · ".join(d["town"] for d in COFFEE_CONVERSATIONS["dates"]),
+              "name": "Coffee Conversations",
+              "sub": "A different kind of coffee morning. Carefully chosen questions and real conversations.",
+              "img": "way-coffee", "href": "#coffee-conversations", "cta": "Choose your date"}]
+            if COFFEE_CONVERSATIONS["dates"] else []) + EVENTS
+
 
 # SHE Coffee Conversations: the card on the table carries a QR code to /coffee/. Nothing links
 # to that page from the site. The six Surface questions are the founder's, from the design; the
@@ -296,7 +314,7 @@ def pages() -> list[dict]:
              body_1=["had never really thought about it. I was just getting on with things: work, family, the constant to-do list. But when I actually sat with the question, it made me feel uncomfortable. Because the honest answer was: I'd probably be exhausted. Still saying yes to things I don't really want to do. Still putting myself last.", "I realised I've been living in this cycle of being busy, thinking that means I'm doing okay. But busy isn't the same as fulfilled. I don't want to look back in five years and realise I had the chance to make a change, and I didn't take it.", "That question gave me the clarity I needed to start making different choices. It didn't give me all the answers, but it reminded me that I do have a say in what my life looks like."],
              quote="Busy isn't the same as fulfilled.",
              body_2=["I'm still figuring things out, but I'm asking myself that question more often now. It's a simple one, but it's powerful. Because it makes me take responsibility, and it reminds me that change doesn't have to be dramatic to be meaningful."]),
-        page("/gather/", "gather.html", "Gather", "Come together. In real life. From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.", "gather-hero", experiences=EXPERIENCES, events=EVENTS, coffee=COFFEE_CONVERSATIONS,
+        page("/gather/", "gather.html", "Gather", "Come together. In real life. From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.", "gather-hero", experiences=EXPERIENCES, events=UPCOMING, coffee=COFFEE_CONVERSATIONS,
              lede="Meaningful spaces. Real conversations.\nWomen, together.", intro="From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.",
              ways_note="Our gatherings are an invitation to pause, meet like-minded women and experience something meaningful, in beautiful places, and at every stage of your journey.",
              events_intro="What is coming up, and what to keep an eye out for.",

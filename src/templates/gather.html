@@ -5,6 +5,7 @@
     <span class="k soft rv">Ways to gather</span>
     {{ lines("Different spaces.\nA deeper connection.", "h1") }}
     <p class="lede rv d1">{{ ways_note }}</p>
+    {% if coffee.dates %}<a class="tlink rv d2 cc-jump" href="#coffee-conversations">Coffee Conversations: choose your date <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="transform:rotate(90deg)"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>{% endif %}
   </div>
   <div class="ph parallax grain">
     <img src="/static/img/gather-hero.webp" alt="Women together at a long table under an olive tree" fetchpriority="high">
@@ -34,7 +35,36 @@
 <section class="sec cream2" id="events"><div class="wrap">
   <h2 class="rv">Upcoming gatherings</h2>
   <p class="lede rv d1" style="margin:10px 0 34px;max-width:52ch">{{ events_intro }}</p>
-  <div class="grid g3">
+
+  <article class="cc rv" id="coffee-conversations">
+    <div class="cc-ph ph grain"><img src="/static/img/{{ coffee.poster }}.webp" alt="{{ coffee.poster_alt }}" sizes="(max-width:900px) 92vw, 44vw" loading="lazy"></div>
+    <div class="cc-tx">
+      <span class="k soft">{{ coffee.kicker }}</span>
+      {{ lines(coffee.title, "h2", "cc-h") }}
+      <p class="cc-lines">{% for l in coffee.lines %}<span>{{ l }}</span>{% endfor %}</p>
+      <p class="cc-how"><span>How it works</span>{{ coffee.how }}<em>{{ coffee.how_note }}</em></p>
+
+      <div class="cc-find"><span class="k soft">Choose your coffee conversation</span></div>
+      {% if coffee.dates %}
+      <ul class="cc-dates">
+        {% for d in coffee.dates %}
+        <li class="rv d{{ loop.index }}">
+          <div class="cc-when"><span>{{ d.dow[:3] }}</span><b>{{ d.day }}</b><span>{{ d.mon[:3] }}</span></div>
+          <div class="cc-what">
+            <strong>{{ d.town }}</strong>
+            <span>{{ d.dow }} {{ d.day }} {{ d.mon }}</span>
+          </div>
+          <a class="btn" href="{{ d.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}: {{ d.town }}, {{ d.dow }} {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="cc-none">The next coffee conversations are coming soon. <a class="tlink" href="/join/">Hear about them first {{ arrow() }}</a></p>
+      {% endif %}
+    </div>
+  </article>
+
+  <div class="grid {{ 'g2' if events|length == 2 else 'g3' }}">
     {% for e in events %}
       {% if e.soon %}
       <div class="rv d{{ loop.index0 }}">

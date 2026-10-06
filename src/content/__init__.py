@@ -3,6 +3,7 @@ SHE_Website_Page_Map_Canva_Ready_FIXED. Edit here; run build.py; the site update
 Images are the crops made by tools/crop_assets.py (names without .webp)."""
 from __future__ import annotations
 
+import datetime
 import json
 
 CHAPTERS = [
@@ -104,13 +105,38 @@ EVENTS = [
      "sub": "A half-morning workshop with practical tools and meaningful conversation.",
      "img": "way-workshops", "href": "/gather/create-your-next-chapter/"},
     # Nothing is booking yet. These say so plainly rather than pretending there is a date.
-    {"date": "Coming soon", "place": "", "name": "Coffee Mornings",
-     "sub": "No coffee mornings just now. Keep an eye out: the next one is coming soon.",
-     "img": "way-coffee", "href": "", "soon": True},
     {"date": "Coming soon", "place": "", "name": "SHE Retreats",
      "sub": "No retreats are booking just now. Join SHE and you will hear first.",
      "img": "way-retreats", "href": "", "soon": True},
 ]
+
+# SHE Coffee Conversations in Warwick: the featured block at the top of Upcoming gatherings.
+# Dates, venue, times and what is included are from the founder's design (6 October 2026).
+# Booking is on the SHE shop page. A date drops off the page by itself once it has passed, and
+# when none are left the block says the next ones are coming soon.
+COFFEE_BOOK_URL = "https://shop.beacons.ai/sacredhumanexperience/d5f92dc0-ec51-4f04-a138-286b0884c407"
+_COFFEE_DATES = [
+    {"on": datetime.date(2026, 10, 22), "venue": "The Happy Witch, Warwick"},
+    {"on": datetime.date(2026, 11, 12), "venue": "The Happy Witch, Warwick"},
+]
+COFFEE_CONVERSATIONS = {
+    "kicker": "SHE Coffee Conversations",
+    "title": "A different kind of\ncoffee morning.",
+    "strap": "Good coffee. Better questions.",
+    "lines": ["A small table. A handful of carefully chosen questions, and a space where you don't have to know anyone before you arrive."],
+    "close": "You don't need to know anyone.\nYou just need to be open.",
+    "town": "Warwick",
+    "time": "10:30 to 12:00",
+    "length": "90 minutes",
+    "includes": ["Coffee, tea and cake", "SHE Coffee Notebook included"],
+    "cta": "Book this conversation",
+    "url": COFFEE_BOOK_URL,
+    "more": "Stratford-upon-Avon · Alcester · and beyond",
+    "dates": [
+        {"dow": d["on"].strftime("%a"), "day": d["on"].day, "mon": d["on"].strftime("%b"), "venue": d["venue"]}
+        for d in _COFFEE_DATES if d["on"] >= datetime.date.today()
+    ],
+}
 
 
 # SHE Coffee Conversations: the card on the table carries a QR code to /coffee/. Nothing links
@@ -220,7 +246,7 @@ def pages() -> list[dict]:
              body_1=["had never really thought about it. I was just getting on with things: work, family, the constant to-do list. But when I actually sat with the question, it made me feel uncomfortable. Because the honest answer was: I'd probably be exhausted. Still saying yes to things I don't really want to do. Still putting myself last.", "I realised I've been living in this cycle of being busy, thinking that means I'm doing okay. But busy isn't the same as fulfilled. I don't want to look back in five years and realise I had the chance to make a change, and I didn't take it.", "That question gave me the clarity I needed to start making different choices. It didn't give me all the answers, but it reminded me that I do have a say in what my life looks like."],
              quote="Busy isn't the same as fulfilled.",
              body_2=["I'm still figuring things out, but I'm asking myself that question more often now. It's a simple one, but it's powerful. Because it makes me take responsibility, and it reminds me that change doesn't have to be dramatic to be meaningful."]),
-        page("/gather/", "gather.html", "Gather", "Come together. In real life. From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.", "gather-hero", experiences=EXPERIENCES, events=EVENTS,
+        page("/gather/", "gather.html", "Gather", "Come together. In real life. From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.", "gather-hero", experiences=EXPERIENCES, events=EVENTS, coffee=COFFEE_CONVERSATIONS,
              lede="Meaningful spaces. Real conversations.\nWomen, together.", intro="From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.",
              ways_note="Our gatherings are an invitation to pause, meet like-minded women and experience something meaningful, in beautiful places, and at every stage of your journey.",
              events_intro="What is coming up, and what to keep an eye out for.",

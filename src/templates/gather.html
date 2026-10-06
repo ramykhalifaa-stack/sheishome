@@ -34,7 +34,45 @@
 <section class="sec cream2" id="events"><div class="wrap">
   <h2 class="rv">Upcoming gatherings</h2>
   <p class="lede rv d1" style="margin:10px 0 34px;max-width:52ch">{{ events_intro }}</p>
-  <div class="grid g3">
+
+  <article class="cc rv" id="coffee-conversations">
+    <div class="cc-ph ph grain"><img src="/static/img/coffee-left.webp" alt="Women talking together around a small table with coffee" sizes="(max-width:900px) 92vw, 46vw" loading="lazy"></div>
+    <div class="cc-tx">
+      <span class="k soft">{{ coffee.kicker }}</span>
+      {{ lines(coffee.title, "h2", "cc-h") }}
+      <p class="cc-strap">{{ coffee.strap }}</p>
+      {% for l in coffee.lines %}<p class="muted">{{ l }}</p>{% endfor %}
+      <p class="cc-close">{{ coffee.close|replace("\n", "<br>")|safe }}</p>
+
+      <div class="cc-find">
+        <span class="k soft">Find your coffee conversation</span>
+        <span class="cc-town">{{ ico("pin") }}{{ coffee.town }}</span>
+      </div>
+      {% if coffee.dates %}
+      <ul class="cc-dates">
+        {% for d in coffee.dates %}
+        <li>
+          <div class="cc-when"><span>{{ d.dow }}</span><b>{{ d.day }}</b><span>{{ d.mon }}</span></div>
+          <div class="cc-what">
+            <strong>{{ d.venue }}</strong>
+            <span>{{ coffee.time }}</span>
+            <ul class="cc-inc">
+              <li>{{ ico("calendar") }}{{ coffee.length }}</li>
+              {% for i in coffee.includes %}<li>{{ ico("mug" if loop.first else "book") }}{{ i }}</li>{% endfor %}
+            </ul>
+          </div>
+          <a class="btn" href="{{ coffee.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}, {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="cc-none">The next coffee conversations are coming soon. <a class="tlink" href="/join/">Hear about them first {{ arrow() }}</a></p>
+      {% endif %}
+      <p class="cc-more"><span>More conversations coming soon</span>{{ coffee.more }}</p>
+    </div>
+  </article>
+
+  <div class="grid {{ 'g2' if events|length == 2 else 'g3' }}">
     {% for e in events %}
       {% if e.soon %}
       <div class="rv d{{ loop.index0 }}">

@@ -277,3 +277,35 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 .cf-away .cf-h{color:var(--cream);margin:14px 0 22px}
 .cf-away .btn.ghost{border-color:rgba(247,244,239,.5);color:var(--cream)}
 .cf-away .btn.ghost:hover{background:rgba(247,244,239,.12)}
+
+/* SHE Coffee Conversations: the featured block on the Gather page */
+.cc{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);background:var(--paper);border:1px solid var(--line);margin-bottom:clamp(48px,6vw,84px)}
+.cc-ph{min-height:100%;aspect-ratio:auto} .cc-ph img{object-position:30% 40%}
+.cc-tx{padding:clamp(28px,4.4vw,68px)}
+.cc-h{font-size:clamp(32px,4vw,52px);line-height:1.08;margin:14px 0 14px}
+.cc-strap{font-family:var(--serif);font-style:italic;font-size:clamp(19px,1.9vw,24px);margin:0 0 16px;color:var(--ink2)}
+.cc-tx>.muted{max-width:46ch;margin:0 0 14px}
+.cc-close{font-family:var(--serif);font-size:18px;line-height:1.5;margin:18px 0 0;color:var(--ink)}
+.cc-find{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:34px;padding-top:26px}
+.cc-town{display:inline-flex;align-items:center;gap:8px;font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;background:var(--cream);border:1px solid var(--line);padding:9px 16px;border-radius:999px}
+.cc-town svg,.cc-inc svg{width:17px;height:17px;flex:none;stroke:var(--ink);fill:none;stroke-width:1.4}
+.cc-dates{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:14px}
+.cc-dates>li{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:clamp(16px,2.4vw,30px);background:var(--cream);border:1px solid var(--line);padding:clamp(16px,2vw,24px);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.cc-dates>li:hover{transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(30,30,28,.35)}
+.cc-when{display:grid;justify-items:center;line-height:1;padding-right:clamp(16px,2.4vw,30px);border-right:1px solid var(--line);min-width:64px}
+.cc-when span{font:600 10.5px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.cc-when b{font:400 clamp(34px,3.4vw,44px) var(--serif);margin:7px 0 6px;color:var(--ink)}
+.cc-what{display:grid;gap:5px;min-width:0}
+.cc-what strong{font:400 19px var(--serif)}
+.cc-what>span{font:600 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cc-inc{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 20px}
+.cc-inc li{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink2)}
+.cc-dates .btn{grid-column:1/-1;justify-content:center;white-space:nowrap;padding:15px 22px}
+.cc-more{text-align:center;margin:26px 0 0;font:italic 16px var(--serif);color:var(--ink2)}
+.cc-more span{display:block;font:600 10.5px var(--sans);font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.cc-none{margin:22px 0 0;color:var(--muted)}
+@media (max-width:1000px){.cc{grid-template-columns:1fr}.cc-ph{aspect-ratio:4/3;min-height:0}}
+@media (max-width:620px){
+  .cc-find{justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){.cc-dates>li{transition:none}.cc-dates>li:hover{transform:none}}

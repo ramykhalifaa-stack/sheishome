@@ -111,17 +111,17 @@ EVENTS = [
 ]
 
 # SHE Coffee Conversations: the featured block at the top of Upcoming gatherings.
-# Towns, dates and links are the founder's, from her poster (6 October 2026). Each date has its
+# Towns, dates and links are the founder's, from her poster (6 October 2026); venues added 7 October 2026 (she will confirm every date, time and place before sharing the page). Each date has its
 # own booking page on the SHE shop. Only what the poster and the founder state is shown: no
 # venue, time or "what is included" until she supplies them for these three dates. A date drops
 # off the page by itself once it has passed; when none are left the block says the next ones
 # are coming soon.
 _COFFEE_DATES = [
-    {"on": datetime.date(2026, 11, 14), "town": "Alcester",
+    {"on": datetime.date(2026, 11, 14), "town": "Alcester", "venue": "Lounge 26",
      "url": "https://shop.beacons.ai/sacredhumanexperience/c3c23cd9-975d-4ac9-8c10-c03f51617c0c"},
-    {"on": datetime.date(2026, 11, 22), "town": "Stratford-upon-Avon",
+    {"on": datetime.date(2026, 11, 22), "town": "Stratford-upon-Avon", "venue": "Bobbys",
      "url": "https://shop.beacons.ai/sacredhumanexperience/d5f92dc0-ec51-4f04-a138-286b0884c407"},
-    {"on": datetime.date(2026, 11, 29), "town": "Warwick",
+    {"on": datetime.date(2026, 11, 29), "town": "Warwick", "venue": "The Happy Witch",
      "url": "https://shop.beacons.ai/sacredhumanexperience/3b40c55c-c44b-419e-8c80-1a375ac52a61"},
 ]
 COFFEE_CONVERSATIONS = {
@@ -156,7 +156,7 @@ COFFEE_CONVERSATIONS = {
     "end": {"title": "Come as you are.", "lines": ["Come alone. Bring someone you know.", "Or simply come open to meeting someone you didn't know you were going to meet."], "cta": "Find your table"},
     "dates": [
         {"dow": d["on"].strftime("%A"), "day": d["on"].day, "mon": d["on"].strftime("%B"),
-         "town": d["town"], "url": d["url"]}
+         "town": d["town"], "venue": d["venue"], "url": d["url"]}
         for d in _COFFEE_DATES if d["on"] >= datetime.date.today()
     ],
 }

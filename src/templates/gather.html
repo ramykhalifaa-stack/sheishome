@@ -116,7 +116,7 @@
     <li class="rv d{{ loop.index }}">
       <div class="cc-when"><span>{{ d.dow[:3] }}</span><b>{{ d.day }}</b><span>{{ d.mon[:3] }}</span></div>
       <div class="cc-what">
-        <strong>{{ d.town }}</strong>
+        <strong>{{ d.venue }}, {{ d.town }}</strong>
         <span>{{ d.dow }} {{ d.day }} {{ d.mon }}</span>
         <ul class="cc-inc">
           <li>{{ ico("calendar") }}{{ coffee.time }}, {{ coffee.length }}</li>
@@ -124,7 +124,7 @@
           <li>{{ ico("book") }}{{ coffee.includes[1] }}</li>
         </ul>
       </div>
-      <a class="btn" href="{{ d.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}: {{ d.town }}, {{ d.dow }} {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
+      <a class="btn" href="{{ d.url }}" target="_blank" rel="noopener" aria-label="{{ coffee.cta }}: {{ d.venue }}, {{ d.town }}, {{ d.dow }} {{ d.day }} {{ d.mon }}">{{ coffee.cta }} {{ arrow() }}</a>
     </li>
     {% endfor %}
   </ul>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
+{# TEMPORARY. The Coming Soon version of SHE Coffee Conversations. The full page, with dates, venues and
+   booking, is coffee_conversations.html and is untouched. Which one is public is set by
+   COFFEE_PAGE_LIVE in src/content/__init__.py. #}
+{% block content %}
+<section class="hero-split">
+  <div class="tx stack">
+    <span class="k soft rv">{{ soon.kicker }}</span>
+    {{ lines(soon.title, "h1") }}
+    <p class="cs-lines rv d1">{% for l in soon.lines %}<span>{{ l }}</span>{% endfor %}</p>
+  </div>
+  {{ img("coffee-hero", "A small round table with two cups of coffee in warm morning light", parallax=True, sizes="(max-width:1000px) 100vw, 50vw") }}
+</section>
+
+<section class="sec cream2"><div class="wrap cs-soon">
+  <span class="cs-badge rv">{{ soon.soon }}</span>
+  <p class="cs-soonline rv d1">{{ soon.soon_line }}</p>
+  <div class="cs-cols">
+    {% for title, text in soon.columns %}
+    <div class="rv d{{ loop.index }}">
+      <h3>{{ title|replace("\n", "<br>")|safe }}</h3>
+      <p class="muted">{{ text }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div></section>
+
+<section class="split rev">
+  {{ img("coffee-left", "Women talking together around a small table", parallax=True) }}
+  <div class="tx stack">
+    {{ lines(soon.invite, "h2") }}
+    <p class="cs-open rv d1">{{ soon.open|replace("\n", "<br>")|safe }}</p>
+    <div class="rv d2"><a class="btn rose" href="{{ soon.cta_url }}">{{ soon.cta }} {{ arrow() }}</a></div>
+    <p class="cs-whatsapp rv d3">{% if site.whatsapp_url %}<a href="{{ site.whatsapp_url }}" target="_blank" rel="noopener">{{ soon.whatsapp }}</a>{% else %}{{ soon.whatsapp }}{% endif %}</p>
+  </div>
+</section>
+
+<section class="sec tight"><div class="wrap">
+  <p class="cs-final rv"><span>{{ soon.final }}</span></p>
+</div></section>
+{% endblock %}

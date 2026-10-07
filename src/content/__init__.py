@@ -367,6 +367,7 @@ def pages() -> list[dict]:
              "The physical edition of The Becoming is sold out. Leave your details and we will let you know when it returns.",
              "becoming-product-hero",
              product="The Becoming", product_href="/tools/the-becoming/", source="The Becoming waiting list",
+             beacons_form="c0432312-2bab-4f04-8292-d731cede8185",   # the Beacons form for this waiting list (founder, 7 October 2026)
              sub="A journal for the chapter you're becoming.",
              hero="becoming-product-hero",
              thumbs=[{"img": "tools-becoming", "alt": "The Becoming, closed"},

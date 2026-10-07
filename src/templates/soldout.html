@@ -19,6 +19,32 @@
       <hr class="rule wide">
       <h2 style="font-size:clamp(20px,2vw,24px)">Register your interest</h2>
       <p class="muted">Leave your details and we will let you know when {{ product }} returns.</p>
+      {% if beacons_form is defined and beacons_form %}
+      {# The Beacons sign-up form: first name and email go straight into the Beacons audience. The
+         surrounding frame is ours, so it reads as part of the page. #}
+      <div class="bf rv d2">
+        <div id="{{ beacons_form }}"></div>
+        <noscript><p class="muted">This form needs JavaScript. You can also join through <a class="tlink" href="{{ site.beacons_url }}" target="_blank" rel="noopener">our Beacons page</a>.</p></noscript>
+      </div>
+      <p class="msg bf-note">No commitment. Just a little note when it is ready.</p>
+      <script>
+      (function () {
+        function loadBeaconsEmailFormEmbed() {
+          var s = document.createElement("script");
+          var t = Math.floor(new Date().getTime() / 120000);
+          s.type = "module";
+          s.async = 1;
+          s.src = "https://beacons.ai/embeds/emailForm.js?v=" + t + "&b=sacredhumanexperience&f={{ beacons_form }}";
+          (document.head || document.body || document.documentElement).appendChild(s);
+        }
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", loadBeaconsEmailFormEmbed, { once: true });
+          return;
+        }
+        loadBeaconsEmailFormEmbed();
+      })();
+      </script>
+      {% else %}
       <form class="form one" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Sending..."
             data-title="You are on the list"
             data-note="We will email you as soon as {{ product }} is back. Nothing else, unless you have joined the SHE Letter as well.">
@@ -29,6 +55,7 @@
         <button class="btn" type="submit">Notify me {{ arrow() }}</button>
         <p class="msg">No commitment. Just a little note when it is ready.</p>
       </form>
+      {% endif %}
     </div>
   </div>
 </div></section>

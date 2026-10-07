@@ -162,6 +162,42 @@ COFFEE_CONVERSATIONS = {
     ],
 }
 
+# ---------------------------------------------------------------------------------------------
+# COFFEE CONVERSATIONS: TWO VERSIONS OF ONE PAGE, AND THE SWITCH BETWEEN THEM
+#
+#   The full page (booking cards, dates, venues, tickets) is templates/coffee_conversations.html,
+#   fed by COFFEE_CONVERSATIONS above. It is kept exactly as it was and is not edited here.
+#   The temporary page is templates/coffee_conversations_soon.html, fed by COFFEE_SOON below.
+#
+#   The public address, /gather/coffee-conversations/, shows ONE of them:
+#     COFFEE_PAGE_LIVE = False  ->  the Coming Soon page (now)
+#     COFFEE_PAGE_LIVE = True   ->  the full page with dates, venues and booking (at launch)
+#   The Coffee Conversations card on the Gather page follows the same switch, and so does the QR
+#   code, because both point at that one address. While False, the dates and booking links are
+#   not on the public site at all. To launch: set True once dates, venues and links are confirmed,
+#   check the dates in _COFFEE_DATES, build, and publish.
+# ---------------------------------------------------------------------------------------------
+COFFEE_PAGE_LIVE = False
+
+COFFEE_SOON = {
+    "kicker": "SHE Coffee Conversations",
+    "title": "A different kind of\ncoffee morning.",
+    "lines": ["Good coffee.", "Better questions.", "Conversations worth having."],
+    "soon": "Coming soon",
+    "soon_line": "We're currently putting the first SHE Coffee Conversations dates together.",
+    "columns": [
+        ("One conversation\nat a time", "You'll meet people one conversation at a time, with carefully chosen questions to get things moving."),
+        ("Meaningful\nconnections", "You'll have the chance to chat, listen, switch things up and see where each conversation takes you."),
+        ("Conversations\nthat go deeper", "Some questions will make you laugh. Some might make you think. And some might take you somewhere you weren't expecting."),
+    ],
+    "invite": "Come on your own or\nbring someone you know.",
+    "open": "You don't need to know anyone.\nYou just need to be open.",
+    "cta": "Join SHE",
+    "cta_url": "/join/",
+    "whatsapp": "Join our WhatsApp community to hear about the first dates and locations.",
+    "final": "More dates and locations coming soon.",
+}
+
 def _days(dates):
     """'14, 22 and 29 November' (or '14 November' for one date, or both months if they differ)."""
     parts = [(d["day"], d["mon"]) for d in dates]
@@ -173,12 +209,18 @@ def _days(dates):
 
 # Upcoming gatherings, side by side: Coffee Conversations first (while any date is still ahead),
 # then the workshop and the retreats. Its card takes you down to the full section and the dates.
-UPCOMING = ([{"date": _days(COFFEE_CONVERSATIONS["dates"]),
-              "place": " · ".join(d["town"] for d in COFFEE_CONVERSATIONS["dates"]),
-              "name": "Coffee Conversations",
-              "sub": "A different kind of coffee morning. Carefully chosen questions and real conversations.",
-              "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Choose your date"}]
-            if COFFEE_CONVERSATIONS["dates"] else []) + EVENTS
+_COFFEE_CARD_LIVE = [{"date": _days(COFFEE_CONVERSATIONS["dates"]),
+                      "place": " · ".join(d["town"] for d in COFFEE_CONVERSATIONS["dates"]),
+                      "name": "Coffee Conversations",
+                      "sub": "A different kind of coffee morning. Carefully chosen questions and real conversations.",
+                      "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Choose your date"}]
+# While the page is Coming Soon the card carries no dates and no towns: none are confirmed.
+_COFFEE_CARD_SOON = [{"date": "Coming soon", "place": "",
+                      "name": "Coffee Conversations",
+                      "sub": "A different kind of coffee morning. Good coffee, better questions, conversations worth having.",
+                      "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Find out more"}]
+UPCOMING = (_COFFEE_CARD_LIVE if COFFEE_CONVERSATIONS["dates"] else []) if COFFEE_PAGE_LIVE else _COFFEE_CARD_SOON
+UPCOMING = UPCOMING + EVENTS
 
 
 # SHE Coffee Conversations: the card on the table carries a QR code to /coffee/. Nothing links
@@ -320,9 +362,14 @@ def pages() -> list[dict]:
              ways_note="Our gatherings are an invitation to pause, meet like-minded women and experience something meaningful, in beautiful places, and at every stage of your journey.",
              events_intro="What is coming up, and what to keep an eye out for.",
              closing_quote="Shared spaces. Brighter chapters."),
-        page("/gather/coffee-conversations/", "coffee_conversations.html", "SHE Coffee Conversations",
-             "A different kind of coffee morning. Carefully chosen questions, real conversations and a small table, in Alcester, Stratford-upon-Avon and Warwick.",
-             "coffee-hero", coffee=COFFEE_CONVERSATIONS),
+        # One public address, two versions: see the switch (COFFEE_PAGE_LIVE) above.
+        (page("/gather/coffee-conversations/", "coffee_conversations.html", "SHE Coffee Conversations",
+              "A different kind of coffee morning. Carefully chosen questions, real conversations and a small table, in Alcester, Stratford-upon-Avon and Warwick.",
+              "coffee-hero", coffee=COFFEE_CONVERSATIONS)
+         if COFFEE_PAGE_LIVE else
+         page("/gather/coffee-conversations/", "coffee_conversations_soon.html", "SHE Coffee Conversations",
+              "A different kind of coffee morning. Good coffee, better questions, conversations worth having. The first dates are coming soon.",
+              "coffee-hero", soon=COFFEE_SOON)),
         page("/gather/experiences/", "experiences.html", "SHE Experiences",
              "Unique gatherings. Real connections. Workshops, walks, suppers and conversations for women who want to feel more like themselves again.",
              "way-workshops", experiences=EXPERIENCES, events=EVENTS,

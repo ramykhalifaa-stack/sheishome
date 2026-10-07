@@ -68,3 +68,14 @@ is built. No invented numbers: every date, price and quotation comes from the pa
 The Join form posts to `POST /she/join` on the ROSE platform, which stores the name and email
 and shows them under Community in that dashboard, with a CSV download. Everything else on the
 site is static.
+
+## Coffee Conversations: two versions, one switch
+
+`/gather/coffee-conversations/` (and the QR code, and the Coffee Conversations card on Gather) shows one of two pages:
+
+| Setting in `src/content/__init__.py` | What the public sees |
+| --- | --- |
+| `COFFEE_PAGE_LIVE = False` | The temporary Coming Soon page (`coffee_conversations_soon.html`). No dates, venues or booking. |
+| `COFFEE_PAGE_LIVE = True` | The full page (`coffee_conversations.html`) with towns, dates, venues and Book buttons, and the Gather card shows the dates. |
+
+The full page and its content (`COFFEE_CONVERSATIONS`, `_COFFEE_DATES`) are kept exactly as they were. To launch: confirm the dates, venues and Beacons links in `_COFFEE_DATES`, set the switch to `True`, then `./deploy.sh "Coffee Conversations is live"`.

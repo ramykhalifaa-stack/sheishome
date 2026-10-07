@@ -434,3 +434,20 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 
 /* On the Join page the Beacons form sits straight on the section, with no frame of our own. */
 .bf-open{background:transparent;border:0;padding:0;min-height:120px;max-width:700px;margin:0 auto}
+
+/* SHE Coffee Conversations: the temporary Coming Soon page (see COFFEE_PAGE_LIVE in the content file) */
+.cs-lines{display:grid;gap:6px;margin:6px 0 0;font:600 11.5px/1.6 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--ink2)}
+.cs-soon{text-align:center}
+.cs-badge{display:inline-block;font:600 11.5px var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--ink);padding:0 0 12px;border-bottom:1px solid var(--rose)}
+.cs-soonline{font:italic clamp(20px,2.2vw,28px)/1.4 var(--serif);color:var(--ink2);max-width:36ch;margin:22px auto 0}
+.cs-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);margin-top:clamp(36px,5vw,64px);text-align:left}
+.cs-cols>div{border-top:1px solid var(--line);padding-top:22px}
+.cs-cols h3{font:600 12px/1.9 var(--sans);letter-spacing:.22em;text-transform:uppercase;margin:0 0 14px;color:var(--ink)}
+.cs-cols .muted{line-height:1.75;max-width:34ch}
+.cs-open{font:600 11.5px/2 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink2);margin:4px 0 6px}
+.btn.rose{background:var(--rose);border-color:var(--rose);color:var(--ink)} .btn.rose:hover{background:#B8948A;border-color:#B8948A;color:var(--ink)}
+.cs-whatsapp{margin:6px 0 0;font:600 11px/1.9 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);max-width:44ch}
+.cs-whatsapp a{border-bottom:1px solid var(--line);padding-bottom:2px} .cs-whatsapp a:hover{color:var(--ink);border-color:var(--ink)}
+.cs-final{display:flex;align-items:center;gap:clamp(14px,3vw,32px);justify-content:center;margin:0;font:italic clamp(18px,2vw,24px) var(--serif);color:var(--ink2);text-align:center}
+.cs-final::before,.cs-final::after{content:"";flex:1;max-width:140px;height:1px;background:var(--line)}
+@media (max-width:760px){.cs-cols{grid-template-columns:1fr;gap:28px}.cs-cols .muted{max-width:none}}

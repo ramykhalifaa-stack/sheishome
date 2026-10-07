@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines %}
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, beacons_embed %}
 {% block content %}
 <section class="hero-split">
   <div class="tx"><span class="k soft rv">Join SHE</span>{{ lines("Come in.\nStay a while.", "h1") }}<p class="lede rv d1">SHE is made for women at all sorts of points in life: women figuring things out, starting again, changing direction, becoming someone new, or simply wanting more from the life they're already living.</p><p class="lede rv d2">You don't need to be in a particular chapter.<br>You don't need to know what you're looking for.</p><p class="lede rv d3">You can just come in.</p><div class="rv d4"><a class="btn" href="#signup">Join SHE {{ arrow() }}</a></div></div>
@@ -21,12 +21,10 @@
     <span class="k rv">Stay close to SHE</span>
     <h2 class="rv d1" style="margin:14px 0 12px">Join our community.</h2>
     <p class="lede rv d2" style="margin:0 auto 30px;text-align:center">Be the first to know, receive the SHE Letter and stay connected.</p>
-    <form class="form rv d3" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Coming in..." data-title="You are in" data-note="Your place in the SHE community is confirmed. Look out for an email from us: the SHE Letter arrives once a month, and you will hear about gatherings before anyone else.">
-      <input name="name" placeholder="Your name" autocomplete="name" required><input name="email" type="email" placeholder="Your email" autocomplete="email" required>
-      <input type="hidden" name="source" value="sheishome.co.uk"><input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
-      <button class="btn" type="submit">Come in {{ arrow() }}</button>
-      <p class="msg">One email a month. Sometimes less. No noise. Just the good stuff.</p>
-    </form>
+    <div class="bf bf-open rv d3">
+      {{ beacons_embed("5dae2315-e53e-460e-9997-672f6d2ad72a", site.beacons_url) }}
+    </div>
+    <p class="msg bf-note" style="text-align:center">One email a month. Sometimes less. No noise. Just the good stuff.</p>
   </div>
 </section>
 

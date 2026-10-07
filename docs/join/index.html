@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EF">
 <style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
-<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=d12c751d">
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=c47fb12c">
 <link rel="preload" as="image" imagesrcset="/static/img/join-hero-420.webp 420w, /static/img/join-hero-640.webp 640w, /static/img/join-hero-900.webp 900w, /static/img/join-hero-1280.webp 1280w, /static/img/join-hero.webp 1700w" imagesizes="(max-width:1000px) 100vw, 50vw" fetchpriority="high">
 </head>
 <body>
@@ -46,12 +46,28 @@
     <span class="k rv">Stay close to SHE</span>
     <h2 class="rv d1" style="margin:14px 0 12px">Join our community.</h2>
     <p class="lede rv d2" style="margin:0 auto 30px;text-align:center">Be the first to know, receive the SHE Letter and stay connected.</p>
-    <form class="form rv d3" method="post" action="https://reviews-and-response-system-production.up.railway.app/she/join" data-signup data-busy="Coming in..." data-title="You are in" data-note="Your place in the SHE community is confirmed. Look out for an email from us: the SHE Letter arrives once a month, and you will hear about gatherings before anyone else.">
-      <input name="name" placeholder="Your name" autocomplete="name" required><input name="email" type="email" placeholder="Your email" autocomplete="email" required>
-      <input type="hidden" name="source" value="sheishome.co.uk"><input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none">
-      <button class="btn" type="submit">Come in <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
-      <p class="msg">One email a month. Sometimes less. No noise. Just the good stuff.</p>
-    </form>
+    <div class="bf bf-open rv d3">
+      <div id="5dae2315-e53e-460e-9997-672f6d2ad72a"></div>
+<noscript><p class="muted">This form needs JavaScript. You can also join through <a class="tlink" href="https://beacons.ai/sacredhumanexperience" target="_blank" rel="noopener">our Beacons page</a>.</p></noscript>
+<script>
+(function () {
+  function loadBeaconsEmailFormEmbed() {
+    var s = document.createElement("script");
+    var t = Math.floor(new Date().getTime() / 120000);
+    s.type = "module";
+    s.async = 1;
+    s.src = "https://beacons.ai/embeds/emailForm.js?v=" + t + "&b=sacredhumanexperience&f=5dae2315-e53e-460e-9997-672f6d2ad72a";
+    (document.head || document.body || document.documentElement).appendChild(s);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadBeaconsEmailFormEmbed, { once: true });
+    return;
+  }
+  loadBeaconsEmailFormEmbed();
+})();
+</script>
+    </div>
+    <p class="msg bf-note" style="text-align:center">One email a month. Sometimes less. No noise. Just the good stuff.</p>
   </div>
 </section>
 

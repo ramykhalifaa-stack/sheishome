@@ -18,7 +18,7 @@
       {% for p in paras %}<p class="muted">{{ p }}</p>{% endfor %}
       <hr class="rule wide">
       <h2 style="font-size:clamp(20px,2vw,24px)">Register your interest</h2>
-      <p class="muted">Leave your details and we will let you know when {{ product }} returns.</p>
+      <p class="muted">{{ register_line if register_line is defined else "Leave your details and we will let you know when " ~ product ~ " returns." }}</p>
       {% if beacons_form is defined and beacons_form %}
       {# The Beacons sign-up form: first name and email go straight into the Beacons audience. The
          surrounding frame is ours, so it reads as part of the page. #}

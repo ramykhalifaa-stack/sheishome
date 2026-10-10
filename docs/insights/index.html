@@ -41,10 +41,10 @@
       <div class="ins-over">
         <div class="ins-where"><b class="ins-name"></b><span class="ins-place"></span><span class="ins-date"></span></div>
         <div class="ins-stats">
-          <div class="ins-stat"><b data-stat="attendees">—</b><span>Attendees</span></div>
-          <div class="ins-stat"><b data-stat="new_to_she">—</b><span>New to SHE</span></div>
-          <div class="ins-stat"><b data-stat="been_before">—</b><span>Been before</span></div>
-          <div class="ins-stat"><b data-stat="attendance_rate">—</b><span>Attendance rate</span></div>
+          <div class="ins-stat"><b data-stat="attendees">n/a</b><span>Attendees</span></div>
+          <div class="ins-stat"><b data-stat="new_to_she">n/a</b><span>New to SHE</span></div>
+          <div class="ins-stat"><b data-stat="been_before">n/a</b><span>Been before</span></div>
+          <div class="ins-stat"><b data-stat="attendance_rate">n/a</b><span>Attendance rate</span></div>
         </div>
       </div>
     </section>
@@ -115,9 +115,9 @@
     text('.ins-name', e.name); text('.ins-place', e.place); text('.ins-date', e.date);
     text('.ins-when', e.date);
     ['attendees', 'new_to_she', 'been_before'].forEach(function (k) {
-      text('[data-stat=' + k + ']', e[k] === null || e[k] === undefined ? '—' : e[k]);
+      text('[data-stat=' + k + ']', e[k] === null || e[k] === undefined ? 'n/a' : e[k]);
     });
-    text('[data-stat=attendance_rate]', e.attendance_rate === null ? '—' : e.attendance_rate + '%');
+    text('[data-stat=attendance_rate]', e.attendance_rate === null ? 'n/a' : e.attendance_rate + '%');
 
     // the ring: one arc per depth, in the order they were chosen in
     var total = d.selections.total;
@@ -185,10 +185,10 @@
     var f = d.feedback;
     if (!f) { feels.innerHTML = '<p class="muted">Nobody has said how it felt yet.</p>'; }
     else {
-      [[f.connection === null ? '—' : f.connection + '\u2009/\u20095', 'Average connection score'],
-       [f.new_conversations === null ? '—' : f.new_conversations + '%', 'Conversations they would not usually have'],
-       [f.would_return === null ? '—' : f.would_return + '%', 'Would come again'],
-       [f.would_recommend === null ? '—' : f.would_recommend + '%', 'Would tell a friend']].forEach(function (pair) {
+      [[f.connection === null ? 'n/a' : f.connection + '\u2009/\u20095', 'Average connection score'],
+       [f.new_conversations === null ? 'n/a' : f.new_conversations + '%', 'Conversations they would not usually have'],
+       [f.would_return === null ? 'n/a' : f.would_return + '%', 'Would come again'],
+       [f.would_recommend === null ? 'n/a' : f.would_recommend + '%', 'Would tell a friend']].forEach(function (pair) {
         var box = document.createElement('div'); box.className = 'ins-feel-box';
         box.innerHTML = '<b></b><span></span>';
         box.querySelector('b').textContent = pair[0];

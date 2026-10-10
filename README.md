@@ -69,13 +69,14 @@ The Join form posts to `POST /she/join` on the ROSE platform, which stores the n
 and shows them under Community in that dashboard, with a CSV download. Everything else on the
 site is static.
 
-## Coffee Conversations: two versions, one switch
+## Coffee Conversations: three versions, one switch
 
-`/gather/coffee-conversations/` (and the QR code, and the Coffee Conversations card on Gather) shows one of two pages:
+`/gather/coffee-conversations/` (and the QR code, and the Coffee Conversations card on Gather) shows one of three pages, chosen by `COFFEE_PAGE` in `src/content/__init__.py`:
 
-| Setting in `src/content/__init__.py` | What the public sees |
+| `COFFEE_PAGE` | What the public sees |
 | --- | --- |
-| `COFFEE_PAGE_LIVE = False` | The temporary Coming Soon page (`coffee_conversations_soon.html`). No dates, venues or booking. |
-| `COFFEE_PAGE_LIVE = True` | The full page (`coffee_conversations.html`) with towns, dates, venues and Book buttons, and the Gather card shows the dates. |
+| `"soon"` | The temporary Coming Soon page (`coffee_conversations_soon.html`). No dates, venues or booking. |
+| `"first"` | The first-gathering page (`coffee_conversations_first.html`): the story, then Coughton Court on Friday 6 November with its booking button, and Warwick, Leamington Spa and Stratford-upon-Avon as coming soon. |
+| `"full"` | The earlier full page (`coffee_conversations.html`) with three towns, dates, venues and Book buttons. Kept exactly as it was. |
 
-The full page and its content (`COFFEE_CONVERSATIONS`, `_COFFEE_DATES`) are kept exactly as they were. To launch: confirm the dates, venues and Beacons links in `_COFFEE_DATES`, set the switch to `True`, then `./deploy.sh "Coffee Conversations is live"`.
+To turn on `"first"`: put the Coughton Court booking link in `COUGHTON_BOOK_URL` (the build refuses without it). If Warwick's register-your-interest form exists, put its Beacons form id in `WARWICK_BEACONS_FORM`; that adds the Warwick row's register link and the page `/gather/coffee-conversations/warwick/`. To add Leamington Spa or Stratford-upon-Avon later, give that town an `href` in `COFFEE_FIRST["towns"]`. Then `./deploy.sh "Coffee Conversations first gathering"`.

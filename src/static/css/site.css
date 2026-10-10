@@ -435,7 +435,7 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 /* On the Join page the Beacons form sits straight on the section, with no frame of our own. */
 .bf-open{background:transparent;border:0;padding:0;min-height:120px;max-width:700px;margin:0 auto}
 
-/* SHE Coffee Conversations: the temporary Coming Soon page (see COFFEE_PAGE_LIVE in the content file) */
+/* SHE Coffee Conversations: the temporary Coming Soon page (see COFFEE_PAGE in the content file) */
 .cs-lines{display:grid;gap:6px;margin:6px 0 0;font:600 11.5px/1.6 var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--ink2)}
 .cs-soon{text-align:center}
 .cs-badge{display:inline-block;font:600 11.5px var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--ink);padding:0 0 12px;border-bottom:1px solid var(--rose)}
@@ -451,3 +451,20 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 .cs-final{display:flex;align-items:center;gap:clamp(14px,3vw,32px);justify-content:center;margin:0;font:italic clamp(18px,2vw,24px) var(--serif);color:var(--ink2);text-align:center}
 .cs-final::before,.cs-final::after{content:"";flex:1;max-width:140px;height:1px;background:var(--line)}
 @media (max-width:760px){.cs-cols{grid-template-columns:1fr;gap:28px}.cs-cols .muted{max-width:none}}
+
+/* SHE Coffee Conversations: the first-gathering page, the event card and the towns coming soon */
+.cc-where{text-align:center;margin:0 auto 34px;max-width:54ch}
+.cc-event{display:grid;grid-template-columns:minmax(0,230px) auto 1fr;align-items:center;gap:clamp(16px,2.4vw,34px);background:var(--paper);border:1px solid var(--line);padding:clamp(14px,2vw,22px);margin-bottom:8px}
+.cc-eimg{aspect-ratio:416/252;width:100%}
+.cc-event .btn{grid-column:1/-1;justify-content:center;white-space:nowrap}
+.cc-towns{list-style:none;margin:0;padding:0}
+.cc-towns>li{display:grid;grid-template-columns:1fr auto minmax(190px,auto);align-items:center;gap:clamp(12px,3vw,40px);padding:20px 4px;border-bottom:1px solid var(--line)}
+.cc-towns strong{font:400 clamp(19px,2vw,24px) var(--serif)}
+.cc-soonpill{font:600 10.5px var(--sans);letter-spacing:.2em;text-transform:uppercase;background:var(--sand);padding:7px 12px;color:var(--ink2);white-space:nowrap}
+.cc-towns .tlink{justify-self:end}
+@media (max-width:760px){.cc-event{grid-template-columns:auto 1fr}.cc-eimg{grid-column:1/-1}}
+@media (max-width:620px){.cc-towns>li{grid-template-columns:1fr auto}.cc-towns .tlink{grid-column:1/-1;justify-self:start}}
+
+/* The Warwick page: a tall photograph is cropped to the screen, not allowed to stretch the page. */
+.hero-split .ph.warwick-ph{height:clamp(420px,82vh,780px);min-height:0;align-self:center}
+@media (max-width:1000px){.hero-split .ph.warwick-ph{height:360px}}

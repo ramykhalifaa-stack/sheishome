@@ -47,6 +47,41 @@
 <noscript><p class="muted">This form needs JavaScript. You can also join through <a class="tlink" href="https://beacons.ai/sacredhumanexperience" target="_blank" rel="noopener">our Beacons page</a>.</p></noscript>
 <script>
 (function () {
+  /* Beacons shows a curly quote or apostrophe typed into its form as "a" with a circumflex and two
+     boxes (the three bytes of the character read one at a time). Put the real character back, in
+     the form's text, as soon as the form draws. Only sequences that are valid UTF-8 are touched. */
+  function startMending() {
+  var box = document.getElementById("c0432312-2bab-4f04-8292-d731cede8185");
+  if (!box || !window.TextDecoder) return;
+  var BAD = /[\u00c2-\u00f4][\u0080-\u00bf]+/g;
+  function mend(text) {
+    return text.replace(BAD, function (m) {
+      var bytes = new Uint8Array(m.length);
+      for (var i = 0; i < m.length; i++) { var c = m.charCodeAt(i); if (c > 255) return m; bytes[i] = c; }
+      try { return new TextDecoder("utf-8", { fatal: true }).decode(bytes); } catch (e) { return m; }
+    });
+  }
+  function walk(node) {
+    if (node.nodeType === 3) {
+      if (BAD.test(node.nodeValue)) { BAD.lastIndex = 0; node.nodeValue = mend(node.nodeValue); }
+      BAD.lastIndex = 0;
+      return;
+    }
+    if (node.shadowRoot) { watch(node.shadowRoot); walk(node.shadowRoot); }
+    for (var k = node.firstChild; k; k = k.nextSibling) walk(k);
+  }
+  var seen = [];
+  function watch(root) {
+    if (seen.indexOf(root) > -1 || !window.MutationObserver) return;
+    seen.push(root);
+    new MutationObserver(function () { walk(root); })
+      .observe(root, { childList: true, subtree: true, characterData: true });
+  }
+  watch(box); walk(box);
+  var tries = 0, timer = setInterval(function () { walk(box); if (++tries > 40) clearInterval(timer); }, 500);
+  }
+  startMending();
+
   function loadBeaconsEmailFormEmbed() {
     var s = document.createElement("script");
     var t = Math.floor(new Date().getTime() / 120000);
@@ -60,6 +95,7 @@
     return;
   }
   loadBeaconsEmailFormEmbed();
+
 })();
 </script>
       </div>

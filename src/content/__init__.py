@@ -177,8 +177,8 @@ COFFEE_CONVERSATIONS = {
 #   Before turning "first" on, fill in the two settings below. The build refuses to publish "first"
 #   without the booking link, so a Book button can never lead nowhere.
 # ---------------------------------------------------------------------------------------------
-COFFEE_PAGE = "soon"
-COUGHTON_BOOK_URL = ""          # the booking link for Coughton Court (Beacons shop page)
+COFFEE_PAGE = "first"
+COUGHTON_BOOK_URL = "https://shop.beacons.ai/sacredhumanexperience/3b40c55c-c44b-419e-8c80-1a375ac52a61"   # confirmed by the founder, 10 October 2026
 WARWICK_BEACONS_FORM = ""       # the Beacons form id for Warwick's register-your-interest form
                                 # (empty: Warwick shows only "Coming soon", with no register link)
 
@@ -474,6 +474,7 @@ def pages() -> list[dict]:
              "The physical edition of She's Glowing is sold out. Leave your details and we will let you know when it returns.",
              "glowing-hero",
              product="She's Glowing", product_href="/tools/shes-glowing/", source="She's Glowing waiting list",
+             beacons_form="c59eae20-e413-4724-9637-85f601a92c3c",   # the Beacons form for this waiting list (founder, 10 October 2026)
              sub="A journal for the beginning of motherhood.",
              hero="glowing-hero",
              thumbs=[{"img": "glowing-physical", "alt": "She's Glowing, closed"},

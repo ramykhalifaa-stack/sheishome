@@ -1,0 +1,21 @@
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, beacons_embed %}
+{# The Warwick "coming soon" page with the register-your-interest form (Beacons). Only built when
+   WARWICK_BEACONS_FORM is filled in, and linked from the Warwick row on the Coffee Conversations page. #}
+{% block content %}
+<section class="hero-split">
+  <div class="tx stack">
+    <span class="k soft rv">{{ w.kicker }}</span>
+    {{ lines(w.title, "h1") }}
+    <p class="cc-strap rv d1" style="font-size:clamp(26px,3vw,38px)">{{ w.sub }}</p>
+    <hr class="rule wide rv d1">
+    <span class="k rv d2">{{ w.label }}</span>
+    {% for p in w.paras %}<p class="lede rv d2">{{ p }}</p>{% endfor %}
+    <div class="bf bf-open rv d3" style="margin:6px 0 0;max-width:none">
+      {{ beacons_embed(w.form, site.beacons_url) }}
+    </div>
+    <p class="msg bf-note">{{ w.note }}</p>
+    <div class="rv d3"><a class="tlink" href="/gather/coffee-conversations/"><span class="flip">{{ arrow() }}</span> Back to Coffee Conversations</a></div>
+  </div>
+  {{ img("warwick-castle", "A lamp-lit stone path beside a garden with Warwick Castle behind the trees", cls="warwick-ph", parallax=True, sizes="(max-width:1000px) 100vw, 50vw") }}
+</section>
+{% endblock %}

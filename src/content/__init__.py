@@ -163,21 +163,24 @@ COFFEE_CONVERSATIONS = {
 }
 
 # ---------------------------------------------------------------------------------------------
-# COFFEE CONVERSATIONS: TWO VERSIONS OF ONE PAGE, AND THE SWITCH BETWEEN THEM
+# COFFEE CONVERSATIONS: THREE VERSIONS OF ONE PAGE, AND THE SWITCH BETWEEN THEM
 #
-#   The full page (booking cards, dates, venues, tickets) is templates/coffee_conversations.html,
-#   fed by COFFEE_CONVERSATIONS above. It is kept exactly as it was and is not edited here.
-#   The temporary page is templates/coffee_conversations_soon.html, fed by COFFEE_SOON below.
+#   The public address, /gather/coffee-conversations/, shows ONE of these, chosen by COFFEE_PAGE:
+#     "soon"  the temporary Coming Soon page (templates/coffee_conversations_soon.html, COFFEE_SOON)
+#     "first" the first-gathering page: the story, then Coughton Court on Friday 6 November, with
+#             Warwick, Leamington Spa and Stratford-upon-Avon coming soon
+#             (templates/coffee_conversations_first.html, COFFEE_FIRST)
+#     "full"  the earlier full page with three towns, dates and booking cards
+#             (templates/coffee_conversations.html, COFFEE_CONVERSATIONS). Kept exactly as it was.
+#   The Coffee Conversations card on the Gather page and the QR code follow the same switch.
 #
-#   The public address, /gather/coffee-conversations/, shows ONE of them:
-#     COFFEE_PAGE_LIVE = False  ->  the Coming Soon page (now)
-#     COFFEE_PAGE_LIVE = True   ->  the full page with dates, venues and booking (at launch)
-#   The Coffee Conversations card on the Gather page follows the same switch, and so does the QR
-#   code, because both point at that one address. While False, the dates and booking links are
-#   not on the public site at all. To launch: set True once dates, venues and links are confirmed,
-#   check the dates in _COFFEE_DATES, build, and publish.
+#   Before turning "first" on, fill in the two settings below. The build refuses to publish "first"
+#   without the booking link, so a Book button can never lead nowhere.
 # ---------------------------------------------------------------------------------------------
-COFFEE_PAGE_LIVE = False
+COFFEE_PAGE = "soon"
+COUGHTON_BOOK_URL = ""          # the booking link for Coughton Court (Beacons shop page)
+WARWICK_BEACONS_FORM = ""       # the Beacons form id for Warwick's register-your-interest form
+                                # (empty: Warwick shows only "Coming soon", with no register link)
 
 COFFEE_SOON = {
     "kicker": "SHE Coffee Conversations",
@@ -198,6 +201,32 @@ COFFEE_SOON = {
     "final": "More dates and locations coming soon.",
 }
 
+# The first-gathering page. It borrows the story, steps, questions and notebook words from the full
+# page's content (read only) and adds the event and the towns.
+_FIRST_DATE = datetime.date(2026, 11, 6)
+COFFEE_FIRST = dict(
+    COFFEE_CONVERSATIONS,
+    title="A different kind of\ncoffee morning.",
+    where_note=("Our first gathering is at Coughton Court, with more locations across Warwickshire coming soon."
+                + (" Register your interest in Warwick and we'll keep you in the loop." if WARWICK_BEACONS_FORM else "")),
+    event=({"dow": "Fri", "day": 6, "mon": "Nov", "weekday": "Friday", "full_date": "6 November 2026",
+            "time": "11:00 am to 12:30 pm, 90 minutes", "venue": "Coughton Court", "area": "Warwickshire",
+            "details": ["Small tables", "Coffee, tea and cake", "SHE Coffee Notebook included"],
+            "price": "\u00a315", "img": "coughton-court", "url": COUGHTON_BOOK_URL, "cta": "Book this conversation"}
+           if _FIRST_DATE >= datetime.date.today() else None),
+    towns=[{"name": "Warwick", "href": "/gather/coffee-conversations/warwick/" if WARWICK_BEACONS_FORM else ""},
+           {"name": "Leamington Spa", "href": ""},          # register link to be added later
+           {"name": "Stratford-upon-Avon", "href": ""}],    # register link to be added later
+)
+COFFEE_WARWICK = {
+    "kicker": "SHE Coffee Conversations", "title": "Warwick", "sub": "Coming soon.",
+    "label": "Register your interest",
+    "paras": ["We're bringing SHE Coffee Conversations to Warwick, and we'd love to know if you'd like to join us.",
+              "If you'd like to be among the first to hear when tickets become available, leave your details below and we'll keep you in the loop."],
+    "note": "We'll only use your details to send you updates about SHE Coffee Conversations in Warwick. No spam, just good things.",
+    "form": WARWICK_BEACONS_FORM,
+}
+
 def _days(dates):
     """'14, 22 and 29 November' (or '14 November' for one date, or both months if they differ)."""
     parts = [(d["day"], d["mon"]) for d in dates]
@@ -209,17 +238,25 @@ def _days(dates):
 
 # Upcoming gatherings, side by side: Coffee Conversations first (while any date is still ahead),
 # then the workshop and the retreats. Its card takes you down to the full section and the dates.
-_COFFEE_CARD_LIVE = [{"date": _days(COFFEE_CONVERSATIONS["dates"]),
+_COFFEE_CARD_FULL = [{"date": _days(COFFEE_CONVERSATIONS["dates"]),
                       "place": " · ".join(d["town"] for d in COFFEE_CONVERSATIONS["dates"]),
                       "name": "Coffee Conversations",
                       "sub": "A different kind of coffee morning. Carefully chosen questions and real conversations.",
                       "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Choose your date"}]
+_COFFEE_CARD_FIRST = [{"date": "Friday 6 November", "place": "Coughton Court, Warwickshire",
+                       "name": "Coffee Conversations",
+                       "sub": "A different kind of coffee morning. Good coffee, better questions, conversations worth having.",
+                       "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Find out more"}]
 # While the page is Coming Soon the card carries no dates and no towns: none are confirmed.
 _COFFEE_CARD_SOON = [{"date": "Coming soon", "place": "",
                       "name": "Coffee Conversations",
                       "sub": "A different kind of coffee morning. Good coffee, better questions, conversations worth having.",
                       "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Find out more"}]
-UPCOMING = (_COFFEE_CARD_LIVE if COFFEE_CONVERSATIONS["dates"] else []) if COFFEE_PAGE_LIVE else _COFFEE_CARD_SOON
+assert COFFEE_PAGE in ("soon", "first", "full"), "COFFEE_PAGE must be 'soon', 'first' or 'full'"
+assert COFFEE_PAGE != "first" or COUGHTON_BOOK_URL, "Add COUGHTON_BOOK_URL before turning the first-gathering page on"
+UPCOMING = {"soon": _COFFEE_CARD_SOON,
+            "first": _COFFEE_CARD_FIRST if COFFEE_FIRST["event"] else _COFFEE_CARD_SOON,
+            "full": _COFFEE_CARD_FULL if COFFEE_CONVERSATIONS["dates"] else []}[COFFEE_PAGE]
 UPCOMING = UPCOMING + EVENTS
 
 
@@ -320,6 +357,10 @@ def pages() -> list[dict]:
         page("/join/", "join.html", "Join SHE", "Come in. Stay a while. Join the SHE Letter and the community.", "join-hero", orb=True),
         page("/chapters/", "chapters.html", "The Chapters", "Wherever you are, you belong here. Six chapters. Find the one that feels most like you.", "chapters-hero", chapters=CHAPTERS),
     ]
+    if COFFEE_PAGE == "first" and WARWICK_BEACONS_FORM:
+        out.append(page("/gather/coffee-conversations/warwick/", "coffee_warwick.html", "SHE Coffee Conversations in Warwick",
+                        "SHE Coffee Conversations is coming to Warwick. Register your interest and we'll keep you in the loop.",
+                        "warwick-castle", w=COFFEE_WARWICK))
     for c in CHAPTERS:
         out.append(page(f"/chapters/{c['slug']}/", "chapter.html", f"{c['name']}, a chapter of SHE", c["sub"], f"{c['slug']}-hero", c=c, chapters=CHAPTERS))
     out += [
@@ -362,14 +403,16 @@ def pages() -> list[dict]:
              ways_note="Our gatherings are an invitation to pause, meet like-minded women and experience something meaningful, in beautiful places, and at every stage of your journey.",
              events_intro="What is coming up, and what to keep an eye out for.",
              closing_quote="Shared spaces. Brighter chapters."),
-        # One public address, two versions: see the switch (COFFEE_PAGE_LIVE) above.
-        (page("/gather/coffee-conversations/", "coffee_conversations.html", "SHE Coffee Conversations",
-              "A different kind of coffee morning. Carefully chosen questions, real conversations and a small table, in Alcester, Stratford-upon-Avon and Warwick.",
-              "coffee-hero", coffee=COFFEE_CONVERSATIONS)
-         if COFFEE_PAGE_LIVE else
-         page("/gather/coffee-conversations/", "coffee_conversations_soon.html", "SHE Coffee Conversations",
-              "A different kind of coffee morning. Good coffee, better questions, conversations worth having. The first dates are coming soon.",
-              "coffee-hero", soon=COFFEE_SOON)),
+        # One public address, three versions: see the switch (COFFEE_PAGE) above.
+        {"full": lambda: page("/gather/coffee-conversations/", "coffee_conversations.html", "SHE Coffee Conversations",
+                              "A different kind of coffee morning. Carefully chosen questions, real conversations and a small table, in Alcester, Stratford-upon-Avon and Warwick.",
+                              "coffee-hero", coffee=COFFEE_CONVERSATIONS),
+         "first": lambda: page("/gather/coffee-conversations/", "coffee_conversations_first.html", "SHE Coffee Conversations",
+                               "A different kind of coffee morning. Good coffee, better questions, conversations worth having. Our first gathering is at Coughton Court, Warwickshire, on Friday 6 November 2026.",
+                               "coffee-hero", coffee=COFFEE_FIRST),
+         "soon": lambda: page("/gather/coffee-conversations/", "coffee_conversations_soon.html", "SHE Coffee Conversations",
+                              "A different kind of coffee morning. Good coffee, better questions, conversations worth having. The first dates are coming soon.",
+                              "coffee-hero", soon=COFFEE_SOON)}[COFFEE_PAGE](),
         page("/gather/experiences/", "experiences.html", "SHE Experiences",
              "Unique gatherings. Real connections. Workshops, walks, suppers and conversations for women who want to feel more like themselves again.",
              "way-workshops", experiences=EXPERIENCES, events=EVENTS,

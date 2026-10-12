@@ -210,7 +210,7 @@ COFFEE_FIRST = dict(
     where_note=("Our first gathering is at Coughton Court, with more locations across Warwickshire coming soon."
                 + (" Register your interest in Warwick and we'll keep you in the loop." if WARWICK_BEACONS_FORM else "")),
     event=({"dow": "Fri", "day": 6, "mon": "Nov", "weekday": "Friday", "full_date": "6 November 2026",
-            "time": "11:00 am to 12:30 pm, 90 minutes", "venue": "Coughton Court", "area": "Warwickshire",
+            "time": "10:00 am to 11:30 am, 90 minutes", "venue": "Coughton Court", "area": "Warwickshire",
             "details": ["Small tables", "Coffee, tea and cake", "SHE Coffee Notebook included"],
             "price": "\u00a315", "img": "coughton-court", "url": COUGHTON_BOOK_URL, "cta": "Book this conversation"}
            if _FIRST_DATE >= datetime.date.today() else None),

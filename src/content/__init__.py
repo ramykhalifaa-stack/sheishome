@@ -203,19 +203,23 @@ COFFEE_SOON = {
 
 # The first-gathering page. It borrows the story, steps, questions and notebook words from the full
 # page's content (read only) and adds the event and the towns.
-_FIRST_DATE = datetime.date(2026, 11, 6)
+HAPPY_WITCH_BOOK_URL = "https://shop.beacons.ai/sacredhumanexperience/d5f92dc0-ec51-4f04-a138-286b0884c407"   # supplied by the founder, 20 October 2026
+_EVENT_DETAILS = ["Small tables", "Coffee, tea and cake", "SHE Coffee Notebook included"]
+# Each event drops off the page once its date has passed.
+_FIRST_EVENTS = [e for e in (
+    {"date": datetime.date(2026, 11, 6), "dow": "Fri", "day": 6, "mon": "Nov", "weekday": "Friday", "full_date": "6 November 2026",
+     "time": "10:00 am to 11:30 am, 90 minutes", "venue": "Coughton Court", "area": "Warwickshire",
+     "details": _EVENT_DETAILS, "price": "\u00a315", "img": "coughton-court", "url": COUGHTON_BOOK_URL, "cta": "Book this conversation"},
+    {"date": datetime.date(2026, 11, 14), "dow": "Sat", "day": 14, "mon": "Nov", "weekday": "Saturday", "full_date": "14 November 2026",
+     "time": "10:00 am to 11:30 am, 90 minutes", "venue": "The Happy Witch", "area": "Warwick",
+     "details": _EVENT_DETAILS, "price": "\u00a315", "img": "happy-witch", "url": HAPPY_WITCH_BOOK_URL, "cta": "Book this conversation"},
+) if e["date"] >= datetime.date.today()]
 COFFEE_FIRST = dict(
     COFFEE_CONVERSATIONS,
     title="A different kind of\ncoffee morning.",
-    where_note=("Our first gathering is at Coughton Court, with more locations across Warwickshire coming soon."
-                + (" Register your interest in Warwick and we'll keep you in the loop." if WARWICK_BEACONS_FORM else "")),
-    event=({"dow": "Fri", "day": 6, "mon": "Nov", "weekday": "Friday", "full_date": "6 November 2026",
-            "time": "10:00 am to 11:30 am, 90 minutes", "venue": "Coughton Court", "area": "Warwickshire",
-            "details": ["Small tables", "Coffee, tea and cake", "SHE Coffee Notebook included"],
-            "price": "\u00a315", "img": "coughton-court", "url": COUGHTON_BOOK_URL, "cta": "Book this conversation"}
-           if _FIRST_DATE >= datetime.date.today() else None),
-    towns=[{"name": "Warwick", "href": "/gather/coffee-conversations/warwick/" if WARWICK_BEACONS_FORM else ""},
-           {"name": "Leamington Spa", "href": ""},          # register link to be added later
+    where_note="Our first gatherings are at Coughton Court and The Happy Witch in Warwick, with more locations across Warwickshire coming soon.",
+    events=_FIRST_EVENTS,
+    towns=[{"name": "Leamington Spa", "href": ""},          # register link to be added later
            {"name": "Stratford-upon-Avon", "href": ""}],    # register link to be added later
 )
 COFFEE_WARWICK = {
@@ -243,10 +247,10 @@ _COFFEE_CARD_FULL = [{"date": _days(COFFEE_CONVERSATIONS["dates"]),
                       "name": "Coffee Conversations",
                       "sub": "A different kind of coffee morning. Carefully chosen questions and real conversations.",
                       "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Choose your date"}]
-_COFFEE_CARD_FIRST = [{"date": "Friday 6 November", "place": "Coughton Court, Warwickshire",
+_COFFEE_CARD_FIRST = [{"date": _days([{"day": e["day"], "mon": e["full_date"].split()[1]} for e in _FIRST_EVENTS]), "place": " · ".join(e["venue"] for e in _FIRST_EVENTS),
                        "name": "Coffee Conversations",
                        "sub": "A different kind of coffee morning. Good coffee, better questions, conversations worth having.",
-                       "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Find out more"}]
+                       "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Find out more"}] if _FIRST_EVENTS else []
 # While the page is Coming Soon the card carries no dates and no towns: none are confirmed.
 _COFFEE_CARD_SOON = [{"date": "Coming soon", "place": "",
                       "name": "Coffee Conversations",
@@ -255,7 +259,7 @@ _COFFEE_CARD_SOON = [{"date": "Coming soon", "place": "",
 assert COFFEE_PAGE in ("soon", "first", "full"), "COFFEE_PAGE must be 'soon', 'first' or 'full'"
 assert COFFEE_PAGE != "first" or COUGHTON_BOOK_URL, "Add COUGHTON_BOOK_URL before turning the first-gathering page on"
 UPCOMING = {"soon": _COFFEE_CARD_SOON,
-            "first": _COFFEE_CARD_FIRST if COFFEE_FIRST["event"] else _COFFEE_CARD_SOON,
+            "first": _COFFEE_CARD_FIRST or _COFFEE_CARD_SOON,
             "full": _COFFEE_CARD_FULL if COFFEE_CONVERSATIONS["dates"] else []}[COFFEE_PAGE]
 UPCOMING = UPCOMING + EVENTS
 

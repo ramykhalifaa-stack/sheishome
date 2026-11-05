@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% from "_macros.html" import lines, arrow %}
+{# The founder's door to the SHE Community CRM. It links to a private page on claude.ai and shows no contact data. #}
+{% block content %}
+<section class="sec tight"><div class="wrap stack" style="max-width:760px">
+  <span class="k soft rv">{{ crm.kicker }}</span>
+  {{ lines(crm.title, "h1") }}
+  <p class="lede rv d1">{{ crm.lede }}</p>
+  <hr class="rule wide rv d1">
+  <div class="stack rv d2" style="gap:18px">
+    {% for t, d in crm.points %}<p style="margin:0"><strong>{{ t }}.</strong> {{ d }}</p>{% endfor %}
+  </div>
+  <div class="rv d3" style="margin-top:8px"><a class="btn" href="{{ crm.url }}" target="_blank" rel="noopener">{{ crm.cta }} {{ arrow() }}</a></div>
+  <p class="msg rv d3" style="margin:0">{{ crm.note }}</p>
+</div></section>
+{% endblock %}

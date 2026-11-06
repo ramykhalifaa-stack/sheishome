@@ -327,9 +327,9 @@ COFFEE_QUESTIONS = {
 }
 
 
-# The founder's CRM lives in a private page on claude.ai, not on this site. This page only links to it;
-# it holds no contact details. Opening the link needs the founder's claude.ai sign-in.
-CRM_URL = "https://claude.ai/artifact/CTysqL4q84mCrTmJYBmmG2"
+# The founder's CRM runs inside Rose, on its own server, behind its own username and password. This page
+# only links to it; it holds no contact details.
+CRM_URL = "https://reviews-and-response-system-production.up.railway.app/crm"
 SHE_CRM = {
     "kicker": "Founder access",
     "title": "SHE Community\nCRM",
@@ -340,7 +340,7 @@ SHE_CRM = {
                ("Follow-ups", "Gentle reminders of who to come back to, and why.")],
     "cta": "Open the SHE CRM",
     "url": CRM_URL,
-    "note": "Only the founder can open it. You will be asked to sign in to claude.ai. This page holds no contact details, and nothing in the CRM sends messages.",
+    "note": "Only the founder can open it. You will be asked for your CRM username and password. This page holds no contact details, and nothing in the CRM sends messages.",
 }
 
 

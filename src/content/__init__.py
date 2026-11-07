@@ -327,23 +327,6 @@ COFFEE_QUESTIONS = {
 }
 
 
-# The founder's CRM runs inside Rose, on its own server, behind its own username and password. This page
-# only links to it; it holds no contact details.
-CRM_URL = "https://reviews-and-response-system-production.up.railway.app/crm"
-SHE_CRM = {
-    "kicker": "Founder access",
-    "title": "SHE Community\nCRM",
-    "lede": "A private journal of every woman who connects with SHE: who you have spoken to, what was said, who to come back to, and who has joined which gathering.",
-    "points": [("Contacts", "Every woman, with her interests, where you met, her consent and your notes."),
-               ("Interactions", "Messages sent and replies received, even when she has not replied yet."),
-               ("Events", "Invitations, bookings and attendance for each gathering."),
-               ("Follow-ups", "Gentle reminders of who to come back to, and why.")],
-    "cta": "Open the SHE CRM",
-    "url": CRM_URL,
-    "note": "Only the founder can open it. You will be asked for your CRM username and password. This page holds no contact details, and nothing in the CRM sends messages.",
-}
-
-
 def page(path, template, title, description="", image="", orb=False, unlisted=False, **data):
     """One page. unlisted means it is reachable only by its own address: it is kept out of the
     sitemap and asks search engines not to index it. Nothing on the site links to it."""
@@ -470,7 +453,7 @@ def pages() -> list[dict]:
         page("/insights/", "insights.html", "Coffee Conversations, event insights",
              "What the table chose, and how it felt.", unlisted=True),
         # The founder's way in to the CRM. Unlisted like /coffee/: no link from the site, not in the sitemap.
-        page("/crm/", "crm.html", "SHE Community CRM", "The founder's private journal of the women who connect with SHE.", unlisted=True, crm=SHE_CRM),
+        page("/crm/", "crm.html", "SHE Community CRM", "The founder's private journal of the women who connect with SHE.", unlisted=True),
         page("/tools/", "tools.html", "Tools", "More than a journal. A place to pause, ask better questions, notice what's changing, imagine what's possible and come back to yourself.", "tools-hero"),
         page("/tools/the-becoming/", "becoming_journal.html", "The Becoming, a journal for a more intentional life", "A 24-week guided journal to help you look at your life, your patterns, your energy, your goals and what you want to change.", "becoming-product-hero"),
         page("/tools/shes-glowing/", "glowing_journal.html", "She's Glowing, a journal for pregnancy, motherhood and your own evolution", "You're not losing yourself. You're meeting yourself. A space to feel, reflect and stay connected to yourself through a chapter that changes everything.", "glowing-hero"),

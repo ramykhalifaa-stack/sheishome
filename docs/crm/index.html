@@ -2,52 +2,1067 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SHE Community CRM | SHE</title>
-<meta name="description" content="The founder&#39;s private journal of the women who connect with SHE.">
-<link rel="canonical" href="https://www.sheishome.co.uk/crm/">
-<meta name="robots" content="noindex, nofollow"><meta property="og:title" content="SHE Community CRM | SHE"><meta property="og:description" content="The founder&#39;s private journal of the women who connect with SHE."><meta property="og:type" content="website"><meta property="og:url" content="https://www.sheishome.co.uk/crm/"><meta property="og:image" content="https://www.sheishome.co.uk/static/img/og-she.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="SHE"><meta property="og:locale" content="en_GB">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="SHE Community CRM"><meta name="twitter:description" content="The founder&#39;s private journal of the women who connect with SHE."><meta name="twitter:image" content="https://www.sheishome.co.uk/static/img/og-she.jpg">
-<link rel="icon" href="/static/img/she-mark-ink.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
-<meta name="theme-color" content="#F7F4EF">
-<style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
-<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=6a7c3b7b">
+<title>SHE Community CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: dark chocolate sidebar, warm cream journal pages, ivory cards with hairline borders; the serif carries the voice, the sans carries the work. */
+:root{
+  --cream:#F6F1E9; --ivory:#FFFCF7; --choc:#3C2B25; --choc2:#4B3830; --rose:#C88D91; --rose-pale:#F0DCDD; --sage:#A9B5A0; --taupe:#8B7A70;
+  --muted:#6F5F56; --rose-ink:#8A4B52; --sage-ink:#566650; --sage-pale:#E4E9DF; --sand:#EAE1D4;
+  --line:rgba(60,43,37,.13); --shadow:0 1px 2px rgba(60,43,37,.05),0 8px 24px -12px rgba(60,43,37,.18);
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif; --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--cream);color:var(--choc);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;text-wrap:balance;letter-spacing:.005em}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--rose);outline-offset:2px;border-radius:6px}
+.app{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:100%}
+/* sidebar */
+.side{background:var(--choc);color:#EFE6DA;position:sticky;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column;padding:34px 18px 22px}
+.brand{padding:0 12px 30px}
+.brand b{display:block;font:600 36px/1 var(--serif);letter-spacing:.34em;color:var(--ivory);margin-right:-.34em}
+.brand span{display:block;margin-top:10px;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:#C9B8A9}
+.nav{display:flex;flex-direction:column;gap:3px}
+.side .nav-label{display:block}
+.nav a{display:flex;align-items:center;gap:13px;padding:11px 14px;border-radius:12px;text-decoration:none;color:#D9CBBD;font-weight:500;font-size:14.5px;transition:background .15s,color .15s}
+.nav a:hover{background:var(--choc2);color:var(--ivory)}
+.nav a[aria-current=page]{background:#6E5849;color:var(--ivory)}
+.nav-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#C9B8A9;font-weight:600;padding:2px 14px 10px}
+.nav svg{width:19px;height:19px;flex:none}
+.nav .n{margin-left:auto;font-size:11.5px;font-weight:600;background:var(--rose);color:var(--choc);border-radius:99px;padding:1px 8px}
+.side-foot{margin-top:auto;padding:18px 12px 0;border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;color:#C9B8A9}
+.side-foot em{display:block;font:italic 400 15px/1.35 var(--serif);color:#E8D9CB;margin-bottom:12px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sage);margin-right:7px;vertical-align:1px}
+.so{margin:14px 12px 0}
+.so .lnk{margin:0;font-size:13px}
+.lnk{background:none;border:0;padding:0;margin-left:6px;color:#F0DCDD;text-decoration:underline;cursor:pointer;font-size:12.5px}
+.dot.off{background:var(--rose)}
+/* main */
+.main{padding:38px clamp(18px,4vw,56px) 60px;max-width:1320px;width:100%}
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.top h1{font-size:clamp(30px,4vw,44px);line-height:1.1;margin-top:6px}
+.top p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--choc);background:var(--choc);color:var(--ivory);padding:10px 18px;border-radius:99px;font-weight:600;font-size:14px;cursor:pointer;text-decoration:none;transition:transform .12s,background .15s}
+.btn:hover{background:#2c1f1a}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--choc);border-color:var(--line)}
+.btn.ghost:hover{background:var(--ivory);border-color:var(--taupe)}
+.btn.rose{background:var(--rose);border-color:var(--rose);color:var(--choc)}
+.btn.rose:hover{background:#bb8085}
+.btn.danger{background:transparent;color:var(--rose-ink);border-color:rgba(138,75,82,.4)}
+.btn.danger:hover{background:var(--rose-pale)}
+.btn.sm{padding:6px 13px;font-size:13px}
+.btn svg,.ib svg{width:16px;height:16px;flex:none}
+.ib{border:0;background:transparent;padding:6px;border-radius:8px;cursor:pointer;color:var(--muted);display:inline-grid;place-items:center}
+.ib:hover{background:var(--sand);color:var(--choc)}
+.card{background:var(--ivory);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:24px}
+.card h2{font-size:22px}
+.card-h{flex-wrap:wrap;display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:16px}
+.card-h small{color:var(--muted);font-size:13px}
+.grid{display:grid;gap:20px}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g-main{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+.g-ov{grid-template-columns:minmax(0,2.1fr) minmax(0,1fr)}
+.cell-nw{white-space:nowrap}
+.g-prof{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start}
+.stat{padding:22px 24px}
+.stat .l{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.stat{position:relative}
+.stat .hr{position:absolute;right:18px;top:18px;width:34px;height:34px;border-radius:50%;background:var(--rose-pale);color:var(--rose);display:grid;place-items:center}
+.stat .hr svg{width:17px;height:17px}
+.stat .hr+.l{padding-right:42px}
+.stat .v{font:400 40px/1.05 var(--serif);margin-top:10px;font-variant-numeric:tabular-nums}
+.stat .s{font-size:13px;color:var(--muted);margin-top:6px}
+.stat.warn .v{color:var(--rose-ink)}
+.stack{display:flex;flex-direction:column;gap:20px}
+.sp{margin-top:20px}
+/* lists */
+.rows{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0;padding-top:0}
+.row .grow{flex:1;min-width:0}
+.row .t{font-weight:600;line-height:1.3}
+.row .t a{text-decoration:none}.row .t a:hover{text-decoration:underline}
+.row .m{font-size:13px;color:var(--muted)}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--rose-pale);color:var(--rose-ink);display:grid;place-items:center;font:500 15px var(--serif);flex:none;letter-spacing:.03em}
+.avatar.lg{width:72px;height:72px;font-size:26px}
+.date-chip{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--sand);color:var(--choc);white-space:nowrap}
+.date-chip.over{background:var(--rose-pale);color:var(--rose-ink)}
+.date-chip.today{background:var(--rose);color:var(--choc)}
+.empty{padding:26px 8px;text-align:center;color:var(--muted)}
+.empty b{display:block;font:500 19px var(--serif);color:var(--choc);margin-bottom:4px}
+/* pills */
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:3px 11px;border-radius:99px;white-space:nowrap;border:1px solid transparent;line-height:1.45}
+.s-new{background:var(--sand);color:#5d4e45}
+.s-contacted{background:var(--rose-pale);color:var(--rose-ink)}
+.s-replied{background:#F6E6D3;color:#7d5530}
+.s-interested{background:var(--rose);color:var(--choc)}
+.s-attendee{background:var(--sage-pale);color:var(--sage-ink)}
+.s-member{background:var(--choc);color:var(--ivory)}
+.s-collab{background:#E9DFE6;color:#6a4a62}
+.s-notint{background:transparent;color:var(--muted);border-color:var(--taupe)}
+.s-dnc{background:repeating-linear-gradient(135deg,var(--rose-pale),var(--rose-pale) 6px,#ead0d1 6px,#ead0d1 12px);color:var(--rose-ink);border-color:rgba(138,75,82,.45)}
+.tag{display:inline-block;font-size:12px;padding:2px 10px;border-radius:99px;background:var(--sage-pale);color:var(--sage-ink);margin:0 4px 4px 0;white-space:nowrap}
+.tag.more{background:var(--sand);color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:2px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.ok{border-color:rgba(86,102,80,.35);color:var(--sage-ink);background:var(--sage-pale)}
+.chip.no{border-color:rgba(138,75,82,.35);color:var(--rose-ink);background:var(--rose-pale)}
+/* toolbar + table */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{position:relative;flex:1 1 280px;min-width:200px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--muted)}
+.search input[type=search]{padding-left:42px}
+input[type=text],input[type=password],input[type=email],input[type=tel],input[type=date],input[type=search],input[type=number],input[type=url],select,textarea{width:100%;background:var(--ivory);border:1px solid var(--line);border-radius:12px;padding:10px 13px;min-height:42px}
+input:focus,select:focus,textarea:focus{border-color:var(--rose);outline:2px solid var(--rose-pale);outline-offset:0}
+textarea{min-height:92px;resize:vertical}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%236F5F56' stroke-width='1.6'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px}
+.filters select{width:auto;min-width:150px;flex:1 1 170px;max-width:240px;font-size:14px}
+.count{font-size:13px;color:var(--muted);margin:14px 2px 10px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0 10px 12px}
+td{padding:13px 10px;border-top:1px solid var(--line);vertical-align:middle}
+tbody tr{cursor:pointer;transition:background .12s}
+tbody tr:hover{background:rgba(240,220,221,.35)}
+td .nm{font-weight:600}.td-sub{font-size:12.5px;color:var(--muted)}
+/* profile */
+.crumb{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--muted);font-size:13.5px;margin-bottom:14px;background:none;border:0;cursor:pointer;padding:0}
+.crumb:hover{color:var(--choc)}
+.crumb svg{width:16px;height:16px}
+.nw{white-space:nowrap}
+.phead{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.phead h1{font-size:clamp(28px,3.4vw,38px);line-height:1.1}
+.pmeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.pact{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+dl.kv{display:grid;grid-template-columns:130px minmax(0,1fr);gap:11px 14px;margin:0}
+dl.kv dt{color:var(--muted);font-size:13px}
+dl.kv dd{margin:0;overflow-wrap:anywhere}
+.notes{white-space:pre-wrap}
+.note{border-left:3px solid var(--rose-pale);padding:2px 0 2px 12px;margin-top:12px}
+.note small{color:var(--muted);display:block}
+.tl{position:relative;margin:0;padding:0;list-style:none}
+.tl:before{content:"";position:absolute;left:15px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl li{position:relative;padding:0 0 18px 46px}
+.tl .ic{position:absolute;left:0;top:0;width:31px;height:31px;border-radius:50%;background:var(--ivory);border:1px solid var(--line);display:grid;place-items:center;color:var(--muted)}
+.tl .ic svg{width:15px;height:15px}
+.tl .ic.out{background:var(--rose-pale);color:var(--rose-ink);border-color:transparent}
+.tl .ic.in{background:var(--sage-pale);color:var(--sage-ink);border-color:transparent}
+.tl .ic.ev{background:var(--choc);color:var(--ivory);border-color:transparent}
+.tl .when{font-size:12.5px;color:var(--muted)}
+.tl .what{font-weight:600}
+.tl .sum{color:#54443c;margin-top:2px}
+.bars{display:flex;flex-direction:column;gap:11px}
+.bar{display:grid;grid-template-columns:minmax(120px,170px) 1fr 28px;gap:12px;align-items:center;font-size:14px}
+.bar i{display:block;height:8px;border-radius:99px;background:var(--sand);overflow:hidden}
+.bar i b{display:block;height:100%;background:var(--rose);border-radius:99px}
+.bar span:last-child{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.evcard{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:var(--cream);display:flex;gap:16px;align-items:center;cursor:pointer;text-decoration:none;color:inherit}
+.evcard:hover{border-color:var(--rose)}
+.evdate{text-align:center;min-width:54px;border-right:1px solid var(--line);padding-right:16px}
+.evdate small{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.evdate b{display:block;font:400 30px/1.1 var(--serif)}
+.evgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.evbig{display:flex;flex-direction:column;gap:12px;align-items:stretch;padding:22px}
+.inline-sel{width:auto;min-height:34px;padding:5px 30px 5px 10px;font-size:13px;border-radius:9px}
+.banner{border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:20px;background:var(--rose-pale);color:#5a3a3f;font-size:14px}
+.banner.sage{background:var(--sage-pale);color:#3f4d3a}
+.banner b{font-weight:600}
+.seg{display:flex;gap:4px;background:var(--sand);padding:4px;border-radius:99px;flex-wrap:wrap}
+.hint{font-size:12.5px;color:var(--muted);margin-top:4px}
+/* dialogs */
+.scrim{position:fixed;inset:0;background:rgba(60,43,37,.5);display:flex;align-items:flex-start;justify-content:center;padding:4vh 14px;overflow-y:auto;z-index:50}
+.dlg{background:var(--ivory);border-radius:22px;width:100%;max-width:560px;box-shadow:0 30px 80px -20px rgba(0,0,0,.45);margin:auto 0}
+.dlg.wide{max-width:760px}
+.dlg h2{font-size:26px;padding:26px 28px 0}
+.dbody{padding:18px 28px 6px;display:grid;gap:15px}
+.dfoot{display:flex;justify-content:flex-end;gap:10px;padding:16px 28px 24px;flex-wrap:wrap}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label.l{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+label.l small{font-weight:400;color:var(--muted)}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:99px;padding:6px 13px;font-size:13.5px;cursor:pointer;background:var(--cream)}
+.checks label:has(input:checked){background:var(--sage-pale);border-color:rgba(86,102,80,.4);color:var(--sage-ink)}
+.ck{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.ck input{margin-top:4px;accent-color:var(--rose-ink);width:16px;height:16px}
+.fs{border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:12px;margin:0;min-width:0}
+.fs legend{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0 6px}
+.err{color:var(--rose-ink);font-size:13.5px;font-weight:500;background:var(--rose-pale);border-radius:10px;padding:9px 12px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--choc);color:var(--ivory);padding:11px 20px;border-radius:99px;font-size:14px;z-index:80;box-shadow:0 14px 40px -10px rgba(0,0,0,.4);max-width:90vw;text-align:center}
+.loading{padding:90px 20px;text-align:center;color:var(--muted)}
+.loading b{display:block;font:italic 400 26px var(--serif);color:var(--choc);margin-bottom:6px}
+.sec-h{font:600 12px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:26px 0 10px;display:flex;gap:10px;align-items:center}
+.sec-h .c{background:var(--sand);padding:1px 9px;border-radius:99px;letter-spacing:0}
+.sec-h.over{color:var(--rose-ink)}
+pre.copy{white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
+.tg0{background:#F0DCDD;color:#8A4B52}.tg1{background:#F1E8DA;color:#7b6044}.tg2{background:#E4E9DF;color:#566650}.tg3{background:#E9E4F2;color:#5d4f7a}.tg4{background:#EADFD2;color:#6b5546}
+.ichip{display:inline-flex;gap:8px;align-items:center;padding:9px 16px;border-radius:99px;font-size:14px;font-weight:500;text-decoration:none}
+.ichip b{font-weight:600;opacity:.75;font-variant-numeric:tabular-nums}
+.cb{display:flex;gap:14px;align-items:center;border:1px solid var(--line);background:var(--cream);border-radius:14px;padding:14px 16px;text-decoration:none;color:inherit}
+.cb:hover{border-color:var(--rose)}
+.cb .bd{min-width:86px;text-align:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:8px 10px;border-radius:10px;background:var(--sand);color:var(--choc)}
+.cb .bd.over{background:var(--rose-pale);color:var(--rose-ink)}.cb .bd.today{background:var(--rose);color:var(--choc)}
+.cb .t{font-weight:600}.cb .m{font-size:13px;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:34px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.av2{width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;font:600 14px var(--sans);flex:none;margin-right:12px;vertical-align:middle}
+@media (max-width:1100px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g-main,.g-ov,.g-prof{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:860px){
+  .app{grid-template-columns:minmax(0,1fr);padding-bottom:70px}
+  .side{position:static;height:auto;padding:16px 18px 10px;flex-direction:row;align-items:center}
+  .brand{padding:0}.brand b{font-size:24px}.brand span{display:none}
+  .side .nav-label{display:none}
+  .side-foot{display:none}
+  .nav{position:fixed;left:0;right:0;bottom:0;background:var(--choc);flex-direction:row;justify-content:space-around;gap:0;padding:6px 6px calc(6px + env(safe-area-inset-bottom));z-index:40;border-top:1px solid rgba(255,255,255,.1)}
+  .nav a{flex-direction:column;gap:2px;padding:7px 4px;font-size:10.5px;flex:1;text-align:center;border-radius:10px;position:relative}
+  .nav .n{position:absolute;top:1px;right:8px;margin:0;font-size:10px;padding:0 6px}
+  .main{padding-top:24px}
+}
+@media (max-width:640px){
+  .ob{display:none}
+  .g4,.g2,.f2{grid-template-columns:minmax(0,1fr)}
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .stat{padding:16px}.stat .v{font-size:36px}
+  .card{padding:18px;border-radius:16px}
+  dl.kv{grid-template-columns:110px minmax(0,1fr)}
+  .bar{grid-template-columns:100px 1fr 24px}
+  table.resp thead{display:none}
+  table.resp,table.resp tbody,table.resp tr,table.resp td{display:block}
+  table.resp tr{padding:14px 4px;border-top:1px solid var(--line)}
+  table.resp td{border:0;padding:3px 10px}
+  .dbody,.dfoot,.dlg h2{padding-left:20px;padding-right:20px}
+  .filters select{max-width:none;flex:1 1 140px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+body.locked .app,body.locked #modal{display:none}
+#gate{display:none;position:fixed;inset:0;z-index:100;background:var(--cream);place-items:center;padding:20px;overflow-y:auto}
+body.locked #gate{display:grid}
+#gate main{width:100%;max-width:400px;background:var(--ivory);border:1px solid var(--line);border-radius:22px;padding:34px 30px;box-shadow:var(--shadow)}
+#gate .gb{font:600 34px/1 var(--serif);letter-spacing:.34em;margin-right:-.34em;text-align:center}
+#gate .gs{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);text-align:center;margin:10px 0 26px}
+#gate h1{font-size:24px;margin:0 0 6px}#gate p{margin:0 0 14px;color:var(--muted);font-size:14.5px}
+#gate label.l{margin-top:14px}
+#gate .ck{margin-top:16px;color:var(--muted);font-size:13.5px}
+#gate button[type=submit]{margin-top:20px;width:100%;justify-content:center;padding:13px}
+#gate #gate-err{margin-top:14px}
+</style>
 </head>
-<body>
-<header class="hdr">
-  <div class="wrap">
-    <a class="logo" href="/" aria-label="SHE, home"><b>SHE</b><span>Sacred Human Experience</span></a>
-    <nav class="nav" aria-label="Main"><a href="/" class="">Home</a><a href="/about/" class="">About</a><a href="/chapters/" class="">The Chapters</a><a href="/explore/" class="">Explore</a><a href="/gather/" class="">Gather</a><a href="/tools/" class="">Tools</a></nav>
-    <div class="right"><a class="btn ghost pill" href="/join/">Join SHE</a><button class="burger" aria-label="Menu"><i></i><i></i><i></i></button></div>
-  </div>
-</header>
-<nav class="mnav" aria-label="Mobile"><a href="/">Home</a><a href="/about/">About</a><a href="/chapters/">The Chapters</a><a href="/explore/">Explore</a><a href="/gather/">Gather</a><a href="/tools/">Tools</a><a href="/join/">Join SHE</a></nav>
-<main>
-<section class="sec tight"><div class="wrap stack" style="max-width:760px">
-  <span class="k soft rv">Founder access</span>
-  <h1 class="lines "><span class="ln"><span>SHE Community</span></span><span class="ln"><span>CRM</span></span></h1>
-  <p class="lede rv d1">A private journal of every woman who connects with SHE: who you have spoken to, what was said, who to come back to, and who has joined which gathering.</p>
-  <hr class="rule wide rv d1">
-  <div class="stack rv d2" style="gap:18px">
-<p style="margin:0"><strong>Contacts.</strong> Every woman, with her interests, where you met, her consent and your notes.</p><p style="margin:0"><strong>Interactions.</strong> Messages sent and replies received, even when she has not replied yet.</p><p style="margin:0"><strong>Events.</strong> Invitations, bookings and attendance for each gathering.</p><p style="margin:0"><strong>Follow-ups.</strong> Gentle reminders of who to come back to, and why.</p>  </div>
-  <div class="rv d3" style="margin-top:8px"><a class="btn" href="https://reviews-and-response-system-production.up.railway.app/crm" target="_blank" rel="noopener">Open the SHE CRM <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
-  <p class="msg rv d3" style="margin:0">Only the founder can open it. You will be asked for your CRM username and password. This page holds no contact details, and nothing in the CRM sends messages.</p>
-</div></section>
-</main>
-<footer class="ftr">
-  <div class="wrap">
-    <a class="logo" href="/"><b>SHE</b><span>Sacred Human Experience</span></a>
-    <nav><a href="/">Home</a><a href="/about/">About</a><a href="/chapters/">The Chapters</a><a href="/explore/">Explore</a><a href="/gather/">Gather</a><a href="/tools/">Tools</a><a href="/join/#contact">Contact</a></nav>
-    <div class="soc">
-      <a href="https://instagram.com/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
-      <a href="https://pinterest.com/" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M10.5 16.5 12 9.5M9 12.5c0-2 1.3-3.5 3-3.5s2.5 1.2 2.5 2.8c0 2-1 3.7-2.6 3.7-.9 0-1.4-.6-1.4-1.3"/></svg></a>
-      <a href="https://youtube.com/" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor"/></svg></a>
-    </div>
-    <div class="line">A more conscious, connected way of being.</div>
-  </div>
-</footer>
-<script src="/static/js/site.js?v=1a6e8a01" defer></script>
-</body>
-</html>
+<body class="locked">
+<div id="gate"><main><div class="gb">SHE</div><div class="gs">Sacred Human Experience</div><h1>Community CRM</h1><p>Sign in to see the women in your community.</p><form id="gate-form" autocomplete="on"><label class="l" for="gate-u">Username</label><input type="text" id="gate-u" name="username" autocomplete="username" autocapitalize="none" required><label class="l" for="gate-p">Password</label><input type="password" id="gate-p" name="password" autocomplete="current-password" required><label class="ck"><input type="checkbox" id="gate-stay" checked><span>Keep me signed in on this device</span></label><div class="err" id="gate-err" role="alert" hidden></div><button class="btn" type="submit">Sign in</button></form></main></div>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><b>SHE</b><span>Sacred Human Experience</span></div>
+    <div class="nav-label">Your community</div><nav class="nav" id="nav" aria-label="Main"></nav>
+    <div class="side-foot"><em>Relationships first.<br>Community always.</em><div id="status"></div></div>
+  </aside>
+  <main class="main" id="view"><div class="loading"><b>Opening your journal</b>Gathering your community.</div></main>
+</div>
+<div id="modal"></div>
+<div id="toast" class="toast" hidden role="status"></div>
+<script>
+/* The CRM keeps its records in this browser (localStorage) and shows a simple sign-in first.
+   The page was written against a small document store (collections of documents, live snapshots);
+   this gives it the same shape. Nothing here talks to a server. */
+(function () {
+  "use strict";
+  var KEY = "she-crm-data-v1", SEEDED = "she-crm-seeded-v1", BK = "she-crm-last-backup", AK = "she-crm-auth";
+  var HASH = "939ca0f653704a3bc6564f44f267ec3dcd5c8044c17ec8d3e6d79c826e9ac1ca", SALT = "she-crm|";
+  var SAMPLE = {"contacts/s-amelia":{"id":"s-amelia","sample":true,"first":"Amelia","last":"Hartwell","email":"amelia.hartwell@example.com","phone":"07700 900107","location":"Warwick","source":"Instagram","status":"Event Attendee","tags":["Coffee Conversations","SHE Experiences","Local Community"],"dateAdded":"2026-09-05","preferredMethod":"Instagram","notes":"","emailConsent":true,"whatsappConsent":true,"consentDate":"2026-09-06","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-05","lastResponse":"2026-09-08","noteLog":[]},"contacts/s-nadia":{"id":"s-nadia","sample":true,"first":"Nadia","last":"Rahman","email":"nadia.rahman@example.com","phone":"07700 900114","location":"Leamington Spa","source":"Facebook","status":"Interested","tags":["Coffee Conversations","Money Workshops"],"dateAdded":"2026-09-24","preferredMethod":"Facebook","notes":"","emailConsent":true,"whatsappConsent":false,"consentDate":"2026-09-25","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-27","lastResponse":"2026-09-25","noteLog":[]},"contacts/s-josephine":{"id":"s-josephine","sample":true,"first":"Josephine","last":"Clarke","email":"josephine.clarke@example.com","phone":"07700 900121","location":"Stratford-upon-Avon","source":"Local community group","status":"SHE Community Member","tags":["SHE Experiences","SHE Hosts","Christmas Gathering"],"dateAdded":"2026-07-07","preferredMethod":"No preference","notes":"","emailConsent":true,"whatsappConsent":true,"consentDate":"2026-07-08","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-30","lastResponse":"2026-07-28","noteLog":[]},"contacts/s-maeve":{"id":"s-maeve","sample":true,"first":"Maeve","last":"Donnelly","email":"maeve.donnelly@example.com","phone":"07700 900128","location":"Alcester","source":"WhatsApp","status":"Replied","tags":["Coffee Conversations","Potential Members"],"dateAdded":"2026-10-17","preferredMethod":"WhatsApp","notes":"","emailConsent":false,"whatsappConsent":true,"consentDate":"2026-10-18","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-18","lastResponse":"2026-10-17","noteLog":[]},"contacts/s-hannah":{"id":"s-hannah","sample":true,"first":"Hannah","last":"Whitcombe","email":"hannah.whitcombe@example.com","phone":"07700 900135","location":"Warwick","source":"Instagram","status":"Contacted","tags":["Coffee Conversations"],"dateAdded":"2026-10-29","preferredMethod":"Instagram","notes":"","emailConsent":false,"whatsappConsent":false,"consentDate":"","consentSource":"","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-29","lastResponse":"","noteLog":[]},"contacts/s-chloe":{"id":"s-chloe","sample":true,"first":"Chloe","last":"Aldridge","email":"chloe.aldridge@example.com","phone":"07700 900142","location":"Kenilworth","source":"Referral","status":"New Contact","tags":["Potential Members","Local Community"],"dateAdded":"2026-11-01","preferredMethod":"No preference","notes":"","emailConsent":false,"whatsappConsent":false,"consentDate":"","consentSource":"","unsubscribed":false,"doNotContact":false,"lastContacted":"","lastResponse":"2026-11-01","noteLog":[]},"contacts/s-imogen":{"id":"s-imogen","sample":true,"first":"Imogen","last":"Pryce","email":"imogen.pryce@example.com","phone":"07700 900149","location":"Henley-in-Arden","source":"Event","status":"Event Attendee","tags":["Coffee Conversations","Collaborators"],"dateAdded":"2026-08-21","preferredMethod":"No preference","notes":"","emailConsent":true,"whatsappConsent":false,"consentDate":"2026-08-22","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-09-25","lastResponse":"2026-08-26","noteLog":[]},"contacts/s-tasha":{"id":"s-tasha","sample":true,"first":"Tasha","last":"Bellamy","email":"tasha.bellamy@example.com","phone":"07700 900156","location":"Redditch","source":"Facebook","status":"Not Interested","tags":["Local Community"],"dateAdded":"2026-08-06","preferredMethod":"Facebook","notes":"","emailConsent":false,"whatsappConsent":false,"consentDate":"","consentSource":"","unsubscribed":false,"doNotContact":false,"lastContacted":"","lastResponse":"2026-08-11","noteLog":[]},"contacts/s-rosalind":{"id":"s-rosalind","sample":true,"first":"Rosalind","last":"Fenn","email":"rosalind.fenn@example.com","phone":"07700 900163","location":"Warwick","source":"Email","status":"Collaborator","tags":["Collaborators","SHE Hosts"],"dateAdded":"2026-06-07","preferredMethod":"Email","notes":"","emailConsent":true,"whatsappConsent":false,"consentDate":"2026-06-08","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-06-17","lastResponse":"2026-06-18","noteLog":[]},"contacts/s-beatrix":{"id":"s-beatrix","sample":true,"first":"Beatrix","last":"Larkin","email":"beatrix.larkin@example.com","phone":"07700 900170","location":"Leamington Spa","source":"Instagram","status":"Interested","tags":["SHE Experiences","Christmas Gathering"],"dateAdded":"2026-10-08","preferredMethod":"Instagram","notes":"","emailConsent":false,"whatsappConsent":true,"consentDate":"2026-10-09","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-09","lastResponse":"2026-10-08","noteLog":[]},"contacts/s-yasmin":{"id":"s-yasmin","sample":true,"first":"Yasmin","last":"Qureshi","email":"yasmin.qureshi@example.com","phone":"07700 900177","location":"Solihull","source":"Local community group","status":"Replied","tags":["Money Workshops","Potential Members"],"dateAdded":"2026-10-23","preferredMethod":"No preference","notes":"","emailConsent":true,"whatsappConsent":false,"consentDate":"2026-10-24","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-24","lastResponse":"2026-10-23","noteLog":[]},"contacts/s-eleanor":{"id":"s-eleanor","sample":true,"first":"Eleanor","last":"Voss","email":"eleanor.voss@example.com","phone":"07700 900184","location":"Stratford-upon-Avon","source":"Instagram","status":"Contacted","tags":["Coffee Conversations","Christmas Gathering"],"dateAdded":"2026-10-26","preferredMethod":"Instagram","notes":"","emailConsent":false,"whatsappConsent":false,"consentDate":"","consentSource":"","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-26","lastResponse":"2026-10-05","noteLog":[]},"contacts/s-kirsty":{"id":"s-kirsty","sample":true,"first":"Kirsty","last":"Mallow","email":"kirsty.mallow@example.com","phone":"07700 900191","location":"Warwick","source":"WhatsApp","status":"SHE Community Member","tags":["Coffee Conversations","SHE Experiences","Local Community"],"dateAdded":"2026-04-18","preferredMethod":"WhatsApp","notes":"","emailConsent":true,"whatsappConsent":true,"consentDate":"2026-04-19","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-15","lastResponse":"2026-04-28","noteLog":[]},"contacts/s-dilys":{"id":"s-dilys","sample":true,"first":"Dilys","last":"Penhallow","email":"dilys.penhallow@example.com","phone":"07700 900198","location":"Alcester","source":"Referral","status":"Do Not Contact","tags":["Local Community"],"dateAdded":"2026-07-17","preferredMethod":"No preference","notes":"Asked not to be contacted again.","emailConsent":false,"whatsappConsent":false,"consentDate":"","consentSource":"","unsubscribed":false,"doNotContact":true,"lastContacted":"","lastResponse":"","noteLog":[],"prevStatus":"Contacted"},"contacts/s-anneka":{"id":"s-anneka","sample":true,"first":"Anneka","last":"Frost","email":"anneka.frost@example.com","phone":"07700 900205","location":"Kenilworth","source":"Email","status":"Contacted","tags":["SHE Hosts"],"dateAdded":"2026-10-20","preferredMethod":"Email","notes":"","emailConsent":false,"whatsappConsent":false,"consentDate":"","consentSource":"","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-10-20","lastResponse":"","noteLog":[]},"contacts/s-lottie":{"id":"s-lottie","sample":true,"first":"Lottie","last":"Brannigan","email":"lottie.brannigan@example.com","phone":"07700 900212","location":"Leamington Spa","source":"Instagram","status":"New Contact","tags":["Coffee Conversations","Potential Members"],"dateAdded":"2026-11-03","preferredMethod":"Instagram","notes":"","emailConsent":false,"whatsappConsent":false,"consentDate":"","consentSource":"","unsubscribed":false,"doNotContact":false,"lastContacted":"","lastResponse":"2026-11-03","noteLog":[]},"contacts/s-marguerite":{"id":"s-marguerite","sample":true,"first":"Marguerite","last":"Oakes","email":"marguerite.oakes@example.com","phone":"07700 900219","location":"Henley-in-Arden","source":"Facebook","status":"Replied","tags":["SHE Experiences"],"dateAdded":"2026-10-13","preferredMethod":"Facebook","notes":"","emailConsent":false,"whatsappConsent":false,"consentDate":"2026-10-14","consentSource":"Join SHE form","unsubscribed":true,"doNotContact":false,"lastContacted":"","lastResponse":"2026-10-13","noteLog":[]},"contacts/s-sunita":{"id":"s-sunita","sample":true,"first":"Sunita","last":"Verma","email":"sunita.verma@example.com","phone":"07700 900226","location":"Solihull","source":"Event","status":"Event Attendee","tags":["Money Workshops","Coffee Conversations"],"dateAdded":"2026-09-17","preferredMethod":"No preference","notes":"","emailConsent":true,"whatsappConsent":true,"consentDate":"2026-09-18","consentSource":"Join SHE form","unsubscribed":false,"doNotContact":false,"lastContacted":"2026-09-21","lastResponse":"2026-09-20","noteLog":[]},"interactions/s-i1":{"id":"s-i1","sample":true,"contactId":"s-hannah","date":"2026-10-29","direction":"Outgoing","type":"Instagram Message","channel":"Instagram","summary":"Sent Hannah a message on Instagram inviting her to Coffee Conversations. No reply yet.","followUp":true,"followUpDate":"2026-11-05"},"interactions/s-i2":{"id":"s-i2","sample":true,"contactId":"s-eleanor","date":"2026-10-26","direction":"Outgoing","type":"Instagram Message","channel":"Instagram","summary":"Invited Eleanor to the Christmas Gathering. Not replied yet.","followUp":true,"followUpDate":"2026-11-02"},"interactions/s-i3":{"id":"s-i3","sample":true,"contactId":"s-eleanor","date":"2026-10-05","direction":"Incoming","type":"Event Conversation","channel":"In person","summary":"Chatted at the Warwick market stall; she liked the sound of small gatherings.","followUp":false,"followUpDate":""},"interactions/s-i4":{"id":"s-i4","sample":true,"contactId":"s-nadia","date":"2026-09-24","direction":"Outgoing","type":"Facebook Message","channel":"Facebook","summary":"Shared details of the money workshop after she commented in the group.","followUp":false,"followUpDate":""},"interactions/s-i5":{"id":"s-i5","sample":true,"contactId":"s-nadia","date":"2026-09-25","direction":"Incoming","type":"Facebook Message","channel":"Facebook","summary":"Replied that she is interested in a Leamington Spa date.","followUp":false,"followUpDate":""},"interactions/s-i6":{"id":"s-i6","sample":true,"contactId":"s-nadia","date":"2026-10-27","direction":"Outgoing","type":"Email","channel":"Email","summary":"Sent the Leamington Spa idea and asked about weekday mornings.","followUp":true,"followUpDate":"2026-11-07"},"interactions/s-i7":{"id":"s-i7","sample":true,"contactId":"s-amelia","date":"2026-09-07","direction":"Outgoing","type":"Instagram Message","channel":"Instagram","summary":"Invited Amelia to her first Coffee Conversation.","followUp":false,"followUpDate":""},"interactions/s-i8":{"id":"s-i8","sample":true,"contactId":"s-amelia","date":"2026-09-08","direction":"Incoming","type":"Instagram Message","channel":"Instagram","summary":"She said yes and asked about bringing a friend.","followUp":false,"followUpDate":""},"interactions/s-i9":{"id":"s-i9","sample":true,"contactId":"s-amelia","date":"2026-10-05","direction":"Outgoing","type":"In-Person Meeting","channel":"In person","summary":"Coffee together to talk about hosting a table.","followUp":false,"followUpDate":""},"interactions/s-i10":{"id":"s-i10","sample":true,"contactId":"s-josephine","date":"2026-07-27","direction":"Outgoing","type":"WhatsApp","channel":"WhatsApp","summary":"Asked Josephine to help welcome guests at the next experience.","followUp":false,"followUpDate":""},"interactions/s-i11":{"id":"s-i11","sample":true,"contactId":"s-josephine","date":"2026-07-28","direction":"Incoming","type":"WhatsApp","channel":"WhatsApp","summary":"Happy to host. Wants to see the room first.","followUp":false,"followUpDate":""},"interactions/s-i12":{"id":"s-i12","sample":true,"contactId":"s-josephine","date":"2026-10-30","direction":"Outgoing","type":"Phone Call","channel":"Phone","summary":"Planned the Christmas Gathering welcome table.","followUp":true,"followUpDate":"2026-11-14"},"interactions/s-i13":{"id":"s-i13","sample":true,"contactId":"s-maeve","date":"2026-10-17","direction":"Incoming","type":"WhatsApp","channel":"WhatsApp","summary":"Maeve messaged asking where the next one is in Alcester.","followUp":false,"followUpDate":""},"interactions/s-i14":{"id":"s-i14","sample":true,"contactId":"s-maeve","date":"2026-10-18","direction":"Outgoing","type":"WhatsApp","channel":"WhatsApp","summary":"Told her Warwick and Coughton Court are first; Alcester to follow.","followUp":true,"followUpDate":"2026-11-18"},"interactions/s-i15":{"id":"s-i15","sample":true,"contactId":"s-beatrix","date":"2026-10-08","direction":"Incoming","type":"Instagram Message","channel":"Instagram","summary":"Asked about the Christmas Gathering ticket price.","followUp":false,"followUpDate":""},"interactions/s-i16":{"id":"s-i16","sample":true,"contactId":"s-beatrix","date":"2026-10-09","direction":"Outgoing","type":"Instagram Message","channel":"Instagram","summary":"Sent the likely date range and said I would confirm the price.","followUp":true,"followUpDate":"2026-10-31"},"interactions/s-i17":{"id":"s-i17","sample":true,"contactId":"s-yasmin","date":"2026-10-23","direction":"Incoming","type":"Email","channel":"Email","summary":"Asked whether money workshops are for beginners.","followUp":false,"followUpDate":""},"interactions/s-i18":{"id":"s-i18","sample":true,"contactId":"s-yasmin","date":"2026-10-24","direction":"Outgoing","type":"Email","channel":"Email","summary":"Replied with the outline and who it is for.","followUp":true,"followUpDate":"2026-11-10"},"interactions/s-i19":{"id":"s-i19","sample":true,"contactId":"s-imogen","date":"2026-08-26","direction":"Incoming","type":"Event Conversation","channel":"In person","summary":"Met at Henley; keen to collaborate on a craft table.","followUp":false,"followUpDate":""},"interactions/s-i20":{"id":"s-i20","sample":true,"contactId":"s-imogen","date":"2026-09-25","direction":"Outgoing","type":"Phone Call","channel":"Phone","summary":"Talked through a possible collaboration for spring.","followUp":true,"followUpDate":"2026-11-25"},"interactions/s-i21":{"id":"s-i21","sample":true,"contactId":"s-rosalind","date":"2026-06-17","direction":"Outgoing","type":"Email","channel":"Email","summary":"Invited Rosalind to speak at an experience.","followUp":false,"followUpDate":""},"interactions/s-i22":{"id":"s-i22","sample":true,"contactId":"s-rosalind","date":"2026-06-18","direction":"Incoming","type":"Email","channel":"Email","summary":"Accepted and shared her availability.","followUp":false,"followUpDate":""},"interactions/s-i23":{"id":"s-i23","sample":true,"contactId":"s-kirsty","date":"2026-04-28","direction":"Incoming","type":"WhatsApp","channel":"WhatsApp","summary":"Joined the community WhatsApp group.","followUp":false,"followUpDate":""},"interactions/s-i24":{"id":"s-i24","sample":true,"contactId":"s-kirsty","date":"2026-10-15","direction":"Outgoing","type":"WhatsApp","channel":"WhatsApp","summary":"Thanked her for hosting a table at the last gathering.","followUp":false,"followUpDate":""},"interactions/s-i25":{"id":"s-i25","sample":true,"contactId":"s-sunita","date":"2026-09-20","direction":"Incoming","type":"Event Conversation","channel":"In person","summary":"Stayed after the workshop to talk about money habits.","followUp":false,"followUpDate":""},"interactions/s-i26":{"id":"s-i26","sample":true,"contactId":"s-sunita","date":"2026-09-21","direction":"Outgoing","type":"Email","channel":"Email","summary":"Sent a thank you and a link to the next event.","followUp":true,"followUpDate":"2026-11-13"},"interactions/s-i27":{"id":"s-i27","sample":true,"contactId":"s-anneka","date":"2026-10-20","direction":"Outgoing","type":"Email","channel":"Email","summary":"Asked whether she would like to host in Kenilworth.","followUp":true,"followUpDate":"2026-11-03"},"interactions/s-i28":{"id":"s-i28","sample":true,"contactId":"s-chloe","date":"2026-11-01","direction":"Incoming","type":"Other","channel":"Other","summary":"Introduced by Kirsty at the school gate; wants to hear about dates.","followUp":false,"followUpDate":""},"interactions/s-i29":{"id":"s-i29","sample":true,"contactId":"s-lottie","date":"2026-11-03","direction":"Incoming","type":"Instagram Message","channel":"Instagram","summary":"Followed SHE and sent a hello.","followUp":false,"followUpDate":""},"interactions/s-i30":{"id":"s-i30","sample":true,"contactId":"s-marguerite","date":"2026-10-13","direction":"Incoming","type":"Facebook Message","channel":"Facebook","summary":"Asked to be taken off the email list but is happy to chat here.","followUp":false,"followUpDate":""},"interactions/s-i31":{"id":"s-i31","sample":true,"contactId":"s-tasha","date":"2026-08-11","direction":"Incoming","type":"Facebook Message","channel":"Facebook","summary":"Said it is not for her right now. Kind and clear.","followUp":false,"followUpDate":""},"events/ev-coughton-court":{"id":"ev-coughton-court","name":"SHE Coffee Conversations: Coughton Court","date":"2026-11-06","time":"10:00 am to 11:30 am","location":"Coughton Court, Warwickshire","price":15,"status":"Open for booking","url":"https://shop.beacons.ai/sacredhumanexperience/3b40c55c-c44b-419e-8c80-1a375ac52a61","description":"A different kind of coffee morning. Good coffee, better questions, conversations worth having. Small tables, coffee, tea and cake, and a SHE Coffee Notebook included."},"events/ev-warwick-happy-witch":{"id":"ev-warwick-happy-witch","name":"SHE Coffee Conversations: Warwick","date":"2026-11-14","time":"10:00 am to 11:30 am","location":"The Happy Witch, Warwick","price":15,"status":"Open for booking","url":"https://shop.beacons.ai/sacredhumanexperience/d5f92dc0-ec51-4f04-a138-286b0884c407","description":"A different kind of coffee morning at The Happy Witch. Small tables, tea, coffee and cake, and a SHE Coffee Notebook included."},"events/ev-receiving-holding-growing":{"id":"ev-receiving-holding-growing","name":"Receiving, Holding & Growing","date":"","time":"","location":"","price":"","status":"Planning","url":"","description":"Date, place and price to be confirmed."},"events/ev-christmas-gathering":{"id":"ev-christmas-gathering","name":"SHE Christmas Gathering","date":"","time":"","location":"","price":"","status":"Planning","url":"","description":"Date, place and price to be confirmed."},"events/s-ev-past":{"id":"s-ev-past","sample":true,"name":"Sample past gathering","date":"2026-09-05","time":"","location":"Warwickshire","price":15,"status":"Completed","url":"","description":"A made-up past event so attendance history can be shown."},"bookings/s-b1":{"id":"s-b1","sample":true,"contactId":"s-amelia","eventId":"ev-coughton-court","invitedDate":"2026-10-15","bookingStatus":"Booked","bookingDate":"2026-10-17","attendance":"Not Attended","price":15,"feedback":"","notes":""},"bookings/s-b2":{"id":"s-b2","sample":true,"contactId":"s-amelia","eventId":"ev-warwick-happy-witch","invitedDate":"2026-10-30","bookingStatus":"Interested","bookingDate":"","attendance":"Not Attended","price":"","feedback":"","notes":""},"bookings/s-b3":{"id":"s-b3","sample":true,"contactId":"s-nadia","eventId":"ev-coughton-court","invitedDate":"2026-10-27","bookingStatus":"Invited","bookingDate":"","attendance":"Not Attended","price":"","feedback":"","notes":""},"bookings/s-b4":{"id":"s-b4","sample":true,"contactId":"s-josephine","eventId":"ev-christmas-gathering","invitedDate":"2026-10-30","bookingStatus":"Booked","bookingDate":"2026-10-31","attendance":"Not Attended","price":"","feedback":"","notes":""},"bookings/s-b5":{"id":"s-b5","sample":true,"contactId":"s-josephine","eventId":"ev-coughton-court","invitedDate":"2026-10-05","bookingStatus":"Booked","bookingDate":"2026-10-07","attendance":"Not Attended","price":15,"feedback":"","notes":""},"bookings/s-b6":{"id":"s-b6","sample":true,"contactId":"s-imogen","eventId":"ev-warwick-happy-witch","invitedDate":"2026-10-28","bookingStatus":"Booked","bookingDate":"2026-10-29","attendance":"Not Attended","price":15,"feedback":"","notes":""},"bookings/s-b7":{"id":"s-b7","sample":true,"contactId":"s-beatrix","eventId":"ev-christmas-gathering","invitedDate":"2026-10-09","bookingStatus":"Interested","bookingDate":"","attendance":"Not Attended","price":"","feedback":"","notes":""},"bookings/s-b8":{"id":"s-b8","sample":true,"contactId":"s-eleanor","eventId":"ev-christmas-gathering","invitedDate":"2026-10-26","bookingStatus":"Invited","bookingDate":"","attendance":"Not Attended","price":"","feedback":"","notes":""},"bookings/s-b9":{"id":"s-b9","sample":true,"contactId":"s-hannah","eventId":"ev-coughton-court","invitedDate":"2026-10-29","bookingStatus":"Invited","bookingDate":"","attendance":"Not Attended","price":"","feedback":"","notes":""},"bookings/s-b10":{"id":"s-b10","sample":true,"contactId":"s-kirsty","eventId":"ev-coughton-court","invitedDate":"2026-10-10","bookingStatus":"Booked","bookingDate":"2026-10-11","attendance":"Not Attended","price":15,"feedback":"","notes":""},"bookings/s-b11":{"id":"s-b11","sample":true,"contactId":"s-kirsty","eventId":"s-ev-past","invitedDate":"2026-08-06","bookingStatus":"Booked","bookingDate":"2026-08-11","attendance":"Attended","price":"","feedback":"Loved the small tables. Felt like a proper conversation.","notes":""},"bookings/s-b12":{"id":"s-b12","sample":true,"contactId":"s-sunita","eventId":"s-ev-past","invitedDate":"2026-08-16","bookingStatus":"Booked","bookingDate":"2026-08-21","attendance":"Attended","price":"","feedback":"Asked for more money workshops.","notes":""},"bookings/s-b13":{"id":"s-b13","sample":true,"contactId":"s-imogen","eventId":"s-ev-past","invitedDate":"2026-08-11","bookingStatus":"Booked","bookingDate":"2026-08-16","attendance":"Attended","price":"","feedback":"Wants to bring a friend next time.","notes":""},"bookings/s-b14":{"id":"s-b14","sample":true,"contactId":"s-amelia","eventId":"s-ev-past","invitedDate":"2026-08-14","bookingStatus":"Booked","bookingDate":"2026-08-17","attendance":"Attended","price":"","feedback":"Stayed behind to help tidy.","notes":""},"bookings/s-b15":{"id":"s-b15","sample":true,"contactId":"s-maeve","eventId":"s-ev-past","invitedDate":"2026-08-21","bookingStatus":"Booked","bookingDate":"2026-08-24","attendance":"No Show","price":"","feedback":"","notes":""},"bookings/s-b16":{"id":"s-b16","sample":true,"contactId":"s-yasmin","eventId":"s-ev-past","invitedDate":"2026-08-24","bookingStatus":"Cancelled","bookingDate":"","attendance":"Cancelled","price":"","feedback":"","notes":""},"followups/s-f1":{"id":"s-f1","sample":true,"contactId":"s-hannah","date":"2026-11-05","reason":"Gentle check-in","notes":"No reply to the Instagram invitation yet","status":"open","createdDate":"2026-10-28","completedDate":""},"followups/s-f2":{"id":"s-f2","sample":true,"contactId":"s-eleanor","date":"2026-11-02","reason":"Gentle check-in","notes":"Christmas Gathering invitation unanswered","status":"open","createdDate":"2026-10-26","completedDate":""},"followups/s-f3":{"id":"s-f3","sample":true,"contactId":"s-nadia","date":"2026-11-07","reason":"Share new dates","notes":"Leamington Spa weekday mornings","status":"open","createdDate":"2026-10-28","completedDate":""},"followups/s-f4":{"id":"s-f4","sample":true,"contactId":"s-josephine","date":"2026-11-14","reason":"Collaboration conversation","notes":"Welcome table plans","status":"open","createdDate":"2026-10-28","completedDate":""},"followups/s-f5":{"id":"s-f5","sample":true,"contactId":"s-maeve","date":"2026-11-18","reason":"Share new dates","notes":"Alcester date when ready","status":"open","createdDate":"2026-10-28","completedDate":""},"followups/s-f6":{"id":"s-f6","sample":true,"contactId":"s-beatrix","date":"2026-10-31","reason":"Event invitation","notes":"Confirm Christmas Gathering price","status":"open","createdDate":"2026-10-24","completedDate":""},"followups/s-f7":{"id":"s-f7","sample":true,"contactId":"s-yasmin","date":"2026-11-10","reason":"Event invitation","notes":"Beginners money workshop","status":"open","createdDate":"2026-10-28","completedDate":""},"followups/s-f8":{"id":"s-f8","sample":true,"contactId":"s-imogen","date":"2026-11-25","reason":"Collaboration conversation","notes":"Spring craft table","status":"open","createdDate":"2026-10-28","completedDate":""},"followups/s-f9":{"id":"s-f9","sample":true,"contactId":"s-sunita","date":"2026-11-13","reason":"Event invitation","notes":"Next Coffee Conversations","status":"open","createdDate":"2026-10-28","completedDate":""},"followups/s-f10":{"id":"s-f10","sample":true,"contactId":"s-anneka","date":"2026-11-03","reason":"Collaboration conversation","notes":"Kenilworth hosting","status":"open","createdDate":"2026-10-27","completedDate":""},"followups/s-f11":{"id":"s-f11","sample":true,"contactId":"s-chloe","date":"2026-11-04","reason":"Gentle check-in","notes":"Introduce SHE and share dates","status":"open","createdDate":"2026-10-28","completedDate":""},"followups/s-f12":{"id":"s-f12","sample":true,"contactId":"s-lottie","date":"2026-11-06","reason":"Gentle check-in","notes":"Reply to her hello","status":"open","createdDate":"2026-10-28","completedDate":""},"followups/s-f13":{"id":"s-f13","sample":true,"contactId":"s-dilys","date":"2026-11-01","reason":"Gentle check-in","notes":"Paused: do not contact","status":"open","createdDate":"2026-10-25","completedDate":""},"followups/s-f14":{"id":"s-f14","sample":true,"contactId":"s-amelia","date":"2026-09-25","reason":"Thank you after event","notes":"","status":"completed","createdDate":"2026-09-18","completedDate":"2026-09-27"},"followups/s-f15":{"id":"s-f15","sample":true,"contactId":"s-kirsty","date":"2026-10-05","reason":"Ask for feedback","notes":"","status":"completed","createdDate":"2026-09-28","completedDate":"2026-10-06"},"followups/s-f16":{"id":"s-f16","sample":true,"contactId":"s-rosalind","date":"2026-07-27","reason":"Collaboration conversation","notes":"","status":"completed","createdDate":"2026-07-20","completedDate":"2026-07-29"}};
+  var mem = {}, subs = {}, ok = true;
+
+  /* ---------- storage ---------- */
+  function load() {
+    var t = null;
+    try { t = localStorage.getItem(KEY); mem = t ? JSON.parse(t) : {}; if (!mem || typeof mem !== "object" || Array.isArray(mem)) throw new Error("shape"); }
+    catch (e) {
+      if (t) { try { localStorage.setItem(KEY + "-damaged-" + Date.now(), t); } catch (x) {} }   // keep the unreadable copy, never overwrite it
+      mem = {};
+    }
+  }
+  function persist() {
+    try { localStorage.setItem(KEY, JSON.stringify(mem)); }
+    catch (e) { throw { code: "quota_exceeded", message: "This browser has no room left to save. Back up your data, then clear some browser storage." }; }
+  }
+  try { localStorage.setItem("she-crm-probe", "1"); localStorage.removeItem("she-crm-probe"); } catch (e) { ok = false; }
+  if (ok) {
+    load();
+    var first = localStorage.getItem(KEY) === null && localStorage.getItem(SEEDED) === null;
+    if (first) { mem = JSON.parse(JSON.stringify(SAMPLE)); try { persist(); localStorage.setItem(SEEDED, "1"); } catch (e) { ok = false; } }
+  }
+
+  /* ---------- the document store the page expects ---------- */
+  function split(path) { var a = path.split("/"); return { col: a.slice(0, -1).join("/"), id: a[a.length - 1] }; }
+  function docSnap(col, id) {
+    var d = mem[col + "/" + id];
+    return { id: id, exists: d !== undefined, data: function () { return d; }, metadata: { fromCache: false, hasPendingWrites: false } };
+  }
+  function querySnap(col) {
+    var ids = Object.keys(mem).filter(function (k) { return split(k).col === col; }).map(function (k) { return split(k).id; }).sort();
+    return { docs: ids.map(function (i) { return docSnap(col, i); }), size: ids.length, empty: !ids.length, metadata: { fromCache: false, hasPendingWrites: false } };
+  }
+  function emit(col) {
+    (subs[col] || []).slice().forEach(function (s) { try { s.kind === "doc" ? s.cb(docSnap(col, s.id)) : s.cb(querySnap(col)); } catch (e) { setTimeout(function () { throw e; }); } });
+  }
+  function emitAll() { Object.keys(subs).forEach(emit); }
+  function subscribe(col, sub) {
+    (subs[col] = subs[col] || []).push(sub);
+    setTimeout(function () { sub.kind === "doc" ? sub.cb(docSnap(col, sub.id)) : sub.cb(querySnap(col)); });
+    return function () { subs[col] = (subs[col] || []).filter(function (s) { return s !== sub; }); };
+  }
+  function write(path, data) {
+    var p = split(path), had = Object.prototype.hasOwnProperty.call(mem, path), before = mem[path];
+    try {
+      if (data === null) delete mem[path]; else mem[path] = JSON.parse(JSON.stringify(data));
+      persist();
+    } catch (e) {
+      if (had) mem[path] = before; else delete mem[path];
+      emit(p.col);
+      return Promise.reject(e && e.code ? e : { code: "unavailable", message: "Could not save: " + ((e && e.message) || "unknown problem") });
+    }
+    emit(p.col);
+    return Promise.resolve();
+  }
+  var db = {
+    doc: function (path) {
+      var p = split(path);
+      return { path: path, id: p.id,
+        get: function () { return Promise.resolve(docSnap(p.col, p.id)); },
+        set: function (d) { return write(path, d); },
+        update: function (d) { return write(path, Object.assign({}, mem[path] || {}, d)); },
+        delete: function () { return write(path, null); },
+        onSnapshot: function (cb, err) { return subscribe(p.col, { kind: "doc", id: p.id, cb: cb, err: err }); } };
+    },
+    collection: function (col) {
+      return { path: col,
+        doc: function (id) { return db.doc(col + "/" + id); },
+        onSnapshot: function (cb, err) { return subscribe(col, { kind: "col", cb: cb, err: err }); } };
+    }
+  };
+  window.__crmStore = {
+    exportAll: function () { return JSON.parse(JSON.stringify(mem)); },
+    replaceAll: function (map) { var before = mem; mem = JSON.parse(JSON.stringify(map)); try { persist(); } catch (e) { mem = before; throw e; } emitAll(); },
+    lastBackup: function () { try { return Number(localStorage.getItem(BK)) || 0; } catch (e) { return 0; } },
+    markBackup: function () { try { localStorage.setItem(BK, String(Date.now())); } catch (e) {} }
+  };
+  window.addEventListener("storage", function (e) { if (e.key === KEY) { load(); emitAll(); } });   // another tab saved something
+
+  var downloads = { save: function (r) {
+    var ext = (r.filename.split(".").pop() || "").toLowerCase();
+    var type = ext === "csv" ? "text/csv;charset=utf-8" : ext === "json" ? "application/json" : "text/plain;charset=utf-8";
+    var blob = new Blob([ext === "csv" ? "﻿" : "", r.data], { type: type });
+    var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = r.filename;
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    return Promise.resolve({ status: "saved" });
+  } };
+  var owner = { isOwner: function () { return true; }, canEdit: function () { return true; }, can: function () { return true; } };
+  window.claude = { use: function (n) { return Promise.resolve(n === "db" ? (ok ? db : null) : n === "downloads" ? downloads : n === "user" ? owner : null); } };
+
+  /* ---------- the sign-in (a convenience, not security: see Settings) ---------- */
+  function authed() {
+    try { var v = localStorage.getItem(AK) || sessionStorage.getItem(AK); if (!v) return false; var o = JSON.parse(v); return o.h === HASH && Date.now() - o.t < 30 * 864e5; }
+    catch (e) { return false; }
+  }
+  function remember(stay) { var v = JSON.stringify({ h: HASH, t: Date.now() }); try { (stay ? localStorage : sessionStorage).setItem(AK, v); } catch (e) {} }
+  function forget() { try { localStorage.removeItem(AK); sessionStorage.removeItem(AK); } catch (e) {} }
+  function sha(s) {
+    return crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)).then(function (b) {
+      return Array.prototype.map.call(new Uint8Array(b), function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+    });
+  }
+  var fails = 0, until = 0;
+  function showError(m) { var e = document.getElementById("gate-err"); e.textContent = m; e.hidden = !m; }
+  if (authed()) document.body.classList.remove("locked");
+  var form = document.getElementById("gate-form");
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (Date.now() < until) { showError("Too many tries. Please wait a few seconds."); return; }
+    if (!(window.crypto && crypto.subtle)) { showError("This browser cannot check the sign-in on this page. Open it with https://."); return; }
+    var u = document.getElementById("gate-u").value.trim().toLowerCase(), p = document.getElementById("gate-p").value;
+    sha(SALT + u + ":" + p).then(function (h) {
+      if (h === HASH) {
+        fails = 0; showError(""); remember(document.getElementById("gate-stay").checked);
+        document.body.classList.remove("locked"); document.getElementById("gate-p").value = "";
+        window.scrollTo(0, 0);
+      } else {
+        fails++; if (fails >= 5) { until = Date.now() + 30000; fails = 0; }
+        showError("That username or password is not right.");
+      }
+    });
+  });
+  document.addEventListener("DOMContentLoaded", function () { /* script is at the end of the body, so the page already exists */ });
+  var side = document.querySelector(".side");
+  if (side) {
+    var f = document.createElement("form"); f.className = "so";
+    f.innerHTML = '<button class="lnk" type="submit">Sign out</button>';
+    f.addEventListener("submit", function (ev) { ev.preventDefault(); forget(); document.body.classList.add("locked"); document.getElementById("gate-u").focus(); });
+    side.appendChild(f);
+  }
+})();
+
+</script>
+<script>
+(function(){
+"use strict";
+/* ---------- constants ---------- */
+var TAGS0=["Coffee Conversations","SHE Experiences","Christmas Gathering","Money Workshops","SHE Hosts","Collaborators","Potential Members","Local Community"];
+var SOURCES0=["Instagram","Facebook","WhatsApp","Email","Local community group","Event","Referral","Website","Other"];
+var STATUSES=["New Contact","Contacted","Replied","Interested","Event Attendee","SHE Community Member","Collaborator","Not Interested","Do Not Contact"];
+var SCLS={"New Contact":"s-new","Contacted":"s-contacted","Replied":"s-replied","Interested":"s-interested","Event Attendee":"s-attendee","SHE Community Member":"s-member","Collaborator":"s-collab","Not Interested":"s-notint","Do Not Contact":"s-dnc"};
+var TYPES=[["Instagram Message","Instagram"],["Facebook Message","Facebook"],["WhatsApp","WhatsApp"],["Email","Email"],["Phone Call","Phone"],["In-Person Meeting","In person"],["Event Conversation","In person"],["Other","Other"]];
+var CHANNELS=["Instagram","Facebook","WhatsApp","Email","Phone","In person","Other"];
+var METHODS=["Instagram","Facebook","WhatsApp","Email","Phone","In person","No preference"];
+var BOOKING=["Not Invited","Invited","Interested","Booked","Cancelled"];
+var ATTEND=["Not Attended","Attended","Cancelled","No Show"];
+var EVSTATUS=["Planning","Open for booking","Sold out","Completed","Cancelled"];
+var REASONS=["Gentle check-in","Event invitation","Share new dates","Thank you after event","Collaboration conversation","Ask for feedback"];
+var NAV=[["overview","Overview","overview"],["contacts","Contacts","contacts"],["interactions","Interactions","chat"],["events","Events","calendar"],["followups","Follow-ups","bell"],["preferences","Settings","sliders"]];
+var COLS=["contacts","interactions","events","bookings","followups"];
+
+/* ---------- small helpers ---------- */
+var $=function(s,r){return (r||document).querySelector(s)};
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function pad(n){return (n<10?"0":"")+n}
+function iso(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+function today(){return iso(new Date())}
+function addDays(s,n){var d=new Date(s+"T12:00:00");d.setDate(d.getDate()+n);return iso(d)}
+var MON=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var DOW=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+function fd(s,long){if(!s)return "";var d=new Date(s+"T12:00:00");if(isNaN(d))return s;return (long?DOW[d.getDay()]+" ":"")+d.getDate()+" "+(long?MON[d.getMonth()]:MON[d.getMonth()].slice(0,3))+" "+d.getFullYear()}
+function fdS(s){if(!s)return "";var d=new Date(s+"T12:00:00");return d.getDate()+" "+MON[d.getMonth()].slice(0,3)+(d.getFullYear()!==new Date().getFullYear()?" "+d.getFullYear():"")}
+function dayNum(s){return new Date(s+"T12:00:00").getDate()}
+function monShort(s){return MON[new Date(s+"T12:00:00").getMonth()].slice(0,3)}
+function uid(){return "k"+Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4)}
+function name(c){return c?((c.first||"")+" "+(c.last||"")).trim()||c.email||"Unnamed":"Removed contact"}
+function initials(c){return ((c.first||"?")[0]+((c.last||"")[0]||"")).toUpperCase()}
+function norm(s){return String(s||"").trim().toLowerCase()}
+function normPhone(p){var d=String(p||"").replace(/\D/g,"");if(d.indexOf("0044")===0)d="0"+d.slice(4);else if(d.indexOf("44")===0&&d.length>10)d="0"+d.slice(2);return d}
+function byId(arr,id){for(var i=0;i<arr.length;i++)if(arr[i].id===id)return arr[i];return null}
+function clean(o){return JSON.parse(JSON.stringify(o))}
+function plural(n,a,b){return n+" "+(n===1?a:b)}
+function ico(n){var p={
+overview:'<path d="M4 11.5 12 4l8 7.5V20H4z"/><path d="M10 20v-5h4v5"/>',
+contacts:'<circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.4-3.6 2.7-5.5 5.5-5.5s5.1 1.9 5.5 5.5"/><path d="M16 5.2a3 3 0 0 1 0 5.6M17.5 14.7c2 .6 3.2 2.3 3.5 5.3"/>',
+chat:'<path d="M5 5h14a1.5 1.5 0 0 1 1.5 1.5v8A1.5 1.5 0 0 1 19 16h-7l-4.5 3.5V16H5a1.5 1.5 0 0 1-1.5-1.5v-8A1.5 1.5 0 0 1 5 5z"/>',
+calendar:'<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/>',
+bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/>',
+sliders:'<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+plus:'<path d="M12 5v14M5 12h14"/>',search:'<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/>',
+back:'<path d="M15 5l-7 7 7 7"/>',check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+mail:'<rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="m4 7.5 8 6 8-6"/>',
+edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/>',trash:'<path d="M5 7h14M9 7V4.5h6V7M7 7l1 13h8l1-13"/>',
+down:'<path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 20h14"/>',up:'<path d="M12 16V5M7.5 9 12 4.5 16.5 9M5 20h14"/>',
+note:'<path d="M6 3.5h9l4 4V20.5H6z"/><path d="M14.5 3.5V8H19M9 12h7M9 15.5h7"/>',
+out:'<path d="M5 12h13M13 6l6 6-6 6"/>',inn:'<path d="M19 12H6M11 6l-6 6 6 6"/>',
+user:'<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.5-4 3.3-6 7-6s6.5 2 7 6"/>',
+ban:'<circle cx="12" cy="12" r="8.5"/><path d="m6 6 12 12"/>',
+leaf:'<path d="M5 19C5 10 10 5 19 5c0 9-5 14-14 14z"/><path d="M5 19 13 11"/>'}[n]||"";
+return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
+
+/* ---------- state ---------- */
+var S={contacts:[],interactions:[],events:[],bookings:[],followups:[],meta:{tags:TAGS0.slice(),sources:SOURCES0.slice()},
+  loaded:{},mode:"loading",slow:false,
+  f:{q:"",status:"",source:"",location:"",tag:"",event:"",fu:"",mk:"",sort:"name"},
+  iF:{q:"",type:"",dir:"",pending:""},
+  fF:{q:"",status:"",tag:"",reason:"",from:"",to:""}};
+var db=null,dl=null,userCap=null,isOwner=true;
+
+/* ---------- derived data ---------- */
+function canMarket(c){return !c.doNotContact&&!c.unsubscribed&&!!(c.emailConsent||c.whatsappConsent)}
+function openFUs(){return S.followups.filter(function(f){var c=byId(S.contacts,f.contactId);return f.status==="open"&&c&&!c.doNotContact})}
+function pausedFUs(){return S.followups.filter(function(f){var c=byId(S.contacts,f.contactId);return f.status==="open"&&c&&c.doNotContact})}
+function nextFU(c){var l=S.followups.filter(function(f){return f.contactId===c.id&&f.status==="open"}).sort(function(a,b){return a.date<b.date?-1:1});return l[0]||null}
+function bookingsOf(c){return S.bookings.filter(function(b){return b.contactId===c.id})}
+function attendedCount(c){return bookingsOf(c).filter(function(b){return b.attendance==="Attended"}).length}
+function lastC(c){var m=c.lastContacted||"";S.interactions.forEach(function(i){if(i.contactId===c.id&&i.direction!=="Incoming"&&i.date>m)m=i.date});return m}
+function lastR(c){var m=c.lastResponse||"";S.interactions.forEach(function(i){if(i.contactId===c.id&&i.direction==="Incoming"&&i.date>m)m=i.date});return m}
+function noReply(c){var lc=lastC(c),lr=lastR(c);return !!(lc&&(!lr||lr<lc)&&["Contacted","New Contact"].indexOf(c.status)>-1&&!c.doNotContact)}
+function evDate(e){return e.date||""}
+function upcomingEvents(){var t=today();return S.events.filter(function(e){return e.status!=="Completed"&&e.status!=="Cancelled"&&(!e.date||e.date>=t)}).sort(function(a,b){return (a.date||"9999")<(b.date||"9999")?-1:1})}
+function pill(s){return '<span class="pill '+(SCLS[s]||"s-new")+'">'+esc(s)+'</span>'}
+function mkChips(c){var h="";
+  if(c.doNotContact)h+='<span class="chip no">Do not contact</span>';
+  else if(c.unsubscribed)h+='<span class="chip no">Unsubscribed</span>';
+  else{ if(c.emailConsent)h+='<span class="chip ok">Email OK</span>'; if(c.whatsappConsent)h+='<span class="chip ok">WhatsApp OK</span>'; if(!c.emailConsent&&!c.whatsappConsent)h+='<span class="chip">No marketing consent</span>'}
+  return h}
+function allTags(){var s=S.meta.tags.slice();S.contacts.forEach(function(c){(c.tags||[]).forEach(function(t){if(s.indexOf(t)<0)s.push(t)})});return s}
+function allSources(){var s=S.meta.sources.slice();S.contacts.forEach(function(c){if(c.source&&s.indexOf(c.source)<0)s.push(c.source)});return s}
+function allLocations(){var m={};S.contacts.forEach(function(c){if(c.location)m[norm(c.location)]=c.location});return Object.keys(m).map(function(k){return m[k]}).sort()}
+function findDup(c,exId){var e=norm(c.email),p=normPhone(c.phone);
+  for(var i=0;i<S.contacts.length;i++){var o=S.contacts[i];if(o.id===exId)continue;
+    if(e&&norm(o.email)===e)return {by:"email",c:o}}
+  for(var j=0;j<S.contacts.length;j++){var o2=S.contacts[j];if(o2.id===exId)continue;
+    if(p.length>=7&&normPhone(o2.phone)===p)return {by:"phone",c:o2}}
+  return null}
+
+/* ---------- storage layer ---------- */
+S.pending=0;S.failed=[];S.savedAt=0;
+function hhmm(t){var d=new Date(t);return pad(d.getHours())+":"+pad(d.getMinutes())}
+function statusHtml(){
+  if(!db)return '<span class="dot off"></span>Not connected: nothing is saved';
+  if(S.failed.length)return '<span class="dot off"></span>Not saved yet <button class="lnk" data-act="retrySave">Try again</button>';
+  if(S.pending>0)return '<span class="dot" style="background:var(--rose)"></span>Saving…';
+  return '<span class="dot"></span>'+(window.__crmStore?'Saved on this device':'All changes saved')+(S.savedAt?' · '+hhmm(S.savedAt):"")}
+function paintSave(){var el=$("#status");if(el)el.innerHTML=statusHtml()}
+function fid(x){return x.k+":"+(x.col||"")+":"+(x.k==="put"?x.obj.id:x.k==="del"?x.id:"")}
+function track(p,item){S.pending++;paintSave();
+  return p.then(function(){S.pending--;S.savedAt=Date.now();var k=fid(item);S.failed=S.failed.filter(function(x){return fid(x)!==k});paintSave()},function(e){S.pending--;S.failed.push(item);render();throw e})}
+function put(col,obj){obj=clean(obj);
+  if(db)return track(db.collection(col).doc(obj.id).set(obj),{k:"put",col:col,obj:obj});
+  var a=S[col],i=a.findIndex(function(x){return x.id===obj.id});if(i<0)a.push(obj);else a[i]=obj;render();return Promise.resolve()}
+function del(col,id){
+  if(db)return track(db.collection(col).doc(id).delete(),{k:"del",col:col,id:id});
+  S[col]=S[col].filter(function(x){return x.id!==id});render();return Promise.resolve()}
+function putMeta(){var m=clean(S.meta);if(db)return track(db.doc("meta/settings").set(m),{k:"meta",obj:m});render();return Promise.resolve()}
+function retryFailed(){var f=S.failed;S.failed=[];render();
+  return Promise.all(f.map(function(x){return x.k==="put"?put(x.col,x.obj):x.k==="del"?del(x.col,x.id):(S.meta=x.obj,putMeta())})).then(function(){toast("Saved");render()},function(){toast("Still could not save. Check your connection and try again.")})}
+async function safe(fn){try{return await fn()}catch(e){var m="Could not save: "+((e&&e.message)||"please try again");if($("#merr"))formErr(m+". Your details are still here; press Save to try again.");else toast(m);return false}}
+
+/* ---------- toast + modal ---------- */
+var tt;function toast(m){var t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(function(){t.hidden=true},3600)}
+function closeModal(){$("#modal").innerHTML="";document.removeEventListener("keydown",escKey)}
+function tryClose(){var f=$("#mf");if(f&&f.dataset.dirty==="1"&&f.dataset.warned!=="1"){f.dataset.warned="1";formErr("You have details that are not saved yet. Press Cancel again to discard them.");return}closeModal()}
+function escKey(e){if(e.key==="Escape")tryClose()}
+function modal(title,body,o){o=o||{};
+  $("#modal").innerHTML='<div class="scrim" data-scrim="1"><div class="dlg'+(o.wide?" wide":"")+'" role="dialog" aria-modal="true" aria-label="'+esc(title)+'"><form id="mf" novalidate><h2>'+esc(title)+'</h2><div class="dbody">'+body+'<div id="merr"></div></div><div class="dfoot"><button type="button" class="btn ghost" data-act="closeModal">'+(o.cancel||"Cancel")+'</button>'+(o.noSubmit?"":'<button class="btn'+(o.danger?" danger":"")+'" type="submit">'+esc(o.submit||"Save")+'</button>')+'</div></form></div></div>';
+  document.addEventListener("keydown",escKey);
+  var f=$("#mf");
+  f.addEventListener("input",function(){f.dataset.dirty="1";f.dataset.warned=""});f.addEventListener("change",function(){f.dataset.dirty="1";f.dataset.warned=""});
+  f.addEventListener("submit",async function(e){e.preventDefault();if(!o.onSubmit){closeModal();return}
+    var b=f.querySelector("button[type=submit]");if(b){if(b.disabled)return;b.disabled=true;b.dataset.l=b.textContent;b.textContent="Saving…"}
+    var r=false;try{r=await o.onSubmit(new FormData(f),f)}catch(x){formErr("Could not save: "+((x&&x.message)||"please try again"));r=false}
+    if(r!==false)closeModal();else if(b){b.disabled=false;b.textContent=b.dataset.l}});
+  if(o.onReady)o.onReady(f);
+  var first=f.querySelector("input:not([type=hidden]):not([type=checkbox]),select,textarea");if(first&&!o.noFocus)first.focus()}
+function formErr(m){$("#merr").innerHTML=m?'<div class="err" role="alert">'+esc(m)+'</div>':""}
+function confirmBox(title,msg,label,fn,danger){modal(title,'<p style="margin:0">'+msg+'</p>',{submit:label,danger:danger,onSubmit:async function(){await safe(fn)}})}
+
+/* ---------- csv ---------- */
+function csvCell(v){v=v==null?"":String(v);if(/^[=@]/.test(v)||/^[+\-][^\d\s+]/.test(v))v="'"+v;return /[",\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
+function parseCSV(t){t=t.replace(/^﻿/,"");var rows=[],row=[],cur="",q=false;
+  for(var i=0;i<t.length;i++){var ch=t[i];
+    if(q){if(ch==='"'){if(t[i+1]==='"'){cur+='"';i++}else q=false}else cur+=ch}
+    else if(ch==='"')q=true;
+    else if(ch===","){row.push(cur);cur=""}
+    else if(ch==="\n"||ch==="\r"){if(ch==="\r"&&t[i+1]==="\n")i++;row.push(cur);cur="";if(row.length>1||row[0]!=="")rows.push(row);row=[]}
+    else cur+=ch}
+  row.push(cur);if(row.length>1||row[0]!=="")rows.push(row);return rows}
+async function saveFile(filename,text){
+  if(dl){try{await dl.save({filename:filename,data:text});toast("File ready: "+filename);return true}catch(e){if(e&&e.code==="declined")return false}}
+  modal("Copy your file",'<p style="margin:0">Downloads are not available in this view. Copy the text below and paste it into a file named <b>'+esc(filename)+'</b>.</p><pre class="copy" id="cp">'+esc(text)+'</pre>',{submit:"Copy to clipboard",cancel:"Close",onSubmit:async function(){try{await navigator.clipboard.writeText(text);toast("Copied")}catch(e){var r=document.createRange();r.selectNodeContents($("#cp"));var s=getSelection();s.removeAllRanges();s.addRange(r);toast("Selected. Press Ctrl+C or Cmd+C to copy.")}return false}})}
+var EXPORT_COLS=[["First name","first"],["Last name","last"],["Email","email"],["Phone","phone"],["Location","location"],["Date added","dateAdded"],["Source","source"],["Status","status"],["Tags","tags"],["Preferred contact method","preferredMethod"],["Last contacted","lastContacted"],["Last response","lastResponse"],["Next follow-up","_next"],["Follow-up reason","_reason"],["Email marketing consent","emailConsent"],["WhatsApp marketing consent","whatsappConsent"],["Consent date","consentDate"],["Consent source","consentSource"],["Unsubscribed","unsubscribed"],["Do not contact","doNotContact"],["Notes","notes"]];
+function exportContacts(list){var lines=[EXPORT_COLS.map(function(c){return csvCell(c[0])}).join(",")];
+  list.forEach(function(c){var n=nextFU(c);lines.push(EXPORT_COLS.map(function(k){var f=k[1],v;
+    if(f==="_next")v=n?n.date:"";else if(f==="lastContacted")v=lastC(c);else if(f==="lastResponse")v=lastR(c);else if(f==="_reason")v=n?n.reason:"";else if(f==="tags")v=(c.tags||[]).join("; ");
+    else if(f==="emailConsent"||f==="whatsappConsent"||f==="unsubscribed"||f==="doNotContact")v=c[f]?"Yes":"No";else v=c[f];
+    return csvCell(v)}).join(","))});
+  saveFile("she-contacts-"+today()+".csv",lines.join("\r\n"))}
+/* ---------- routing + shell ---------- */
+function route(){var h=(location.hash||"").replace(/^#/,"");
+  if(/^c-/.test(h))return {v:"profile",id:h.slice(2)};
+  if(/^e-/.test(h))return {v:"event",id:h.slice(2)};
+  var ok=NAV.some(function(n){return n[0]===h});return {v:ok?h:"overview"}}
+function go(h){location.hash=h}
+var rq=0;function render(){cancelAnimationFrame(rq);rq=requestAnimationFrame(draw)}
+function draw(){
+  var r=route(),ready=S.mode==="local"||Object.keys(S.loaded).length>=COLS.length+1;
+  var fu=openFUs().filter(function(f){return f.date<=today()}).length;
+  $("#nav").innerHTML=NAV.map(function(n){var cur=(r.v===n[0])||(r.v==="profile"&&n[0]==="contacts")||(r.v==="event"&&n[0]==="events");
+    return '<a href="#'+n[0]+'"'+(cur?' aria-current="page"':"")+'>'+ico(n[2])+'<span>'+n[1]+'</span>'+(n[0]==="followups"&&fu?'<span class="n">'+fu+'</span>':"")+'</a>'}).join("");
+  paintSave();
+  var v=$("#view");
+  if(!ready){v.innerHTML='<div class="loading"><b>Opening your journal</b>'+(S.slow?"This is taking longer than usual. Check your connection; nothing has been lost.":"Gathering your community.")+'</div>';return}
+  var keepScroll=window.scrollY,html="";
+  if(r.v==="overview")html=vOverview();else if(r.v==="contacts")html=vContacts();else if(r.v==="profile")html=vProfile(r.id);
+  else if(r.v==="interactions")html=vInteractions();else if(r.v==="events")html=vEvents();else if(r.v==="event")html=vEvent(r.id);
+  else if(r.v==="followups")html=vFollowups();else if(r.v==="preferences")html=vSettings();
+  var banner="";
+  if(!db)banner='<div class="banner"><b>This page is not connected to storage.</b> Anything you add will disappear when you close it. Open it from your claude.ai account to save your community.</div>';
+  if(db&&S.failed.length)banner+='<div class="banner"><b>Some changes are not saved yet.</b> Your connection may have dropped. <button class="btn sm" data-act="retrySave" style="margin-left:8px">Try again</button></div>';
+  if(db&&!isOwner)banner='<div class="banner"><b>You are viewing a shared copy.</b> Contact details are private to the founder; changes may be refused.</div>';
+  if(db&&window.__crmStore&&S.contacts.some(function(c){return !c.sample})){var lb=window.__crmStore.lastBackup();if(!lb||(Date.now()-lb)>7*864e5)banner+='<div class="banner"><b>Back up your contacts.</b> They are kept only in this browser on this device. <button class="btn sm" data-act="backupJson" style="margin-left:8px">Back up now</button></div>'}
+  v.innerHTML=banner+html;
+  if(r.v!==S.lastView||r.id!==S.lastId){window.scrollTo(0,0);S.lastView=r.v;S.lastId=r.id}else window.scrollTo(0,keepScroll);
+  document.title=(r.v==="profile"?name(byId(S.contacts,r.id))+" · ":"")+"SHE Community CRM"}
+function head(eyebrow,title,sub,actions){return '<div class="top"><div><div class="eyebrow">'+esc(eyebrow)+'</div><h1>'+esc(title)+'</h1>'+(sub?'<p>'+sub+'</p>':"")+'</div><div class="actions">'+(actions||"")+'</div></div>'}
+function btn(act,label,icon,cls,extra){return '<button class="btn '+(cls||"")+'" data-act="'+act+'" '+(extra||"")+'>'+(icon?ico(icon):"")+label+'</button>'}
+function link(c){return '<a href="#c-'+esc(c.id)+'">'+esc(name(c))+'</a>'}
+function dueChipS(d,bare){var t=today();if(d<t)return '<span class="date-chip over">'+fdS(d)+(bare?'':' · overdue')+'</span>';if(d===t)return '<span class="date-chip today">Today</span>';return '<span class="date-chip">'+fdS(d)+'</span>'}
+function dueChip(d){var t=today();if(d<t)return '<span class="date-chip over">'+fd(d)+' · overdue</span>';if(d===t)return '<span class="date-chip today">Today</span>';return '<span class="date-chip">'+fd(d)+'</span>'}
+
+/* ---------- overview ---------- */
+function tgc(t){var s=0;for(var i=0;i<t.length;i++)s+=t.charCodeAt(i);return "tg"+(s%5)}
+function badge(d){var t=today();if(d<t)return '<span class="bd over">Overdue</span>';if(d===t)return '<span class="bd today">Today</span>';if(d===addDays(t,1))return '<span class="bd">Tomorrow</span>';return '<span class="bd">'+fdS(d).replace(/ \d{4}$/,"")+'</span>'}
+function vOverview(){
+  var t=today(),month=t.slice(0,7),total=S.contacts.length;
+  var newM=S.contacts.filter(function(c){return (c.dateAdded||"").slice(0,7)===month}).length;
+  var due=openFUs().filter(function(f){return f.date<=t}),over=due.filter(function(f){return f.date<t}).length;
+  var att={},evs={};S.bookings.forEach(function(b){if(b.attendance==="Attended"&&byId(S.contacts,b.contactId)){att[b.contactId]=1;evs[b.eventId]=1}});
+  var mk=S.contacts.filter(canMarket).length,sample=S.contacts.some(function(c){return c.sample});
+  var h2=(sample?'<div class="banner sage"><b>Sample data.</b> The women shown here are made up, so you can see how everything works. Remove them in Settings when you are ready; your own events stay.</div>':"");
+  h2+=head("SHE / Community CRM","Your people, thoughtfully connected.","A calm space to nurture the relationships behind the community.",btn("addContact","Add a contact","plus")+btn("addInteraction","Log interaction","chat","ghost"));
+  h2+='<div class="grid g4">'+
+   '<div class="card stat"><span class="hr">'+ico("leaf")+'</span><div class="l">Total contacts</div><div class="v">'+total+'</div><div class="s">'+mk+' can receive marketing</div></div>'+
+   stat("Follow-ups due",due.length,over?plural(over,"overdue","overdue"):"Nothing overdue",over?"warn":"")+
+   stat("Event attendees",Object.keys(att).length,"across "+plural(Object.keys(evs).length,"event","events"))+
+   stat("New this month",newM,MON[new Date().getMonth()])+'</div>';
+  var fus=openFUs().sort(function(a,b){return a.date<b.date?-1:1}).slice(0,4);
+  var recent=S.contacts.slice().sort(function(a,b){return (b.dateAdded||"")<(a.dateAdded||"")?-1:(b.dateAdded||"")>(a.dateAdded||"")?1:0}).slice(0,5);
+  h2+='<div class="grid g-ov sp"><section class="card"><div class="card-h"><div><h2>Recently Added</h2><small>Keep every connection in view.</small></div><a class="ib" style="width:auto;padding:6px 10px;font-size:13px;text-decoration:none" href="#contacts">All contacts</a></div>';
+  if(recent.length){h2+='<div class="tw"><table class="resp"><thead><tr><th>Name</th><th>Interests</th><th>Status</th><th>Next follow-up</th></tr></thead><tbody>'+recent.map(function(c){var n=nextFU(c),tg=c.tags||[];
+    return '<tr data-row="'+esc(c.id)+'" tabindex="0"><td class="cell-nw"><span class="av2 '+tgc(name(c))+'">'+esc((c.first||"?")[0].toUpperCase())+'</span><span class="nm">'+esc(name(c))+'</span></td><td class="cell-nw">'+(tg[0]?esc(tg[0]):"")+(tg.length>1?' <span class="td-sub">+'+(tg.length-1)+'</span>':"")+'</td><td>'+pill(c.status)+'</td><td>'+(n&&!c.doNotContact?dueChipS(n.date,true):'<span class="td-sub">None</span>')+'</td></tr>'}).join("")+'</tbody></table></div>'}
+  else h2+='<div class="empty"><b>No contacts yet</b>Add the first woman you have connected with.</div>';
+  h2+='</section><section class="card"><div class="card-h"><div><h2>Coming Back to Connect</h2><small>Your thoughtful follow-ups, all in one place.</small></div></div>';
+  h2+=fus.length?'<div class="stack" style="gap:12px">'+fus.map(function(f){var c=byId(S.contacts,f.contactId);
+    return '<a class="cb" href="#c-'+esc(c.id)+'">'+badge(f.date)+'<div style="min-width:0"><div class="t">'+esc(name(c))+'</div><div class="m">'+esc(f.reason||"Follow-up")+'</div></div></a>'}).join("")+'</div>'
+   :'<div class="empty"><b>Nothing waiting</b>Schedule a gentle follow-up from any contact or interaction.</div>';
+  var p=pausedFUs().length;if(p)h2+='<p class="hint">'+plural(p,"follow-up is","follow-ups are")+' paused because the contact is marked Do Not Contact.</p>';
+  h2+='<p style="margin:16px 0 0"><a href="#followups" style="font-size:13.5px;color:var(--muted)">See all follow-ups</a></p></section></div>';
+  var ue=upcomingEvents().slice(0,3),tags=allTags().map(function(tg){return [tg,S.contacts.filter(function(c){return (c.tags||[]).indexOf(tg)>-1}).length]}).sort(function(a,b){return b[1]-a[1]});
+  var acts=[];S.interactions.forEach(function(i){var c=byId(S.contacts,i.contactId);if(c)acts.push({d:i.date,t:(i.direction==="Incoming"?"Reply from ":"Message to ")+name(c),s:i.type,id:c.id})});
+  S.bookings.forEach(function(b){var c=byId(S.contacts,b.contactId),e=byId(S.events,b.eventId);if(c&&e&&b.bookingStatus==="Booked"&&b.bookingDate)acts.push({d:b.bookingDate,t:name(c)+" booked",s:e.name,id:c.id})});
+  acts.sort(function(a,b){return a.d<b.d?1:-1});acts=acts.slice(0,4);
+  h2+='<section class="card sp"><div class="card-h"><div><h2>Community Interests &amp; Events</h2><small>Quickly see what each woman is curious about and where she has connected with SHE.</small></div></div>';
+  h2+=total?'<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px">'+tags.map(function(x){return '<a class="ichip '+tgc(x[0])+'" href="#contacts" data-tagfilter="'+esc(x[0])+'">'+esc(x[0])+' <b>'+x[1]+'</b></a>'}).join("")+'</div>':'<p class="hint">Interests appear as you tag contacts.</p>';
+  h2+='<div class="grid g2" style="gap:30px"><div><div class="sec-h" style="margin-top:0">Upcoming events</div>';
+  h2+=ue.length?'<div class="stack" style="gap:12px">'+ue.map(function(e){var bs=S.bookings.filter(function(b){return b.eventId===e.id}),booked=bs.filter(function(b){return b.bookingStatus==="Booked"}).length,inv=bs.filter(function(b){return b.bookingStatus==="Invited"||b.bookingStatus==="Interested"}).length;
+    return '<a class="evcard" href="#e-'+esc(e.id)+'">'+evDateBox(e)+'<div class="grow" style="min-width:0"><div class="t" style="font-weight:600">'+esc(e.name)+'</div><div class="m" style="font-size:13px;color:var(--muted)">'+esc(e.location||"Location to be confirmed")+'</div><div class="m" style="font-size:13px;margin-top:4px">'+booked+' booked · '+inv+' invited or interested</div></div></a>'}).join("")+'</div>'
+   :'<div class="empty"><b>No upcoming events</b>Add one in Events.</div>';
+  h2+='</div><div><div class="sec-h" style="margin-top:0">Recent activity</div>';
+  h2+=acts.length?'<div class="rows">'+acts.map(function(a){return '<div class="row" style="padding:9px 0"><div class="grow"><div class="t" style="font-weight:500"><a href="#c-'+esc(a.id)+'">'+esc(a.t)+'</a></div><div class="m">'+esc(a.s)+'</div></div><span class="m">'+fd(a.d)+'</span></div>'}).join("")+'</div>':'<p class="hint">Logged messages and bookings will show here.</p>';
+  h2+='</div></div><p class="hint" style="margin-top:22px">Every profile holds: email, phone, location, source, consent, interaction history, event attendance and notes.</p></section>';
+  h2+='<div class="foot"><span>SHE / Relationships first</span><span>'+(sample?"Includes sample data":"")+'</span></div>';
+  return h2}
+function stat(l,v,s,cls){return '<div class="card stat '+(cls||"")+'"><div class="l">'+l+'</div><div class="v">'+v+'</div><div class="s">'+esc(s||"")+'</div></div>'}
+function evDateBox(e){return e.date?'<div class="evdate"><small>'+monShort(e.date)+'</small><b>'+dayNum(e.date)+'</b></div>':'<div class="evdate"><small>Date</small><b style="font-size:16px;padding-top:8px">TBC</b></div>'}
+
+/* ---------- contacts ---------- */
+function filterContacts(){var f=S.f,q=f.q.trim().toLowerCase(),qd=q.replace(/\D/g,""),t=today();
+  var list=S.contacts.filter(function(c){
+    if(q){var hay=[c.first,c.last,c.email,c.phone,c.location,c.notes,(c.noteLog||[]).map(function(n){return n.text}).join(" ")].join(" ").toLowerCase();
+      if(hay.indexOf(q)<0&&!(qd.length>=3&&normPhone(c.phone).indexOf(qd)>-1))return false}
+    if(f.status&&c.status!==f.status)return false;
+    if(f.source&&c.source!==f.source)return false;
+    if(f.location&&norm(c.location)!==norm(f.location))return false;
+    if(f.tag&&(c.tags||[]).indexOf(f.tag)<0)return false;
+    if(f.event){var bs=bookingsOf(c);
+      if(f.event==="attended"){if(!bs.some(function(b){return b.attendance==="Attended"}))return false}
+      else if(f.event==="booked"){if(!bs.some(function(b){return b.bookingStatus==="Booked"}))return false}
+      else if(f.event==="invited"){if(!bs.some(function(b){return b.bookingStatus==="Invited"||b.bookingStatus==="Interested"}))return false}
+      else if(f.event==="none"){if(bs.length)return false}
+      else if(f.event.indexOf("ev:")===0){var id=f.event.slice(3);if(!bs.some(function(b){return b.eventId===id&&b.bookingStatus!=="Not Invited"&&b.bookingStatus!=="Cancelled"}))return false}}
+    if(f.fu){var n=nextFU(c);
+      if(f.fu==="overdue"&&!(n&&n.date<t))return false;
+      if(f.fu==="today"&&!(n&&n.date===t))return false;
+      if(f.fu==="week"&&!(n&&n.date>=t&&n.date<=addDays(t,7)))return false;
+      if(f.fu==="upcoming"&&!(n&&n.date>t))return false;
+      if(f.fu==="none"&&n)return false}
+    if(f.mk==="yes"&&!canMarket(c))return false;
+    if(f.mk==="no"&&canMarket(c))return false;
+    return true});
+  var s=f.sort;
+  list.sort(function(a,b){
+    if(s==="recent")return (b.dateAdded||"")<(a.dateAdded||"")?-1:(b.dateAdded||"")>(a.dateAdded||"")?1:0;
+    if(s==="contacted")return lastC(b)<lastC(a)?-1:lastC(b)>lastC(a)?1:0;
+    if(s==="followup"){var x=nextFU(a),y=nextFU(b);return (x?x.date:"9999")<(y?y.date:"9999")?-1:(x?x.date:"9999")>(y?y.date:"9999")?1:0}
+    return name(a).toLowerCase()<name(b).toLowerCase()?-1:1});
+  return list}
+function opts(arr,sel,all){return (all!=null?'<option value="">'+esc(all)+'</option>':"")+arr.map(function(x){var v=Array.isArray(x)?x[0]:x,l=Array.isArray(x)?x[1]:x;return '<option value="'+esc(v)+'"'+(v===sel?" selected":"")+'>'+esc(l)+'</option>'}).join("")}
+function vContacts(){var f=S.f;
+  var evOpts=[["attended","Has attended an event"],["booked","Has booked an event"],["invited","Invited, not yet booked"],["none","Never invited"]].concat(S.events.map(function(e){return ["ev:"+e.id,"Event: "+e.name]}));
+  var h=head("Your community","Contacts","Every woman you have connected with, replied or not.",btn("addContact","Add contact","plus")+btn("importCsv","Import CSV","up","ghost")+btn("exportCsv","Export CSV","down","ghost"));
+  h+='<div class="card"><div class="toolbar"><div class="search">'+ico("search")+'<input type="search" id="q" data-f="q" placeholder="Search name, email, phone, location or notes" value="'+esc(f.q)+'" aria-label="Search contacts"></div>'+
+   '<select class="inline-sel" style="min-height:42px;font-size:14px" data-f="sort" aria-label="Sort by">'+opts([["name","Sort: Name"],["recent","Sort: Recently added"],["contacted","Sort: Last contacted"],["followup","Sort: Next follow-up"]],f.sort)+'</select></div>'+
+   '<div class="filters">'+
+   '<select data-f="status" aria-label="Relationship status">'+opts(STATUSES,f.status,"All statuses")+'</select>'+
+   '<select data-f="source" aria-label="Contact source">'+opts(allSources(),f.source,"All sources")+'</select>'+
+   '<select data-f="location" aria-label="Location">'+opts(allLocations(),f.location,"All locations")+'</select>'+
+   '<select data-f="tag" aria-label="Community interest">'+opts(allTags(),f.tag,"All interests")+'</select>'+
+   '<select data-f="event" aria-label="Event attendance">'+opts(evOpts,f.event,"Any event history")+'</select>'+
+   '<select data-f="fu" aria-label="Follow-up date">'+opts([["overdue","Follow-up overdue"],["today","Due today"],["week","Due in 7 days"],["upcoming","Has a future follow-up"],["none","No follow-up set"]],f.fu,"Any follow-up")+'</select>'+
+   '<select data-f="mk" aria-label="Marketing">'+opts([["yes","Can receive marketing"],["no","Do not market to"]],f.mk,"Any marketing status")+'</select></div>'+
+   '<div id="cres">'+contactTable()+'</div></div>';
+  return h}
+function contactTable(){var list=filterContacts(),f=S.f,any=f.q||f.status||f.source||f.location||f.tag||f.event||f.fu||f.mk;
+  var h='<div class="count">Showing '+list.length+' of '+S.contacts.length+(any?' · <a href="#contacts" data-act="clearFilters">Clear filters</a>':"")+'</div>';
+  if(!list.length)return h+'<div class="empty"><b>'+(S.contacts.length?"No one matches":"Your community starts here")+'</b>'+(S.contacts.length?"Try removing a filter.":"Add your first contact, or import a CSV.")+'</div>';
+  h+='<div class="tw"><table class="resp"><thead><tr><th>Name</th><th>Status</th><th>Interests</th><th>Location</th><th>Last contacted</th><th>Next follow-up</th><th>Consent</th></tr></thead><tbody>';
+  list.forEach(function(c){var n=nextFU(c),tg=(c.tags||[]);
+    h+='<tr data-row="'+esc(c.id)+'" tabindex="0"><td><div class="nm">'+esc(name(c))+'</div><div class="td-sub">'+esc(c.email||c.phone||"")+'</div></td><td>'+pill(c.status)+(noReply(c)?'<div class="td-sub" style="margin-top:4px">No reply yet</div>':"")+'</td><td>'+tg.slice(0,1).map(function(x){return '<span class="tag">'+esc(x)+'</span>'}).join("")+(tg.length>1?'<span class="tag more">+'+(tg.length-1)+'</span>':"")+'</td><td>'+esc(c.location||"")+'</td><td>'+(lastC(c)?'<span class="nw">'+fdS(lastC(c))+'</span>':'<span class="td-sub">Not yet</span>')+'</td><td>'+(n&&!c.doNotContact?dueChipS(n.date):'<span class="td-sub">None</span>')+'</td><td>'+(c.doNotContact?'<span class="chip no" title="Do not contact">No</span>':c.unsubscribed?'<span class="chip no" title="Unsubscribed">No</span>':canMarket(c)?'<span class="chip ok" title="Consent given">Yes</span>':'<span class="chip" title="No consent recorded">No</span>')+'</td></tr>'});
+  return h+'</tbody></table></div>'}
+
+/* ---------- contact profile ---------- */
+function timeline(c){var it=[];
+  it.push({d:c.dateAdded||"",k:"add",t:"Added to your community",s:c.source?"Source: "+c.source:""});
+  S.interactions.filter(function(i){return i.contactId===c.id}).forEach(function(i){
+    var out=i.direction!=="Incoming",meet=/Meeting|Conversation/.test(i.type);
+    it.push({d:i.date,k:meet?"meet":out?"out":"in",t:meet?i.type:(out?"You sent a ":"Reply on ")+(i.type==="Phone Call"?"phone call":i.type==="WhatsApp"?"WhatsApp":i.type.replace(" Message"," message").toLowerCase()),s:i.summary,id:i.id,edit:"editInteraction"})});
+  S.bookings.filter(function(b){return b.contactId===c.id}).forEach(function(b){var e=byId(S.events,b.eventId);if(!e)return;
+    if(b.invitedDate)it.push({d:b.invitedDate,k:"ev",t:"Invited to "+e.name,s:""});
+    if(b.bookingStatus==="Booked"&&b.bookingDate)it.push({d:b.bookingDate,k:"ev",t:"Booked "+e.name,s:b.price!=null&&b.price!==""?"£"+b.price:""});
+    if(b.attendance==="Attended"&&e.date)it.push({d:e.date,k:"ev",t:"Attended "+e.name,s:b.feedback||""});
+    if(b.attendance==="No Show"&&e.date)it.push({d:e.date,k:"ev",t:"Did not attend "+e.name,s:""})});
+  S.followups.filter(function(f){return f.contactId===c.id}).forEach(function(f){
+    if(f.createdDate)it.push({d:f.createdDate,k:"fu",t:"Follow-up planned for "+fd(f.date),s:f.reason||""});
+    if(f.status==="completed"&&f.completedDate)it.push({d:f.completedDate,k:"fu",t:"Follow-up completed",s:f.reason||""})});
+  (c.noteLog||[]).forEach(function(n){it.push({d:n.date,k:"note",t:"Note",s:n.text})});
+  it.sort(function(a,b){return a.d<b.d?1:a.d>b.d?-1:0});return it}
+function vProfile(id){var c=byId(S.contacts,id);
+  if(!c)return '<a class="crumb" href="#contacts">'+ico("back")+'Contacts</a><div class="card empty"><b>Contact not found</b>They may have been deleted.</div>';
+  var n=nextFU(c),bs=bookingsOf(c);
+  var h='<a class="crumb" href="#contacts">'+ico("back")+'All contacts</a>';
+  h+='<div class="card"><div class="phead"><div class="avatar lg">'+esc(initials(c))+'</div><div style="flex:1;min-width:220px"><h1>'+esc(name(c))+'</h1><div class="pmeta">'+pill(c.status)+(c.location?'<span class="m" style="color:var(--muted)">'+esc(c.location)+'</span>':"")+mkChips(c)+(noReply(c)?'<span class="chip">No reply yet</span>':"")+'</div></div></div>';
+  h+='<div class="pact">'+btn("editContact","Edit","edit","ghost sm",'data-id="'+esc(c.id)+'"')+btn("addInteraction","Add interaction","chat","sm",'data-id="'+esc(c.id)+'"')+btn("addFollowup","Schedule follow-up","bell","ghost sm",'data-id="'+esc(c.id)+'"')+btn("addBooking","Add event","calendar","ghost sm",'data-id="'+esc(c.id)+'"')+btn("addNote","Add note","note","ghost sm",'data-id="'+esc(c.id)+'"')+
+    (c.doNotContact?btn("restoreContact","Remove Do Not Contact","check","ghost sm",'data-id="'+esc(c.id)+'"'):btn("markDnc","Mark as do not contact","ban","danger sm",'data-id="'+esc(c.id)+'"'))+'</div></div>';
+  if(c.doNotContact)h+='<div class="banner sp">This contact is marked <b>Do Not Contact</b>. Her history is kept, her follow-ups are paused, and she is excluded from marketing.</div>';
+  h+='<div class="grid g-prof sp"><div class="stack">';
+  h+='<section class="card"><div class="card-h"><h2>Details</h2></div><dl class="kv"><dt>Email</dt><dd>'+esc(c.email||"Not added")+'</dd><dt>Phone</dt><dd>'+esc(c.phone||"Not added")+'</dd><dt>Location</dt><dd>'+esc(c.location||"Not added")+'</dd><dt>Source</dt><dd>'+esc(c.source||"Not added")+'</dd><dt>Prefers</dt><dd>'+esc(c.preferredMethod||"No preference")+'</dd><dt>Date added</dt><dd>'+esc(fd(c.dateAdded)||"")+'</dd><dt>Last contacted</dt><dd>'+(lastC(c)?fd(lastC(c)):"Not yet")+'</dd><dt>Last response</dt><dd>'+(lastR(c)?fd(lastR(c)):"No reply yet")+'</dd><dt>Next follow-up</dt><dd>'+(n&&!c.doNotContact?fd(n.date)+" · "+esc(n.reason||""):"None planned")+'</dd></dl></section>';
+  h+='<section class="card"><div class="card-h"><h2>Community interests</h2></div>'+((c.tags||[]).length?(c.tags||[]).map(function(x){return '<span class="tag">'+esc(x)+'</span>'}).join(""):'<span class="m" style="color:var(--muted)">No interests tagged. Use Edit to add some.</span>')+'</section>';
+  h+='<section class="card"><div class="card-h"><h2>Consent &amp; privacy</h2></div><dl class="kv"><dt>Email marketing</dt><dd>'+(c.emailConsent?"Consent given":"No consent recorded")+'</dd><dt>WhatsApp marketing</dt><dd>'+(c.whatsappConsent?"Consent given":"No consent recorded")+'</dd><dt>Consent date</dt><dd>'+(c.consentDate?fd(c.consentDate):"Not recorded")+'</dd><dt>Consent source</dt><dd>'+esc(c.consentSource||"Not recorded")+'</dd><dt>Unsubscribed</dt><dd>'+(c.unsubscribed?"Yes":"No")+'</dd><dt>Do not contact</dt><dd>'+(c.doNotContact?"Yes":"No")+'</dd></dl><p class="hint" style="margin-top:12px">Asking about an event is not agreement to ongoing marketing. Only tick consent when she has clearly said yes.</p></section>';
+  h+='<section class="card"><div class="card-h"><h2>Notes</h2>'+btn("addNote","Add note","note","ghost sm",'data-id="'+esc(c.id)+'"')+'</div>'+(c.notes?'<div class="notes">'+esc(c.notes)+'</div>':'<span class="m" style="color:var(--muted)">No general notes yet.</span>')+(c.noteLog||[]).slice().sort(function(a,b){return a.date<b.date?1:-1}).map(function(x){return '<div class="note"><small>'+fd(x.date)+'</small>'+esc(x.text)+'</div>'}).join("")+'</section>';
+  h+='</div><div class="stack">';
+  h+='<section class="card"><div class="card-h"><h2>Events</h2>'+btn("addBooking","Add event","plus","ghost sm",'data-id="'+esc(c.id)+'"')+'</div>'+(bs.length?'<div class="rows">'+bs.sort(function(a,b){var x=byId(S.events,a.eventId),y=byId(S.events,b.eventId);return ((y&&y.date)||"")<((x&&x.date)||"")?-1:1}).map(function(b){var e=byId(S.events,b.eventId);
+    return '<div class="row"><div class="grow"><div class="t">'+(e?'<a href="#e-'+esc(e.id)+'">'+esc(e.name)+'</a>':"Removed event")+'</div><div class="m">'+(e&&e.date?fd(e.date)+" · ":"")+(b.invitedDate?"Invited "+fd(b.invitedDate):"")+'</div>'+(b.feedback?'<div class="m">“'+esc(b.feedback)+'”</div>':"")+'</div><div style="text-align:right"><span class="chip '+(b.bookingStatus==="Booked"?"ok":"")+'">'+esc(b.bookingStatus)+'</span>'+(b.attendance&&b.attendance!=="Not Attended"?'<div class="m" style="margin-top:4px">'+esc(b.attendance)+'</div>':"")+'</div><button class="ib" data-act="editBooking" data-id="'+esc(b.id)+'" aria-label="Edit event record">'+ico("edit")+'</button></div>'}).join("")+'</div>':'<div class="empty"><b>No events yet</b>Record an invitation to see it here.</div>')+'</section>';
+  var fl=S.followups.filter(function(f){return f.contactId===c.id}).sort(function(a,b){return a.status===b.status?(a.date<b.date?-1:1):(a.status==="open"?-1:1)});
+  h+='<section class="card"><div class="card-h"><h2>Follow-ups</h2>'+btn("addFollowup","Schedule","plus","ghost sm",'data-id="'+esc(c.id)+'"')+'</div>'+(fl.length?'<div class="rows">'+fl.map(function(f){return '<div class="row"><div class="grow"><div class="t" '+(f.status!=="open"?'style="text-decoration:line-through;color:var(--muted)"':"")+'>'+esc(f.reason||"Follow-up")+'</div><div class="m">'+(f.status==="open"?fd(f.date):"Done "+fd(f.completedDate))+(f.notes?" · "+esc(f.notes):"")+'</div></div>'+(f.status==="open"?dueChip(f.date)+'<button class="btn ghost sm" data-act="completeFollowup" data-id="'+esc(f.id)+'">'+ico("check")+'Done</button>':"")+'</div>'}).join("")+'</div>':'<div class="empty"><b>No follow-ups</b>Schedule a gentle nudge when you want to remember her.</div>')+'</section>';
+  h+='<section class="card"><div class="card-h"><h2>Activity</h2><small>Newest first</small></div><ol class="tl">'+timeline(c).map(function(x){var cls=x.k==="out"?"out":x.k==="in"?"in":x.k==="ev"?"ev":"";var ic=x.k==="out"?"out":x.k==="in"?"inn":x.k==="ev"?"calendar":x.k==="meet"?"user":x.k==="fu"?"bell":x.k==="note"?"note":"leaf";
+    return '<li><span class="ic '+cls+'">'+ico(ic)+'</span><div class="when">'+fd(x.d)+'</div><div class="what">'+esc(x.t)+(x.edit?' <button class="ib" style="padding:2px" data-act="'+x.edit+'" data-id="'+esc(x.id)+'" aria-label="Edit">'+ico("edit")+'</button>':"")+'</div>'+(x.s?'<div class="sum">'+esc(x.s)+'</div>':"")+'</li>'}).join("")+'</ol></section>';
+  h+='</div></div><div style="margin-top:24px">'+btn("deleteContact","Delete this contact","trash","danger sm",'data-id="'+esc(c.id)+'"')+'</div>';
+  return h}
+/* ---------- interactions ---------- */
+function vInteractions(){var f=S.iF,q=f.q.trim().toLowerCase();
+  var list=S.interactions.filter(function(i){var c=byId(S.contacts,i.contactId);
+    if(q&&(name(c)+" "+i.summary+" "+i.type).toLowerCase().indexOf(q)<0)return false;
+    if(f.type&&i.type!==f.type)return false;if(f.dir&&i.direction!==f.dir)return false;
+    if(f.pending==="noreply"&&!(c&&noReply(c)&&i.direction==="Outgoing"))return false;
+    if(f.pending==="fu"&&!i.followUp)return false;return true}).sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:0});
+  var h=head("Every message, remembered","Interactions","Record who you reached out to, even when she has not replied yet. Nothing here sends a message.",btn("addInteraction","Log interaction","plus"));
+  h+='<div class="card"><div class="toolbar"><div class="search">'+ico("search")+'<input type="search" data-fi="q" placeholder="Search by name or summary" value="'+esc(f.q)+'" aria-label="Search interactions"></div></div><div class="filters"><select data-fi="type" aria-label="Type">'+opts(TYPES.map(function(t){return t[0]}),f.type,"All types")+'</select><select data-fi="dir" aria-label="Direction">'+opts(["Outgoing","Incoming"],f.dir,"Either direction")+'</select><select data-fi="pending" aria-label="Show">'+opts([["noreply","Outgoing, no reply yet"],["fu","With a follow-up"]],f.pending,"Everything")+'</select></div><div id="ires">'+interactionList(list)+'</div></div>';
+  return h}
+function interactionList(list){
+  var h='<div class="count">'+plural(list.length,"interaction","interactions")+'</div>';
+  if(!list.length)return h+'<div class="empty"><b>No interactions found</b>Log a message, call or meeting to keep the thread of every relationship.</div>';
+  h+='<div class="rows">'+list.map(function(i){var c=byId(S.contacts,i.contactId),out=i.direction!=="Incoming";
+    return '<div class="row" style="align-items:flex-start"><div class="avatar" style="'+(out?"":"background:var(--sage-pale);color:var(--sage-ink)")+'">'+ico(out?"out":"inn").replace("<svg",'<svg style="width:18px;height:18px"')+'</div><div class="grow"><div class="t">'+(c?link(c):"Removed contact")+' <span class="m" style="font-weight:400">· '+esc(i.type)+' · '+(out?"you sent":"she replied")+'</span></div><div class="m" style="color:#54443c;font-size:14.5px">'+esc(i.summary||"")+'</div>'+(i.followUp?'<div class="m" style="margin-top:4px">Follow-up '+(i.followUpDate?fd(i.followUpDate):"planned")+'</div>':"")+(c&&out&&noReply(c)&&lastC(c)===i.date?'<div style="margin-top:6px"><span class="chip">No reply yet</span></div>':"")+'</div><div class="m" style="white-space:nowrap">'+fd(i.date)+'</div><button class="ib" data-act="editInteraction" data-id="'+esc(i.id)+'" aria-label="Edit">'+ico("edit")+'</button><button class="ib" data-act="deleteInteraction" data-id="'+esc(i.id)+'" aria-label="Delete">'+ico("trash")+'</button></div>'}).join("")+'</div>';
+  return h}
+
+/* ---------- events ---------- */
+function vEvents(){
+  var up=upcomingEvents(),t=today(),past=S.events.filter(function(e){return up.indexOf(e)<0}).sort(function(a,b){return (a.date||"")<(b.date||"")?1:-1});
+  var h=head("Gatherings","Events","Coffee conversations, experiences and workshops, with who is invited, booked and attended.",btn("addEvent","Add event","plus"));
+  h+='<div class="sec-h" style="margin-top:0">Upcoming <span class="c">'+up.length+'</span></div>'+(up.length?'<div class="evgrid">'+up.map(evCard).join("")+'</div>':'<div class="card empty"><b>No upcoming events</b>Add your next gathering.</div>');
+  if(past.length)h+='<div class="sec-h">Past and cancelled <span class="c">'+past.length+'</span></div><div class="evgrid">'+past.map(evCard).join("")+'</div>';
+  return h}
+function evCard(e){var bs=S.bookings.filter(function(b){return b.eventId===e.id&&byId(S.contacts,b.contactId)});
+  function n(s){return bs.filter(function(b){return b.bookingStatus===s}).length}
+  return '<a class="card evcard evbig" href="#e-'+esc(e.id)+'" style="border-radius:20px"><div style="display:flex;gap:16px;align-items:center">'+evDateBox(e)+'<div style="min-width:0"><div class="t" style="font:500 20px/1.25 var(--serif)">'+esc(e.name)+'</div><div class="m" style="font-size:13px;color:var(--muted)">'+esc(e.location||"Location to be confirmed")+'</div></div></div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip">'+esc(e.status)+'</span>'+(e.price!==""&&e.price!=null?'<span class="chip">£'+esc(e.price)+'</span>':"")+'<span class="chip ok">'+n("Booked")+' booked</span><span class="chip">'+(n("Invited")+n("Interested"))+' invited or interested</span></div></a>'}
+function vEvent(id){var e=byId(S.events,id);
+  if(!e)return '<a class="crumb" href="#events">'+ico("back")+'Events</a><div class="card empty"><b>Event not found</b></div>';
+  var bs=S.bookings.filter(function(b){return b.eventId===e.id&&byId(S.contacts,b.contactId)});
+  function n(s){return bs.filter(function(b){return b.bookingStatus===s}).length}
+  var h='<a class="crumb" href="#events">'+ico("back")+'All events</a>'+head(e.date?fd(e.date,true):"Date to be confirmed",e.name,esc(e.location||""),btn("editEvent","Edit event","edit","ghost",'data-id="'+esc(e.id)+'"')+btn("addBooking","Add contact","plus","",'data-event="'+esc(e.id)+'"'));
+  h+='<div class="grid g4">'+stat("Booked",n("Booked"))+stat("Invited",n("Invited"))+stat("Interested",n("Interested"))+stat("Attended",bs.filter(function(b){return b.attendance==="Attended"}).length)+'</div>';
+  h+='<div class="grid g-main sp"><section class="card"><div class="card-h"><h2>About this event</h2><span class="chip">'+esc(e.status)+'</span></div><dl class="kv"><dt>Date</dt><dd>'+(e.date?fd(e.date,true):"To be confirmed")+(e.time?" · "+esc(e.time):"")+'</dd><dt>Location</dt><dd>'+esc(e.location||"To be confirmed")+'</dd><dt>Ticket price</dt><dd>'+(e.price!==""&&e.price!=null?"£"+esc(e.price)+" per person":"Not set")+'</dd><dt>Booking link</dt><dd>'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.url)+'</a>':"Not added")+'</dd></dl>'+(e.description?'<p class="notes" style="margin-bottom:0">'+esc(e.description)+'</p>':"")+'<div style="margin-top:18px">'+btn("deleteEvent","Delete event","trash","danger sm",'data-id="'+esc(e.id)+'"')+'</div></section>';
+  h+='<section class="card"><div class="card-h"><h2>Guest list</h2><small>'+plural(bs.length,"woman","women")+'</small></div>';
+  h+=bs.length?'<div class="rows">'+bs.sort(function(a,b){return name(byId(S.contacts,a.contactId))<name(byId(S.contacts,b.contactId))?-1:1}).map(function(b){var c=byId(S.contacts,b.contactId);
+    return '<div class="row" style="flex-wrap:wrap"><div class="grow" style="min-width:160px"><div class="t">'+link(c)+'</div><div class="m">'+(b.invitedDate?"Invited "+fd(b.invitedDate):"")+(c.doNotContact?' · <b style="color:var(--rose-ink)">Do not contact</b>':"")+'</div></div><select class="inline-sel" data-bk="'+esc(b.id)+'" data-field="bookingStatus" aria-label="Booking status for '+esc(name(c))+'">'+opts(BOOKING,b.bookingStatus)+'</select><select class="inline-sel" data-bk="'+esc(b.id)+'" data-field="attendance" aria-label="Attendance for '+esc(name(c))+'">'+opts(ATTEND,b.attendance||"Not Attended")+'</select><button class="ib" data-act="editBooking" data-id="'+esc(b.id)+'" aria-label="Edit record">'+ico("edit")+'</button></div>'}).join("")+'</div>':'<div class="empty"><b>No one on the list yet</b>Add a contact to record an invitation.</div>';
+  return h+'</section></div>'}
+
+/* ---------- follow-ups ---------- */
+function vFollowups(){var f=S.fF,q=f.q.trim().toLowerCase(),t=today();
+  var all=S.followups.filter(function(x){var c=byId(S.contacts,x.contactId);if(!c)return false;
+    if(q&&name(c).toLowerCase().indexOf(q)<0)return false;
+    if(f.status&&c.status!==f.status)return false;
+    if(f.tag&&(c.tags||[]).indexOf(f.tag)<0)return false;
+    if(f.reason&&(x.reason||"").toLowerCase().indexOf(f.reason.toLowerCase())<0)return false;
+    if(f.from&&x.date<f.from)return false;if(f.to&&x.date>f.to)return false;return true});
+  var open=all.filter(function(x){return x.status==="open"&&!byId(S.contacts,x.contactId).doNotContact}).sort(function(a,b){return a.date<b.date?-1:1});
+  var sec={today:open.filter(function(x){return x.date===t}),over:open.filter(function(x){return x.date<t}),up:open.filter(function(x){return x.date>t}),done:all.filter(function(x){return x.status==="completed"}).sort(function(a,b){return (a.completedDate||"")<(b.completedDate||"")?1:-1})};
+  var h=head("Gentle reminders","Follow-ups","Who to come back to, and why. Completing one keeps the full history.",btn("addFollowup","Schedule follow-up","plus"));
+  h+='<div class="card"><div class="toolbar"><div class="search">'+ico("search")+'<input type="search" data-ff="q" placeholder="Search by contact" value="'+esc(f.q)+'" aria-label="Search follow-ups"></div></div><div class="filters"><select data-ff="status" aria-label="Relationship status">'+opts(STATUSES,f.status,"All statuses")+'</select><select data-ff="tag" aria-label="Event interest">'+opts(allTags(),f.tag,"All interests")+'</select><select data-ff="reason" aria-label="Reason">'+opts(REASONS,f.reason,"Any reason")+'</select><input type="date" data-ff="from" value="'+esc(f.from)+'" class="inline-sel" style="width:auto;min-height:42px;font-size:14px" aria-label="From date" title="From date"><input type="date" data-ff="to" value="'+esc(f.to)+'" class="inline-sel" style="width:auto;min-height:42px;font-size:14px" aria-label="To date" title="To date"></div></div>';
+  function block(title,list,cls){return '<div class="sec-h '+(cls||"")+'">'+title+' <span class="c">'+list.length+'</span></div>'+(list.length?'<div class="card" style="padding:8px 22px"><div class="rows">'+list.map(fuRow).join("")+'</div></div>':'<div class="card empty" style="padding:16px">Nothing here.</div>')}
+  h+=block("Due today",sec.today)+block("Overdue",sec.over,"over")+block("Upcoming",sec.up)+block("Completed",sec.done.slice(0,25));
+  if(sec.done.length>25)h+='<p class="hint">Showing the latest 25 completed follow-ups.</p>';
+  var p=pausedFUs().length;if(p)h+='<p class="hint">'+plural(p,"follow-up is","follow-ups are")+' paused because the contact is marked Do Not Contact.</p>';
+  return h}
+function fuRow(x){var c=byId(S.contacts,x.contactId),done=x.status==="completed";
+  return '<div class="row" style="flex-wrap:wrap"><div class="avatar">'+esc(initials(c))+'</div><div class="grow" style="min-width:190px"><div class="t">'+link(c)+' '+pill(c.status)+'</div><div class="m" style="color:#54443c">'+esc(x.reason||"Follow-up")+(x.notes?' · '+esc(x.notes):"")+'</div></div>'+(done?'<span class="m">Done '+fd(x.completedDate)+'</span>':dueChip(x.date))+(done?'<button class="btn ghost sm" data-act="reopenFollowup" data-id="'+esc(x.id)+'">Reopen</button>':'<button class="btn sm" data-act="completeFollowup" data-id="'+esc(x.id)+'">'+ico("check")+'Mark done</button>')+'<button class="ib" data-act="editFollowup" data-id="'+esc(x.id)+'" aria-label="Edit">'+ico("edit")+'</button><button class="ib" data-act="deleteFollowup" data-id="'+esc(x.id)+'" aria-label="Delete">'+ico("trash")+'</button></div>'}
+
+/* ---------- settings ---------- */
+function vSettings(){
+  var sample=0;COLS.forEach(function(k){S[k].forEach(function(x){if(x.sample)sample++})});
+  var tags=allTags(),h=head("Make it yours","Settings","Interests, sources, your data and how it is kept.");
+  h+='<div class="grid g2"><section class="card"><div class="card-h"><h2>Community interests</h2></div><div class="rows">'+tags.map(function(tg){var n=S.contacts.filter(function(c){return (c.tags||[]).indexOf(tg)>-1}).length;return '<div class="row" style="padding:9px 0"><div class="grow">'+esc(tg)+'</div><span class="m">'+plural(n,"contact","contacts")+'</span><button class="ib" data-act="deleteTag" data-tag="'+esc(tg)+'" aria-label="Remove '+esc(tg)+'">'+ico("trash")+'</button></div>'}).join("")+'</div><form data-form="addTag" style="display:flex;gap:10px;margin-top:14px"><input type="text" name="t" placeholder="New interest, for example Book Club" aria-label="New interest"><button class="btn" type="submit">Add</button></form></section>';
+  h+='<section class="card"><div class="card-h"><h2>Contact sources</h2></div><div class="rows">'+allSources().map(function(s){return '<div class="row" style="padding:9px 0"><div class="grow">'+esc(s)+'</div><button class="ib" data-act="deleteSource" data-tag="'+esc(s)+'" aria-label="Remove '+esc(s)+'">'+ico("trash")+'</button></div>'}).join("")+'</div><form data-form="addSource" style="display:flex;gap:10px;margin-top:14px"><input type="text" name="t" placeholder="New source" aria-label="New source"><button class="btn" type="submit">Add</button></form></section></div>';
+  h+='<section class="card sp"><div class="card-h"><h2>Your data</h2></div><p style="margin-top:0">'+plural(S.contacts.length,"contact","contacts")+', '+plural(S.interactions.length,"interaction","interactions")+', '+plural(S.events.length,"event","events")+', '+plural(S.followups.length,"follow-up","follow-ups")+'.</p><div class="actions">'+btn("exportCsv","Export contacts (CSV)","down","ghost")+btn("importCsv","Import contacts (CSV)","up","ghost")+btn("csvTemplate","Download CSV template","down","ghost")+(window.__crmStore?btn("backupJson","Back up everything","down","rose")+btn("restoreBackup","Restore from backup","up","ghost"):"")+'</div>';
+  h+=sample?'<div class="banner sage" style="margin:20px 0 0"><b>'+plural(sample,"sample record","sample records")+'.</b> These are made-up women and activity added so you can try everything.<div style="margin-top:10px">'+btn("removeSample","Remove all sample data","trash","danger sm")+'</div></div>':'<p class="hint">No sample data is stored.</p>';
+  h+='</section>';
+  h+='<section class="card sp"><div class="card-h"><h2>How your information is kept</h2></div><div class="stack" style="gap:12px;font-size:14.5px"><p style="margin:0"><b>Where it lives.</b> '+(db?'Your contacts are saved the moment you press Save, in this browser on this device. They are not sent to a server and not to Claude, so they are not on your phone or another computer unless you back up and restore them there.':'<b>This browser is blocking storage, so nothing is being saved.</b> Open the page in a normal (not private) window.')+'</p><p style="margin:0"><b>Back up often.</b> Clearing the browser&rsquo;s data, switching browser or losing the device removes them. Use <b>Back up everything</b> above, and keep the file somewhere safe. It is not locked with a password, so store it carefully.</p><p style="margin:0"><b>The sign-in.</b> It only keeps casual visitors away from this page. It is not real security, and the details are visible to anyone who looks at the page code. Contacts are never stored on the website, so it protects nothing by itself: do not use this page on a shared computer.</p><p style="margin:0"><b>What this is not.</b> It is not encrypted and it has not been checked against UK data protection rules. Please confirm with a professional or the ICO&rsquo;s guidance that you have a lawful basis, a privacy notice and a retention plan for these records. Collect only what you need, and no sensitive personal details.</p><p style="margin:0"><b>Messages.</b> Nothing here sends email, WhatsApp or any message. It only helps you remember.</p></div></section>';
+  return h}
+
+/* ---------- forms ---------- */
+function contactPicker(sel,locked){var c=sel?byId(S.contacts,sel):null;
+  if(locked&&c)return '<div><label class="l">Contact</label><div class="pill s-new" style="font-size:14px;padding:7px 14px">'+esc(name(c))+'</div><input type="hidden" name="contactId" value="'+esc(c.id)+'"></div>';
+  var list=S.contacts.slice().sort(function(a,b){return name(a)<name(b)?-1:1});
+  return '<div><label class="l" for="cp">Contact</label><input type="text" id="cp" name="contactLabel" list="cl" autocomplete="off" placeholder="Start typing her name" value="'+(c?esc(contactLabel(c)):"")+'"><datalist id="cl">'+list.map(function(x){return '<option value="'+esc(contactLabel(x))+'"></option>'}).join("")+'</datalist></div>'}
+function contactLabel(c){return name(c)+(c.email?" · "+c.email:c.phone?" · "+c.phone:"")}
+function pickedContact(fd2){var id=fd2.get("contactId");if(id)return byId(S.contacts,id);var l=(fd2.get("contactLabel")||"").trim();if(!l)return null;
+  for(var i=0;i<S.contacts.length;i++)if(contactLabel(S.contacts[i])===l)return S.contacts[i];
+  var m=S.contacts.filter(function(c){return name(c).toLowerCase()===l.toLowerCase()});return m.length===1?m[0]:null}
+function contactForm(c){c=c||{};var isNew=!c.id,tags=c.tags||[];
+  return '<div class="f2"><div><label class="l" for="first">First name</label><input type="text" id="first" name="first" value="'+esc(c.first)+'" required></div><div><label class="l" for="last">Last name</label><input type="text" id="last" name="last" value="'+esc(c.last)+'"></div></div>'+
+  '<div class="f2"><div><label class="l" for="email">Email</label><input type="email" id="email" name="email" value="'+esc(c.email)+'" autocomplete="off"></div><div><label class="l" for="phone">Phone</label><input type="tel" id="phone" name="phone" value="'+esc(c.phone)+'" autocomplete="off"></div></div>'+
+  '<div class="f2"><div><label class="l" for="location">Location</label><input type="text" id="location" name="location" value="'+esc(c.location)+'" list="locl"><datalist id="locl">'+allLocations().map(function(x){return '<option value="'+esc(x)+'">'}).join("")+'</datalist></div><div><label class="l" for="source">Where did you meet her?</label><select id="source" name="source">'+opts(allSources(),c.source||"","Not set")+'</select></div></div>'+
+  '<div class="f2"><div><label class="l" for="status">Relationship status</label><select id="status" name="status">'+opts(STATUSES,c.status||"New Contact")+'</select></div><div><label class="l" for="pm">Preferred contact method</label><select id="pm" name="preferredMethod">'+opts(METHODS,c.preferredMethod||"No preference")+'</select></div></div>'+
+  '<div><label class="l">Community interests</label><div class="checks">'+allTags().map(function(t){return '<label><input type="checkbox" name="tag" value="'+esc(t)+'"'+(tags.indexOf(t)>-1?" checked":"")+'>'+esc(t)+'</label>'}).join("")+'</div><div style="margin-top:8px"><input type="text" name="newTag" placeholder="Add a new interest (optional)" aria-label="New interest"></div></div>'+
+  '<div class="f2"><div><label class="l" for="dateAdded">Date added</label><input type="date" id="dateAdded" name="dateAdded" value="'+esc(c.dateAdded||today())+'"></div><div></div></div>'+
+  (isNew?'<fieldset class="fs"><legend>Gentle follow-up (optional)</legend><div class="f2"><div><label class="l" for="fud">Date</label><input type="date" id="fud" name="fuDate"></div><div><label class="l" for="fur">Reason</label><input type="text" id="fur" name="fuReason" list="rl" placeholder="Gentle check-in"></div></div></fieldset><datalist id="rl">'+REASONS.map(function(r){return '<option value="'+esc(r)+'">'}).join("")+'</datalist>':"")+
+  '<div><label class="l" for="notes">General notes</label><textarea id="notes" name="notes" placeholder="Anything worth remembering, kept kind and factual">'+esc(c.notes)+'</textarea></div>'+
+  '<fieldset class="fs"><legend>Consent &amp; privacy</legend><label class="ck"><input type="checkbox" name="emailConsent"'+(c.emailConsent?" checked":"")+'><span>She has agreed to receive marketing emails</span></label><label class="ck"><input type="checkbox" name="whatsappConsent"'+(c.whatsappConsent?" checked":"")+'><span>She has agreed to receive marketing on WhatsApp</span></label><div class="f2"><div><label class="l" for="cd">Consent date</label><input type="date" id="cd" name="consentDate" value="'+esc(c.consentDate)+'"></div><div><label class="l" for="cs">Consent source</label><input type="text" id="cs" name="consentSource" value="'+esc(c.consentSource)+'" placeholder="For example Join SHE form"></div></div><label class="ck"><input type="checkbox" name="unsubscribed"'+(c.unsubscribed?" checked":"")+'><span>She has unsubscribed</span></label><label class="ck"><input type="checkbox" name="doNotContact"'+(c.doNotContact?" checked":"")+'><span><b>Do not contact</b> (keeps her history, pauses follow-ups, excludes her from marketing)</span></label><div class="hint" style="margin:0">Asking about an event is not agreement to ongoing marketing. Leave consent unticked unless she clearly said yes.</div></fieldset>'}
+function saveContactFrom(fd2,old){formErr("");
+  var c=Object.assign({},old||{});
+  c.first=(fd2.get("first")||"").trim();c.last=(fd2.get("last")||"").trim();c.email=(fd2.get("email")||"").trim();c.phone=(fd2.get("phone")||"").trim();c.location=(fd2.get("location")||"").trim();
+  if(!c.first){formErr("Please add a first name.");return null}
+  if(c.email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.email)){formErr("That email address does not look right. Check it, or leave it blank.");return null}
+  c.source=fd2.get("source")||"";c.status=fd2.get("status");c.preferredMethod=fd2.get("preferredMethod");c.dateAdded=fd2.get("dateAdded")||today();c.notes=(fd2.get("notes")||"").trim();
+  var tags=fd2.getAll("tag"),nt=(fd2.get("newTag")||"").trim();if(nt&&tags.indexOf(nt)<0)tags.push(nt);c.tags=tags;
+  c.emailConsent=fd2.get("emailConsent")==="on";c.whatsappConsent=fd2.get("whatsappConsent")==="on";c.unsubscribed=fd2.get("unsubscribed")==="on";
+  c.consentDate=fd2.get("consentDate")||"";c.consentSource=(fd2.get("consentSource")||"").trim();
+  if((c.emailConsent||c.whatsappConsent)&&!c.consentDate)c.consentDate=today();
+  var wasDnc=!!(old&&old.doNotContact),dnc=fd2.get("doNotContact")==="on";
+  if(dnc&&!wasDnc){c.prevStatus=c.status==="Do Not Contact"?(old&&old.prevStatus)||"Contacted":c.status;c.status="Do Not Contact"}
+  else if(!dnc&&wasDnc&&c.status==="Do Not Contact")c.status=old.prevStatus||"Contacted";
+  else if(!dnc&&c.status==="Do Not Contact"){dnc=true;c.prevStatus=(old&&old.prevStatus)||"Contacted"}
+  c.doNotContact=dnc;
+  return c}
+async function persistContact(c,isNew,fd2,force){
+  var dup=findDup(c,c.id);
+  if(dup&&dup.by==="email"){formErr("There is already a contact with this email: "+name(dup.c)+". Open her profile instead of adding a duplicate.");return false}
+  if(dup&&dup.by==="phone"&&!force){
+    formErr("A contact with this phone number already exists ("+name(dup.c)+"). Press Save again to add her anyway.");$("#mf").dataset.force="1";return false}
+  var ok=await safe(async function(){await put("contacts",c);
+    for(var k=0;k<(c.tags||[]).length;k++){if(S.meta.tags.indexOf(c.tags[k])<0){S.meta.tags.push(c.tags[k]);await putMeta()}}
+    if(isNew&&fd2&&fd2.get("fuDate")){await put("followups",{id:c.id+"f",contactId:c.id,date:fd2.get("fuDate"),reason:(fd2.get("fuReason")||"Gentle check-in").trim(),notes:"",status:"open",createdDate:today()})}
+    return true});
+  if(ok===false)return false;toast(isNew?"Contact added":"Saved");return true}
+function openContactForm(id){var old=id?byId(S.contacts,id):null,nid=uid();
+  modal(old?"Edit contact":"Add contact",contactForm(old),{wide:true,submit:old?"Save changes":"Add contact",onSubmit:async function(f,form){
+    var c=saveContactFrom(f,old);if(!c)return false;
+    if(!old){c.id=nid}
+    var r=await persistContact(c,!old,f,form.dataset.force==="1");if(r&&!old)go("c-"+c.id);return r}})}
+
+function interactionForm(i,presetContact){i=i||{};var typ=i.type||"Instagram Message";
+  return contactPicker(i.contactId||presetContact,!!(i.contactId||presetContact))+
+  '<div class="f2"><div><label class="l" for="idt">Date</label><input type="date" id="idt" name="date" value="'+esc(i.date||today())+'"></div><div><label class="l" for="dir">Direction</label><select id="dir" name="direction">'+opts([["Outgoing","Outgoing: I contacted her"],["Incoming","Incoming: she contacted me"]],i.direction||"Outgoing")+'</select></div></div>'+
+  '<div class="f2"><div><label class="l" for="ity">Type</label><select id="ity" name="type">'+opts(TYPES.map(function(t){return t[0]}),typ)+'</select></div><div><label class="l" for="ich">Channel</label><select id="ich" name="channel">'+opts(CHANNELS,i.channel||(TYPES.filter(function(t){return t[0]===typ})[0]||[0,"Other"])[1])+'</select></div></div>'+
+  '<div><label class="l" for="isum">Summary</label><textarea id="isum" name="summary" placeholder="For example: Sent an Instagram message inviting her to Coffee Conversations. No reply yet.">'+esc(i.summary)+'</textarea></div>'+
+  '<fieldset class="fs"><legend>Follow-up</legend><label class="ck"><input type="checkbox" name="followUp" id="ifu"'+(i.followUp?" checked":"")+'><span>Follow-up required</span></label><div class="f2"><div><label class="l" for="ifd">Follow-up date</label><input type="date" id="ifd" name="followUpDate" value="'+esc(i.followUpDate||"")+'"></div><div><label class="l" for="ifr">Reason</label><input type="text" id="ifr" name="followUpReason" list="rl" placeholder="Gentle check-in"></div></div><datalist id="rl">'+REASONS.map(function(r){return '<option value="'+esc(r)+'">'}).join("")+'</datalist><div class="hint" style="margin:0">Nothing is sent automatically. This only reminds you.</div></fieldset>'}
+function openInteractionForm(id,contactId){var old=id?byId(S.interactions,id):null,nid=uid();
+  modal(old?"Edit interaction":"Log interaction",interactionForm(old,contactId),{wide:true,submit:"Save",
+   onReady:function(f){f.querySelector("#ity").addEventListener("change",function(){var m=TYPES.filter(function(t){return t[0]===f.querySelector("#ity").value})[0];if(m)f.querySelector("#ich").value=m[1]});
+     f.querySelector("#ifd").addEventListener("change",function(){if(f.querySelector("#ifd").value)f.querySelector("#ifu").checked=true})},
+   onSubmit:async function(f){formErr("");var c=pickedContact(f);if(!c){formErr("Choose a contact from the list. If she is not there yet, add her first.");return false}
+    var fu=f.get("followUp")==="on",fdt=f.get("followUpDate")||"";if(fu&&!fdt)fdt=addDays(today(),7);
+    var rec=Object.assign({},old||{},{id:old?old.id:nid,contactId:c.id,date:f.get("date")||today(),direction:f.get("direction"),type:f.get("type"),channel:f.get("channel"),summary:(f.get("summary")||"").trim(),followUp:fu,followUpDate:fu?fdt:""});
+    var r=await safe(async function(){await put("interactions",rec);
+      var upd=Object.assign({},c),moved="";
+      if(!old){if(rec.direction==="Outgoing"){if(!upd.lastContacted||rec.date>=upd.lastContacted)upd.lastContacted=rec.date;if(upd.status==="New Contact"){upd.status="Contacted";moved="Contacted"}}
+        else{if(!upd.lastResponse||rec.date>=upd.lastResponse)upd.lastResponse=rec.date;if(upd.status==="New Contact"||upd.status==="Contacted"){upd.status="Replied";moved="Replied"}}
+        await put("contacts",upd)}
+      if(fu&&!old)await put("followups",{id:nid+"f",contactId:c.id,date:fdt,reason:(f.get("followUpReason")||"Gentle check-in").trim(),notes:rec.summary.slice(0,140),status:"open",createdDate:today(),interactionId:rec.id});
+      toast(moved?"Saved. Status moved to "+moved+".":"Interaction saved");return true});
+    return r!==false}})}
+
+function followupForm(x,presetContact){x=x||{};
+  return contactPicker(x.contactId||presetContact,!!(x.contactId||presetContact))+'<div class="f2"><div><label class="l" for="fd">Date</label><input type="date" id="fd" name="date" value="'+esc(x.date||addDays(today(),7))+'"></div><div><label class="l" for="fr">Reason</label><input type="text" id="fr" name="reason" list="rl2" value="'+esc(x.reason||"")+'" placeholder="Gentle check-in"></div></div><datalist id="rl2">'+REASONS.map(function(r){return '<option value="'+esc(r)+'">'}).join("")+'</datalist><div><label class="l" for="fn">Notes <small>(optional)</small></label><textarea id="fn" name="notes">'+esc(x.notes)+'</textarea></div>'}
+function openFollowupForm(id,contactId){var old=id?byId(S.followups,id):null,nid=uid();
+  modal(old?"Edit follow-up":"Schedule follow-up",followupForm(old,contactId),{submit:"Save",onSubmit:async function(f){formErr("");var c=pickedContact(f);if(!c){formErr("Choose a contact from the list.");return false}
+    var rec=Object.assign({},old||{},{id:old?old.id:nid,contactId:c.id,date:f.get("date"),reason:(f.get("reason")||"Gentle check-in").trim(),notes:(f.get("notes")||"").trim(),status:old?old.status:"open",createdDate:old?old.createdDate:today()});
+    if(!rec.date){formErr("Please choose a date.");return false}
+    var r=await safe(async function(){await put("followups",rec);toast("Follow-up saved");return true});return r!==false}})}
+function openCompleteFollowup(id){var x=byId(S.followups,id),c=byId(S.contacts,x.contactId);
+  modal("Mark follow-up done",'<p style="margin:0">'+esc(name(c))+' · '+esc(x.reason||"Follow-up")+'</p><div><label class="l" for="out">What happened? <small>(optional, saved to her interaction history)</small></label><textarea id="out" name="outcome" placeholder="For example: Messaged on Instagram, she replied and would love a Warwick date."></textarea></div><div class="f2"><div><label class="l" for="ot">How did you reach her?</label><select id="ot" name="type">'+opts(TYPES.map(function(t){return t[0]}),"Instagram Message")+'</select></div><div><label class="l" for="od">Did she reply?</label><select id="od" name="direction">'+opts([["Outgoing","No reply yet"],["Incoming","Yes, she replied"]],"Outgoing")+'</select></div></div><div><label class="l" for="nf">Plan the next follow-up <small>(optional)</small></label><input type="date" id="nf" name="next"></div>',{submit:"Mark done",onSubmit:async function(f){
+    var r=await safe(async function(){var out=(f.get("outcome")||"").trim();
+      await put("followups",Object.assign({},x,{status:"completed",completedDate:today()}));
+      if(out){var t=f.get("type"),m=TYPES.filter(function(q){return q[0]===t})[0],dir=f.get("direction");
+        await put("interactions",{id:x.id+"o",contactId:c.id,date:today(),direction:dir,type:t,channel:m?m[1]:"Other",summary:out,followUp:false,followUpDate:""});
+        var u=Object.assign({},c);if(dir==="Outgoing")u.lastContacted=today();else{u.lastResponse=today();if(u.status==="New Contact"||u.status==="Contacted")u.status="Replied"}await put("contacts",u)}
+      if(f.get("next"))await put("followups",{id:x.id+"n",contactId:c.id,date:f.get("next"),reason:x.reason||"Gentle check-in",notes:"",status:"open",createdDate:today()});
+      toast("Follow-up completed");return true});return r!==false}})}
+
+function eventForm(e){e=e||{};
+  return '<div><label class="l" for="en">Event name</label><input type="text" id="en" name="name" value="'+esc(e.name)+'" required></div><div class="f2"><div><label class="l" for="ed">Date <small>(leave blank if not confirmed)</small></label><input type="date" id="ed" name="date" value="'+esc(e.date||"")+'"></div><div><label class="l" for="et">Time <small>(optional)</small></label><input type="text" id="et" name="time" value="'+esc(e.time||"")+'" placeholder="10:00 am to 11:30 am"></div></div><div class="f2"><div><label class="l" for="el">Location</label><input type="text" id="el" name="location" value="'+esc(e.location||"")+'"></div><div><label class="l" for="ep">Ticket price (£)</label><input type="number" id="ep" name="price" min="0" step="0.01" value="'+esc(e.price==null?"":e.price)+'"></div></div><div class="f2"><div><label class="l" for="es">Status</label><select id="es" name="status">'+opts(EVSTATUS,e.status||"Planning")+'</select></div><div><label class="l" for="eu">Booking link</label><input type="url" id="eu" name="url" value="'+esc(e.url||"")+'" placeholder="https://"></div></div><div><label class="l" for="edsc">Description</label><textarea id="edsc" name="description">'+esc(e.description)+'</textarea></div>'}
+function openEventForm(id){var old=id?byId(S.events,id):null,nid=uid();
+  modal(old?"Edit event":"Add event",eventForm(old),{wide:true,onSubmit:async function(f){formErr("");var nm=(f.get("name")||"").trim();if(!nm){formErr("Please name the event.");return false}
+    var u=(f.get("url")||"").trim();if(u&&!/^https?:\/\//i.test(u)){formErr("The booking link should start with https://");return false}
+    var rec=Object.assign({},old||{},{id:old?old.id:nid,name:nm,date:f.get("date")||"",time:(f.get("time")||"").trim(),location:(f.get("location")||"").trim(),price:f.get("price")===""?"":Number(f.get("price")),status:f.get("status"),url:u,description:(f.get("description")||"").trim()});
+    var r=await safe(async function(){await put("events",rec);toast("Event saved");return true});if(r!==false&&!old)go("e-"+rec.id);return r!==false}})}
+
+function bookingForm(b,presetContact,presetEvent){b=b||{};var evs=S.events.slice().sort(function(a,c){return (a.date||"9999")<(c.date||"9999")?-1:1});
+  return contactPicker(b.contactId||presetContact,!!(b.contactId||presetContact))+'<div><label class="l" for="be">Event</label><select id="be" name="eventId">'+evs.map(function(e){return '<option value="'+esc(e.id)+'"'+((b.eventId||presetEvent)===e.id?" selected":"")+'>'+esc(e.name+(e.date?" · "+fd(e.date):""))+'</option>'}).join("")+'</select></div><div class="f2"><div><label class="l" for="bi">Invitation date</label><input type="date" id="bi" name="invitedDate" value="'+esc(b.invitedDate||"")+'"></div><div><label class="l" for="bs">Booking status</label><select id="bs" name="bookingStatus">'+opts(BOOKING,b.bookingStatus||"Invited")+'</select></div></div><div class="f2"><div><label class="l" for="bd">Booking date</label><input type="date" id="bd" name="bookingDate" value="'+esc(b.bookingDate||"")+'"></div><div><label class="l" for="ba">Attendance</label><select id="ba" name="attendance">'+opts(ATTEND,b.attendance||"Not Attended")+'</select></div></div><div class="f2"><div><label class="l" for="bp">Ticket price (£)</label><input type="number" id="bp" name="price" min="0" step="0.01" value="'+esc(b.price==null?"":b.price)+'"></div><div></div></div><div><label class="l" for="bf">Feedback <small>(optional)</small></label><textarea id="bf" name="feedback">'+esc(b.feedback)+'</textarea></div><div><label class="l" for="bn">Follow-up notes <small>(optional)</small></label><textarea id="bn" name="notes">'+esc(b.notes)+'</textarea></div>'}
+function openBookingForm(id,contactId,eventId){var old=id?byId(S.bookings,id):null,nid=uid();
+  if(!S.events.length){toast("Add an event first");return}
+  modal(old?"Edit event record":"Add event",bookingForm(old,contactId,eventId),{wide:true,
+   onReady:function(f){var sel=f.querySelector("#be"),pr=f.querySelector("#bp");function fill(){var e=byId(S.events,sel.value);if(e&&pr.value===""&&e.price!==""&&e.price!=null)pr.value=e.price}fill();sel.addEventListener("change",function(){pr.value="";fill()});
+     f.querySelector("#bs").addEventListener("change",function(){var bd=f.querySelector("#bd");if(f.querySelector("#bs").value==="Booked"&&!bd.value)bd.value=today()})},
+   onSubmit:async function(f){formErr("");var c=pickedContact(f);if(!c){formErr("Choose a contact from the list.");return false}
+    var eid=f.get("eventId"),dupe=S.bookings.filter(function(b){return b.contactId===c.id&&b.eventId===eid&&(!old||b.id!==old.id)})[0];
+    if(dupe){formErr(name(c)+" already has a record for this event. Edit that one instead.");return false}
+    var rec=Object.assign({},old||{},{id:old?old.id:nid,contactId:c.id,eventId:eid,invitedDate:f.get("invitedDate")||"",bookingStatus:f.get("bookingStatus"),bookingDate:f.get("bookingDate")||"",attendance:f.get("attendance"),price:f.get("price")===""?"":Number(f.get("price")),feedback:(f.get("feedback")||"").trim(),notes:(f.get("notes")||"").trim()});
+    var r=await safe(async function(){await put("bookings",rec);await promoteAttendee(c,rec);toast("Event record saved");return true});return r!==false}})}
+async function promoteAttendee(c,b){if(b.attendance==="Attended"&&["New Contact","Contacted","Replied","Interested"].indexOf(c.status)>-1&&!c.doNotContact){await put("contacts",Object.assign({},c,{status:"Event Attendee"}));toast("Marked as Event Attendee")}}
+
+function openNote(id){var c=byId(S.contacts,id);
+  modal("Add note for "+name(c),'<div><label class="l" for="nt">Note</label><textarea id="nt" name="text" placeholder="Something worth remembering"></textarea></div><div><label class="l" for="ndt">Date</label><input type="date" id="ndt" name="date" value="'+today()+'"></div>',{submit:"Add note",onSubmit:async function(f){var t=(f.get("text")||"").trim();if(!t){formErr("Write a note first.");return false}
+    var u=Object.assign({},c);u.noteLog=(c.noteLog||[]).concat([{date:f.get("date")||today(),text:t}]);var r=await safe(async function(){await put("contacts",u);toast("Note added");return true});return r!==false}})}
+/* ---------- CSV import ---------- */
+var HMAP={firstname:"first",first:"first",givenname:"first",lastname:"last",last:"last",surname:"last",familyname:"last",name:"name",fullname:"name",email:"email",emailaddress:"email",phone:"phone",phonenumber:"phone",mobile:"phone",telephone:"phone",location:"location",town:"location",city:"location",area:"location",source:"source",contactsource:"source",status:"status",relationshipstatus:"status",tags:"tags",interests:"tags",communityinterests:"tags",notes:"notes",emailconsent:"emailConsent",emailmarketingconsent:"emailConsent",whatsappconsent:"whatsappConsent",whatsappmarketingconsent:"whatsappConsent",consentdate:"consentDate",consentsource:"consentSource",unsubscribed:"unsubscribed",donotcontact:"doNotContact",dateadded:"dateAdded",preferredcontactmethod:"preferredMethod",lastcontacted:"lastContacted",lastresponse:"lastResponse"};
+function yes(v){return /^(yes|y|true|1)$/i.test(String(v||"").trim())}
+function okDate(v){return /^\d{4}-\d{2}-\d{2}$/.test(v||"")?v:""}
+function buildImport(text){var rows=parseCSV(text);if(rows.length<2)return {err:"That file has no rows below the header."};
+  var keys=rows[0].map(function(h){return HMAP[String(h).toLowerCase().replace(/[^a-z0-9]/g,"")]||null});
+  if(keys.indexOf("email")<0&&keys.indexOf("first")<0&&keys.indexOf("name")<0)return {err:"I could not find a name or email column. Download the template to see the headings I expect."};
+  var seenE={},seenP={},ok=[],dupes=[],bad=0;
+  rows.slice(1).forEach(function(r){var o={};keys.forEach(function(k,i){if(k&&r[i]!=null)o[k]=String(r[i]).trim()});
+    if(o.name&&!o.first){var p=o.name.split(/\s+/);o.first=p.shift();o.last=p.join(" ")}
+    if(!o.first&&!o.email){bad++;return}
+    var c={id:uid(),first:o.first||(o.email||"").split("@")[0],last:o.last||"",email:o.email||"",phone:o.phone||"",location:o.location||"",source:o.source||"CSV import",
+      status:STATUSES.indexOf(o.status)>-1?o.status:"New Contact",tags:(o.tags||"").split(/[;|]/).map(function(x){return x.trim()}).filter(Boolean),notes:o.notes||"",
+      emailConsent:yes(o.emailConsent),whatsappConsent:yes(o.whatsappConsent),consentDate:okDate(o.consentDate),consentSource:o.consentSource||"",unsubscribed:yes(o.unsubscribed),doNotContact:yes(o.doNotContact),
+      dateAdded:okDate(o.dateAdded)||today(),preferredMethod:METHODS.indexOf(o.preferredMethod)>-1?o.preferredMethod:"No preference",lastContacted:okDate(o.lastContacted),lastResponse:okDate(o.lastResponse)};
+    if(c.doNotContact){c.prevStatus=c.status==="Do Not Contact"?"Contacted":c.status;c.status="Do Not Contact"}
+    if((c.emailConsent||c.whatsappConsent)&&!c.consentDate)c.consentDate=today();
+    var e=norm(c.email),p2=normPhone(c.phone),d=findDup(c,null);
+    if(!d&&e&&seenE[e])d={by:"email",c:seenE[e]};if(!d&&p2.length>=7&&seenP[p2])d={by:"phone",c:seenP[p2]};
+    if(d){dupes.push({c:c,by:d.by,of:d.c});return}
+    if(e)seenE[e]=c;if(p2.length>=7)seenP[p2]=c;ok.push(c)});
+  return {ok:ok,dupes:dupes,bad:bad}}
+function openImport(){var plan=null;
+  modal("Import contacts from CSV",'<p style="margin:0">Choose a CSV file. Existing contacts are never overwritten: anyone whose email (or, failing that, phone number) already exists is skipped. Consent is only recorded if your file has consent columns.</p><div><input type="file" id="csvf" accept=".csv,text/csv,text/plain" aria-label="CSV file"></div><div id="prev"></div>',{submit:"Import contacts",wide:true,
+   onReady:function(f){f.querySelector("#csvf").addEventListener("change",async function(e){var file=e.target.files[0];if(!file)return;
+     var txt=await file.text();plan=buildImport(txt);var p=$("#prev");
+     if(plan.err){p.innerHTML='<div class="err">'+esc(plan.err)+'</div>';plan=null;return}
+     p.innerHTML='<div class="banner sage" style="margin:0"><b>'+plural(plan.ok.length,"new contact","new contacts")+'</b> ready to import.'+(plan.dupes.length?'<br>'+plural(plan.dupes.length,"duplicate","duplicates")+' will be skipped ('+plan.dupes.slice(0,5).map(function(d){return esc(name(d.c))+" matched by "+d.by}).join(", ")+(plan.dupes.length>5?", and more":"")+').':"")+(plan.bad?'<br>'+plural(plan.bad,"row","rows")+' skipped for having no name or email.':"")+'</div>'})},
+   onSubmit:async function(){formErr("");if(!plan||!plan.ok.length){formErr("Choose a file with at least one new contact first.");return false}
+     var n=0,r=await safe(async function(){for(var i=0;i<plan.ok.length;i++){await put("contacts",plan.ok[i]);n++;
+        (plan.ok[i].tags||[]).forEach(function(t){if(S.meta.tags.indexOf(t)<0)S.meta.tags.push(t)})}
+        await putMeta();return true});
+     toast(r===false?"Import stopped after "+n+" contacts":"Imported "+plural(n,"contact","contacts")+". Skipped "+plan.dupes.length+" duplicates.");return r!==false}})}
+
+/* ---------- actions ---------- */
+function validBackup(o){
+  if(!o||o.app!=="she-crm"||!o.data||typeof o.data!=="object"||Array.isArray(o.data))return "That does not look like a SHE CRM backup file.";
+  var keys=Object.keys(o.data);if(keys.length>20000)return "That file holds too many records.";
+  for(var i=0;i<keys.length;i++){if(!/^(contacts|interactions|events|bookings|followups|meta)\/[A-Za-z0-9_\-.:~@+]{1,200}$/.test(keys[i])||!o.data[keys[i]]||typeof o.data[keys[i]]!=="object"||Array.isArray(o.data[keys[i]]))return "The backup has a record I cannot read, so I have not used it."}
+  return ""}
+function openRestore(){var plan=null;
+  modal("Restore from a backup",'<p style="margin:0">Choose a backup file made with <b>Back up everything</b>. Restoring <b>replaces everything currently in this browser</b> with what is in the file.</p><div><input type="file" id="bkf" accept=".json,application/json" aria-label="Backup file"></div><div id="prev"></div>',{submit:"Replace with this backup",danger:true,
+   onReady:function(f){f.querySelector("#bkf").addEventListener("change",async function(e){var file=e.target.files[0];if(!file)return;var p=$("#prev");plan=null;
+     try{var o=JSON.parse(await file.text()),bad=validBackup(o);if(bad){p.innerHTML='<div class="err">'+esc(bad)+'</div>';return}
+       plan=o;p.innerHTML='<div class="banner sage" style="margin:0"><b>'+plural(Object.keys(o.data).length,"record","records")+'</b> in this backup'+(o.exportedAt?', made '+esc(String(o.exportedAt).slice(0,10)):"")+'. You currently have '+plural(S.contacts.length,"contact","contacts")+'.</div>'}
+     catch(x){p.innerHTML='<div class="err">That file could not be read.</div>'}})},
+   onSubmit:async function(){formErr("");if(!plan){formErr("Choose a backup file first.");return false}
+     var r=await safe(async function(){window.__crmStore.replaceAll(plan.data);toast("Backup restored");return true});return r!==false}})}
+var A={
+ backupJson:function(){var s=window.__crmStore;if(!s)return;saveFile("she-crm-backup-"+today()+".json",JSON.stringify({app:"she-crm",version:1,exportedAt:new Date().toISOString(),data:s.exportAll()},null,1)).then(function(ok){if(ok){s.markBackup();render()}})},
+ restoreBackup:openRestore,
+ closeModal:tryClose,
+ retrySave:function(){retryFailed()},
+ addContact:function(){openContactForm()},
+ editContact:function(el){openContactForm(el.dataset.id)},
+ deleteContact:function(el){var c=byId(S.contacts,el.dataset.id);
+   var nI=S.interactions.filter(function(i){return i.contactId===c.id}).length,nB=S.bookings.filter(function(b){return b.contactId===c.id}).length,nF=S.followups.filter(function(f){return f.contactId===c.id}).length;
+   confirmBox("Delete "+esc(name(c))+"?","This permanently deletes her details and also her "+plural(nI,"interaction","interactions")+", "+plural(nB,"event record","event records")+" and "+plural(nF,"follow-up","follow-ups")+". This cannot be undone. If you only want to stop contacting her, use <b>Mark as do not contact</b> instead, which keeps her history.","Delete permanently",async function(){
+     for(var i=0;i<S.interactions.length;i++)if(S.interactions[i].contactId===c.id)await del("interactions",S.interactions[i].id);
+     for(var j=0;j<S.bookings.length;j++)if(S.bookings[j].contactId===c.id)await del("bookings",S.bookings[j].id);
+     for(var k=0;k<S.followups.length;k++)if(S.followups[k].contactId===c.id)await del("followups",S.followups[k].id);
+     await del("contacts",c.id);go("contacts");toast("Contact deleted")},true)},
+ markDnc:function(el){var c=byId(S.contacts,el.dataset.id);
+   confirmBox("Mark "+esc(name(c))+" as do not contact?","She will be excluded from marketing and her open follow-ups will be paused. Her interaction history is kept, and you can undo this at any time.","Mark as do not contact",async function(){
+     await put("contacts",Object.assign({},c,{doNotContact:true,prevStatus:c.status==="Do Not Contact"?c.prevStatus||"Contacted":c.status,status:"Do Not Contact"}));toast("Marked as do not contact")})},
+ restoreContact:function(el){var c=byId(S.contacts,el.dataset.id);
+   confirmBox("Remove Do Not Contact?","Only do this if she has asked you to, or you made a mistake. Her follow-ups become active again. Marketing still needs her consent.","Remove",async function(){
+     await put("contacts",Object.assign({},c,{doNotContact:false,status:c.prevStatus||"Contacted"}));toast("Restored")})},
+ addInteraction:function(el){openInteractionForm(null,el.dataset.id)},
+ editInteraction:function(el){openInteractionForm(el.dataset.id)},
+ deleteInteraction:function(el){confirmBox("Delete this interaction?","It will be removed from her history. Dates on her profile are not recalculated.","Delete",async function(){await del("interactions",el.dataset.id);toast("Deleted")},true)},
+ addFollowup:function(el){openFollowupForm(null,el.dataset.id)},
+ editFollowup:function(el){openFollowupForm(el.dataset.id)},
+ deleteFollowup:function(el){confirmBox("Delete this follow-up?","This removes the reminder only. Any interactions you logged stay.","Delete",async function(){await del("followups",el.dataset.id);toast("Deleted")},true)},
+ completeFollowup:function(el){openCompleteFollowup(el.dataset.id)},
+ reopenFollowup:function(el){var x=byId(S.followups,el.dataset.id);safe(async function(){await put("followups",Object.assign({},x,{status:"open",completedDate:""}));toast("Reopened")})},
+ addBooking:function(el){openBookingForm(null,el.dataset.id,el.dataset.event)},
+ editBooking:function(el){openBookingForm(el.dataset.id)},
+ addEvent:function(){openEventForm()},
+ editEvent:function(el){openEventForm(el.dataset.id)},
+ deleteEvent:function(el){var e=byId(S.events,el.dataset.id),n=S.bookings.filter(function(b){return b.eventId===e.id}).length;
+   confirmBox("Delete "+esc(e.name)+"?","This also deletes "+plural(n,"invitation or booking record","invitation and booking records")+" for this event. Contacts are not affected.","Delete event",async function(){
+     for(var i=0;i<S.bookings.length;i++)if(S.bookings[i].eventId===e.id)await del("bookings",S.bookings[i].id);await del("events",e.id);go("events");toast("Event deleted")},true)},
+ addNote:function(el){openNote(el.dataset.id)},
+ exportCsv:function(){exportContacts(S.contacts.slice().sort(function(a,b){return name(a)<name(b)?-1:1}))},
+ importCsv:openImport,
+ csvTemplate:function(){saveFile("she-contacts-template.csv",EXPORT_COLS.map(function(c){return csvCell(c[0])}).join(",")+"\r\n")},
+ clearFilters:function(el,e){e.preventDefault();S.f={q:"",status:"",source:"",location:"",tag:"",event:"",fu:"",mk:"",sort:S.f.sort};render()},
+ removeSample:function(){var n=0;COLS.forEach(function(k){S[k].forEach(function(x){if(x.sample)n++})});
+   confirmBox("Remove all sample data?","This deletes "+plural(n,"made-up record","made-up records")+" (sample contacts and the activity attached to them). Your own contacts and your events are kept.","Remove sample data",async function(){
+     for(var a=0;a<COLS.length;a++){var k=COLS[a],items=S[k].filter(function(x){return x.sample});for(var i=0;i<items.length;i++)await del(k,items[i].id)}toast("Sample data removed")},true)},
+ deleteTag:function(el){var t=el.dataset.tag,n=S.contacts.filter(function(c){return (c.tags||[]).indexOf(t)>-1});
+   confirmBox("Remove “"+esc(t)+"”?","It will be taken off "+plural(n.length,"contact","contacts")+". The contacts themselves are not changed.","Remove",async function(){
+     for(var i=0;i<n.length;i++)await put("contacts",Object.assign({},n[i],{tags:n[i].tags.filter(function(x){return x!==t})}));
+     S.meta.tags=S.meta.tags.filter(function(x){return x!==t});await putMeta();toast("Removed")},true)},
+ deleteSource:function(el){var s=el.dataset.tag,n=S.contacts.filter(function(c){return c.source===s}).length;
+   if(n){toast("“"+s+"” is the source of "+plural(n,"contact","contacts")+", so it stays in the list.");return}
+   S.meta.sources=S.meta.sources.filter(function(x){return x!==s});safe(function(){return putMeta()})}
+};
+document.addEventListener("click",function(e){
+    var a=e.target.closest("[data-act]");if(a&&A[a.dataset.act]){A[a.dataset.act](a,e);return}
+  var tf=e.target.closest("[data-tagfilter]");if(tf){S.f=Object.assign({},S.f,{tag:tf.dataset.tagfilter})}
+  var tr=e.target.closest("tr[data-row]");if(tr&&!e.target.closest("a,button"))go("c-"+tr.dataset.row)});
+document.addEventListener("keydown",function(e){if(e.key==="Enter"){var tr=e.target.closest&&e.target.closest("tr[data-row]");if(tr&&e.target===tr)go("c-"+tr.dataset.row)}});
+var deb;
+document.addEventListener("input",function(e){var t=e.target;
+  if(t.dataset.f==="q"){S.f.q=t.value;$("#cres").innerHTML=contactTable();return}
+  if(t.dataset.fi==="q"||t.dataset.ff==="q"){clearTimeout(deb);var isI=!!t.dataset.fi;deb=setTimeout(function(){if(isI){S.iF.q=t.value;$("#ires").innerHTML=interactionList(vIList())}else{S.fF.q=t.value;S.refocus='[data-ff="q"]';render()}},180)}});
+function vIList(){var f=S.iF,q=f.q.trim().toLowerCase();return S.interactions.filter(function(i){var c=byId(S.contacts,i.contactId);
+    if(q&&(name(c)+" "+i.summary+" "+i.type).toLowerCase().indexOf(q)<0)return false;if(f.type&&i.type!==f.type)return false;if(f.dir&&i.direction!==f.dir)return false;
+    if(f.pending==="noreply"&&!(c&&noReply(c)&&i.direction==="Outgoing"))return false;if(f.pending==="fu"&&!i.followUp)return false;return true}).sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:0})}
+document.addEventListener("change",function(e){var t=e.target;
+  if(t.dataset.f&&t.dataset.f!=="q"){S.f[t.dataset.f]=t.value;render()}
+  else if(t.dataset.fi&&t.dataset.fi!=="q"){S.iF[t.dataset.fi]=t.value;render()}
+  else if(t.dataset.ff&&t.dataset.ff!=="q"){S.fF[t.dataset.ff]=t.value;render()}
+  else if(t.dataset.bk){var b=byId(S.bookings,t.dataset.bk),upd=Object.assign({},b);upd[t.dataset.field]=t.value;
+    if(t.dataset.field==="bookingStatus"&&t.value==="Booked"&&!upd.bookingDate)upd.bookingDate=today();
+    safe(async function(){await put("bookings",upd);var c=byId(S.contacts,b.contactId);if(c)await promoteAttendee(c,upd);toast("Updated")})}});
+document.addEventListener("submit",function(e){var f=e.target.closest("[data-form]");if(!f)return;e.preventDefault();var v=(new FormData(f).get("t")||"").trim();if(!v)return;
+  if(f.dataset.form==="addTag"){if(allTags().indexOf(v)<0){S.meta.tags.push(v);safe(function(){return putMeta()})}}
+  else{if(allSources().indexOf(v)<0){S.meta.sources.push(v);safe(function(){return putMeta()})}}f.reset()});
+window.addEventListener("hashchange",function(){render()});
+window.addEventListener("beforeunload",function(e){if(S.pending>0||S.failed.length){e.preventDefault();e.returnValue=""}});
+
+/* ---------- boot ---------- */
+function onErr(e){S.slow=true;toast("Could not reach your data: "+((e&&e.message)||"unknown error"));render()}
+async function boot(){
+  try{var cl=window.claude;if(cl&&cl.use){db=await cl.use("db");dl=await cl.use("downloads");var u=await cl.use("user");if(u&&typeof u.isOwner==="function")isOwner=u.isOwner()}}catch(e){}
+  if(!db){S.mode="local";render();return}
+  S.mode="live";
+  setTimeout(function(){if(Object.keys(S.loaded).length<COLS.length+1){S.slow=true;render()}},10000);
+  COLS.forEach(function(n){db.collection(n).onSnapshot(function(snap){S[n]=snap.docs.map(function(d){return Object.assign({},d.data(),{id:d.id})});S.loaded[n]=true;render()},onErr)});
+  db.doc("meta/settings").onSnapshot(function(snap){if(snap.exists){var d=snap.data();S.meta={tags:(d.tags||TAGS0).slice(),sources:(d.sources||SOURCES0).slice()}}S.loaded.meta=true;render()},onErr)}
+var _draw=draw;draw=function(){_draw();if(S.refocus){var el=$(S.refocus);if(el){el.focus();var l=el.value.length;try{el.setSelectionRange(l,l)}catch(x){}}S.refocus=null}};
+render();boot();
+})();
+
+</script></body></html>

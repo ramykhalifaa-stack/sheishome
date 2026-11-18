@@ -39,6 +39,15 @@
   </ul>
 </div></section>
 
+<section class="xm-incl"><div class="wrap">
+  <h2 class="xm-kick xm-h2 rv">{{ xm.includes_title }}</h2>
+  <ul class="xm-inclgrid">
+    {% for ic, head, txt in xm.includes %}<li class="rv d{{ loop.index0 % 3 }}">{{ xi(ic) }}<h3>{{ head }}</h3><p>{{ txt }}</p></li>{% endfor %}
+  </ul>
+  <div class="xm-bar rv"><strong>{{ xm.bar_title }}</strong><span>{{ xm.bar }}</span></div>
+  <p class="xm-diet rv">{{ xm.diet }}</p>
+</div></section>
+
 <section class="xm-paper xm-people"><div class="wrap">
   <h2 class="xm-kick xm-h2 rv">{{ xm.people_title }}</h2>
   <p class="xm-sub rv d1">{{ xm.people_lede }}</p>

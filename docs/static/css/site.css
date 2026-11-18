@@ -594,3 +594,18 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 @media (prefers-reduced-motion:reduce){.xm-btn,.xm-btn .ar{transition:none}}
 .xm-hero.short .xm-title .xm-script{font-size:clamp(46px,7.2vw,100px);margin-top:.04em}
 .xm-pic.face img{aspect-ratio:1/1;object-fit:cover;object-position:50% 30%}
+
+/* Your ticket includes */
+.xm-incl{background:var(--cream2);padding:clamp(40px,5vw,68px) 0 clamp(22px,3vw,34px);text-align:center;color:var(--wine)}
+.xm-incl .xm-h2{color:var(--wine);margin-bottom:clamp(22px,3vw,34px)}
+.xm-inclgrid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr)}
+.xm-inclgrid li{display:flex;flex-direction:column;align-items:center;gap:8px;padding:clamp(18px,2.2vw,28px) clamp(14px,2vw,30px);border-left:1px solid rgba(110,30,45,.22);border-top:1px solid rgba(110,30,45,.22)}
+.xm-inclgrid li:nth-child(-n+3){border-top:0}.xm-inclgrid li:nth-child(3n+1){border-left:0}
+.xm-inclgrid svg{width:38px;height:38px;color:var(--wine);margin-bottom:4px}
+.xm-inclgrid h3{font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;line-height:1.5;margin:0;color:var(--wine)}
+.xm-inclgrid p{font:400 clamp(15px,1.2vw,17px)/1.5 var(--serif);margin:0;max-width:26ch;color:var(--xmute)}
+.xm-bar{display:flex;gap:10px 22px;align-items:baseline;justify-content:center;flex-wrap:wrap;margin:clamp(14px,2vw,22px) auto 0;padding:16px 8px;border-top:1px solid rgba(110,30,45,.22);border-bottom:1px solid rgba(110,30,45,.22);max-width:860px}
+.xm-bar strong{font:600 12px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--wine)}
+.xm-bar span{font:italic 400 clamp(15px,1.3vw,18px)/1.5 var(--serif);color:var(--xmute)}
+.xm-diet{font:400 13.5px/1.6 var(--sans);color:var(--xmute);max-width:62ch;margin:16px auto 0}
+@media(max-width:760px){.xm-inclgrid{grid-template-columns:1fr}.xm-inclgrid li{border-left:0;border-top:1px solid rgba(110,30,45,.22)}.xm-inclgrid li:first-child{border-top:0}.xm-inclgrid li:nth-child(-n+3):not(:first-child){border-top:1px solid rgba(110,30,45,.22)}.xm-bar{flex-direction:column;align-items:center;gap:6px;text-align:center}}

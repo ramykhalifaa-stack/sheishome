@@ -101,6 +101,10 @@ EXPERIENCES = [
     {"name": "Suppers", "sub": "A long table, good food and honest talk.", "img": "exp-suppers", "href": "/gather/experiences/"},
 ]
 EVENTS = [
+    *([{"date": "Friday 18 December", "place": "The Moat House Inn, nr Alcester", "name": "SHE Christmas",
+        "sub": "An evening of connection, celebration and a little Christmas magic.",
+        "img": "xmas-mug", "href": "/christmas/", "cta": "Find out more"}]
+      if datetime.date.today() <= datetime.date(2026, 12, 18) else []),
     {"date": "Date to be announced", "place": "Warwick", "name": "Create Your Next Chapter",
      "sub": "A half-morning workshop with practical tools and meaningful conversation.",
      "img": "way-workshops", "href": "/gather/create-your-next-chapter/"},
@@ -327,6 +331,79 @@ COFFEE_QUESTIONS = {
 }
 
 
+# SHE Christmas: one evening, with a page for the partners and a page for the charity. All the words are
+# from the founder's three mock-ups (18 December 2026). Her booking link is not supplied yet: while
+# XMAS_BOOK_URL is empty, every "Book your place" button says "Hear when booking opens" and goes to Join SHE,
+# so no button leads nowhere. The charity's name and page are not supplied either: XMAS_CHARITY_URL empty
+# means the charity page says its details are coming and shows no "Visit the charity page" button.
+XMAS_BOOK_URL = ""
+XMAS_CHARITY_URL = ""
+XMAS_DATE = datetime.date(2026, 12, 18)
+XMAS = {
+    "date_long": "18 December 2026", "weekday": "Friday", "time": "7:30 pm to 10:30 pm",
+    "venue": "The Moat House Inn", "area": "nr Alcester",
+    "book_url": XMAS_BOOK_URL, "charity_url": XMAS_CHARITY_URL,
+    "nav": [("SHE Christmas", "/christmas/"), ("The Evening", "/christmas/#the-evening"),
+            ("Our Partners", "/christmas/partners/"), ("The Charity", "/christmas/charity/")],
+    "tagline": "An evening of connection, celebration and a little Christmas magic.",
+    "intro_script": "A little something\ndifferent this Christmas...",
+    "intro": ["Christmas can be a wonderfully busy time, but it's easy to forget to make a little time for ourselves.",
+              "SHE Christmas is an invitation to do just that.",
+              "We're bringing women together for a festive evening filled with warmth, connection, good company and a little Christmas magic."],
+    "setting_kicker": "The setting", "setting_title": "The Teepee",
+    "setting": "Join us at The Moat House Inn, Nr Alcester, where their beautiful teepee creates a cosy and intimate space for an evening of connection and celebration.",
+    "expect_title": "What to expect",
+    "expect": [("glasses", "A festive\nwelcome"), ("people", "Conversation\nand connection"), ("gift", "Games and\nsurprises"),
+               ("heart", "A charity\nraffle"), ("candle", "A cosy\nsetting")],
+    "people_title": "The people behind the magic",
+    "people_lede": "Meet the wonderful women and independent businesses that are helping to make SHE Christmas extra special.",
+    "people_cta": "Meet our SHE Christmas partners",
+    "giving_title": "A little giving\ngoes a long way",
+    "giving": "This Christmas, we're also bringing our community together to support a meaningful local charity. Through our Christmas raffle, we'll be raising funds to help them continue their incredible work.",
+    "giving_cta": "Meet the charity",
+    "invite_title": "Your invitation",
+    "invite": ["Perhaps you'll arrive knowing everyone.", "Perhaps you'll arrive not knowing a single person.", "Either way, there's a place for you."],
+    "invite_close": "Come as you are. Leave with a little more.",
+    # The partners page
+    "partners_kicker": "SHE Christmas", "partners_title": "The people", "partners_script": "Behind the Magic",
+    "partners_sub": "Meet the incredible women and independent businesses making SHE Christmas extra special.",
+    "community_script": "A Community\nof Women",
+    "community": ["SHE is about bringing people together, and we're so proud to be supported by a collection of wonderful, local, women-led businesses.",
+                  "Each of these amazing women is sharing their time, talent and creativity to help make this Christmas gathering a truly special experience."],
+    "partners": [
+        {"name": "Natalie", "business": "The Happy Witch",
+         "story": "Natalie created The Happy Witch as a space for people to explore, heal and feel a little more connected to themselves.",
+         "offer": "Crystals, books, rituals and soulful gifts.",
+         "why": "To share tools and rituals that help people feel more grounded, inspired and at home within themselves.",
+         "raffle": "A curated crystal gift set"},
+        {"name": "Emma", "business": "Rooted Retreats",
+         "story": "Emma runs nurturing retreats that bring together movement, nourishment and nature, creating space for women to breathe, reset and feel good again.",
+         "offer": "Wellbeing experiences, yoga and mindfulness.",
+         "why": "To give women the chance to slow down, reconnect and remember how good it feels to look after themselves.",
+         "raffle": "A private yoga session for two"},
+        {"name": "Laura", "business": "Laura James Styling",
+         "story": "Laura helps women simplify their style, build wardrobes they love and feel like the best version of themselves.",
+         "offer": "Personal styling, wardrobe edits and style guides.",
+         "why": "Because when you feel good in what you wear, it changes how you show up in every area of your life.",
+         "raffle": "A styling session and style guide"},
+    ],
+    "partners_cta": "Meet the full community",
+    "partners_strip": "Supporting local women-led businesses",
+    # The charity page
+    "charity_kicker": "SHE Christmas", "charity_title": "The Charity", "charity_script": "A Little Giving\nGoes a Long Way",
+    "cause_title": "Supporting a cause close to our hearts",
+    "cause": ["SHE Christmas is more than a beautiful evening together, it's also an opportunity to give back.",
+              "This year, we're proud to be supporting a local charity that makes a real difference in our community."],
+    "charity_cols": [("heart", "The charity", "Find out more about the incredible work they do and who they support."),
+                     ("gift", "How we're supporting", "A portion of ticket sales, plus our Christmas raffle, will go directly to the charity."),
+                     ("people", "How you can help", "Join us on the night, take part in the raffle, and be part of something that gives back.")],
+    "charity_quote": "It's about coming together, not just to celebrate, but to support and uplift our community.",
+    "charity_cta_title": "Find out more about the charity",
+    "charity_cta": "Visit the charity page",
+    "charity_soon": "We will share the charity's name and story here very soon.",
+}
+
+
 def page(path, template, title, description="", image="", orb=False, unlisted=False, **data):
     """One page. unlisted means it is reachable only by its own address: it is kept out of the
     sitemap and asks search engines not to index it. Nothing on the site links to it."""
@@ -452,6 +529,10 @@ def pages() -> list[dict]:
         # it asks search engines to stay away. It shows counts and anonymous words only, never an email.
         page("/insights/", "insights.html", "Coffee Conversations, event insights",
              "What the table chose, and how it felt.", unlisted=True),
+        # SHE Christmas, 18 December 2026: the evening, its partners and its charity.
+        page("/christmas/", "christmas.html", "SHE Christmas", "An evening of connection, celebration and a little Christmas magic. 18 December 2026, The Moat House Inn, nr Alcester.", "xmas-mug", xm=XMAS),
+        page("/christmas/partners/", "christmas_partners.html", "SHE Christmas partners, the people behind the magic", "Meet the women and independent businesses making SHE Christmas extra special.", "xmas-mug", xm=XMAS),
+        page("/christmas/charity/", "christmas_charity.html", "SHE Christmas and the charity", "A little giving goes a long way. How SHE Christmas supports a local charity.", "xmas-mug", xm=XMAS),
         # The founder's way in to the CRM. Unlisted like /coffee/: no link from the site, not in the sitemap.
         page("/crm/", "crm.html", "SHE Community CRM", "The founder's private journal of the women who connect with SHE.", unlisted=True),
         page("/tools/", "tools.html", "Tools", "More than a journal. A place to pause, ask better questions, notice what's changing, imagine what's possible and come back to yourself.", "tools-hero"),

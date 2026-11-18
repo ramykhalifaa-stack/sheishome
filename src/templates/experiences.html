@@ -36,7 +36,7 @@
 <section class="sec cream2"><div class="wrap">
   <h2 class="rv">What is coming up</h2>
   <p class="lede rv d1" style="margin:10px 0 34px;max-width:52ch">{{ events_intro }}</p>
-  <div class="grid g3">
+  <div class="grid {{ 'g2' if events|length in (2, 4) else 'g3' }}">
     {% for e in events %}
       {% if e.soon %}
       <div class="rv d{{ loop.index0 }}">

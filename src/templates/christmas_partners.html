@@ -1,0 +1,42 @@
+{% extends "base.html" %}{% from "_macros.html" import arrow %}{% from "_xmas.html" import xi, subnav, book %}
+{# The people behind SHE Christmas. Their photographs have not been supplied, so each sits in a framed card with her
+   initial; replace a card by adding her photograph. #}
+{% block content %}
+<div class="xm">
+{{ subnav(xm, "partners") }}
+<section class="xm-hero short" style="--l:url(/static/img/xmas-tree-people.webp);--r:url(/static/img/xmas-candles-right.webp)">
+  <div class="wrap">
+    <p class="xm-kick rv">{{ xm.partners_kicker }}</p>
+    <h1 class="xm-title rv d1"><span class="xm-she small">{{ xm.partners_title }}</span><span class="xm-script">{{ xm.partners_script }}</span></h1>
+    <p class="xm-tag rv d2">{{ xm.partners_sub }}</p>
+  </div>
+</section>
+
+<section class="xm-paper"><div class="wrap xm-two">
+  <p class="xm-script xm-big rv">{% for ln in xm.community_script.split("\n") %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+  <div class="xm-rule"></div>
+  <div class="xm-copy rv d1">{% for p in xm.community %}<p>{{ p }}</p>{% endfor %}</div>
+</div></section>
+
+<section class="xm-paper xm-partners"><div class="wrap">
+  {% for p in xm.partners %}
+  <article class="xm-partner{% if loop.index is even %} flip{% endif %} rv">
+    <figure class="xm-pol"><div class="xm-pic"><span>{{ p.name[0] }}</span></div><figcaption class="xm-script">{{ p.name }}</figcaption></figure>
+    <div class="xm-ptx">
+      <p class="xm-kick">{{ p.name }}</p>
+      <h2 class="xm-script xm-pname">{{ p.business }}</h2>
+      <dl>
+        <dt>Her story</dt><dd>{{ p.story }}</dd>
+        <dt>Her offering</dt><dd>{{ p.offer }}</dd>
+        <dt>Her why</dt><dd class="why">&ldquo;{{ p.why }}&rdquo;</dd>
+      </dl>
+    </div>
+    <aside class="xm-raffle">{{ xi("gift") }}<div><p class="xm-kick">Raffle contribution</p><p>{{ p.raffle }}</p></div></aside>
+  </article>
+  {% endfor %}
+  <div class="xm-center"><a class="xm-btn" href="/about/">{{ xm.partners_cta }} {{ arrow() }}</a></div>
+</div></section>
+
+<div class="xm-wine xm-ribbon"><span>{{ xm.partners_strip }}</span></div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{# Shared pieces for the three SHE Christmas pages: the little icons, the bar of page links, the booking button. #}
+{% macro xi(n) -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{%- if n == "glasses" %}<path d="M5 3h5l-.6 7a2.4 2.4 0 0 1-3.8 0z"/><path d="M7.5 12.5V19M5 19h5"/><path d="M14 3h5l-.6 7a2.4 2.4 0 0 1-3.8 0z"/><path d="M16.5 12.5V19M14 19h5"/>
+{%- elif n == "people" %}<circle cx="12" cy="7" r="2.6"/><circle cx="5.5" cy="9.5" r="2"/><circle cx="18.5" cy="9.5" r="2"/><path d="M7.5 19c.3-3 2-4.6 4.5-4.6s4.2 1.6 4.5 4.6"/><path d="M2.5 17c.2-2.2 1.3-3.4 3-3.6M21.5 17c-.2-2.2-1.3-3.4-3-3.6"/>
+{%- elif n == "gift" %}<rect x="4" y="9" width="16" height="11" rx="1"/><path d="M3 9h18v3H3zM12 9v11M12 9C10 5 6 6 7.5 8.5M12 9c2-4 6-3 4.5-.5"/>
+{%- elif n == "heart" %}<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.4A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>
+{%- elif n == "candle" %}<path d="M12 2.5c1.500 2 2 3 0 4.6C10 5.5 10.5 4.5 12 2.5z"/><rect x="8.5" y="10" width="7" height="10" rx="1"/><path d="M12 7.1V10"/>
+{%- elif n == "clock" %}<circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/>
+{%- elif n == "pin" %}<path d="M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/>
+{%- elif n == "calendar" %}<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>
+{%- endif -%}
+</svg>
+{%- endmacro %}
+
+{% macro subnav(xm, here) -%}
+<nav class="xm-nav" aria-label="SHE Christmas">
+  <div class="wrap">
+    <div class="xm-links">
+      {% for label, href in xm.nav %}<a href="{{ href }}"{% if (href == "/christmas/" and here == "home") or (href == "/christmas/partners/" and here == "partners") or (href == "/christmas/charity/" and here == "charity") %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
+    </div>
+    {{ book(xm, "xm-navbtn") }}
+  </div>
+</nav>
+{%- endmacro %}
+
+{# While there is no booking link, the button says so and goes to Join SHE rather than nowhere. #}
+{% macro book(xm, cls="") -%}
+{% if xm.book_url %}<a class="xm-btn {{ cls }}" href="{{ xm.book_url }}" target="_blank" rel="noopener">Book your place</a>
+{% else %}<a class="xm-btn {{ cls }}" href="/join/">Hear when booking opens</a>{% endif %}
+{%- endmacro %}

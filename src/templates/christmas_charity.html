@@ -1,0 +1,38 @@
+{% extends "base.html" %}{% from "_macros.html" import arrow %}{% from "_xmas.html" import xi, subnav, book %}
+{# The charity. Its name and page have not been supplied, so the page says so plainly and offers no button to nowhere. #}
+{% block content %}
+<div class="xm">
+{{ subnav(xm, "charity") }}
+<section class="xm-hero short" style="--l:url(/static/img/xmas-tree-left.webp);--r:url(/static/img/xmas-candles-right.webp)">
+  <div class="wrap">
+    <p class="xm-kick rv">{{ xm.charity_kicker }}</p>
+    <h1 class="xm-title rv d1"><span class="xm-she">{{ xm.charity_title }}</span><span class="xm-script">{% for ln in xm.charity_script.split("\n") %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</span></h1>
+  </div>
+</section>
+
+<section class="xm-paper xm-cause"><div class="wrap xm-causegrid">
+  <div class="xm-causetx rv">
+    <h2 class="xm-script xm-big">{{ xm.cause_title }}</h2>
+    {% for p in xm.cause %}<p>{{ p }}</p>{% endfor %}
+  </div>
+  <figure class="xm-pol tilt rv d1"><div class="xm-pic photo"><img src="/static/img/xmas-gift.webp" alt="Hands in a cream knitted jumper holding a gift wrapped in brown paper with a deep red velvet ribbon" loading="lazy" decoding="async"></div></figure>
+</div></section>
+
+<section class="xm-paper xm-three"><div class="wrap">
+  <ul class="xm-cols">
+    {% for ic, t, d in xm.charity_cols %}<li class="rv d{{ loop.index0 }}">{{ xi(ic) }}<h3 class="xm-kick">{{ t }}</h3><p>{{ d }}</p></li>{% endfor %}
+  </ul>
+</div></section>
+
+<section class="xm-quote" style="--q:url(/static/img/xmas-tree-banner.webp)"><div class="wrap">
+  <blockquote class="xm-script rv">&ldquo;{{ xm.charity_quote }}&rdquo;</blockquote>
+</div></section>
+
+<section class="xm-wine xm-ctaband"><div class="wrap xm-center">
+  <h2 class="xm-kick xm-h2 rv">{{ xm.charity_cta_title }}</h2>
+  {% if xm.charity_url %}<a class="xm-btn ghost rv d1" href="{{ xm.charity_url }}" target="_blank" rel="noopener">{{ xm.charity_cta }} {{ arrow() }}</a>
+  {% else %}<p class="xm-soon rv d1">{{ xm.charity_soon }}</p>{% endif %}
+  <div class="rv d2" style="margin-top:22px">{{ book(xm, "light") }}</div>
+</div></section>
+</div>
+{% endblock %}

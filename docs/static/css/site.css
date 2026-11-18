@@ -593,3 +593,4 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 }
 @media (prefers-reduced-motion:reduce){.xm-btn,.xm-btn .ar{transition:none}}
 .xm-hero.short .xm-title .xm-script{font-size:clamp(46px,7.2vw,100px);margin-top:.04em}
+.xm-pic.face img{aspect-ratio:1/1;object-fit:cover;object-position:50% 30%}

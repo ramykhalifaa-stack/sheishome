@@ -1,6 +1,5 @@
 {% extends "base.html" %}{% from "_macros.html" import arrow %}{% from "_xmas.html" import xi, subnav, book %}
-{# The people behind SHE Christmas. Their photographs have not been supplied, so each sits in a framed card with her
-   initial; replace a card by adding her photograph. #}
+{# The people behind SHE Christmas. Each card shows her portrait; a partner with no photo field shows her initial instead. #}
 {% block content %}
 <div class="xm">
 {{ subnav(xm, "partners") }}
@@ -21,7 +20,7 @@
 <section class="xm-paper xm-partners"><div class="wrap">
   {% for p in xm.partners %}
   <article class="xm-partner{% if loop.index is even %} flip{% endif %} rv">
-    <figure class="xm-pol"><div class="xm-pic"><span>{{ p.name[0] }}</span></div><figcaption class="xm-script">{{ p.name }}</figcaption></figure>
+    <figure class="xm-pol">{% if p.photo %}<div class="xm-pic photo face"><img src="/static/img/{{ p.photo }}.webp" alt="Portrait of {{ p.name }}" loading="lazy" decoding="async"></div>{% else %}<div class="xm-pic"><span>{{ p.name[0] }}</span></div>{% endif %}<figcaption class="xm-script">{{ p.name }}</figcaption></figure>
     <div class="xm-ptx">
       <p class="xm-kick">{{ p.name }}</p>
       <h2 class="xm-script xm-pname">{{ p.business }}</h2>

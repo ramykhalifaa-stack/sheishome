@@ -1,18 +1,21 @@
-{% extends "base.html" %}{% from "_macros.html" import arrow, lines %}{% from "_xmas.html" import xi, subnav, book %}
-{# SHE Christmas, the main page: the evening, the setting, what to expect, a taste of the partners and the charity, the invitation. #}
+{% extends "base_xmas.html" %}{% from "_macros.html" import arrow %}{% from "_xmas.html" import xi, subnav, book, foot %}
+{# SHE Christmas, the main page, told as a story: the invitation, the experience, what is included, the people, the giving, the final invitation. Every booking button goes to the registration page. #}
 {% block content %}
 <div class="xm">
 {{ subnav(xm, "home") }}
+
+{# 1. The invitation #}
 <section class="xm-hero" style="--l:url(/static/img/xmas-mug.webp);--r:url(/static/img/xmas-fire.webp)">
   <div class="wrap">
-    <p class="xm-kick rv">{{ xm.date_long }}</p>
+    <p class="xm-kick rv">{{ xm.weekday }} {{ xm.date_long }}</p>
     <h1 class="xm-title rv d1"><span class="xm-she">SHE</span><span class="xm-script">Christmas</span></h1>
     <p class="xm-tag rv d2">{{ xm.tagline }}</p>
-    <ul class="xm-meta rv d2"><li>{{ xi("clock") }}{{ xm.time }}</li><li>{{ xi("pin") }}{{ xm.venue }}, {{ xm.area }}</li></ul>
-    <a class="xm-btn ghost rv d3" href="#the-evening">Explore the evening {{ arrow() }}</a>
+    <ul class="xm-meta rv d2"><li>{{ xi("clock") }}<span>{{ xm.time }}</span></li><li>{{ xi("pin") }}<span><b>{{ xm.venue }},</b> <b>{{ xm.area }}</b></span></li></ul>
+    <div class="xm-ctas rv d3">{{ book(xm, "gold") }}<a class="xm-textlink" href="#the-evening">{{ xm.intro_cta }} {{ arrow() }}</a></div>
   </div>
 </section>
 
+{# 2. The experience #}
 <section class="xm-paper" id="the-evening"><div class="wrap xm-two">
   <p class="xm-script xm-big rv">{% for ln in xm.intro_script.split("\n") %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
   <div class="xm-rule"></div>
@@ -37,42 +40,49 @@
   <ul class="xm-icons">
     {% for ic, label in xm.expect %}<li class="rv d{{ loop.index0 }}">{{ xi(ic) }}<span>{% for ln in label.split("\n") %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</span></li>{% endfor %}
   </ul>
+  <div class="xm-cta rv"><a class="xm-btn ghost" href="#included">{{ xm.expect_cta }} {{ arrow() }}</a></div>
 </div></section>
 
-<section class="xm-incl"><div class="wrap">
-  <h2 class="xm-kick xm-h2 rv">{{ xm.includes_title }}</h2>
+{# 3. What is included #}
+<section class="xm-incl" id="included"><div class="wrap">
+  <p class="xm-kick rv">For every guest</p>
+  <h2 class="xm-h2 xm-incl-h rv">{{ xm.includes_title }}</h2>
   <ul class="xm-inclgrid">
-    {% for ic, head, txt in xm.includes %}<li class="rv d{{ loop.index0 % 3 }}">{{ xi(ic) }}<h3>{{ head }}</h3><p>{{ txt }}</p></li>{% endfor %}
+    {% for ic, head, txt in xm.includes %}<li class="rv d{{ loop.index0 % 3 }}"><span class="xm-ico">{{ xi(ic) }}</span><h3>{{ head }}</h3><p>{{ txt }}</p></li>{% endfor %}
   </ul>
   <div class="xm-bar rv"><strong>{{ xm.bar_title }}</strong><span>{{ xm.bar }}</span></div>
   <p class="xm-diet rv">{{ xm.diet }}</p>
+  <div class="xm-cta rv">{{ book(xm) }}</div>
 </div></section>
 
+{# 4. The people behind the magic #}
 <section class="xm-paper xm-people"><div class="wrap">
   <h2 class="xm-kick xm-h2 rv">{{ xm.people_title }}</h2>
   <p class="xm-sub rv d1">{{ xm.people_lede }}</p>
-  <div class="xm-tiles rv d1">
-    {% for n in range(1, 5) %}<img src="/static/img/xmas-tile-{{ n }}.webp" alt="" loading="lazy" decoding="async">{% endfor %}
-  </div>
+  <ul class="xm-faces rv d1">
+    {% for p in xm.partners %}<li><div class="xm-face"><img src="/static/img/{{ p.photo }}.webp" alt="Portrait of {{ p.name }}" loading="lazy" decoding="async"></div><b>{{ p.business }}</b><span>{{ p.name }}</span></li>{% endfor %}
+  </ul>
   <a class="xm-btn rv d2" href="/christmas/partners/">{{ xm.people_cta }} {{ arrow() }}</a>
 </div></section>
 
-<section class="xm-wine xm-bottom"><div class="wrap xm-bgrid">
-  <div class="xm-giving rv">
-    {{ xi("heart") }}
-    <div>
-      <h2 class="xm-kick xm-h2">{% for ln in xm.giving_title.split("\n") %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</h2>
-      <p>{{ xm.giving }}</p>
-      <a class="xm-link" href="/christmas/charity/">{{ xm.giving_cta }} {{ arrow() }}</a>
-    </div>
-  </div>
-  <div class="xm-invite rv d1">
-    <h2 class="xm-kick xm-h2">{{ xm.invite_title }}</h2>
-    <p class="xm-poem">{% for ln in xm.invite %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
-    <ul class="xm-meta small"><li>{{ xi("calendar") }}{{ xm.date_long }}</li><li>{{ xi("clock") }}{{ xm.time }}</li><li>{{ xi("pin") }}{{ xm.venue }}, {{ xm.area }}</li></ul>
-    {{ book(xm, "light") }}
-    <p class="xm-close">{{ xm.invite_close }}</p>
+{# 5. Giving back #}
+<section class="xm-wine xm-giveband"><div class="wrap xm-giving rv">
+  {{ xi("heart") }}
+  <div>
+    <h2 class="xm-kick xm-h2">{% for ln in xm.giving_title.split("\n") %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</h2>
+    {% for ln in xm.giving %}<p>{{ ln }}</p>{% endfor %}
+    <a class="xm-link" href="/christmas/charity/">{{ xm.giving_cta }} {{ arrow() }}</a>
   </div>
 </div></section>
+
+{# 6. The invitation to join us #}
+<section class="xm-final"><div class="wrap xm-invite rv">
+  <h2 class="xm-kick xm-h2">{{ xm.invite_title }}</h2>
+  <p class="xm-poem">{% for ln in xm.invite %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+  <p class="xm-close">{{ xm.invite_close }}</p>
+  <ul class="xm-meta small"><li>{{ xi("calendar") }}<span>{{ xm.weekday }} {{ xm.date_long }}</span></li><li>{{ xi("clock") }}<span>{{ xm.time }}</span></li><li>{{ xi("pin") }}<span><b>{{ xm.venue }},</b> <b>{{ xm.area }}</b></span></li></ul>
+  {{ book(xm, "gold big") }}
+</div></section>
+{{ foot(xm) }}
 </div>
 {% endblock %}

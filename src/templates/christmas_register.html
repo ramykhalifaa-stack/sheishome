@@ -1,0 +1,70 @@
+{% extends "base_xmas.html" %}{% from "_macros.html" import arrow %}{% from "_xmas.html" import xi, subnav, book, foot %}
+{# The SHE Christmas registration page. It builds NO form of its own: registrations are captured by the founder's Beacons embedded form,
+   which goes in the reserved container below (see XMAS_BEACONS_EMBED in src/content/__init__.py). The thank-you panel is ready for after submission. #}
+{% block content %}
+<div class="xm">
+{{ subnav(xm, "register") }}
+<section class="xm-hero short" style="--l:url(/static/img/xmas-tree-left.webp);--r:url(/static/img/xmas-candles-right.webp)">
+  <div class="wrap">
+    <p class="xm-kick rv">{{ xm.reg_kicker }}</p>
+    <h1 class="xm-title rv d1"><span class="xm-she small">{{ xm.reg_title }}</span><span class="xm-script">{{ xm.reg_script }}</span></h1>
+    <p class="xm-tag rv d2">{{ xm.reg_sub }}</p>
+  </div>
+</section>
+
+<section class="xm-paper xm-regtop"><div class="wrap xm-reggrid">
+  <div class="xm-regcard rv">
+    <p class="xm-kick">The evening</p>
+    <ul class="xm-meta small stack">
+      <li>{{ xi("calendar") }}<span>{{ xm.weekday }} {{ xm.date_long }}</span></li>
+      <li>{{ xi("clock") }}<span>{{ xm.time }}</span></li>
+      <li>{{ xi("pin") }}<span><b>{{ xm.venue }},</b> <b>{{ xm.area }}</b></span></li>
+    </ul>
+  </div>
+  <div class="xm-regwhat rv d1">
+    <h2 class="xm-kick xm-h2">{{ xm.reg_what_title }}</h2>
+    {% for p in xm.reg_what %}<p>{{ p }}</p>{% endfor %}
+  </div>
+</div></section>
+
+<section class="xm-formsec" id="guest-list"><div class="wrap">
+  <h2 class="xm-kick xm-h2 rv">{{ xm.reg_form_title }}</h2>
+  {# ===== BEACONS EMBED CONTAINER =====
+     The founder's Beacons form goes here. Paste the embed code into XMAS_BEACONS_EMBED in src/content/__init__.py and rebuild;
+     no layout change is needed. The container is responsive: iframes and embeds inside it are made full width. #}
+  <div class="xm-embed rv d1" id="beacons-form" data-beacons-embed>
+    {% if xm.embed %}{{ xm.embed | safe }}{% else %}
+    <div class="xm-embed-empty">{{ xi("calendar") }}<p>{{ xm.reg_soon }}</p></div>
+    {% endif %}
+  </div>
+  {# ===== POST-SUBMISSION CONFIRMATION =====
+     Shown instead of the form when this page is opened with ?thanks in the address (for a Beacons redirect after submitting).
+     The wording is a draft, to be finalised once the Beacons form is in place. #}
+  <div class="xm-thanks" id="xm-thanks" role="status" hidden>
+    {{ xi("heart") }}
+    <h3 class="xm-script">{{ xm.reg_thanks_title }}</h3>
+    <p>{{ xm.reg_thanks }}</p>
+    <p class="xm-thanks-note">{{ xm.reg_thanks_note }}</p>
+  </div>
+</div></section>
+
+<section class="xm-paper xm-next"><div class="wrap">
+  <h2 class="xm-kick xm-h2 rv">{{ xm.reg_next_title }}</h2>
+  <ul class="xm-cols">
+    {% for ic, t, d in xm.reg_next %}<li class="rv d{{ loop.index0 }}">{{ xi(ic) }}<h3 class="xm-kick">{{ t }}</h3><p>{{ d }}</p></li>{% endfor %}
+  </ul>
+</div></section>
+
+<section class="xm-paper xm-regnotes"><div class="wrap">
+  <h3 class="xm-kick rv">What's included in your ticket</h3>
+  <ul class="xm-chips rv d1">{% for ic, head, txt in xm.includes %}<li>{{ head }}</li>{% endfor %}</ul>
+  <p class="rv">{{ xm.bar_title }}: {{ xm.bar }}</p>
+  <p class="rv">{{ xm.reg_note }}</p>
+  <p class="rv">{{ xm.reg_give }}</p>
+</div></section>
+{{ foot(xm) }}
+</div>
+{% endblock %}
+{% block scripts %}<script>
+(function(){try{if(/[?&]thanks\b/.test(location.search)){var t=document.getElementById('xm-thanks'),f=document.getElementById('beacons-form');if(t){t.hidden=false;if(f)f.hidden=true;t.scrollIntoView();}}}catch(e){}})();
+</script>{% endblock %}

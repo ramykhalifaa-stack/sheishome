@@ -1,12 +1,12 @@
-{% extends "base.html" %}{% from "_macros.html" import arrow %}{% from "_xmas.html" import xi, subnav, book %}
-{# The charity. Its name and page have not been supplied, so the page says so plainly and offers no button to nowhere. #}
+{% extends "base_xmas.html" %}{% from "_macros.html" import arrow %}{% from "_xmas.html" import xi, subnav, book, foot %}
+{# Giving back. The raffle is the fundraising element, never ticket sales. The charity's name and page have not been supplied, so the page says so plainly and offers no button to nowhere. #}
 {% block content %}
 <div class="xm">
 {{ subnav(xm, "charity") }}
 <section class="xm-hero short" style="--l:url(/static/img/xmas-tree-left.webp);--r:url(/static/img/xmas-candles-right.webp)">
   <div class="wrap">
     <p class="xm-kick rv">{{ xm.charity_kicker }}</p>
-    <h1 class="xm-title rv d1"><span class="xm-she">{{ xm.charity_title }}</span><span class="xm-script">{% for ln in xm.charity_script.split("\n") %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</span></h1>
+    <h1 class="xm-title rv d1"><span class="xm-she small">{{ xm.charity_title }}</span><span class="xm-script">{% for ln in xm.charity_script.split("\n") %}{{ ln }}{% if not loop.last %}<br>{% endif %}{% endfor %}</span></h1>
   </div>
 </section>
 
@@ -24,6 +24,8 @@
   </ul>
 </div></section>
 
+<section class="xm-paper xm-clear"><div class="wrap"><p class="rv">{{ xm.charity_clear }}</p></div></section>
+
 <section class="xm-quote" style="--q:url(/static/img/xmas-tree-banner.webp)"><div class="wrap">
   <blockquote class="xm-script rv">&ldquo;{{ xm.charity_quote }}&rdquo;</blockquote>
 </div></section>
@@ -32,7 +34,8 @@
   <h2 class="xm-kick xm-h2 rv">{{ xm.charity_cta_title }}</h2>
   {% if xm.charity_url %}<a class="xm-btn ghost rv d1" href="{{ xm.charity_url }}" target="_blank" rel="noopener">{{ xm.charity_cta }} {{ arrow() }}</a>
   {% else %}<p class="xm-soon rv d1">{{ xm.charity_soon }}</p>{% endif %}
-  <div class="rv d2" style="margin-top:22px">{{ book(xm, "light") }}</div>
+  <div class="rv d2" style="margin-top:22px">{{ book(xm, "gold") }}</div>
 </div></section>
+{{ foot(xm) }}
 </div>
 {% endblock %}

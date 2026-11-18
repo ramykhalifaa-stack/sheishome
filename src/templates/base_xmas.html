@@ -1,0 +1,35 @@
+{# Standalone layout for the SHE Christmas microsite. Copy of base.html head, with none of the main-site header, menu or footer. #}<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title }} | SHE Christmas</title>
+<meta name="description" content="{{ page.description or site.description }}">
+<link rel="canonical" href="{{ site.domain }}{{ page.path }}">
+<meta property="og:title" content="{{ page.title }} | SHE Christmas"><meta property="og:description" content="{{ page.description or site.description }}"><meta property="og:type" content="website"><meta property="og:url" content="{{ site.domain }}{{ page.path }}"><meta property="og:image" content="{{ site.domain }}/static/img/og-she.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:site_name" content="SHE"><meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{ page.title }}"><meta name="twitter:description" content="{{ page.description or site.description }}"><meta name="twitter:image" content="{{ site.domain }}/static/img/og-she.jpg">
+<link rel="icon" href="/static/img/she-mark-ink.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<meta name="theme-color" content="#5E1020">
+{% if fonts and fonts.ok %}
+{# Both typefaces come from our own site, so a phone opens no other connection before it can draw a word. #}
+<style>{{ fonts.css | safe }}</style>
+{% for font in fonts.preload %}<link rel="preload" as="font" type="font/woff2" href="{{ font }}" crossorigin>{% endfor %}
+{% else %}
+{% set google_fonts = "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" %}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ google_fonts }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ google_fonts }}"></noscript>
+{% endif %}
+<link rel="stylesheet" href="/static/css/site.css{% if assets %}?v={{ assets.css }}{% endif %}">
+<!--first-picture-preload-->
+</head>
+<body class="xmas">
+{# SHE Christmas is its own small site: no main header, menu, footer or links into the wider SHE site. #}
+<main>
+{% block content %}{% endblock %}
+</main>
+<script src="/static/js/site.js{% if assets %}?v={{ assets.js }}{% endif %}" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

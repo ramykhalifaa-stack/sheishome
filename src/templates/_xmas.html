@@ -17,19 +17,33 @@
 </svg>
 {%- endmacro %}
 
+{# The SHE Christmas header: its own brand, its own four pages and the guest-list button. It never links into the main SHE site. #}
 {% macro subnav(xm, here) -%}
-<nav class="xm-nav" aria-label="SHE Christmas">
+<header class="xm-top">
   <div class="wrap">
-    <div class="xm-links">
-      {% for label, href in xm.nav %}<a href="{{ href }}"{% if (href == "/christmas/" and here == "home") or (href == "/christmas/partners/" and here == "partners") or (href == "/christmas/charity/" and here == "charity") %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
-    </div>
-    {{ book(xm, "xm-navbtn") }}
+    <a class="xm-brand" href="/christmas/" aria-label="SHE Christmas, home"><b>SHE</b><i>Christmas</i></a>
+    {% if here != "register" %}<a class="xm-btn xm-navbtn" href="{{ xm.reg_url }}">{{ xm.cta_short }}</a>{% endif %}
+    <nav class="xm-links" aria-label="SHE Christmas">
+      {% for label, href, key in xm.nav %}<a href="{{ href }}"{% if key == here %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
+    </nav>
   </div>
-</nav>
+</header>
 {%- endmacro %}
 
-{# While there is no booking link, the button says so and goes to Join SHE rather than nowhere. #}
-{% macro book(xm, cls="") -%}
-{% if xm.book_url %}<a class="xm-btn {{ cls }}" href="{{ xm.book_url }}" target="_blank" rel="noopener">Book your place</a>
-{% else %}<a class="xm-btn {{ cls }}" href="/join/">Hear when booking opens</a>{% endif %}
+{# Every booking button on the microsite is this one: it goes to the registration page, never to the main SHE site. #}
+{% macro book(xm, cls="", label="") -%}
+<a class="xm-btn {{ cls }}" href="{{ xm.reg_url }}">{{ label or xm.cta }}</a>
+{%- endmacro %}
+
+{# The Christmas footer: its own pages and the guest list, nothing from the main site. #}
+{% macro foot(xm) -%}
+<footer class="xm-foot">
+  <div class="wrap">
+    <a class="xm-brand" href="/christmas/" aria-label="SHE Christmas, home"><b>SHE</b><i>Christmas</i></a>
+    <p class="xm-foot-meta">{{ xm.weekday }} {{ xm.date_long }} &middot; {{ xm.time }}<br>{{ xm.venue }}, {{ xm.area }}</p>
+    <nav aria-label="SHE Christmas pages">
+      {% for label, href, key in xm.nav %}<a href="{{ href }}">{{ label }}</a>{% endfor %}<a href="{{ xm.reg_url }}">Guest List</a>
+    </nav>
+  </div>
+</footer>
 {%- endmacro %}

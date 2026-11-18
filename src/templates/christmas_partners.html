@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% from "_macros.html" import arrow %}{% from "_xmas.html" import xi, subnav, book %}
+{% extends "base_xmas.html" %}{% from "_macros.html" import arrow %}{% from "_xmas.html" import xi, subnav, book, foot %}
 {# The people behind SHE Christmas. Each card shows her portrait; a partner with no photo field shows her initial instead. #}
 {% block content %}
 <div class="xm">
@@ -33,9 +33,10 @@
     <aside class="xm-raffle">{{ xi("gift") }}<div><p class="xm-kick">Raffle contribution</p><p>{{ p.raffle }}</p></div></aside>
   </article>
   {% endfor %}
-  <div class="xm-center"><a class="xm-btn" href="/about/">{{ xm.partners_cta }} {{ arrow() }}</a></div>
+  <div class="xm-center">{{ book(xm) }}</div>
 </div></section>
 
 <div class="xm-wine xm-ribbon"><span>{{ xm.partners_strip }}</span></div>
+{{ foot(xm) }}
 </div>
 {% endblock %}

@@ -1,0 +1,131 @@
+{% extends "base_cc.html" %}{% from "_macros.html" import arrow %}
+{# SHE Coffee Conversations landing page: a standalone booking funnel. Sessions and locations come from content (CC), never from this layout. #}
+{% macro ico(n) -%}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{%- if n == "pin" %}<path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>
+{%- elif n == "calendar" %}<rect x="3.5" y="5" width="17" height="15" rx="2.2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/>
+{%- elif n == "ticket" %}<path d="M3.5 9a2 2 0 0 0 0 4v2.500a1.500 1.500 0 0 0 1.500 1.500h14a1.500 1.500 0 0 0 1.500-1.500V13a2 2 0 0 1 0-4V6.500A1.500 1.500 0 0 0 19 5H5A1.500 1.500 0 0 0 3.500 6.500z" transform="rotate(-12 12 11)"/><path d="M10 9.500l4.500 1" transform="rotate(-12 12 11)"/>
+{%- elif n == "people" %}<circle cx="12" cy="7.500" r="2.600"/><circle cx="5.500" cy="10" r="2"/><circle cx="18.500" cy="10" r="2"/><path d="M7.500 19.500c.3-3 2-4.600 4.500-4.600s4.200 1.600 4.500 4.600"/><path d="M2.500 17.500c.2-2.200 1.300-3.400 3-3.600M21.500 17.500c-.2-2.200-1.300-3.400-3-3.600"/>
+{%- endif -%}
+</svg>
+{%- endmacro %}
+{% block content %}
+<div class="ccl">
+
+<section class="ccl-hero">
+  <div class="ccl-herotx">
+    <a class="ccl-logo" href="/coffee-conversations/" aria-label="SHE Coffee Conversations"><span>SHE</span></a>
+    <p class="ccl-label"><i></i><span>Coffee Conversations</span><i></i></p>
+    <h1>Good coffee. Better questions. <br>Conversations worth having.</h1>
+    <p class="ccl-lead">A different kind of coffee morning. A welcoming space for women to meet, connect and enjoy meaningful conversations.</p>
+    <p class="ccl-lead">Thoughtful questions, shared experiences and the chance to meet some lovely new people.</p>
+    <a class="ccl-btn" href="#book">Book your place {{ arrow() }}</a>
+  </div>
+  <div class="ccl-heropic"><img src="/static/img/cc-hero.webp" width="1200" height="1438" alt="A latte with heart-shaped foam art beside a croissant, in soft morning light" fetchpriority="high" decoding="async"></div>
+</section>
+
+<section class="ccl-how" aria-labelledby="how-h">
+  <div class="ccl-wrap">
+    <h2 id="how-h" class="ccl-h2 ccl-ruled"><span>How It Works</span></h2>
+    <ol class="ccl-steps">
+      {% for ic, n, t, d in cc.steps %}<li><span class="ccl-ico">{{ ico(ic) }}</span><div><p class="ccl-num">{{ n }}</p><h3>{{ t }}</h3><p>{{ d }}</p></div></li>{% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="ccl-book" id="book" aria-labelledby="book-h">
+  <div class="ccl-wrap ccl-narrow">
+    <h2 id="book-h" class="ccl-h2">Book Your Coffee Conversations</h2>
+    <p class="ccl-sub"><label for="ccl-loc">Where would you like to join us?</label></p>
+    <div class="ccl-select"><select id="ccl-loc" aria-controls="ccl-dates">
+      {% for t in cc.locations %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+    </select></div>
+    <hr class="ccl-short">
+    <fieldset class="ccl-dates" id="ccl-dates">
+      <legend>Choose a date that works for you</legend>
+      <div id="ccl-list" aria-live="polite"></div>
+    </fieldset>
+    <div class="ccl-go">
+      <p class="ccl-picked" id="ccl-picked" aria-live="polite"></p>
+      <a class="ccl-btn" id="ccl-book" href="#book" aria-disabled="true">Book your place {{ arrow() }}</a>
+      <p class="ccl-fine">You will add your name and email and pay securely on the next page. Your place is confirmed once payment is complete.</p>
+    </div>
+    <noscript>
+      <div class="ccl-nojs"><p><b>Available dates</b></p>
+      {% for s in cc.sessions %}{% if s.url and not s.full %}<p><a href="{{ s.url }}">{{ s.town }}: {{ s.day }}, {{ s.time }}, {{ s.venue }}</a></p>{% endif %}{% endfor %}</div>
+    </noscript>
+  </div>
+</section>
+
+<section class="ccl-join" id="community" aria-labelledby="join-h">
+  <div class="ccl-joinpic"><img src="/static/img/cc-journal.webp" width="1080" height="897" alt="A linen-bound notebook with SHE Coffee Conversations on the cover, on a sunlit surface" loading="lazy" decoding="async"></div>
+  <div class="ccl-jointx">
+    <p class="ccl-label left"><span>There's more to SHE</span></p>
+    <h2 id="join-h" class="ccl-h2 left">Be part of the community.</h2>
+    <p>Coffee Conversations is just one way to connect. SHE is a growing community creating opportunities for women to meet, discover new experiences, build friendships and feel part of something.</p>
+    <p>Whether you're joining us for coffee, exploring new experiences or looking to meet like-minded women, there's a place for you here.</p>
+    <form class="ccl-form" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Joining..." data-title="Welcome to SHE" data-note="You will hear from us when there is something worth sharing, starting with new Coffee Conversations dates.">
+      <label class="ccl-vh" for="ccl-name">First name</label>
+      <input id="ccl-name" name="name" placeholder="First name" autocomplete="given-name" required>
+      <label class="ccl-vh" for="ccl-email">Email address</label>
+      <input id="ccl-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+      <input type="hidden" name="source" value="{{ cc.source }}">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+      <button class="ccl-btn" type="submit">Join SHE</button>
+      <p class="msg ccl-fine" role="status">You can leave at any time. We never pass your email on.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="ccl-foot"><p>SHE &middot; Sacred Human Experience</p></footer>
+</div>
+{% endblock %}
+{% block scripts %}
+<script id="ccl-data" type="application/json">{{ {"locations": cc.locations, "sessions": cc.sessions}|tojson }}</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById('ccl-data').textContent);
+  var today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/London' });
+  var sessions = data.sessions.filter(function (s) { return s.iso >= today; });
+  var sel = document.getElementById('ccl-loc'), list = document.getElementById('ccl-list'),
+      btn = document.getElementById('ccl-book'), picked = document.getElementById('ccl-picked');
+  function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function bookable(s) { return s.url && !s.full && s.places !== 0; }
+  function setBtn(s) {
+    if (s && bookable(s)) {
+      btn.href = s.url; btn.removeAttribute('aria-disabled');
+      picked.textContent = s.town + ', ' + s.day + ', ' + s.time;
+    } else {
+      btn.setAttribute('href', '#book'); btn.setAttribute('aria-disabled', 'true'); picked.textContent = '';
+    }
+  }
+  function chip(s) {
+    if (s.full || s.places === 0) return '<span class="ccl-chip off">Fully booked</span>';
+    if (!s.url) return '<span class="ccl-chip off">Booking opens soon</span>';
+    if (s.places) return '<span class="ccl-chip">' + esc(s.places) + (s.places === 1 ? ' place left' : ' places left') + '</span>';
+    return '';
+  }
+  function render() {
+    var town = sel.value, rows = sessions.filter(function (s) { return s.town === town; }), html = '', first = null;
+    rows.forEach(function (s) {
+      var ok = bookable(s); if (ok && !first) first = s;
+      html += '<label class="ccl-row' + (ok ? '' : ' off') + '"><input type="radio" name="ccl-session" value="' + esc(s.id) + '"' + (ok ? '' : ' disabled') + '>' +
+        '<span class="ccl-dot" aria-hidden="true"></span><span class="ccl-when"><b>' + esc(s.day) + '</b><span class="ccl-bar" aria-hidden="true"></span><span>' + esc(s.time) + '</span></span>' +
+        '<span class="ccl-where">' + esc(s.venue) + (s.venue && town ? ', ' + esc(town.split('-')[0]) : '') + '</span>' + chip(s) + '</label>';
+    });
+    if (!rows.length) html += '<p class="ccl-none">There are no dates open for booking in ' + esc(town) + ' right now.</p>';
+    html += '<a class="ccl-row more" href="#community"><span class="ccl-dot" aria-hidden="true"></span><span class="ccl-when"><b>More dates coming soon</b></span><span class="ccl-where">Join the mailing list to be the first to hear about new dates.</span></a>';
+    list.innerHTML = html;
+    var radios = list.querySelectorAll('input[type=radio]');
+    function choose(id) { var s = rows.filter(function (r) { return r.id === id; })[0]; list.querySelectorAll('.ccl-row').forEach(function (l) { l.classList.remove('on'); }); radios.forEach(function (r) { if (r.checked) r.closest('.ccl-row').classList.add('on'); }); setBtn(s); }
+    radios.forEach(function (r) { r.addEventListener('change', function () { choose(r.value); }); });
+    if (first) { var r0 = list.querySelector('input[value="' + first.id + '"]'); r0.checked = true; choose(first.id); } else setBtn(null);
+  }
+  var withDates = data.locations.filter(function (t) { return sessions.some(function (s) { return s.town === t; }); })[0];
+  if (withDates) sel.value = withDates;
+  sel.addEventListener('change', render);
+  btn.addEventListener('click', function (e) { if (btn.getAttribute('aria-disabled') === 'true') { e.preventDefault(); list.scrollIntoView({ behavior: 'smooth', block: 'center' }); } });
+  render();
+})();
+</script>
+{% endblock %}

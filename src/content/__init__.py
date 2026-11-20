@@ -432,6 +432,44 @@ XMAS = {
 }
 
 
+# SHE Coffee Conversations landing page (/coffee-conversations/): a standalone booking funnel for Instagram, Facebook,
+# WhatsApp and Beacons. It has no main-site navigation. Locations and sessions are DATA, not layout:
+#   * To add a town, add its name to CC_LOCATIONS (order is the order in the dropdown). A town that has a session
+#     but is not listed here is added to the end of the dropdown automatically.
+#   * To add a session, add a line to _COFFEE_DATES (above) with its date, town, venue and its Beacons booking link.
+#     Optional keys: "places": 6 (shows "6 places left"), "full": True (marks it fully booked), and
+#     "start" / "end": "10:00" / "11:30" (otherwise the standard 10:00 to 11:30 is used).
+#   * A session whose date has passed disappears on its own, even before the site is rebuilt.
+# Booking and payment happen on each session's Beacons page: Beacons takes the name, email and card payment and
+# sends its own confirmation. This page stores no booking details, so nothing personal is held here. A session with
+# no link shows "Booking opens soon" and cannot be chosen. The sign-up form at the foot posts to the SHE list with
+# the source "Coffee Conversations".
+CC_LOCATIONS = ["Leamington Spa", "Warwick", "Evesham"]
+CC_SIGNUP_SOURCE = "Coffee Conversations"
+
+
+def _cc_time(h: str) -> str:
+    hh, mm = (int(x) for x in h.split(":"))
+    return f"{hh % 12 or 12}:{mm:02d}{'am' if hh < 12 else 'pm'}"
+
+
+def _cc_session(i, d):
+    start, end = d.get("start", "10:00"), d.get("end", "11:30")
+    return {"id": f"s{i}", "town": d["town"], "iso": d["on"].isoformat(),
+            "day": d["on"].strftime("%A ") + str(d["on"].day) + d["on"].strftime(" %B"),
+            "time": f"{_cc_time(start)} to {_cc_time(end)}", "venue": d["venue"], "url": d.get("url", ""),
+            "places": d.get("places"), "full": bool(d.get("full"))}
+
+
+_cc_sessions = [_cc_session(i, d) for i, d in enumerate(sorted(_COFFEE_DATES, key=lambda x: x["on"])) if d["on"] >= datetime.date.today()]
+_cc_locations = CC_LOCATIONS + [t for t in dict.fromkeys(x["town"] for x in _cc_sessions) if t not in CC_LOCATIONS]
+CC = {"locations": _cc_locations, "sessions": _cc_sessions, "source": CC_SIGNUP_SOURCE,
+      "steps": [("pin", "01", "Choose your location", "Pick from our current Coffee Conversations locations."),
+                ("calendar", "02", "Find a date that works", "Select a date and time that fits your schedule."),
+                ("ticket", "03", "Book your place", "Secure your spot with a simple booking and payment."),
+                ("people", "04", "Turn up, relax and connect", "Join us for a meaningful and uplifting morning with like-minded women.")]}
+
+
 def page(path, template, title, description="", image="", orb=False, unlisted=False, standalone=False, **data):
     """One page. unlisted means it is reachable only by its own address: it is kept out of the
     sitemap and asks search engines not to index it. Nothing on the site links to it."""
@@ -558,6 +596,7 @@ def pages() -> list[dict]:
         page("/insights/", "insights.html", "Coffee Conversations, event insights",
              "What the table chose, and how it felt.", unlisted=True),
         # SHE Christmas, 18 December 2026: the evening, its partners and its charity.
+        page("/coffee-conversations/", "coffee_landing.html", "SHE Coffee Conversations, book your place", "A different kind of coffee morning. Good coffee, better questions, conversations worth having. Choose your town and date and book your place.", "cc-hero", standalone=True, cc=CC),
         page("/christmas/", "christmas.html", "SHE Christmas", "An evening of connection, celebration and a little Christmas magic. 18 December 2026, The Moat House Inn, nr Alcester.", "xmas-mug", standalone=True, xm=XMAS),
         page("/christmas/partners/", "christmas_partners.html", "SHE Christmas partners, the people behind the magic", "Meet the women and independent businesses making SHE Christmas extra special.", "xmas-mug", standalone=True, xm=XMAS),
         page("/christmas/charity/", "christmas_charity.html", "SHE Christmas and the charity", "The Christmas raffle will support a nominated local charity. How it works.", "xmas-mug", standalone=True, xm=XMAS),

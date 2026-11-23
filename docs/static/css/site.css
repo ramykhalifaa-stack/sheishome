@@ -801,3 +801,13 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
   .ccl-form{grid-template-columns:1fr}.ccl-form .ccl-btn{max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.ccl-btn,.ccl-btn .ar,.ccl-row{transition:none}}
+
+/* more businesses: optional raffle, paragraph breaks, monogram, handle */
+.xm-partner.noraffle{grid-template-columns:minmax(220px,.8fr) minmax(0,1.6fr)}
+.xm-partner.noraffle.flip{grid-template-columns:minmax(0,1.6fr) minmax(220px,.8fr)}
+.xm-partner.noraffle.flip .xm-pol{order:2}.xm-partner.noraffle.flip .xm-ptx{order:1}
+.xm-para{display:block}.xm-para+.xm-para{margin-top:8px}
+.xm-handle{margin:0 0 10px;font:500 13px var(--sans);letter-spacing:.08em;color:var(--xmute)}
+.xm-face.mono{display:grid;place-items:center;background:linear-gradient(135deg,#e8c9c0,#c98b86 55%,#8c3040)}.xm-face.mono span{font-size:clamp(54px,9vw,96px);line-height:1;color:#fff}
+.xm-faces{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1000px){.xm-partner.noraffle,.xm-partner.noraffle.flip{grid-template-columns:1fr}.xm-partner.noraffle .xm-pol,.xm-partner.noraffle.flip .xm-pol{order:1}.xm-partner.noraffle .xm-ptx,.xm-partner.noraffle.flip .xm-ptx{order:2}}

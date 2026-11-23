@@ -18,19 +18,21 @@
 </div></section>
 
 <section class="xm-paper xm-partners"><div class="wrap">
+  {% macro paras(v) %}{% if v is string %}{{ v }}{% else %}{% for x in v %}<span class="xm-para">{{ x }}</span>{% endfor %}{% endif %}{% endmacro %}
   {% for p in xm.partners %}
-  <article class="xm-partner{% if loop.index is even %} flip{% endif %} rv">
-    <figure class="xm-pol">{% if p.photo %}<div class="xm-pic photo face"><img src="/static/img/{{ p.photo }}.webp" alt="Portrait of {{ p.name }}" loading="lazy" decoding="async"></div>{% else %}<div class="xm-pic"><span>{{ p.name[0] }}</span></div>{% endif %}<figcaption class="xm-script">{{ p.name }}</figcaption></figure>
+  <article class="xm-partner{% if loop.index is even %} flip{% endif %}{% if not p.raffle %} noraffle{% endif %} rv">
+    <figure class="xm-pol">{% if p.photo %}<div class="xm-pic photo face"><img src="/static/img/{{ p.photo }}.webp" alt="{% if p.name %}Portrait of {{ p.name }}{% else %}Portrait of the founder of {{ p.business }}{% endif %}" loading="lazy" decoding="async"></div>{% else %}<div class="xm-pic"><span>{{ (p.name or p.business)[0] }}</span></div>{% endif %}<figcaption class="xm-script">{{ p.name or p.business }}</figcaption></figure>
     <div class="xm-ptx">
-      <p class="xm-kick">{{ p.name }}</p>
+      {% if p.name %}<p class="xm-kick">{{ p.name }}</p>{% endif %}
       <h2 class="xm-script xm-pname">{{ p.business }}</h2>
+      {% if p.handle %}<p class="xm-handle">{{ p.handle }}</p>{% endif %}
       <dl>
-        <dt>Her story</dt><dd>{{ p.story }}</dd>
-        <dt>Her offering</dt><dd>{{ p.offer }}</dd>
-        <dt>Her why</dt><dd class="why">&ldquo;{{ p.why }}&rdquo;</dd>
+        {% if p.story %}<dt>Her story</dt><dd>{{ paras(p.story) }}</dd>{% endif %}
+        {% if p.offer %}<dt>Her offering</dt><dd>{{ paras(p.offer) }}</dd>{% endif %}
+        {% if p.why %}<dt>Her why</dt><dd class="why">{% if p.why is string %}&ldquo;{{ p.why }}&rdquo;{% else %}{{ paras(p.why) }}{% endif %}</dd>{% endif %}
       </dl>
     </div>
-    <aside class="xm-raffle">{{ xi("gift") }}<div><p class="xm-kick">Raffle contribution</p><p>{{ p.raffle }}</p></div></aside>
+    {% if p.raffle %}<aside class="xm-raffle">{{ xi("gift") }}<div><p class="xm-kick">Raffle contribution</p><p>{{ p.raffle }}</p></div></aside>{% endif %}
   </article>
   {% endfor %}
   <div class="xm-center">{{ book(xm) }}</div>

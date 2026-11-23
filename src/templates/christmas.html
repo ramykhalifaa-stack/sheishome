@@ -60,7 +60,7 @@
   <h2 class="xm-kick xm-h2 rv">{{ xm.people_title }}</h2>
   <p class="xm-sub rv d1">{{ xm.people_lede }}</p>
   <ul class="xm-faces rv d1">
-    {% for p in xm.partners %}<li><div class="xm-face"><img src="/static/img/{{ p.photo }}.webp" alt="Portrait of {{ p.name }}" loading="lazy" decoding="async"></div><b>{{ p.business }}</b><span>{{ p.name }}</span></li>{% endfor %}
+    {% for p in xm.partners %}<li><div class="xm-face{% if not p.photo %} mono{% endif %}">{% if p.photo %}<img src="/static/img/{{ p.photo }}.webp" alt="{% if p.name %}Portrait of {{ p.name }}{% else %}Portrait of the founder of {{ p.business }}{% endif %}" loading="lazy" decoding="async">{% else %}<span class="xm-script">{{ (p.name or p.business)[0] }}</span>{% endif %}</div><b>{{ p.business }}</b>{% if p.name %}<span>{{ p.name }}</span>{% endif %}</li>{% endfor %}
   </ul>
   <a class="xm-btn rv d2" href="/christmas/partners/">{{ xm.people_cta }} {{ arrow() }}</a>
 </div></section>

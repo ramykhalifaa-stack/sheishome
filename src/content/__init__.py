@@ -426,7 +426,7 @@ XMAS = {
          "why": ["Emily believes that sometimes the things holding us back aren't always obvious. Our subconscious beliefs, past experiences and emotional patterns can influence how we feel, think and show up in everyday life.",
                  "Having experienced the benefits of Integrated Healing herself, she is passionate about helping others reconnect with themselves, release what no longer serves them and feel lighter, clearer and more aligned.",
                  "Her philosophy is simple: sometimes we need to look a little deeper to understand what our mind and body are trying to tell us."]},
-        {"name": "Rhiannon", "photo": "", "business": "Body and Soul Therapies",
+        {"name": "Rhiannon", "photo": "xmas-rhiannon", "business": "Body and Soul Therapies",
          "story": ["Rhiannon is passionate about helping people take time out of their busy lives to reconnect with themselves through the power of touch and therapeutic massage.",
                    "Through Body and Soul Therapies, she creates a welcoming space where people can slow down, switch off and prioritise their own wellbeing."],
          "offer": ["Rhiannon is a massage therapist offering treatments designed to encourage relaxation, ease physical tension and support overall wellbeing.",

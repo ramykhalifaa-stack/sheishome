@@ -289,6 +289,12 @@ COFFEE_QUESTIONS = {
         "What is something you are glad you said yes to?",
         "What would a quiet, perfect evening look like for you?",
         "What is something small you are looking forward to this month?",
+        "What's the most ridiculous thing you've ever bought?",
+        "If your life had a warning label, what would it say?",
+        "What's a completely irrational thing that annoys you?",
+        "What's your most embarrassing fashion phase?",
+        "If you could ban one everyday inconvenience forever, what would it be?",
+        "What's something you do when nobody is watching?",
     ],
     "explore": [
         "What has changed about you in the last year?",
@@ -306,6 +312,12 @@ COFFEE_QUESTIONS = {
         "What does a good day look like for you now?",
         "What are you still learning about yourself?",
         "What would you like to be known for?",
+        "Tell us about a time you completely embarrassed yourself.",
+        "What's the funniest thing that's ever happened to you on a night out?",
+        "What's the biggest lie you've told to get out of doing something?",
+        "Have you ever had a moment where you wished the ground would swallow you whole?",
+        "What's the most chaotic thing you've ever done on impulse?",
+        "Tell us about a time you got yourself into a situation you couldn't explain.",
     ],
     "go-there": [
         "What are you still carrying that you would like to put down?",
@@ -584,7 +596,6 @@ def pages() -> list[dict]:
                     ("03", "Write it down", "Pop it in your SHE notebook."),
                     ("04", "Phone away", "Be present with the person in front of you.")],
              why=["No awkward icebreakers.", "No pressure to share more than you want.", "Just lovely questions and real conversation."],
-             get=["Questions worth asking", "Three depths, so you set the pace", "An easy way to feel closer", "A calmer, warmer chat"],
              # The path at the top: one circle per step, the words and minutes shown at each point.
              trail=["Pick depth", "Pick question", "Write it down", "Phone away"],
              note="Your answer is yours. We count which questions get chosen, so we know what women are drawn to. Nothing you write is kept unless you choose to leave it.",

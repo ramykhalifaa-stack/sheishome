@@ -82,11 +82,13 @@
       e.preventDefault();
       btn.disabled = true; btn.textContent = f.getAttribute('data-busy') || 'One moment...';
       fetch(f.action, { method: 'POST', body: new FormData(f), mode: 'cors' })
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          if (d && d.ok === false) {
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          var d = res.d;
+          // Only a reply that says ok: true counts. A server that is down or answers with an error never shows "thank you".
+          if (!res.ok || !d || d.ok !== true) {
             btn.disabled = false; btn.textContent = label;
-            if (msg) msg.textContent = d.message || 'That did not go through. Please try again.';
+            if (msg) msg.textContent = (d && d.message) || 'That did not go through. Please try again.';
             return;
           }
           var field = f.querySelector('input[name=name]');

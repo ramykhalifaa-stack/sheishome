@@ -14,6 +14,24 @@
   <div class="side rv d3">A space<br>to feel.<br>Explore.<br>And come<br>back to<br>yourself.</div>
 </section>
 
+<section class="sec cream2" id="upcoming"><div class="wrap">
+  <h2 class="rv">Upcoming gatherings</h2>
+  <p class="lede rv d1" style="margin:10px 0 34px;max-width:52ch">Gather with us in real life. See what you can join now, and what is coming next.</p>
+  <div class="grid g3 evgrid">
+    {% for e in home_events %}
+    <article class="evc rv d{{ loop.index0 }}">
+      <a class="ph grain" href="{{ e.href }}" tabindex="-1" aria-hidden="true" style="aspect-ratio:4/3;display:block"><img src="/static/img/{{ e.img }}.webp" alt="" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px" loading="lazy"{% if e.pos %} style="object-position:{{ e.pos }}"{% endif %}></a>
+      <span class="evpill {{ e.kind }}">{{ e.status }}</span>
+      <div class="meta"><span>{{ e.date }}</span>{% if e.place %}<span>{{ e.place }}</span>{% endif %}</div>
+      <h3><a href="{{ e.href }}">{{ e.name }}</a></h3>
+      <p class="muted">{{ e.sub }}</p>
+      <a class="btn ghost" href="{{ e.href }}">{{ e.cta }} {{ arrow() }}</a>
+    </article>
+    {% endfor %}
+  </div>
+  <p class="rv" style="margin-top:30px"><a class="tlink" href="/gather/">See all gatherings {{ arrow() }}</a></p>
+</div></section>
+
 <section class="sec">
   <div class="wrap" style="text-align:center">
     <h2 class="rv">Where are you right now?</h2>

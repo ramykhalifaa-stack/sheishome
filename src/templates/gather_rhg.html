@@ -1,0 +1,36 @@
+{% extends "base.html" %}{% from "_macros.html" import arrow, lines %}{% from "_ev.html" import evi %}
+{# Receiving, Holding & Growing: a January 2027 landing page with a waitlist. No date, venue or price is shown because none is confirmed. #}
+{% block content %}
+<div class="evp ev-rhg">
+<section class="hero-split">
+  <div class="tx"><nav class="crumb rv"><a href="/gather/">Gather</a> / Workshop</nav>{{ lines(g.title, "h1") }}<span class="k soft rv d1">{{ g.tags }}</span>
+    <span class="evpill waitlist rv d1">{{ g.soon }}</span>
+    <p class="serif-lede rv d1">{{ g.lede }}</p><p class="lede rv d2">{{ g.intro }}</p>
+    <div class="rv d3"><a class="btn" href="#waitlist">{{ g.cta }} {{ arrow() }}</a></div></div>
+  <div class="ph grain rv"><img src="/static/img/{{ g.hero }}.webp" alt="{{ g.alt }}" sizes="(max-width:1000px) 100vw, 50vw"></div>
+</section>
+<section class="bar" aria-label="{{ g.stages_title }}"><div class="wrap grid g3">
+  {% for ic, n, t, d in g.stages %}<div><span class="i">{{ evi(ic) }}</span><b><span class="evn">{{ n }}</span> {{ t }}</b><span>{{ d }}</span></div>{% endfor %}
+</div></section>
+<section class="sec cream2"><div class="wrap evpass">
+  <span class="i">{{ evi("passport") }}</span>
+  <div class="stack"><span class="k soft rv">{{ g.passport_kicker }}</span>{{ lines(g.passport_title, "h2") }}<p class="lede rv d1">{{ g.passport }}</p></div>
+</div></section>
+<section class="sec" id="waitlist"><div class="wrap evwait">
+  <span class="k soft rv">{{ g.wait_kicker }}</span>
+  <h2 class="rv d1">{{ g.wait_title }}</h2>
+  <p class="lede rv d1">{{ g.wait }}</p>
+  <form class="form one rv d2" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Joining..." data-title="{{ g.done_title }}" data-note="{{ g.done_note }}">
+    <label class="evvh" for="rhg-name">First name</label>
+    <input id="rhg-name" name="name" placeholder="First name" autocomplete="given-name" required>
+    <label class="evvh" for="rhg-email">Email address</label>
+    <input id="rhg-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+    <input type="hidden" name="source" value="{{ g.source }}">
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+    <button class="btn" type="submit">{{ g.cta }} {{ arrow() }}</button>
+    <p class="msg" role="status">You can leave the waitlist at any time. We never pass your email on.</p>
+  </form>
+</div></section>
+<p class="evfoot"><span>{{ g.foot }}</span></p>
+</div>
+{% endblock %}

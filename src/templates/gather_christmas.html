@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% from "_macros.html" import arrow, lines, ico %}
+{# The SHE Christmas Gathering: the event page inside the main site. Its button goes to the Christmas site (founder's instruction). #}
+{% block content %}
+<div class="evp ev-xmas">
+<section class="hero-split">
+  <div class="tx"><nav class="crumb rv"><a href="/gather/">Gather</a> / Christmas</nav>{{ lines(g.title, "h1") }}<span class="k soft rv d1">{{ g.tags }}</span>
+    <p class="serif-lede rv d1">{{ g.lede }}</p><p class="lede rv d2">{{ g.intro }}</p>
+    <div class="rv d3"><a class="btn" href="{{ g.cta_url }}">{{ g.cta }} {{ arrow() }}</a></div></div>
+  <div class="ph grain rv"><img src="/static/img/{{ g.hero }}.webp" alt="{{ g.alt }}" sizes="(max-width:1000px) 100vw, 50vw" style="object-position:22% 50%"></div>
+</section>
+<section class="bar"><div class="wrap grid g4">
+  {% for ic, b, sub in g.facts %}<div><span class="i">{{ ico(ic) }}</span><b>{{ b }}</b><span>{{ sub }}</span></div>{% endfor %}
+</div></section>
+<section class="sec"><div class="wrap" style="text-align:center">
+  <p class="serif-lede rv">{{ g.lede }}</p>
+  <div class="rv d1" style="margin-top:22px"><a class="btn" href="{{ g.cta_url }}">{{ g.cta }} {{ arrow() }}</a></div>
+</div></section>
+</div>
+{% endblock %}

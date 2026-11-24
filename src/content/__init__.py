@@ -101,6 +101,13 @@ EXPERIENCES = [
     {"name": "Suppers", "sub": "A long table, good food and honest talk.", "img": "exp-suppers", "href": "/gather/experiences/"},
 ]
 EVENTS = [
+    *([{"date": "Friday 18 December", "place": "The Moat House Teepee, near Alcester", "name": "The SHE Christmas Gathering",
+        "sub": "An evening of connection, conversation and festive celebrations with the SHE community.",
+        "img": "ev-xmas", "href": "/gather/christmas-gathering/", "cta": "View event"}]
+      if datetime.date.today() <= datetime.date(2026, 12, 18) else []),
+    {"date": "Coming January 2027", "place": "", "name": "Receiving, Holding & Growing",
+     "sub": "Money, self-worth and sustainable abundance. Waitlist now open.",
+     "img": "ev-rhg", "href": "/gather/receiving-holding-growing/", "cta": "Join the waitlist"},
     {"date": "Date to be announced", "place": "Warwick", "name": "Create Your Next Chapter",
      "sub": "A half-morning workshop with practical tools and meaningful conversation.",
      "img": "way-workshops", "href": "/gather/create-your-next-chapter/"},
@@ -263,6 +270,67 @@ UPCOMING = {"soon": _COFFEE_CARD_SOON,
             "full": _COFFEE_CARD_FULL if COFFEE_CONVERSATIONS["dates"] else []}[COFFEE_PAGE]
 UPCOMING = UPCOMING + EVENTS
 
+
+
+# ---------------------------------------------------------------------------------------------
+# GATHERINGS ON THE HOMEPAGE, AND THE TWO NEW EVENT PAGES (founder, November 2026)
+# The homepage shows three gatherings, each with its own page and its own call to action. Only what the
+# founder has confirmed is shown: Receiving, Holding & Growing has NO date, venue or price, only "Coming
+# January 2027" and a waitlist. The waitlist posts to the SHE mailing list with its own source, so waitlist
+# sign-ups stay separate from every other source. The Christmas page's button goes to the Christmas site.
+_RHG_SOURCE = "Receiving, Holding & Growing waitlist"
+GATHER_XMAS = {
+    "title": "The SHE\nChristmas Gathering", "tags": "Connection · Celebration · Community",
+    "lede": "Join us for a little Christmas magic.",
+    "intro": "An evening of connection, conversation and festive celebrations with the SHE community.",
+    "cta": "Register interest", "cta_url": "https://www.sheishome.co.uk/christmas/",
+    "hero": "ev-xmas",
+    "alt": "Inside the Moat House teepee at Christmas: a burgundy velvet bow on a pole, tartan chair covers, candles and greenery on wooden tables",
+    "facts": [("calendar", "18 December 2026", "7:30pm to 10:30pm"),
+              ("pin", "The Moat House Teepee", "Near Alcester"),
+              ("people", "An intimate gathering for like-minded women", ""),
+              ("cup", "One drink and a festive buffet included", "")],
+}
+GATHER_RHG = {
+    "title": "Receiving,\nHolding & Growing", "tags": "Money · Self-worth · Sustainable abundance",
+    "lede": "A different relationship with money begins here.",
+    "intro": "Explore what it means to receive with openness, hold what you create with confidence and grow your capacity for sustainable abundance.",
+    "soon": "Coming January 2027",
+    "cta": "Join the waitlist",
+    "hero": "ev-rhg",
+    "alt": "An olive branch in a speckled stone pot on a linen-covered table in soft window light",
+    "stages_title": "The three stages",
+    "stages": [("lotus", "01", "Receiving", "Open to opportunities, support and value."),
+               ("hands", "02", "Holding", "Build trust and confidence in what you create."),
+               ("sprout", "03", "Growing", "Develop your capacity for sustainable abundance.")],
+    "passport_kicker": "Part of the experience",
+    "passport_title": "The 90-day\nPassport to Growth",
+    "passport": "The 90-day Passport to Growth is a practical tool to help you continue developing what you explore during the workshop.",
+    "wait_kicker": "Coming January 2027",
+    "wait_title": "Join the waitlist",
+    "wait": "Be among the first to hear when bookings open. Join the waitlist for updates, event details and early access.",
+    "source": _RHG_SOURCE,
+    "done_title": "You are on the waitlist",
+    "done_note": "We will be in touch with updates, event details and early access when bookings open.",
+    "foot": "A SHE experience · Coming January 2027",
+}
+_coffee_card = UPCOMING[0] if UPCOMING and UPCOMING[0].get("name") == "Coffee Conversations" else None
+_coffee_open = bool(_coffee_card and _coffee_card.get("date") not in ("", "Coming soon"))
+HOME_EVENTS = [
+    {"name": "Coffee Conversations", "img": "way-coffee", "href": "/gather/coffee-conversations/",
+     "date": (_coffee_card or {}).get("date", "") if _coffee_open else "", "place": (_coffee_card or {}).get("place", "") if _coffee_open else "",
+     "sub": "A different kind of coffee morning. Good coffee, better questions, conversations worth having.",
+     "status": "Booking open" if _coffee_open else "New dates coming soon", "kind": "open" if _coffee_open else "soon",
+     "cta": "View upcoming dates"},
+    {"name": "The SHE Christmas Gathering", "img": "ev-xmas", "href": "/gather/christmas-gathering/", "pos": "22% 50%",
+     "date": "Friday 18 December", "place": "The Moat House Teepee, near Alcester",
+     "sub": "An evening of connection, conversation and festive celebrations with the SHE community.",
+     "status": "Guest list open", "kind": "open", "cta": "View event"},
+    {"name": "Receiving, Holding & Growing", "img": "ev-rhg", "href": "/gather/receiving-holding-growing/",
+     "date": "Coming January 2027", "place": "",
+     "sub": "Explore what it means to receive with openness, hold what you create with confidence and grow your capacity for sustainable abundance.",
+     "status": "Waitlist open", "kind": "waitlist", "cta": "Join the waitlist"},
+]
 
 # SHE Coffee Conversations: the card on the table carries a QR code to /coffee/. Nothing links
 # to that page from the site. The six Surface questions are the founder's, from the design; the
@@ -521,8 +589,10 @@ def page(path, template, title, description="", image="", orb=False, unlisted=Fa
 
 def pages() -> list[dict]:
     out = [
-        page("/", "home.html", "SHE is home. For every chapter of becoming", "A space to feel, explore, and come back to yourself. Find your chapter, gather in real life, explore conversations and journals.", "home-hero", orb=True, chapters=CHAPTERS),
+        page("/", "home.html", "SHE is home. For every chapter of becoming", "A space to feel, explore, and come back to yourself. Find your chapter, gather in real life, explore conversations and journals.", "home-hero", orb=True, chapters=CHAPTERS, home_events=HOME_EVENTS),
         page("/about/", "about.html", "About SHE", "What started with a journal became an experience. Where SHE came from, and why it is about both becoming and belonging.", "about-hero"),
+        page("/gather/christmas-gathering/", "gather_christmas.html", "The SHE Christmas Gathering", "An evening of connection, conversation and festive celebrations with the SHE community. 18 December 2026, The Moat House Teepee, near Alcester.", "ev-xmas", g=GATHER_XMAS),
+        page("/gather/receiving-holding-growing/", "gather_rhg.html", "Receiving, Holding & Growing", "A different relationship with money begins here. Money, self-worth and sustainable abundance. Coming January 2027: join the waitlist.", "ev-rhg", g=GATHER_RHG),
         page("/gather/create-your-next-chapter/", "event.html", "Create Your Next Chapter, a SHE workshop", "A half-morning workshop to help you pause, reflect and intentionally shape what's next.", "cync-hero",
              ev={"kicker": "Workshop", "title": "Create Your\nNext Chapter", "tags": "Vision boarding · Manifestation · Mindset", "tags2": "Coffee. Cake. Clarity. You.",
                  "intro": "A half-morning workshop to help you pause, reflect and intentionally shape what's next, with practical tools, meaningful conversation and a supportive community of women.",

@@ -114,6 +114,7 @@ RETREATS_TALLY_URL = ""
 CYNC_TALLY_URL = ""
 SHE_ME_FORM_URL = ""
 SHE_ME_SOURCE = "SHE + ME interest"
+COFFEE_REGISTER_URL = ""      # where "Register here" goes (Coffee Conversations, "Not a conversation near you?"). Empty: the interim contact page
 INTERIM_INTEREST_URL = "/join/#contact"
 SHE_ME = {"url": SHE_ME_FORM_URL, "source": SHE_ME_SOURCE}
 EVENTS = [
@@ -284,6 +285,9 @@ CC_BOOKING = {
 COFFEE_FIRST = dict(
     COFFEE_CONVERSATIONS,
     title="A different kind of\ncoffee morning.",
+    reg_title="Not a Conversation near you?",
+    reg_text="Register your location here and we\u2019ll look into making it happen.",
+    reg_cta="Register here", reg_url=COFFEE_REGISTER_URL or INTERIM_INTEREST_URL,
     where_note="Our first gatherings are at Coughton Court and The Happy Witch in Warwick, with more locations across Warwickshire coming soon.",
     events=_FIRST_EVENTS,
     towns=[{"name": "Leamington Spa", "href": ""},          # register link to be added later

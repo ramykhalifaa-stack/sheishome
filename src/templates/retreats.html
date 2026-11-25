@@ -13,7 +13,7 @@
     <div class="stack"><h2>{{ current.name }}</h2><span class="k soft">{{ current.theme }}</span><div class="meta"><span>{{ current.dates }}</span><span>{{ current.place }}</span><span>{{ current.group }}</span></div><span class="tlink">Explore this retreat {{ arrow() }}</span></div>
   </a>
   {% else %}
-  <div class="rv d1" style="max-width:52ch"><h2>Coming soon.</h2><p class="muted" style="margin:12px 0 22px">We're always dreaming up what's next. Join SHE and you'll be the first to know when a new retreat is announced.</p><a class="btn" href="/join/">Join SHE {{ arrow() }}</a></div>
+  <div class="rv d1" style="max-width:52ch"><h2>Coming soon.</h2><p class="muted" style="margin:12px 0 22px">We're always dreaming up what's next. Join SHE and you'll be the first to know when a new retreat is announced.</p><a class="btn" href="{{ interest_url }}"{% if interest_url.startswith("http") %} target="_blank" rel="noopener"{% endif %}>Register Your Interest {{ arrow() }}</a></div>
   {% endif %}
 </div></section>
 <section class="sec cream2"><div class="wrap">

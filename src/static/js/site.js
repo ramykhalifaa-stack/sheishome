@@ -108,6 +108,67 @@
     });
   });
 
+  // SHE + ME pop-up: opens from the card, closes with the x, the backdrop or Escape. Without scripts the
+  // link's #target opens it, so the form is still reachable.
+  (function () {
+    var m = document.getElementById('sheme-form');
+    if (!m) return;
+    var opener = null;
+    function open(e) { if (e) e.preventDefault(); opener = document.activeElement; m.classList.add('open'); document.body.classList.add('modal-open'); var f = m.querySelector('input,iframe,button'); if (f) setTimeout(function () { f.focus(); }, 30); }
+    function close(e) { if (e) e.preventDefault(); m.classList.remove('open'); document.body.classList.remove('modal-open'); if (history.replaceState && location.hash === '#sheme-form') history.replaceState(null, '', location.pathname + location.search); if (opener && opener.focus) opener.focus(); }
+    document.querySelectorAll('[data-open="sheme"]').forEach(function (a) { a.addEventListener('click', open); });
+    m.querySelectorAll('[data-close]').forEach(function (a) { a.addEventListener('click', close); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && m.classList.contains('open')) close(); });
+    if (location.hash === '#sheme-form') m.classList.add('open');
+  })();
+
+  // Coffee Conversations booking: location, then date, then First Visit or Returning Guest, then the one
+  // matching Beacons checkout. Nothing navigates by itself: only the Book Your Place button leaves the page.
+  (function () {
+    var root = document.querySelector('[data-ccb]');
+    if (!root) return;
+    var data;
+    try { data = JSON.parse(document.getElementById('ccb-data').textContent); } catch (e) { return; }
+    var loc = root.querySelector('#ccb-loc'), datesBox = root.querySelector('#ccb-dates'), list = root.querySelector('#ccb-datelist'),
+        empty = root.querySelector('#ccb-empty'), typesBox = root.querySelector('#ccb-types'), btn = root.querySelector('#ccb-book'),
+        hint = root.querySelector('#ccb-hint');
+    var state = { sid: '', type: '' };
+    function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+    function typeName(k) { for (var i = 0; i < data.types.length; i++) if (data.types[i][0] === k) return data.types[i][1]; return ''; }
+    function session() { for (var i = 0; i < data.sessions.length; i++) if (data.sessions[i].id === state.sid) return data.sessions[i]; return null; }
+    function off(msg) { btn.classList.add('is-off'); btn.setAttribute('aria-disabled', 'true'); btn.setAttribute('tabindex', '-1'); btn.removeAttribute('href'); hint.textContent = msg; }
+    function refresh() {
+      var s = session();
+      if (!loc.value || !s || !state.type) { off(data.hint); return; }
+      var url = s[state.type];
+      if (!url) { off(data.closed); return; }
+      btn.href = url; btn.classList.remove('is-off'); btn.setAttribute('aria-disabled', 'false'); btn.removeAttribute('tabindex');
+      hint.textContent = typeName(state.type) + ': ' + s.venue + ', ' + s.dow + ' ' + s.day + ' ' + s.mon + '. The checkout opens in a new tab.';
+    }
+    function pickDate(id) { state.sid = id; typesBox.hidden = false; refresh(); }
+    function renderDates() {
+      list.innerHTML = ''; state.sid = ''; state.type = '';
+      typesBox.hidden = true;
+      typesBox.querySelectorAll('input').forEach(function (i) { i.checked = false; });
+      var rows = data.sessions.filter(function (s) { return s.loc === loc.value; });
+      datesBox.hidden = !loc.value; empty.hidden = !loc.value || rows.length > 0;
+      rows.forEach(function (s) {
+        var lab = el('label', 'ccb-opt'), inp = el('input'), box = el('span');
+        inp.type = 'radio'; inp.name = 'ccb-date'; inp.value = s.id;
+        var dt = el('span', 'ccb-dt'); dt.appendChild(el('b', '', String(s.day))); dt.appendChild(el('small', '', s.mon.slice(0, 3)));
+        var tx = el('span', 'ccb-dtx'); tx.appendChild(el('strong', '', s.dow + ' ' + s.day + ' ' + s.mon)); tx.appendChild(el('em', '', s.time)); tx.appendChild(el('em', '', s.venue));
+        box.appendChild(dt); box.appendChild(tx); lab.appendChild(inp); lab.appendChild(box); list.appendChild(lab);
+        inp.addEventListener('change', function () { pickDate(s.id); });
+      });
+      refresh();
+    }
+    loc.addEventListener('change', renderDates);
+    typesBox.querySelectorAll('input').forEach(function (i) { i.addEventListener('change', function () { state.type = i.value; refresh(); }); });
+    btn.addEventListener('click', function (e) { if (btn.getAttribute('aria-disabled') === 'true' || !btn.getAttribute('href')) e.preventDefault(); });
+    btn.addEventListener('keydown', function (e) { if ((e.key === ' ' || e.key === 'Spacebar') && btn.getAttribute('href')) { e.preventDefault(); btn.click(); } });
+    off(data.hint);
+  })();
+
   if (reduce) return;
   // Gentle parallax on tagged photographs. Only the pictures actually on screen are measured,
   // so scrolling a long page on a phone stays smooth.

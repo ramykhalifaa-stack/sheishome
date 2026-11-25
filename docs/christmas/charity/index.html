@@ -12,11 +12,12 @@
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#5E1020">
 <style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
-<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=c5c34c7a">
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=07a7696a">
 <link rel="preload" as="image" href="/static/img/xmas-gift.webp" fetchpriority="high">
 </head>
 <body class="xmas">
-<main>
+<div class="she-loader" id="she-loader" role="status" aria-live="polite" aria-label="Loading"><div class="ld-in"><b>SHE</b><i></i><span>Sacred Human Experience</span></div></div>
+<script>(function(){var l=document.getElementById('she-loader');if(!l)return;var d=function(){l.classList.add('ld-done');setTimeout(function(){l.hidden=true},600)};if(document.readyState==='complete')d();else window.addEventListener('load',d);window.addEventListener('pageshow',function(e){if(e.persisted)d()})})();</script><main>
 <div class="xm">
 <header class="xm-top">
   <div class="wrap">
@@ -44,7 +45,9 @@
 <li class="rv d0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M3 9h18v3H3zM12 9v11M12 9C10 5 6 6 7.5 8.5M12 9c2-4 6-3 4.5-.5"/></svg><h3 class="xm-kick">The Christmas raffle</h3><p>The raffle is how SHE Christmas gives back. It will raise funds for our nominated charity.</p></li><li class="rv d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="2.6"/><circle cx="5.5" cy="9.5" r="2"/><circle cx="18.5" cy="9.5" r="2"/><path d="M7.5 19c.3-3 2-4.6 4.5-4.6s4.2 1.6 4.5 4.6"/><path d="M2.5 17c.2-2.2 1.3-3.4 3-3.6M21.5 17c-.2-2.2-1.3-3.4-3-3.6"/></svg><h3 class="xm-kick">Prizes from our community</h3><p>Local businesses and individuals are warmly invited to contribute raffle prizes.</p></li><li class="rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.4A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><h3 class="xm-kick">How you can take part</h3><p>On the night, guests will be able to buy raffle tickets, and may also make an additional voluntary contribution if they wish. It is entirely optional.</p></li>  </ul>
 </div></section>
 
-<section class="xm-paper xm-clear"><div class="wrap"><p class="rv">To be clear: the fundraising comes from the raffle and from any optional contributions guests choose to make. It is not taken from ticket sales.</p></div></section>
+<section class="xm-paper xm-clear"><div class="wrap"><p class="rv">To be clear: the fundraising comes from the raffle and from any optional contributions guests choose to make. It is not taken from ticket sales.</p>
+  <div class="xm-raffle rv d1">
+<span class="xm-btn is-pending" role="link" aria-disabled="true">Buy a Raffle Ticket</span><small>Raffle tickets opening soon</small>  </div></div></section>
 
 <section class="xm-quote" style="--q:url(/static/img/xmas-tree-banner.webp)"><div class="wrap">
   <blockquote class="xm-script rv">&ldquo;It&#39;s about coming together, not just to celebrate, but to support and uplift our community.&rdquo;</blockquote>
@@ -65,6 +68,6 @@
 </footer>
 </div>
 </main>
-<script src="/static/js/site.js?v=98ca8ff5" defer></script>
+<script src="/static/js/site.js?v=e3a4bf50" defer></script>
 </body>
 </html>

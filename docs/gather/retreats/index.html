@@ -12,11 +12,12 @@
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EF">
 <style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
-<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=c5c34c7a">
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=07a7696a">
 <link rel="preload" as="image" imagesrcset="/static/img/retreats-hero-420.webp 420w, /static/img/retreats-hero-640.webp 640w, /static/img/retreats-hero-900.webp 900w, /static/img/retreats-hero-1280.webp 1280w, /static/img/retreats-hero.webp 2000w" imagesizes="100vw" fetchpriority="high">
 </head>
 <body>
-<header class="hdr">
+<div class="she-loader" id="she-loader" role="status" aria-live="polite" aria-label="Loading"><div class="ld-in"><b>SHE</b><i></i><span>Sacred Human Experience</span></div></div>
+<script>(function(){var l=document.getElementById('she-loader');if(!l)return;var d=function(){l.classList.add('ld-done');setTimeout(function(){l.hidden=true},600)};if(document.readyState==='complete')d();else window.addEventListener('load',d);window.addEventListener('pageshow',function(e){if(e.persisted)d()})})();</script><header class="hdr">
   <div class="wrap">
     <a class="logo" href="/" aria-label="SHE, home"><b>SHE</b><span>Sacred Human Experience</span></a>
     <nav class="nav" aria-label="Main"><a href="/" class="">Home</a><a href="/about/" class="">About</a><a href="/chapters/" class="">The Chapters</a><a href="/explore/" class="">Explore</a><a href="/gather/" class="on">Gather</a><a href="/tools/" class="">Tools</a></nav>
@@ -32,7 +33,7 @@
 </section>
 <section class="sec"><div class="wrap">
   <span class="k rv" style="display:block;margin-bottom:26px">Retreats</span>
-  <div class="rv d1" style="max-width:52ch"><h2>Coming soon.</h2><p class="muted" style="margin:12px 0 22px">We're always dreaming up what's next. Join SHE and you'll be the first to know when a new retreat is announced.</p><a class="btn" href="/join/">Join SHE <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
+  <div class="rv d1" style="max-width:52ch"><h2>Coming soon.</h2><p class="muted" style="margin:12px 0 22px">We're always dreaming up what's next. Join SHE and you'll be the first to know when a new retreat is announced.</p><a class="btn" href="/join/#contact">Register Your Interest <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></div>
 </div></section>
 <section class="sec cream2"><div class="wrap">
   <div style="text-align:center;margin-bottom:40px;max-width:64ch;margin-left:auto;margin-right:auto"><span class="k rv">What makes a SHE retreat?</span><h2 class="rv d1" style="margin-top:12px">More than just time away.</h2><p class="muted rv d2" style="margin-top:12px">Every SHE retreat is different, but they all share the same intention, to create space for something to shift. Whether it&#39;s a weekend close to home or a longer journey further afield, each retreat offers a considered combination of beauty, experience, and connection.</p></div>
@@ -66,6 +67,6 @@
     <div class="line">A more conscious, connected way of being.</div>
   </div>
 </footer>
-<script src="/static/js/site.js?v=98ca8ff5" defer></script>
+<script src="/static/js/site.js?v=e3a4bf50" defer></script>
 </body>
 </html>

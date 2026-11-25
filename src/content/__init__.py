@@ -100,15 +100,35 @@ EXPERIENCES = [
     {"name": "Coffee mornings", "sub": "Casual meet-ups, real conversations.", "img": "exp-coffee", "href": "/gather/experiences/"},
     {"name": "Suppers", "sub": "A long table, good food and honest talk.", "img": "exp-suppers", "href": "/gather/experiences/"},
 ]
+# ---------------------------------------------------------------------------------------------
+# LINKS THE FOUNDER WILL ADD (website update, November 2026)
+# Each one is a single line to fill in. Until it is filled, the button either goes to a working
+# interim page (/join/) or, where there is none, shows plainly that it is not open yet. Nothing
+# is invented and no button leads nowhere.
+#   RETREATS_TALLY_URL  the Tally questionnaire behind "Register Your Interest" on the Retreats page
+#   CYNC_TALLY_URL      the Tally questionnaire for Create Your Next Chapter
+#   SHE_ME_FORM_URL     the embedded form for SHE + ME (if empty, the form on the page posts to the SHE list)
+#   XMAS_RAFFLE_URL     where "Buy a Raffle Ticket" goes (set further down, beside the other Christmas settings)
+# ---------------------------------------------------------------------------------------------
+RETREATS_TALLY_URL = ""
+CYNC_TALLY_URL = ""
+SHE_ME_FORM_URL = ""
+SHE_ME_SOURCE = "SHE + ME interest"
+INTERIM_INTEREST_URL = "/join/#contact"
+SHE_ME = {"url": SHE_ME_FORM_URL, "source": SHE_ME_SOURCE}
 EVENTS = [
     *([{"date": "Friday 18 December", "place": "The Moat House Teepee, near Alcester", "name": "The SHE Christmas Gathering",
         "sub": "An evening of connection, conversation and festive celebrations with the SHE community.",
         "img": "ev-xmas", "href": "/gather/christmas-gathering/", "cta": "View event"}]
       if datetime.date.today() <= datetime.date(2026, 12, 18) else []),
+    *([{"date": "16 January 2027", "place": "The Moat House Teepee, near Alcester", "name": "SHE + ME: Dream-catcher Workshop",
+        "sub": "Shared moments. Lasting memories. A little time for her. A magical moment for them.",
+        "img": "sheme-card", "modal": "sheme", "cta": "Register Your Interest"}]
+      if datetime.date.today() <= datetime.date(2027, 1, 16) else []),
     {"date": "Coming January 2027", "place": "", "name": "Receiving, Holding & Growing",
      "sub": "Money, self-worth and sustainable abundance. Waitlist now open.",
      "img": "ev-rhg", "href": "/gather/receiving-holding-growing/", "cta": "Join the waitlist"},
-    {"date": "Date to be announced", "place": "Warwick", "name": "Create Your Next Chapter",
+    {"date": "Date to be announced", "place": "To Be Confirmed", "name": "Create Your Next Chapter",
      "sub": "A half-morning workshop with practical tools and meaningful conversation.",
      "img": "way-workshops", "href": "/gather/create-your-next-chapter/"},
     # Nothing is booking yet. These say so plainly rather than pretending there is a date.
@@ -221,6 +241,38 @@ _FIRST_EVENTS = [e for e in (
      "time": "10:00 am to 11:30 am, 90 minutes", "venue": "The Happy Witch", "area": "Warwick",
      "details": _EVENT_DETAILS, "price": "\u00a315", "img": "happy-witch", "url": HAPPY_WITCH_BOOK_URL, "cta": "Book this conversation"},
 ) if e["date"] >= datetime.date.today()]
+
+# ---------------------------------------------------------------------------------------------
+# COFFEE CONVERSATIONS BOOKING (the "Where would you like to join us?" section)
+# One row per date. The guest picks a location, then a date, then First Visit or Returning Guest, and
+# "Book Your Place" opens the Beacons checkout matched to ALL THREE. A row with no link for a booking
+# type never sends her anywhere: the button stays off and says that type is not open yet.
+# A date drops off by itself once it has passed. To add a date, copy a row. Founder to supply: dates,
+# times, venues and the two Beacons checkout links per date (one for First Visit, one for Returning).
+#   {"on": datetime.date(2026, 12, 5), "loc": "Warwick", "time": "10:00 am to 11:30 am",
+#    "venue": "The Happy Witch", "first_url": "https://shop.beacons.ai/...", "returning_url": "https://shop.beacons.ai/..."},
+# ---------------------------------------------------------------------------------------------
+CC_LOCATIONS = ["Leamington Spa", "Evesham", "Warwick", "Stratford Upon Avon"]
+CC_SESSIONS = []
+CC_BOOKING = {
+    "kicker": "Book your place",
+    "title": "Where would you like\nto join us?",
+    "loc_label": "Choose your location", "loc_ph": "Select a location",
+    "date_label": "Choose your date", "type_label": "Is this your first visit?",
+    "types": [("first", "First Visit", "I am new to SHE Coffee Conversations and my notebook is included."),
+              ("returning", "Returning Guest", "I have joined before and I already have my notebook.")],
+    "cta": "Book Your Place",
+    "hint": "Choose a location, a date and your booking type to continue.",
+    "empty": "New dates for this location are being finalised. Join SHE and you will hear first.",
+    "closed": "Booking for this option is not open just yet. Join SHE and you will hear first.",
+    "img": "cc-notebooks", "alt": "Three SHE Coffee Conversations notebooks on a round table beside a candle and a vase of olive leaves",
+    "locations": CC_LOCATIONS,
+    "sessions": [{"id": f"s{n}", "loc": s["loc"], "iso": s["on"].isoformat(), "dow": s["on"].strftime("%A"), "day": s["on"].day,
+                  "mon": s["on"].strftime("%B"), "time": s["time"], "venue": s["venue"],
+                  "first": s.get("first_url", ""), "returning": s.get("returning_url", "")}
+                 for n, s in enumerate(sorted((x for x in CC_SESSIONS if x["on"] >= datetime.date.today()), key=lambda x: x["on"]))],
+}
+
 COFFEE_FIRST = dict(
     COFFEE_CONVERSATIONS,
     title="A different kind of\ncoffee morning.",
@@ -259,7 +311,7 @@ _COFFEE_CARD_FIRST = [{"date": _days([{"day": e["day"], "mon": e["full_date"].sp
                        "sub": "A different kind of coffee morning. Good coffee, better questions, conversations worth having.",
                        "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Find out more"}] if _FIRST_EVENTS else []
 # While the page is Coming Soon the card carries no dates and no towns: none are confirmed.
-_COFFEE_CARD_SOON = [{"date": "Coming soon", "place": "",
+_COFFEE_CARD_SOON = [{"date": "New dates released", "place": "",
                       "name": "Coffee Conversations",
                       "sub": "A different kind of coffee morning. Good coffee, better questions, conversations worth having.",
                       "img": "way-coffee", "href": "/gather/coffee-conversations/", "cta": "Find out more"}]
@@ -283,7 +335,7 @@ GATHER_XMAS = {
     "title": "The SHE\nChristmas Gathering", "tags": "Connection · Celebration · Community",
     "lede": "Join us for a little Christmas magic.",
     "intro": "An evening of connection, conversation and festive celebrations with the SHE community.",
-    "cta": "Register interest", "cta_url": "https://www.sheishome.co.uk/christmas/",
+    "cta": "Tell Me More", "cta_url": "https://www.sheishome.co.uk/christmas/",
     "hero": "ev-xmas",
     "alt": "Inside the Moat House teepee at Christmas: a burgundy velvet bow on a pole, tartan chair covers, candles and greenery on wooden tables",
     "facts": [("calendar", "18 December 2026", "7:30pm to 10:30pm"),
@@ -315,12 +367,12 @@ GATHER_RHG = {
     "foot": "A SHE experience · Coming January 2027",
 }
 _coffee_card = UPCOMING[0] if UPCOMING and UPCOMING[0].get("name") == "Coffee Conversations" else None
-_coffee_open = bool(_coffee_card and _coffee_card.get("date") not in ("", "Coming soon"))
+_coffee_open = bool(_coffee_card and _coffee_card.get("date") not in ("", "Coming soon", "New dates released"))
 HOME_EVENTS = [
     {"name": "Coffee Conversations", "img": "way-coffee", "href": "/gather/coffee-conversations/",
      "date": (_coffee_card or {}).get("date", "") if _coffee_open else "", "place": (_coffee_card or {}).get("place", "") if _coffee_open else "",
      "sub": "A different kind of coffee morning. Good coffee, better questions, conversations worth having.",
-     "status": "Booking open" if _coffee_open else "New dates coming soon", "kind": "open" if _coffee_open else "soon",
+     "status": "New dates released", "kind": "open",
      "cta": "View upcoming dates"},
     {"name": "The SHE Christmas Gathering", "img": "ev-xmas", "href": "/gather/christmas-gathering/", "pos": "22% 50%",
      "date": "Friday 18 December", "place": "The Moat House Teepee, near Alcester",
@@ -414,6 +466,7 @@ COFFEE_QUESTIONS = {
 # To switch the form on, paste the embed code Beacons gives her between the triple quotes of XMAS_BEACONS_EMBED.
 XMAS_BEACONS_EMBED = """"""
 XMAS_CHARITY_URL = ""
+XMAS_RAFFLE_URL = ""                  # where "Buy a Raffle Ticket" goes. Empty: the button shows "Raffle tickets opening soon" and goes nowhere
 XMAS_DATE = datetime.date(2026, 12, 18)
 XMAS_REG = "/christmas/register/"
 XMAS = {
@@ -513,6 +566,7 @@ XMAS = {
                      ("people", "Prizes from our community", "Local businesses and individuals are warmly invited to contribute raffle prizes."),
                      ("heart", "How you can take part", "On the night, guests will be able to buy raffle tickets, and may also make an additional voluntary contribution if they wish. It is entirely optional.")],
     "charity_clear": "To be clear: the fundraising comes from the raffle and from any optional contributions guests choose to make. It is not taken from ticket sales.",
+    "raffle_cta": "Buy a Raffle Ticket", "raffle_url": XMAS_RAFFLE_URL, "raffle_pending": "Raffle tickets opening soon",
     "charity_quote": "It's about coming together, not just to celebrate, but to support and uplift our community.",
     "charity_cta_title": "Find out more about the charity",
     "charity_cta": "Visit the charity page",
@@ -593,16 +647,17 @@ def pages() -> list[dict]:
         page("/about/", "about.html", "About SHE", "What started with a journal became an experience. Where SHE came from, and why it is about both becoming and belonging.", "about-hero"),
         page("/gather/christmas-gathering/", "gather_christmas.html", "The SHE Christmas Gathering", "An evening of connection, conversation and festive celebrations with the SHE community. 18 December 2026, The Moat House Teepee, near Alcester.", "ev-xmas", g=GATHER_XMAS),
         page("/gather/receiving-holding-growing/", "gather_rhg.html", "Receiving, Holding & Growing", "A different relationship with money begins here. Money, self-worth and sustainable abundance. Coming January 2027: join the waitlist.", "ev-rhg", g=GATHER_RHG),
-        page("/gather/create-your-next-chapter/", "event.html", "Create Your Next Chapter, a SHE workshop", "A half-morning workshop to help you pause, reflect and intentionally shape what's next.", "cync-hero",
+        page("/gather/create-your-next-chapter/", "event.html", "Create Your Next Chapter, a SHE workshop", "A half-morning workshop to help you pause, reflect and intentionally shape what's next.", "cync-group",
              ev={"kicker": "Workshop", "title": "Create Your\nNext Chapter", "tags": "Vision boarding · Manifestation · Mindset", "tags2": "Coffee. Cake. Clarity. You.",
                  "intro": "A half-morning workshop to help you pause, reflect and intentionally shape what's next, with practical tools, meaningful conversation and a supportive community of women.",
-                 "hero": "cync-hero", "about_img": "cync-about", "expect_img": "cync-expect", "bottom": "cync-bottom", "cta": "Join SHE for the date",
-                 "when": "More details to be released soon", "time": "", "where": "Warwick", "where_sub": "", "group": "A small, intimate group", "extra": "Coffee, tea and cake included", "price": "",
+                 "hero": "cync-group", "about_img": "cync-about", "expect_img": "cync-expect", "bottom": "cync-bottom", "cta": "Register Your Interest", "cta_url": CYNC_TALLY_URL or INTERIM_INTEREST_URL,
+                 "when": "More details to be released soon", "time": "", "where": "To Be Confirmed", "where_sub": "", "group": "A small, intimate group", "extra": "Coffee, tea and cake included", "price": "",
                  "about_title": "About this event", "about": ["Life moves in seasons, and sometimes we find ourselves at a turning point, not knowing exactly what's next, but feeling ready for something different.", "This workshop is an invitation to step out of the everyday, create space for yourself and explore your next chapter with intention. Through vision boarding, reflection, mindset work and meaningful conversation, you'll leave feeling clearer, more grounded and inspired about what's ahead.", "Whether you're navigating a big change or simply want to realign, this is a morning to invest in you."],
                  "expect": [("Vision boarding", "Get clear on what you want and bring your next chapter to life."), ("Mindset", "Explore what's possible and shift the beliefs that may be holding you back."), ("Meaningful conversation", "Share, listen and be inspired by like-minded women."), ("Practical tools", "Leave with clarity, intention and simple next steps.")],
                  "who": ["Women at any stage of life", "Those feeling ready for change", "Anyone who wants more clarity and direction", "Women who value honest conversation and real connection"],
                  "closing": "A morning for\na brighter you."}),
         page("/gather/retreats/", "retreats.html", "SHE Retreats", "Different places. Different experiences. Something to explore. SHE retreats are created for women who want to step away from everyday life.", "retreats-hero",
+             interest_url=RETREATS_TALLY_URL or INTERIM_INTEREST_URL,
              intro=["SHE retreats are created for women who want to step away from everyday life and experience something a little different. Beautiful places. Interesting women. Space to breathe, think and reconnect. Experiences that invite you to explore what matters to you.", "And no two retreats are the same."],
              what=["Every SHE retreat is different, but they all share the same intention, to create space for something to shift. Whether it's a weekend close to home or a longer journey further afield, each retreat offers a considered combination of beauty, experience, and connection."],
              pillars=[("home", "A beautiful place", "Chosen intentionally for the experience."), ("leaf", "Something to explore", "A theme, a practice or a new perspective."), ("sun", "A SHE experience", "Thoughtfully curated and unique to each retreat."), ("people", "Real connection", "Genuine conversations and a supportive community of women."), ("heart", "Your SHE journal", "A lasting record of your experience to take home.")],
@@ -652,7 +707,7 @@ def pages() -> list[dict]:
              body_1=["had never really thought about it. I was just getting on with things: work, family, the constant to-do list. But when I actually sat with the question, it made me feel uncomfortable. Because the honest answer was: I'd probably be exhausted. Still saying yes to things I don't really want to do. Still putting myself last.", "I realised I've been living in this cycle of being busy, thinking that means I'm doing okay. But busy isn't the same as fulfilled. I don't want to look back in five years and realise I had the chance to make a change, and I didn't take it.", "That question gave me the clarity I needed to start making different choices. It didn't give me all the answers, but it reminded me that I do have a say in what my life looks like."],
              quote="Busy isn't the same as fulfilled.",
              body_2=["I'm still figuring things out, but I'm asking myself that question more often now. It's a simple one, but it's powerful. Because it makes me take responsibility, and it reminds me that change doesn't have to be dramatic to be meaningful."]),
-        page("/gather/", "gather.html", "Gather", "Come together. In real life. From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.", "gather-hero", experiences=EXPERIENCES, events=UPCOMING, coffee=COFFEE_CONVERSATIONS,
+        page("/gather/", "gather.html", "Gather", "Come together. In real life. From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.", "gather-hero", experiences=EXPERIENCES, events=UPCOMING, coffee=COFFEE_CONVERSATIONS, she_me=SHE_ME,
              lede="Meaningful spaces. Real conversations.\nWomen, together.", intro="From intimate coffee mornings to immersive retreats, SHE Gather brings women together in cities and spaces around the world.",
              ways_note="Our gatherings are an invitation to pause, meet like-minded women and experience something meaningful, in beautiful places, and at every stage of your journey.",
              events_intro="What is coming up, and what to keep an eye out for.",
@@ -660,10 +715,10 @@ def pages() -> list[dict]:
         # One public address, three versions: see the switch (COFFEE_PAGE) above.
         {"full": lambda: page("/gather/coffee-conversations/", "coffee_conversations.html", "SHE Coffee Conversations",
                               "A different kind of coffee morning. Carefully chosen questions, real conversations and a small table, in Alcester, Stratford-upon-Avon and Warwick.",
-                              "coffee-hero", coffee=COFFEE_CONVERSATIONS),
+                              "coffee-hero", coffee=COFFEE_CONVERSATIONS, booking=CC_BOOKING),
          "first": lambda: page("/gather/coffee-conversations/", "coffee_conversations_first.html", "SHE Coffee Conversations",
                                "A different kind of coffee morning. Good coffee, better questions, conversations worth having. Our first gathering is at Coughton Court, Warwickshire, on Friday 6 November 2026.",
-                               "coffee-hero", coffee=COFFEE_FIRST),
+                               "coffee-hero", coffee=COFFEE_FIRST, booking=CC_BOOKING),
          "soon": lambda: page("/gather/coffee-conversations/", "coffee_conversations_soon.html", "SHE Coffee Conversations",
                               "A different kind of coffee morning. Good coffee, better questions, conversations worth having. The first dates are coming soon.",
                               "coffee-hero", soon=COFFEE_SOON)}[COFFEE_PAGE](),

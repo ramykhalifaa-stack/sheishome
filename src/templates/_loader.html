@@ -1,0 +1,5 @@
+{# The SHE page-loading indicator: the wordmark, softly breathing, over the page until it has finished loading.
+   It only becomes visible if a page takes longer than a moment, so a fast page never flashes it. If scripts
+   fail it removes itself after a few seconds (see .she-loader in site.css), so it can never trap a page. #}
+<div class="she-loader" id="she-loader" role="status" aria-live="polite" aria-label="Loading"><div class="ld-in"><b>SHE</b><i></i><span>Sacred Human Experience</span></div></div>
+<script>(function(){var l=document.getElementById('she-loader');if(!l)return;var d=function(){l.classList.add('ld-done');setTimeout(function(){l.hidden=true},600)};if(document.readyState==='complete')d();else window.addEventListener('load',d);window.addEventListener('pageshow',function(e){if(e.persisted)d()})})();</script>

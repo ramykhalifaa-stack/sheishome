@@ -143,7 +143,7 @@
       var url = s[state.type];
       if (!url) { off(data.closed); return; }
       btn.href = url; btn.classList.remove('is-off'); btn.setAttribute('aria-disabled', 'false'); btn.removeAttribute('tabindex');
-      hint.textContent = typeName(state.type) + ': ' + s.venue + ', ' + s.dow + ' ' + s.day + ' ' + s.mon + '. The checkout opens in a new tab.';
+      hint.textContent = typeName(state.type) + ': ' + (s.venue ? s.venue + ', ' : '') + s.dow + ' ' + s.day + ' ' + s.mon + '. The checkout opens in a new tab.';
     }
     function pickDate(id) { state.sid = id; typesBox.hidden = false; refresh(); }
     function renderDates() {
@@ -156,7 +156,7 @@
         var lab = el('label', 'ccb-opt'), inp = el('input'), box = el('span');
         inp.type = 'radio'; inp.name = 'ccb-date'; inp.value = s.id;
         var dt = el('span', 'ccb-dt'); dt.appendChild(el('b', '', String(s.day))); dt.appendChild(el('small', '', s.mon.slice(0, 3)));
-        var tx = el('span', 'ccb-dtx'); tx.appendChild(el('strong', '', s.dow + ' ' + s.day + ' ' + s.mon)); tx.appendChild(el('em', '', s.time)); tx.appendChild(el('em', '', s.venue));
+        var tx = el('span', 'ccb-dtx'); tx.appendChild(el('strong', '', s.dow + ' ' + s.day + ' ' + s.mon)); tx.appendChild(el('em', '', s.time)); if (s.venue) tx.appendChild(el('em', '', s.venue));
         box.appendChild(dt); box.appendChild(tx); lab.appendChild(inp); lab.appendChild(box); list.appendChild(lab);
         inp.addEventListener('change', function () { pickDate(s.id); });
       });

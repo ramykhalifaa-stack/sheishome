@@ -10,7 +10,7 @@
     <p class="cc-tagline rv d1">{{ coffee.tagline }}</p>
     {% for l in coffee.intro %}<p class="muted rv d2">{{ l }}</p>{% endfor %}
     <p class="cc-close rv d2">{{ coffee.close|replace("\n", "<br>")|safe }}</p>
-    <a class="btn rv d3" style="align-self:flex-start" href="#coffee-dates">{{ coffee.find }} {{ arrow() }}</a>
+    <a class="btn rv d3" style="align-self:flex-start" href="#book">{{ coffee.find }} {{ arrow() }}</a>
   </div>
   {{ img("coffee-hero", "A small round table with two cups of coffee in warm morning light", parallax=True) }}
 </section>
@@ -42,46 +42,19 @@
   {{ img("way-coffee", "A cup of coffee and a slice of cake on a tiled table with flowers", parallax=True) }}
 </section>
 
-<section class="split rev">
-  {{ img("coffee-about", "An open SHE notebook beside a cup of coffee", parallax=True) }}
-  <div class="tx stack">
+<section class="sec"><div class="wrap">
+  <div class="stack" style="max-width:62ch;margin:0 auto;text-align:center;align-items:center">
     <span class="k soft rv">{{ coffee.notebook.k }}</span>
     {{ lines(coffee.notebook.title, "h2") }}
     {% for l in coffee.notebook.paras %}<p class="muted rv d{{ loop.index }}">{{ l }}</p>{% endfor %}
   </div>
-</section>
+</div></section>
 
-<section class="sec" id="coffee-dates"><div class="wrap cc-wrap">
-  <span class="k soft rv" style="display:block;text-align:center">{{ coffee.find }}</span>
-  <h2 class="rv d1" style="text-align:center;margin:10px 0 14px">{{ coffee.where }}</h2>
-  <p class="lede rv d2 cc-where">{{ coffee.where_note }}</p>
-
-  {% for e in coffee.events %}
-  <article class="cc-event rv d2">
-    <div class="cc-eimg ph grain"><img src="/static/img/{{ e.img }}.webp" alt="{{ e.venue }}, {{ e.area }}" sizes="(max-width:760px) 92vw, 220px" loading="lazy"></div>
-    <div class="cc-when"><span>{{ e.dow }}</span><b>{{ e.day }}</b><span>{{ e.mon }}</span></div>
-    <div class="cc-what">
-      <strong>{{ e.venue }}</strong>
-      <span>{{ e.area }}</span>
-      <ul class="cc-inc">
-        <li>{{ ico("calendar") }}{{ e.weekday }} {{ e.full_date }}, {{ e.time }}</li>
-        {% for d in e.details %}<li>{{ ico("mug" if loop.index == 2 else "book" if loop.last else "people") }}{{ d }}</li>{% endfor %}
-        <li>{{ ico("pound") }}{{ e.price }} per person</li>
-      </ul>
-    </div>
-    <a class="btn" href="{{ e.url }}" target="_blank" rel="noopener" aria-label="{{ e.cta }}: {{ e.venue }}, {{ e.weekday }} {{ e.full_date }}">{{ e.cta }} {{ arrow() }}</a>
-  </article>
-  {% endfor %}
-
-  <ul class="cc-towns">
-    {% for t in coffee.towns %}
-    <li class="rv d{{ loop.index }}">
-      <strong>{{ t.name }}</strong>
-      <span class="cc-soonpill">Coming soon</span>
-      {% if t.href %}<a class="tlink" href="{{ t.href }}">Register your interest {{ arrow() }}</a>{% else %}<span></span>{% endif %}
-    </li>
-    {% endfor %}
-  </ul>
+<section class="sec cream2" id="coffee-register"><div class="wrap" style="text-align:center">
+  <span class="k soft rv">{{ coffee.find }}</span>
+  <h2 class="rv d1" style="margin:12px 0 14px">{{ coffee.reg_title }}</h2>
+  <p class="lede rv d2" style="margin:0 auto 28px">{{ coffee.reg_text }}</p>
+  <a class="btn rv d3" href="{{ coffee.reg_url }}"{% if coffee.reg_url.startswith("http") %} target="_blank" rel="noopener"{% endif %}>{{ coffee.reg_cta }} {{ arrow() }}</a>
 </div></section>
 </div>
 {% endblock %}

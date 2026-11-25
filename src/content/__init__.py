@@ -253,7 +253,15 @@ _FIRST_EVENTS = [e for e in (
 #    "venue": "The Happy Witch", "first_url": "https://shop.beacons.ai/...", "returning_url": "https://shop.beacons.ai/..."},
 # ---------------------------------------------------------------------------------------------
 CC_LOCATIONS = ["Leamington Spa", "Evesham", "Warwick", "Stratford Upon Avon"]
-CC_SESSIONS = []
+CC_SESSIONS = [
+    # Dates and times from the founder, 25 November 2026. No venues or checkout links yet: each date's two
+    # links (first_url for First Visit, returning_url for Returning Guest) are added as she sends them.
+    {"on": datetime.date(2026, 12, 6),  "loc": "Leamington Spa", "time": "10:00 am to 11:30 am", "venue": "", "first_url": "", "returning_url": ""},
+    {"on": datetime.date(2026, 12, 10), "loc": "Leamington Spa", "time": "7:00 pm to 8:30 pm",   "venue": "", "first_url": "", "returning_url": ""},
+    {"on": datetime.date(2026, 12, 13), "loc": "Warwick",        "time": "10:00 am to 11:30 am", "venue": "", "first_url": "", "returning_url": ""},
+    {"on": datetime.date(2026, 12, 16), "loc": "Evesham",        "time": "6:30 pm to 8:00 pm",   "venue": "", "first_url": "", "returning_url": ""},
+    {"on": datetime.date(2027, 1, 21),  "loc": "Evesham",        "time": "6:30 pm to 8:00 pm",   "venue": "", "first_url": "", "returning_url": ""},
+]
 CC_BOOKING = {
     "kicker": "Book your place",
     "title": "Where would you like\nto join us?",

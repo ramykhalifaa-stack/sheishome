@@ -12,11 +12,12 @@
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EF">
 <style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
-<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=c5c34c7a">
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=07a7696a">
 <link rel="preload" as="image" imagesrcset="/static/img/coffee-hero-420.webp 420w, /static/img/coffee-hero-640.webp 640w, /static/img/coffee-hero-900.webp 900w, /static/img/coffee-hero-1280.webp 1280w, /static/img/coffee-hero.webp 1700w" imagesizes="(max-width:1000px) 100vw, 50vw" fetchpriority="high">
 </head>
 <body>
-<header class="hdr">
+<div class="she-loader" id="she-loader" role="status" aria-live="polite" aria-label="Loading"><div class="ld-in"><b>SHE</b><i></i><span>Sacred Human Experience</span></div></div>
+<script>(function(){var l=document.getElementById('she-loader');if(!l)return;var d=function(){l.classList.add('ld-done');setTimeout(function(){l.hidden=true},600)};if(document.readyState==='complete')d();else window.addEventListener('load',d);window.addEventListener('pageshow',function(e){if(e.persisted)d()})})();</script><header class="hdr">
   <div class="wrap">
     <a class="logo" href="/" aria-label="SHE, home"><b>SHE</b><span>Sacred Human Experience</span></a>
     <nav class="nav" aria-label="Main"><a href="/" class="">Home</a><a href="/about/" class="">About</a><a href="/chapters/" class="">The Chapters</a><a href="/explore/" class="">Explore</a><a href="/gather/" class="on">Gather</a><a href="/tools/" class="">Tools</a></nav>
@@ -45,6 +46,42 @@
 <p class="muted rv d1">We all know how easy it is to fall into the usual small talk. SHE Coffee Conversations is a simple way to get beyond that and have conversations that feel more interesting, more meaningful and, at times, completely unexpected.</p><p class="muted rv d2">Some will make you laugh. Some will make you think. And sometimes, you might leave having met someone who feels like a friend you just hadn&#39;t met yet.</p><p class="muted rv d3">There&#39;s no pressure to share more than you want to. Just come, sit down and see where the conversation takes you.</p>  </div>
 </section>
 
+<section class="sec ccb" id="book" data-ccb><div class="wrap">
+  <div class="ccb-grid">
+    <div class="ccb-ph ph grain rv"><img src="/static/img/cc-notebooks.webp" alt="Three SHE Coffee Conversations notebooks on a round table beside a candle and a vase of olive leaves" sizes="(max-width:900px) 92vw, 460px" loading="lazy" srcset="/static/img/cc-notebooks-420.webp 420w, /static/img/cc-notebooks-640.webp 640w, /static/img/cc-notebooks-900.webp 900w, /static/img/cc-notebooks.webp 1086w" width="1086" height="1448" decoding="async"></div>
+    <div class="ccb-ui">
+      <span class="k soft rv">Book your place</span>
+      <h2 class="lines "><span class="ln"><span>Where would you like</span></span><span class="ln"><span>to join us?</span></span></h2>
+
+      <div class="ccb-step rv d1">
+        <label class="ccb-lab" for="ccb-loc"><b>1</b>Choose your location</label>
+        <div class="ccb-sel"><select id="ccb-loc" required>
+          <option value="" selected disabled>Select a location</option>
+<option value="Leamington Spa">Leamington Spa</option><option value="Evesham">Evesham</option><option value="Warwick">Warwick</option><option value="Stratford Upon Avon">Stratford Upon Avon</option>        </select></div>
+      </div>
+
+      <fieldset class="ccb-step" id="ccb-dates" hidden>
+        <legend class="ccb-lab"><b>2</b>Choose your date</legend>
+        <div class="ccb-opts" id="ccb-datelist"></div>
+        <p class="ccb-note" id="ccb-empty" hidden>New dates for this location are being finalised. Join SHE and you will hear first. <a class="tlink" href="/join/">Join SHE <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a></p>
+      </fieldset>
+
+      <fieldset class="ccb-step" id="ccb-types" hidden>
+        <legend class="ccb-lab"><b>3</b>Is this your first visit?</legend>
+        <div class="ccb-opts two">
+          <label class="ccb-opt"><input type="radio" name="ccb-type" value="first"><span><strong>First Visit</strong><em>I am new to SHE Coffee Conversations and my notebook is included.</em></span></label>
+          <label class="ccb-opt"><input type="radio" name="ccb-type" value="returning"><span><strong>Returning Guest</strong><em>I have joined before and I already have my notebook.</em></span></label>
+        </div>
+      </fieldset>
+
+      <div class="ccb-go">
+        <a class="btn is-off" id="ccb-book" role="button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener">Book Your Place <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        <p class="ccb-note" id="ccb-hint" role="status" aria-live="polite">Choose a location, a date and your booking type to continue.</p>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="ccb-data">{"alt": "Three SHE Coffee Conversations notebooks on a round table beside a candle and a vase of olive leaves", "closed": "Booking for this option is not open just yet. Join SHE and you will hear first.", "cta": "Book Your Place", "date_label": "Choose your date", "empty": "New dates for this location are being finalised. Join SHE and you will hear first.", "hint": "Choose a location, a date and your booking type to continue.", "img": "cc-notebooks", "kicker": "Book your place", "loc_label": "Choose your location", "loc_ph": "Select a location", "locations": ["Leamington Spa", "Evesham", "Warwick", "Stratford Upon Avon"], "sessions": [], "title": "Where would you like\nto join us?", "type_label": "Is this your first visit?", "types": [["first", "First Visit", "I am new to SHE Coffee Conversations and my notebook is included."], ["returning", "Returning Guest", "I have joined before and I already have my notebook."]]}</script>
+</div></section>
 <section class="sec cream2"><div class="wrap">
   <h3 class="rv" style="text-align:center;margin-bottom:34px;font-family:var(--sans);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600">How it works</h3>
   <div class="numbered four">
@@ -98,6 +135,6 @@
     <div class="line">A more conscious, connected way of being.</div>
   </div>
 </footer>
-<script src="/static/js/site.js?v=98ca8ff5" defer></script>
+<script src="/static/js/site.js?v=e3a4bf50" defer></script>
 </body>
 </html>

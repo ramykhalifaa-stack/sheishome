@@ -838,3 +838,66 @@ h1,h2,h3,.serif-lede,.quote{text-wrap:balance}        /* no single word left alo
 @media(max-width:1000px){.ev-xmas .hero-split .ph,.ev-rhg .hero-split .ph{min-height:0;aspect-ratio:2.05/1}.ev-xmas .hero-split .ph img{object-position:18% 50%!important}}
 .ev-rhg .bar .i svg,.ev-xmas .bar .i svg{width:26px;height:26px}
 .evc .meta:empty{display:none}
+
+/* ---- Website update, November 2026 ---- */
+/* Page-loading indicator: the SHE wordmark, breathing softly, until the page has loaded. Invisible for the
+   first 0.2s so a quick page never flashes it; removes itself after 8s even if scripts fail. */
+.she-loader{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;background:var(--cream);opacity:1;visibility:visible;
+  transition:opacity .5s var(--ease),visibility 0s .5s;animation:ldFail 0s linear 8s forwards}
+.she-loader[hidden]{display:none}
+.she-loader.ld-done{opacity:0;visibility:hidden;pointer-events:none}
+.she-loader .ld-in{display:flex;flex-direction:column;align-items:center;gap:14px;opacity:0;animation:ldIn .6s var(--ease) .2s forwards}
+.she-loader b{font-family:var(--serif);font-weight:400;font-size:clamp(40px,9vw,56px);letter-spacing:.32em;margin-right:-.32em;color:var(--ink,#1E1E1C);line-height:1;animation:ldBreathe 2.4s ease-in-out .8s infinite}
+.she-loader i{display:block;width:84px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform-origin:50% 50%;animation:ldLine 2.4s ease-in-out .8s infinite}
+.she-loader span{font:500 9px var(--sans);letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
+.xmas .she-loader{background:var(--paper,var(--cream))}.xmas .she-loader b{color:var(--wine,#6e1a2c)}.xmas .she-loader span{color:var(--wine,#6e1a2c);opacity:.7}
+@keyframes ldIn{to{opacity:1}}
+@keyframes ldBreathe{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes ldLine{0%,100%{transform:scaleX(.35);opacity:.5}50%{transform:scaleX(1);opacity:1}}
+@keyframes ldFail{to{opacity:0;visibility:hidden;pointer-events:none}}
+@media (prefers-reduced-motion:reduce){.she-loader b,.she-loader i{animation:none}.she-loader{transition:none}}
+
+/* Christmas charity: the raffle button */
+.xm-raffle{display:grid;justify-items:center;gap:10px;margin-top:22px}
+.xm-raffle small{font:500 12px var(--sans);letter-spacing:.06em;color:var(--muted)}
+.xm-btn.is-pending{opacity:.5;cursor:not-allowed}.xm-btn.is-pending:hover{transform:none;background:var(--wine);color:#fff}
+
+/* SHE + ME: registration pop-up. Works without scripts too (it opens from the link's #target). */
+.modal{position:fixed;inset:0;z-index:300;display:none;place-items:center;padding:20px}
+.modal:target,.modal.open{display:grid}
+.modal-back{position:absolute;inset:0;background:rgba(30,30,28,.55);backdrop-filter:blur(3px)}
+.modal-card{position:relative;background:var(--cream);width:min(100%,520px);max-height:calc(100vh - 40px);overflow:auto;padding:clamp(28px,5vw,44px);display:grid;gap:14px;text-align:center;justify-items:center;box-shadow:0 30px 80px rgba(0,0,0,.28)}
+.modal-card h2{font-size:clamp(28px,4vw,38px)}.modal-card .form{width:100%;grid-template-columns:1fr;text-align:left}
+.modal-x{position:absolute;top:10px;right:14px;font-size:30px;line-height:1;color:var(--ink);padding:6px 10px}
+.modal-frame{width:100%;min-height:380px;border:0;background:var(--paper)}
+body.modal-open{overflow:hidden}
+
+/* Coffee Conversations: choose a location, a date and a booking type */
+.ccb{background:var(--cream2)}
+.ccb-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);align-items:center}
+.ccb-ph{aspect-ratio:4/5;max-height:640px}.ccb-ph img{width:100%;height:100%;object-fit:cover}
+.ccb-ui{display:grid;gap:26px;min-width:0}.ccb-ui h2{margin-top:-6px}
+.ccb-step{border:0;margin:0;padding:0;min-width:0;display:grid;gap:12px}.ccb-step[hidden]{display:none}
+.ccb-lab{display:flex;align-items:center;gap:12px;font:600 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;padding:0}
+.ccb-lab b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--blush);font:600 12px var(--sans);letter-spacing:0}
+.ccb-sel{position:relative}.ccb-sel:after{content:"";position:absolute;right:20px;top:50%;width:8px;height:8px;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.ccb-sel select{width:100%;appearance:none;-webkit-appearance:none;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:500 16px var(--sans);padding:17px 48px 17px 18px;border-radius:0;cursor:pointer}
+.ccb-sel select:focus{outline:0;border-color:var(--ink)}
+.ccb-opts{display:grid;gap:10px}.ccb-opts.two{grid-template-columns:1fr 1fr}
+.ccb-opt{position:relative;display:block;cursor:pointer}
+.ccb-opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.ccb-opt>span{display:flex;gap:16px;align-items:center;background:var(--blush);border:1.5px solid transparent;padding:16px 18px;min-height:64px;transition:border-color .2s,background .2s,box-shadow .2s;height:100%}
+.ccb-opts.two .ccb-opt>span{flex-direction:column;align-items:flex-start;gap:6px}
+.ccb-opt:hover>span{background:#EAD6CB}
+.ccb-opt input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+.ccb-opt input:checked+span{background:#F6E7DF;border-color:#6B3A34;box-shadow:0 0 0 1px #6B3A34 inset}
+.ccb-opt strong{font:600 14px var(--sans);letter-spacing:.04em}.ccb-opt em{font:400 14px/1.4 var(--sans);color:var(--ink2);font-style:normal}
+.ccb-dt{display:grid;justify-items:center;min-width:52px;line-height:1}.ccb-dt b{font:400 30px var(--serif)}.ccb-dt small{font:600 10px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.ccb-dtx{display:grid;gap:3px}.ccb-dtx strong{font:400 19px var(--serif);letter-spacing:0}
+.ccb-dtx em{display:block}
+.ccb-go{display:grid;gap:12px;justify-items:start}
+.ccb-go .btn{justify-content:center}
+.btn.is-off{opacity:.38;cursor:not-allowed;background:var(--ink)}.btn.is-off:hover{background:var(--ink);transform:none}.btn.is-off:hover .ar{transform:none}
+.ccb-note{font:400 14px/1.5 var(--sans);color:var(--muted)}.ccb-note a{margin-left:6px}
+@media (max-width:900px){.ccb-grid{grid-template-columns:1fr}.ccb-ph{aspect-ratio:4/3;max-height:420px}}
+@media (max-width:520px){.ccb-opts.two{grid-template-columns:1fr}.ccb-go .btn{width:100%}}

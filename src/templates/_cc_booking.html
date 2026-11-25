@@ -1,0 +1,41 @@
+{# SHE Coffee Conversations: choose a location, a date and a booking type, then go to the matching checkout.
+   Nothing here navigates by itself: the only way off the page is the Book Your Place button. #}
+{% from "_macros.html" import arrow, lines %}
+<section class="sec ccb" id="book" data-ccb><div class="wrap">
+  <div class="ccb-grid">
+    <div class="ccb-ph ph grain rv"><img src="/static/img/{{ booking.img }}.webp" alt="{{ booking.alt }}" sizes="(max-width:900px) 92vw, 460px" loading="lazy"></div>
+    <div class="ccb-ui">
+      <span class="k soft rv">{{ booking.kicker }}</span>
+      {{ lines(booking.title, "h2") }}
+
+      <div class="ccb-step rv d1">
+        <label class="ccb-lab" for="ccb-loc"><b>1</b>{{ booking.loc_label }}</label>
+        <div class="ccb-sel"><select id="ccb-loc" required>
+          <option value="" selected disabled>{{ booking.loc_ph }}</option>
+          {% for l in booking.locations %}<option value="{{ l }}">{{ l }}</option>{% endfor %}
+        </select></div>
+      </div>
+
+      <fieldset class="ccb-step" id="ccb-dates" hidden>
+        <legend class="ccb-lab"><b>2</b>{{ booking.date_label }}</legend>
+        <div class="ccb-opts" id="ccb-datelist"></div>
+        <p class="ccb-note" id="ccb-empty" hidden>{{ booking.empty }} <a class="tlink" href="/join/">Join SHE {{ arrow() }}</a></p>
+      </fieldset>
+
+      <fieldset class="ccb-step" id="ccb-types" hidden>
+        <legend class="ccb-lab"><b>3</b>{{ booking.type_label }}</legend>
+        <div class="ccb-opts two">
+          {% for key, name, sub in booking.types %}
+          <label class="ccb-opt"><input type="radio" name="ccb-type" value="{{ key }}"><span><strong>{{ name }}</strong><em>{{ sub }}</em></span></label>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      <div class="ccb-go">
+        <a class="btn is-off" id="ccb-book" role="button" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener">{{ booking.cta }} {{ arrow() }}</a>
+        <p class="ccb-note" id="ccb-hint" role="status" aria-live="polite">{{ booking.hint }}</p>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="ccb-data">{{ booking | tojson }}</script>
+</div></section>

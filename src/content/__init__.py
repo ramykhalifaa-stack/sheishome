@@ -117,14 +117,52 @@ SHE_ME_SOURCE = "SHE + ME interest"
 COFFEE_REGISTER_URL = ""      # where "Register here" goes (Coffee Conversations, "Not a conversation near you?"). Empty: the interim contact page
 INTERIM_INTEREST_URL = "/join/#contact"
 SHE_ME = {"url": SHE_ME_FORM_URL, "source": SHE_ME_SOURCE}
+DISCOVERY_CALL_URL = ""       # the booking link for the complimentary 20-minute call (Tools page). Empty: the button is off and says the link is coming
+SHE_ME_PAGE = {
+    "title": "SHE + ME", "kicker": "Dream catcher Workshop", "lede": "Two experiences. One shared moment.",
+    "date": "16 January 2027", "where": "Location not confirmed", "time": "Event time to be confirmed", "ages": "Suitable for ages 4+",
+    "intro": ["What if you could give yourself a little time to dream, while creating a magical memory together?",
+              "SHE + ME is a creative experience designed for two generations to enjoy both a little time for themselves and meaningful time together."],
+    "cta": "Book Your Place", "hero": "sheme-card",
+    "alt": "A mother laughing with her two children as they make a dream catcher together at a wooden table",
+    "split_title": "A little time for SHE.\nA little time for ME.", "split_sub": "Because connection starts with having the space to be yourself, too.",
+    "she_k": "The SHE experience", "she": ["A moment to pause, reflect and reconnect with the things that matter to you.",
+        "You\u2019ll spend time exploring your own manifestation, setting intentions and giving some thought to the dreams and possibilities you\u2019d love to bring into your next chapter."],
+    "me_k": "The ME experience", "me": ["While SHE takes her moment, ME has their own creative space.",
+        "With age-appropriate activities such as drawing, colouring, creative journalling and other little projects, they\u2019ll have the freedom to explore their imagination and express themselves.",
+        "Suitable for children aged 4+."],
+    "together_title": "Then, it\u2019s time\nto come together.", "together_k": "The shared experience",
+    "together": ["Once you\u2019ve both enjoyed your individual activities, it\u2019s time to reconnect.",
+        "Together, you\u2019ll create your very own dream catcher.",
+        "A chance to share ideas, get creative, work together and make something beautiful that you can take home.",
+        "Not just something you\u2019ve made, but something that reminds you of the time you spent together."],
+    "more_title": "A little more\nthan an afternoon.",
+    "more": ["SHE + ME is about celebrating the relationship between two people, creating space for individuality and making memories along the way.",
+        "Whether it\u2019s mum and daughter, grandma and granddaughter, auntie and niece, or another special pairing, everyone deserves a little time together."],
+    "more_close": "Come as you are. Create separately. Reconnect together.",
+    "book_k": "Your SHE + ME experience", "book_title": "Come and make a memory together.",
+    "book_note": "Booking is not open yet. Leave your details and we will contact you first with the time, the location and how to book.",
+    "done_title": "You are on the list", "done_note": "We will be in touch with the time, the location and how to book.",
+    "form_cta": "Register Your Interest", "source": SHE_ME_SOURCE, "url": SHE_ME_FORM_URL,
+}
+TOOLS_CALL = {
+    "k": "A gift from me to you", "title": "Create space for\nyour next chapter", "lead": "And now, a little gift from me to you.",
+    "sub": "A complimentary 20 minute discovery call.",
+    "paras": ["Sometimes, all you need is 20 minutes to pause, take a breath and put yourself first.",
+              "No pressure. No expectations. Just time focused entirely on you.",
+              "I\u2019ll guide you through what\u2019s on your mind, help you see things from a different perspective and uncover the obvious next steps that might be right in front of you.",
+              "Because if there\u2019s one thing you can do for yourself, it\u2019s give yourself those 20 minutes."],
+    "close": "You deserve that space.", "cta": "Book your complimentary 20-minute call", "url": DISCOVERY_CALL_URL,
+    "pending": "Booking link coming soon",
+}
 EVENTS = [
     *([{"date": "Friday 18 December", "place": "The Moat House Teepee, near Alcester", "name": "The SHE Christmas Gathering",
         "sub": "An evening of connection, conversation and festive celebrations with the SHE community.",
         "img": "ev-xmas", "href": "/gather/christmas-gathering/", "cta": "View event"}]
       if datetime.date.today() <= datetime.date(2026, 12, 18) else []),
-    *([{"date": "16 January 2027", "place": "The Moat House Teepee, near Alcester", "name": "SHE + ME: Dream-catcher Workshop",
-        "sub": "Shared moments. Lasting memories. A little time for her. A magical moment for them.",
-        "img": "sheme-card", "modal": "sheme", "cta": "Register Your Interest"}]
+    *([{"date": "16 January 2027", "place": "Location to be confirmed", "name": "SHE + ME: Dream catcher Workshop",
+        "sub": "Two experiences. One shared moment. A little time for her, a magical memory together.",
+        "img": "sheme-card", "href": "/gather/she-me/", "cta": "Find out more"}]
       if datetime.date.today() <= datetime.date(2027, 1, 16) else []),
     {"date": "Coming January 2027", "place": "", "name": "Receiving, Holding & Growing",
      "sub": "Money, self-worth and sustainable abundance. Waitlist now open.",
@@ -659,6 +697,7 @@ def pages() -> list[dict]:
         page("/about/", "about.html", "About SHE", "What started with a journal became an experience. Where SHE came from, and why it is about both becoming and belonging.", "about-hero"),
         page("/gather/christmas-gathering/", "gather_christmas.html", "The SHE Christmas Gathering", "An evening of connection, conversation and festive celebrations with the SHE community. 18 December 2026, The Moat House Teepee, near Alcester.", "ev-xmas", g=GATHER_XMAS),
         page("/gather/receiving-holding-growing/", "gather_rhg.html", "Receiving, Holding & Growing", "A different relationship with money begins here. Money, self-worth and sustainable abundance. Coming January 2027: join the waitlist.", "ev-rhg", g=GATHER_RHG),
+        page("/gather/she-me/", "gather_sheme.html", "SHE + ME: Dream catcher Workshop", "Two experiences. One shared moment. A creative workshop for two generations: a little time for her, a little time for them, and a dream catcher to make together. 16 January 2027.", "sheme-card", g=SHE_ME_PAGE),
         page("/gather/create-your-next-chapter/", "event.html", "Create Your Next Chapter, a SHE workshop", "A half-morning workshop to help you pause, reflect and intentionally shape what's next.", "cync-group",
              ev={"kicker": "Workshop", "title": "Create Your\nNext Chapter", "tags": "Vision boarding · Manifestation · Mindset", "tags2": "Coffee. Cake. Clarity. You.",
                  "intro": "A half-morning workshop to help you pause, reflect and intentionally shape what's next, with practical tools, meaningful conversation and a supportive community of women.",
@@ -776,7 +815,7 @@ def pages() -> list[dict]:
         page("/christmas/register/", "christmas_register.html", "Join the SHE Christmas Guest List", "Register your interest in SHE Christmas, 18 December 2026, The Moat House Inn, nr Alcester.", "xmas-mug", standalone=True, xm=XMAS),
         # The founder's way in to the CRM. Unlisted like /coffee/: no link from the site, not in the sitemap.
         page("/crm/", "crm.html", "SHE Community CRM", "The founder's private journal of the women who connect with SHE.", unlisted=True),
-        page("/tools/", "tools.html", "Tools", "More than a journal. A place to pause, ask better questions, notice what's changing, imagine what's possible and come back to yourself.", "tools-hero"),
+        page("/tools/", "tools.html", "Tools", "More than a journal. A place to pause, ask better questions, notice what's changing, imagine what's possible and come back to yourself.", "tools-hero", call=TOOLS_CALL),
         page("/tools/the-becoming/", "becoming_journal.html", "The Becoming, a journal for a more intentional life", "A 24-week guided journal to help you look at your life, your patterns, your energy, your goals and what you want to change.", "becoming-product-hero"),
         page("/tools/shes-glowing/", "glowing_journal.html", "She's Glowing, a journal for pregnancy, motherhood and your own evolution", "You're not losing yourself. You're meeting yourself. A space to feel, reflect and stay connected to yourself through a chapter that changes everything.", "glowing-hero"),
         # Both physical journals are sold out. Nobody is sent to a shop that cannot sell them:

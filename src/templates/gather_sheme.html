@@ -1,0 +1,55 @@
+{% extends "base.html" %}{% from "_macros.html" import arrow, lines %}
+{# SHE + ME: Dream catcher Workshop. Date is confirmed; location and event time are not, and the page says so. Booking is an interest list until a checkout exists. #}
+{% block content %}
+<div class="evp ev-sheme">
+<section class="hero-split">
+  <div class="tx"><nav class="crumb rv"><a href="/gather/">Gather</a> / Workshop</nav>{{ lines(g.title, "h1") }}<span class="k soft rv d1">{{ g.kicker }}</span>
+    <p class="serif-lede rv d1">{{ g.lede }}</p>
+    <ul class="shm-facts rv d1"><li><b>{{ g.date }}</b></li><li>{{ g.where }}</li><li>{{ g.ages }}</li></ul>
+    {% for l in g.intro %}<p class="lede rv d2">{{ l }}</p>{% endfor %}
+    <div class="rv d3"><a class="btn" href="#book">{{ g.cta }} {{ arrow() }}</a></div></div>
+  <div class="ph grain rv"><img src="/static/img/{{ g.hero }}.webp" alt="{{ g.alt }}" sizes="(max-width:1000px) 100vw, 50vw"></div>
+</section>
+
+<section class="sec cream2"><div class="wrap">
+  <div class="shm-head">{{ lines(g.split_title, "h2") }}<p class="lede rv d1">{{ g.split_sub }}</p></div>
+  <div class="grid g2 shm-two">
+    <article class="shm-card rv"><span class="k soft">{{ g.she_k }}</span>{% for l in g.she %}<p>{{ l }}</p>{% endfor %}</article>
+    <article class="shm-card rv d1"><span class="k soft">{{ g.me_k }}</span>{% for l in g.me %}<p>{{ l }}</p>{% endfor %}</article>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap shm-center">
+  {{ lines(g.together_title, "h2") }}
+  <span class="k soft rv">{{ g.together_k }}</span>
+  {% for l in g.together %}<p class="lede rv d{{ loop.index }}">{{ l }}</p>{% endfor %}
+</div></section>
+
+<section class="sec cream2"><div class="wrap shm-center">
+  {{ lines(g.more_title, "h2") }}
+  {% for l in g.more %}<p class="lede rv d{{ loop.index }}">{{ l }}</p>{% endfor %}
+  <p class="serif-lede rv d3">{{ g.more_close }}</p>
+</div></section>
+
+<section class="sec" id="book"><div class="wrap evwait">
+  <span class="k soft rv">{{ g.book_k }}</span>
+  <ul class="shm-facts shm-facts-c rv d1"><li><b>{{ g.date }}</b></li><li>{{ g.where }}</li><li>{{ g.ages }}</li><li>{{ g.time }}</li></ul>
+  <h2 class="rv d1">{{ g.book_title }}</h2>
+  <p class="lede rv d1">{{ g.book_note }}</p>
+  {% if g.url %}
+  <iframe class="modal-frame" src="{{ g.url }}" title="SHE + ME: register your interest" loading="lazy"></iframe>
+  {% else %}
+  <form class="form one rv d2" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Sending..." data-title="{{ g.done_title }}" data-note="{{ g.done_note }}">
+    <label class="evvh" for="shm-name">Name</label>
+    <input id="shm-name" name="name" placeholder="Name" autocomplete="name" required>
+    <label class="evvh" for="shm-email">Email address</label>
+    <input id="shm-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+    <input type="hidden" name="source" value="{{ g.source }}">
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+    <button class="btn" type="submit">{{ g.form_cta }} {{ arrow() }}</button>
+    <p class="msg" role="status">We only use your details to tell you about this workshop. You can leave at any time.</p>
+  </form>
+  {% endif %}
+</div></section>
+</div>
+{% endblock %}

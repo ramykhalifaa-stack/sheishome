@@ -24,4 +24,16 @@
   {{ img("scottish-journal", "Two SHE journals resting on a stone", parallax=True) }}
   <div class="tx stack"><span class="k rv">Made from real life</span>{{ lines("Made to return to.", "h2") }}<p class="lede rv d1">These aren't journals for having the perfect routine. They're places to come back to when you want to understand yourself a little better.</p><div class="rv d2"><a class="btn" href="#journals">Explore the collection {{ arrow() }}</a></div></div>
 </section>
+<section class="sec" id="discovery-call"><div class="wrap shm-center">
+  <span class="k soft rv">{{ call.k }}</span>
+  {{ lines(call.title, "h2") }}
+  <p class="serif-lede rv d1">{{ call.lead }}</p>
+  <p class="k rv d1" style="letter-spacing:.2em">{{ call.sub }}</p>
+  {% for l in call.paras %}<p class="lede rv d2">{{ l }}</p>{% endfor %}
+  <p class="serif-lede rv d3">{{ call.close }}</p>
+  <div class="rv d3 shm-cta">
+    {% if call.url %}<a class="btn" href="{{ call.url }}" target="_blank" rel="noopener">{{ call.cta }} {{ arrow() }}</a>
+    {% else %}<span class="btn is-off" role="link" aria-disabled="true">{{ call.cta }} {{ arrow() }}</span><small>{{ call.pending }}</small>{% endif %}
+  </div>
+</div></section>
 {% endblock %}

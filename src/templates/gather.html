@@ -26,14 +26,6 @@
         <p class="muted" style="margin-bottom:12px">{{ e.sub }}</p>
         <a class="tlink" href="/join/">Hear about it first {{ arrow() }}</a>
       </div>
-      {% elif e.modal %}
-      <a class="rv d{{ loop.index0 }}" href="#{{ e.modal }}-form" data-open="{{ e.modal }}" aria-haspopup="dialog">
-        <div class="ph grain" style="aspect-ratio:4/3;margin-bottom:16px"><img src="/static/img/{{ e.img }}.webp" alt="A mother laughing with her two children as they make a dream-catcher together" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px" loading="lazy"></div>
-        <div class="meta" style="margin-bottom:8px"><span>{{ e.date }}</span>{% if e.place %}<span>{{ e.place }}</span>{% endif %}</div>
-        <h3 style="margin-bottom:8px">{{ e.name }}</h3>
-        <p class="muted" style="margin-bottom:12px">{{ e.sub }}</p>
-        <span class="tlink">{{ e.cta }} {{ arrow() }}</span>
-      </a>
       {% else %}
       <a class="rv d{{ loop.index0 }}" href="{{ e.href }}">
         <div class="ph grain" style="aspect-ratio:4/3;margin-bottom:16px"><img src="/static/img/{{ e.img }}.webp" alt="" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 380px" loading="lazy"></div>
@@ -72,29 +64,4 @@
   <span class="q rv">{{ closing_quote }}</span>
 </section>
 
-{% if events|selectattr("modal")|list %}
-<div class="modal" id="sheme-form" role="dialog" aria-modal="true" aria-labelledby="sheme-title" tabindex="-1">
-  <a class="modal-back" href="#events" data-close aria-label="Close"></a>
-  <div class="modal-card">
-    <a class="modal-x" href="#events" data-close aria-label="Close">&times;</a>
-    <span class="k soft">SHE + ME: Dream-catcher Workshop</span>
-    <h2 id="sheme-title">Register your interest</h2>
-    <p class="muted">16 January 2027. Shared moments. Lasting memories. Leave your name and email and we will be in touch with the details.</p>
-    {% if she_me.url %}
-    <iframe class="modal-frame" src="{{ she_me.url }}" title="SHE + ME: register your interest" loading="lazy"></iframe>
-    {% else %}
-    <form class="form one" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Sending..." data-title="You are on the list" data-note="We will be in touch with the details for SHE + ME: Dream-catcher Workshop.">
-      <label class="evvh" for="sheme-name">Name</label>
-      <input id="sheme-name" name="name" placeholder="Name" autocomplete="name" required>
-      <label class="evvh" for="sheme-email">Email address</label>
-      <input id="sheme-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
-      <input type="hidden" name="source" value="{{ she_me.source }}">
-      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-      <button class="btn" type="submit">Register Your Interest {{ arrow() }}</button>
-      <p class="msg" role="status">We only use your details to tell you about this workshop. You can leave at any time.</p>
-    </form>
-    {% endif %}
-  </div>
-</div>
-{% endif %}
 {% endblock %}

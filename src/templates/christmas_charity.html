@@ -24,20 +24,36 @@
   </ul>
 </div></section>
 
-<section class="xm-paper xm-clear"><div class="wrap"><p class="rv">{{ xm.charity_clear }}</p>
-  <div class="xm-raffle rv d1">
-    {% if xm.raffle_url %}<a class="xm-btn" href="{{ xm.raffle_url }}" target="_blank" rel="noopener">{{ xm.raffle_cta }}</a>
-    {% else %}<span class="xm-btn is-pending" role="link" aria-disabled="true">{{ xm.raffle_cta }}</span><small>{{ xm.raffle_pending }}</small>{% endif %}
-  </div></div></section>
+<section class="xm-paper xm-spot"><div class="wrap xm-spotwrap">
+  <p class="xm-kick rv">{{ xm.spot_k }}</p>
+  <h2 class="xm-script xm-big rv d1">{{ xm.spot_title }}</h2>
+  <div class="xm-spottx rv">{% for p in xm.spot %}<p>{{ p }}</p>{% endfor %}</div>
+  <h3 class="xm-spoth rv">{{ xm.why_title }}</h3>
+  <div class="xm-spottx rv">{% for p in xm.why %}<p>{{ p }}</p>{% endfor %}<p class="xm-hl">{{ xm.why_hl }}</p><p>{{ xm.why_end }}</p></div>
+</div></section>
+
+<section class="xm-paper xm-raffleband" id="raffle"><div class="wrap xm-rafflewrap">
+  <a class="xm-btn big" href="{{ xm.raffle_url }}" target="_blank" rel="noopener">{{ xm.raffle_big }}</a>
+  <p class="xm-price">{{ xm.raffle_price }}</p>
+  <div class="xm-conf rv">
+    <h3 class="xm-kick">{{ xm.conf_title }}</h3>
+    {% for p in xm.conf %}<p>{{ p }}</p>{% endfor %}
+  </div>
+  <div class="xm-adv rv" role="note">
+    <h3 class="xm-kick">{{ xm.adv_title }}</h3>
+    {% for p in xm.adv %}<p>{{ p }}</p>{% endfor %}
+  </div>
+  <p class="xm-clearnote rv">{{ xm.charity_clear }}</p>
+</div></section>
 
 <section class="xm-quote" style="--q:url(/static/img/xmas-tree-banner.webp)"><div class="wrap">
   <blockquote class="xm-script rv">&ldquo;{{ xm.charity_quote }}&rdquo;</blockquote>
 </div></section>
 
-<section class="xm-wine xm-ctaband"><div class="wrap xm-center">
-  <h2 class="xm-kick xm-h2 rv">{{ xm.charity_cta_title }}</h2>
-  {% if xm.charity_url %}<a class="xm-btn ghost rv d1" href="{{ xm.charity_url }}" target="_blank" rel="noopener">{{ xm.charity_cta }} {{ arrow() }}</a>
-  {% else %}<p class="xm-soon rv d1">{{ xm.charity_soon }}</p>{% endif %}
+<section class="xm-wine xm-ctaband xm-closeband"><div class="wrap xm-center">
+  <h2 class="xm-kick xm-h2 rv">{{ xm.close_title }}</h2>
+  {% for p in xm.close %}<p class="xm-closep rv d1">{{ p }}</p>{% endfor %}
+  <p class="xm-closesign rv d2">{{ xm.close_sign[0] }}<br><b>{{ xm.close_sign[1] }}</b></p>
   <div class="rv d2" style="margin-top:22px">{{ book(xm, "gold") }}</div>
 </div></section>
 {{ foot(xm) }}

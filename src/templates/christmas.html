@@ -75,6 +75,25 @@
   </div>
 </div></section>
 
+{# 5b. Frequently asked questions: each question is its own drop-down #}
+<section class="xm-faq" id="faq"><div class="wrap">
+  <h2 class="xm-faqh rv"><span>{{ xm.faq_title }}</span></h2>
+  <p class="xm-faqsub rv d1">{{ xm.faq_sub }}</p>
+  {% for ic, title, qs in xm.faq %}
+  <div class="xm-faqgrp rv">
+    <h3 class="xm-faqcat">{{ xi(ic) }}<span>{{ title }}</span></h3>
+    {% for q, a in qs %}
+    <details class="xm-q"><summary>{{ q }}</summary><div class="xm-a">{% for para in a %}<p>{% for seg in para.split(xm.faq_email) %}{{ seg }}{% if not loop.last %}<a href="mailto:{{ xm.faq_email }}">{{ xm.faq_email }}</a>{% endif %}{% endfor %}</p>{% endfor %}</div></details>
+    {% endfor %}
+  </div>
+  {% endfor %}
+  <div class="xm-faqend rv">
+    <h3 class="xm-faqcat c"><span>{{ xm.faq_end_title }}</span></h3>
+    {% for para in xm.faq_end %}<p>{% for seg in para.split(xm.faq_email) %}{{ seg }}{% if not loop.last %}<a href="mailto:{{ xm.faq_email }}">{{ xm.faq_email }}</a>{% endif %}{% endfor %}</p>{% endfor %}
+    <p class="xm-sign">{{ xm.faq_sign[0] }}<br><b>{{ xm.faq_sign[1] }}</b><br>{{ xm.faq_sign[2] }} {{ xi("heart") }}</p>
+  </div>
+</div></section>
+
 {# 6. The invitation to join us #}
 <section class="xm-final"><div class="wrap xm-invite rv">
   <h2 class="xm-kick xm-h2">{{ xm.invite_title }}</h2>

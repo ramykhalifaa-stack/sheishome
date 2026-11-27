@@ -1,0 +1,21 @@
+{% extends "base_xmas.html" %}{% from "_xmas.html" import subnav, foot %}
+{# Booking Terms & Conditions for the SHE Christmas Gathering. The founder's wording, unchanged. Linked only from the Christmas footer, never from the navigation. #}
+{% block content %}
+<div class="xm">
+{{ subnav(xm, "terms") }}
+<section class="xm-hero short" style="--l:url(/static/img/xmas-tree-left.webp);--r:url(/static/img/xmas-candles-right.webp)">
+  <div class="wrap">
+    <p class="xm-kick rv">{{ t.kicker }}</p>
+    <h1 class="xm-title rv d1"><span class="xm-script xm-termst">{{ t.title }}</span></h1>
+  </div>
+</section>
+<section class="xm-paper xm-terms"><div class="wrap xm-termswrap">
+  <dl class="xm-termsmeta"><div><dt>Organiser</dt><dd>{{ t.org }}</dd></div><div><dt>Contact</dt><dd><a href="mailto:{{ t.email }}">{{ t.email }}</a></dd></div></dl>
+  {% for h, ps in t.secs %}
+  <section class="xm-term"><h2>{{ h }}</h2>{% for p in ps %}<p>{{ p }}</p>{% endfor %}</section>
+  {% endfor %}
+  <p class="xm-termsign"><b>{{ t.sign }}</b><br><a href="https://{{ t.site }}">{{ t.site }}</a></p>
+</div></section>
+{{ foot(xm) }}
+</div>
+{% endblock %}

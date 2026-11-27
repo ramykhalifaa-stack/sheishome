@@ -293,13 +293,13 @@ _FIRST_EVENTS = [e for e in (
 # ---------------------------------------------------------------------------------------------
 CC_LOCATIONS = ["Leamington Spa", "Evesham", "Warwick", "Stratford Upon Avon"]
 CC_SESSIONS = [
-    # Dates and times from the founder, 25 November 2026. No venues or checkout links yet: each date's two
-    # links (first_url for First Visit, returning_url for Returning Guest) are added as she sends them.
-    {"on": datetime.date(2026, 12, 6),  "loc": "Leamington Spa", "time": "10:00 am to 11:30 am", "venue": "", "first_url": "", "returning_url": ""},
-    {"on": datetime.date(2026, 12, 10), "loc": "Leamington Spa", "time": "7:00 pm to 8:30 pm",   "venue": "", "first_url": "", "returning_url": ""},
-    {"on": datetime.date(2026, 12, 13), "loc": "Warwick",        "time": "10:00 am to 11:30 am", "venue": "", "first_url": "", "returning_url": ""},
-    {"on": datetime.date(2026, 12, 16), "loc": "Evesham",        "time": "6:30 pm to 8:00 pm",   "venue": "", "first_url": "", "returning_url": ""},
-    {"on": datetime.date(2027, 1, 21),  "loc": "Evesham",        "time": "6:30 pm to 8:00 pm",   "venue": "", "first_url": "", "returning_url": ""},
+    # Dates and times from the founder, 25 November 2026. Beacons links (first_url for First Visit, returning_url
+    # for Returning Guest) supplied by the founder, 27 November 2026. No venues yet.
+    {"on": datetime.date(2026, 12, 6),  "loc": "Leamington Spa", "time": "10:00 am to 11:30 am", "venue": "", "first_url": "https://shop.beacons.ai/sacredhumanexperience/153d714c-3c4d-452b-9604-dbd20b563475", "returning_url": "https://shop.beacons.ai/sacredhumanexperience/b77762de-8c3e-4d08-862b-adfd608dfe87"},
+    {"on": datetime.date(2026, 12, 10), "loc": "Leamington Spa", "time": "7:00 pm to 8:30 pm",   "venue": "", "first_url": "https://shop.beacons.ai/sacredhumanexperience/3cb811e9-18a6-4ff5-9834-236888c43a8b", "returning_url": "https://shop.beacons.ai/sacredhumanexperience/a0482892-a525-4a10-b69d-104bc449734e"},
+    {"on": datetime.date(2026, 12, 13), "loc": "Warwick",        "time": "10:00 am to 11:30 am", "venue": "", "first_url": "https://shop.beacons.ai/sacredhumanexperience/5b19bc88-b389-4da7-8412-27d6cf057067", "returning_url": "https://shop.beacons.ai/sacredhumanexperience/775dd350-2cac-4ff6-bba0-413e7ad3fd4b"},
+    {"on": datetime.date(2026, 12, 16), "loc": "Evesham",        "time": "6:30 pm to 8:00 pm",   "venue": "", "first_url": "https://shop.beacons.ai/sacredhumanexperience/0f3df01a-5624-4f5f-bdc0-08adc635ead4", "returning_url": "https://shop.beacons.ai/sacredhumanexperience/06625787-aa28-4a2e-872d-57b0be0ddc30"},
+    {"on": datetime.date(2027, 1, 21),  "loc": "Evesham",        "time": "6:30 pm to 8:00 pm",   "venue": "", "first_url": "https://shop.beacons.ai/sacredhumanexperience/8bb065c6-e2ca-4e68-97d5-f2d84153e7c2", "returning_url": "https://shop.beacons.ai/sacredhumanexperience/ab88c062-5d6a-494f-b958-af3f7b3fc376"},
 ]
 CC_BOOKING = {
     "kicker": "Book your place",

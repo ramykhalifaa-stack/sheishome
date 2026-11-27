@@ -516,7 +516,7 @@ COFFEE_QUESTIONS = {
 # To switch the form on, paste the embed code Beacons gives her between the triple quotes of XMAS_BEACONS_EMBED.
 XMAS_BEACONS_EMBED = """"""
 XMAS_CHARITY_URL = ""
-XMAS_RAFFLE_URL = ""                  # where "Buy a Raffle Ticket" goes. Empty: the button shows "Raffle tickets opening soon" and goes nowhere
+XMAS_RAFFLE_URL = "https://checkout.square.site/merchant/MLVB65ENAJTSX/checkout/G3UOMJIJT2ZTF6FGHEVOC5TQ?src=sheet"   # raffle tickets, £5 each, supplied by the founder 28 November 2026
 XMAS_DATE = datetime.date(2026, 12, 18)
 XMAS_REG = "/christmas/register/"
 XMAS = {
@@ -553,7 +553,7 @@ XMAS = {
     "people_cta": "Meet the Businesses Behind the Magic",
     "giving_title": "A little giving\ngoes a long way",
     "giving": ["Our Christmas raffle will support a nominated local charity.",
-               "Local businesses and individuals can contribute prizes, and guests will have the chance to buy raffle tickets. If you would like to give a little more, an additional contribution is entirely optional."],
+               "Local businesses and individuals can contribute prizes, and raffle tickets are bought in advance through our website. If you would like to give a little more, an additional contribution is entirely optional."],
     "giving_cta": "How the raffle works",
     "faq_title": "Frequently Asked Questions",
     "faq_sub": "Everything you need to know before joining us for a special evening of connection, celebration and Christmas magic.",
@@ -595,8 +595,8 @@ XMAS = {
             ('Can I bring my own drinks?', ['Please contact us before bringing any drinks to the event. Additional drinks will be available to purchase directly from the venue.']),
         ]),
         ('gift', 'The Charity Raffle', [
-            ('How does the charity raffle work?', ['We’ll be hosting a special Christmas raffle featuring lovely prizes generously donated by local businesses and individuals. Guests attending the gathering will have the opportunity to purchase raffle tickets and enter for the chance to win, while supporting a nominated local charity.']),
-            ('Where does the money raised go?', ['Our Christmas raffle will support our chosen local charity. You can find out more about the charity we’re supporting and our fundraising efforts on our website.']),
+            ('How does the charity raffle work?', ['We’ll be hosting a special Christmas raffle featuring lovely prizes generously donated by local businesses and individuals. Raffle tickets must be bought in advance through our website, and every ticket supports BENS Groups, our nominated local charity.']),
+            ('Where does the money raised go?', ['Our Christmas raffle supports BENS Groups, a local community organisation for children and families. You can read more about them on our Giving Back page.']),
             ('Can I purchase raffle tickets on the evening?', ['Raffle tickets must be purchased in advance using the link on our website or in the welcome email. Unfortunately, they won’t be available to purchase on the evening itself.']),
             ('Can I buy raffle tickets without attending the event?', ['The raffle is exclusively for guests attending the SHE Christmas Gathering, so you must be present to participate. However, if you’d still like to support our nominated charity but can’t attend, charitable donations are always welcome.']),
         ]),
@@ -666,10 +666,41 @@ XMAS = {
     "charity_kicker": "SHE Christmas", "charity_title": "Giving Back", "charity_script": "A Little Giving\nGoes a Long Way",
     "cause_title": "Supporting a cause close to our hearts",
     "cause": ["SHE Christmas is more than a beautiful evening together, it's also an opportunity to give back.",
-              "This year, our Christmas raffle will support a nominated local charity that makes a real difference in our community."],
+              "This year, our Christmas raffle supports BENS Groups, a local community organisation that makes a real difference to children and families."],
     "charity_cols": [("gift", "The Christmas raffle", "The raffle is how SHE Christmas gives back. It will raise funds for our nominated charity."),
                      ("people", "Prizes from our community", "Local businesses and individuals are warmly invited to contribute raffle prizes."),
-                     ("heart", "How you can take part", "On the night, guests will be able to buy raffle tickets, and may also make an additional voluntary contribution if they wish. It is entirely optional.")],
+                     ("heart", "How you can take part", "Raffle tickets are £5 each and must be bought in advance through our website. They will not be sold at the gathering itself.")],
+    "spot_k": "Our chosen charity", "spot_title": "Supporting BENS Groups",
+    "spot": ["At SHE, we believe that everyone deserves to feel seen, supported, accepted and valued. That\u2019s why we\u2019re incredibly proud to be supporting BENS Groups through our Christmas fundraising raffle.",
+             "We believe children are our future. And now, more than ever, it\u2019s important that we protect, nurture and champion the next generation, particularly those who see the world a little differently.",
+             "The children who are creative, curious, imaginative and think outside the box. The children who might not always fit into traditional ways of learning or communicating. The ones who may have been made to feel they\u2019re not clever enough or somehow different, when in reality they\u2019re incredibly bright, capable and extraordinary individuals with so much to offer the world.",
+             "Every child deserves someone who sees their potential, believes in them and gives them the space to discover who they are.",
+             "This is something BENS Groups does beautifully.",
+             "BENS Groups is a wonderful local community organisation dedicated to supporting children and young people, creating safe, nurturing and non judgemental spaces where they can feel understood, accepted and free to be themselves.",
+             "Through their after school sessions, children are given the opportunity to explore their emotions, build confidence and self esteem, develop friendships and learn valuable tools to help them navigate anxiety, communication and everyday challenges.",
+             "Using creative activities, games, arts and crafts and gentle coaching, BENS Groups helps children develop a better understanding of themselves and the world around them.",
+             "But perhaps most importantly, it gives them something every child deserves: a sense of belonging.",
+             "Their support doesn\u2019t stop with the children. BENS Groups also works closely with parents and families, offering a listening ear, practical guidance and support with things such as EHCPs and school advocacy.",
+             "Because supporting a child often means supporting the whole family. Having someone in your corner who listens, understands and helps you navigate the challenges can make an enormous difference."],
+    "why_title": "Why we\u2019re fundraising",
+    "why": ["Like many small community organisations, BENS Groups is facing the increasing pressure of rising running costs.",
+            "Despite this, their commitment remains unwavering: to keep their after school sessions running at a minimal cost, ensuring that children can access the support they need regardless of their family\u2019s financial circumstances.",
+            "We want to help BENS Groups continue the incredible work they do within our local community."],
+    "why_hl": "100% of the money raised through our Christmas raffle will go towards supporting BENS Groups and their essential running costs.",
+    "why_end": "Every raffle ticket purchased will help make a difference to local children and families.",
+    "raffle_big": "Buy your raffle tickets now", "raffle_price": "Each raffle ticket costs \u00a35.",
+    "conf_title": "Your raffle ticket confirmation",
+    "conf": ["Once you have purchased your raffle ticket through the BENS Groups booking link, you will receive an email confirmation of your purchase.",
+             "Please keep this email safe as your proof of purchase. Your email confirmation is your record of your raffle ticket purchase and can be retained for reference ahead of the draw.",
+             "Please remember that all raffle tickets must be purchased in advance. Tickets will not be available to purchase at the Christmas gathering."],
+    "adv_title": "Please note",
+    "adv": ["All raffle tickets must be purchased in advance through our website. Unfortunately, we will not be selling raffle tickets at the Christmas gathering itself.",
+            "We encourage everyone wishing to participate to purchase their tickets before attending the event."],
+    "close_title": "Be part of something meaningful.",
+    "close": ["By supporting our Christmas raffle, you\u2019re helping us support a community organisation that is making a real difference to children and families.",
+              "Because every child deserves to feel they belong. Every child deserves to have their potential recognised. And no child should miss out on the support they need.",
+              "Thank you for helping SHE give something back."],
+    "close_sign": ["With love", "SHE"],
     "charity_clear": "To be clear: the fundraising comes from the raffle and from any optional contributions guests choose to make. It is not taken from ticket sales.",
     "raffle_cta": "Buy a Raffle Ticket", "raffle_url": XMAS_RAFFLE_URL, "raffle_pending": "Raffle tickets opening soon",
     "charity_quote": "It's about coming together, not just to celebrate, but to support and uplift our community.",
@@ -692,7 +723,7 @@ XMAS = {
     "reg_thanks": "Your details have been received. We will be in touch by email with what happens next.",
     "reg_thanks_note": "Registering your interest does not on its own confirm a ticket or guarantee a place.",
     "reg_note": "Please let us know about any dietary requirement or allergy when you register, so we can talk it through with the venue's catering team in advance.",
-    "reg_give": "A note on giving: our Christmas raffle will support a nominated local charity. Raffle tickets will be available on the night, and any additional contribution is entirely optional.",
+    "reg_give": "A note on giving: our Christmas raffle will support a nominated local charity. Raffle tickets must be bought in advance through our website, and will not be sold at the gathering itself.",
 }
 
 

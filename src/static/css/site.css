@@ -938,3 +938,28 @@ body.modal-open{overflow:hidden}
 .xm-faqend p{max-width:56ch}
 .xm-sign{margin-top:6px!important;font-style:italic!important}.xm-sign b{font:400 28px var(--serif);font-style:normal;color:#fff}.xm-sign svg{display:inline-block;width:16px;height:16px;vertical-align:-2px;color:var(--gold)}
 @media (max-width:620px){.xm-faqh{letter-spacing:.16em}.xm-faqh:before,.xm-faqh:after{display:none}.xm-faqcat{letter-spacing:.2em}.xm-q summary{padding:13px 14px}.xm-a{padding:0 14px 14px}}
+
+/* SHE Christmas, Giving Back: the BENS Groups spotlight, raffle and closing message */
+.xm-spot{padding:clamp(36px,5vw,64px) 0}
+.xm-spotwrap{max-width:760px;text-align:center}
+.xm-spotwrap .xm-kick{margin:0 0 6px}
+.xm-spotwrap .xm-big{margin:0 0 clamp(20px,3vw,32px)}
+.xm-spottx{display:grid;gap:16px;text-align:left;font:400 clamp(16px,1.35vw,19px)/1.65 var(--serif);color:var(--xink)}
+.xm-spottx p{margin:0}
+.xm-spoth{margin:clamp(30px,4vw,48px) 0 16px;font:500 clamp(14px,1.5vw,17px)/1.5 var(--serif);letter-spacing:.3em;text-transform:uppercase;color:var(--wine)}
+.xm-hl{font-weight:600!important;color:var(--wine);border-left:2px solid var(--gold);padding-left:16px}
+.xm-raffleband{padding:clamp(8px,2vw,24px) 0 clamp(36px,5vw,64px)}
+.xm-rafflewrap{max-width:760px;display:grid;justify-items:center;gap:14px;text-align:center}
+.xm-btn.big{padding:20px 34px;font-size:12.5px}
+.xm-price{margin:0;font:italic 400 clamp(17px,1.5vw,20px) var(--serif);color:var(--wine)}
+.xm-conf,.xm-adv{width:100%;text-align:left;display:grid;gap:10px;padding:clamp(20px,3vw,30px);margin-top:12px;font:400 clamp(15px,1.25vw,17px)/1.6 var(--serif)}
+.xm-conf{background:var(--paper2);border:1px solid rgba(94,16,32,.15)}
+.xm-adv{background:#fff;border:1.5px solid var(--wine)}
+.xm-conf p,.xm-adv p{margin:0}.xm-conf h3,.xm-adv h3{margin:0 0 4px;color:var(--wine);font-size:13px;letter-spacing:.28em}
+.xm-adv p:first-of-type{font-weight:600}
+.xm-clearnote{margin:12px auto 0;max-width:56ch;font:italic 400 clamp(15px,1.3vw,18px)/1.55 var(--serif);color:var(--wine)}
+.xm-closeband .xm-center{max-width:720px}
+.xm-closeband .xm-h2{font-size:clamp(18px,2.2vw,26px);margin-bottom:20px}
+.xm-closep{margin:0 0 14px;font:400 clamp(16px,1.35vw,19px)/1.6 var(--serif);color:#f6eadf}
+.xm-closesign{margin:10px 0 0;font:italic 400 clamp(16px,1.35vw,19px)/1.5 var(--serif);color:#f6eadf}.xm-closesign b{font:400 28px var(--serif);font-style:normal;letter-spacing:.3em;color:#fff}
+@media (max-width:620px){.xm-btn.big{width:100%;max-width:340px;padding:18px 16px}}

@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
 <meta name="theme-color" content="#F7F4EF">
 <style>@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 600;font-display:swap;src:url(/static/fonts/playfair-display.woff2) format('woff2')}@font-face{font-family:'DM Sans';font-style:normal;font-weight:300 700;font-display:swap;src:url(/static/fonts/dm-sans.woff2) format('woff2')}</style>
-<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=c127f740">
+<link rel="preload" as="font" type="font/woff2" href="/static/fonts/playfair-display.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/static/fonts/dm-sans.woff2" crossorigin><link rel="stylesheet" href="/static/css/site.css?v=56cd7e92">
 <link rel="preload" as="image" imagesrcset="/static/img/ev-rhg-420.webp 420w, /static/img/ev-rhg-640.webp 640w, /static/img/ev-rhg-900.webp 900w, /static/img/ev-rhg-1280.webp 1280w, /static/img/ev-rhg.webp 1700w" imagesizes="(max-width:1000px) 100vw, 50vw" fetchpriority="high">
 </head>
 <body>
@@ -44,16 +44,61 @@
   <span class="k soft rv">Coming January 2027</span>
   <h2 class="rv d1">Join the waitlist</h2>
   <p class="lede rv d1">Be among the first to hear when bookings open. Join the waitlist for updates, event details and early access.</p>
-  <form class="form one rv d2" method="post" action="https://reviews-and-response-system-production.up.railway.app/she/join" data-signup data-busy="Joining..." data-title="You are on the waitlist" data-note="We will be in touch with updates, event details and early access when bookings open.">
-    <label class="evvh" for="rhg-name">First name</label>
-    <input id="rhg-name" name="name" placeholder="First name" autocomplete="given-name" required>
-    <label class="evvh" for="rhg-email">Email address</label>
-    <input id="rhg-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
-    <input type="hidden" name="source" value="Receiving, Holding &amp; Growing waitlist">
-    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-    <button class="btn" type="submit">Join the waitlist <svg class="ar" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
-    <p class="msg" role="status">You can leave the waitlist at any time. We never pass your email on.</p>
-  </form>
+  <div class="evembed rv d2"><div id="2404c6a3-5ab3-4896-841e-df526765b5f4"></div>
+<noscript><p class="muted">This form needs JavaScript. You can also join through <a class="tlink" href="https://beacons.ai/sacredhumanexperience" target="_blank" rel="noopener">our Beacons page</a>.</p></noscript>
+<script>
+(function () {
+  /* Beacons shows a curly quote or apostrophe typed into its form as "a" with a circumflex and two
+     boxes (the three bytes of the character read one at a time). Put the real character back, in
+     the form's text, as soon as the form draws. Only sequences that are valid UTF-8 are touched. */
+  function startMending() {
+  var box = document.getElementById("2404c6a3-5ab3-4896-841e-df526765b5f4");
+  if (!box || !window.TextDecoder) return;
+  var BAD = /[\u00c2-\u00f4][\u0080-\u00bf]+/g;
+  function mend(text) {
+    return text.replace(BAD, function (m) {
+      var bytes = new Uint8Array(m.length);
+      for (var i = 0; i < m.length; i++) { var c = m.charCodeAt(i); if (c > 255) return m; bytes[i] = c; }
+      try { return new TextDecoder("utf-8", { fatal: true }).decode(bytes); } catch (e) { return m; }
+    });
+  }
+  function walk(node) {
+    if (node.nodeType === 3) {
+      if (BAD.test(node.nodeValue)) { BAD.lastIndex = 0; node.nodeValue = mend(node.nodeValue); }
+      BAD.lastIndex = 0;
+      return;
+    }
+    if (node.shadowRoot) { watch(node.shadowRoot); walk(node.shadowRoot); }
+    for (var k = node.firstChild; k; k = k.nextSibling) walk(k);
+  }
+  var seen = [];
+  function watch(root) {
+    if (seen.indexOf(root) > -1 || !window.MutationObserver) return;
+    seen.push(root);
+    new MutationObserver(function () { walk(root); })
+      .observe(root, { childList: true, subtree: true, characterData: true });
+  }
+  watch(box); walk(box);
+  var tries = 0, timer = setInterval(function () { walk(box); if (++tries > 40) clearInterval(timer); }, 500);
+  }
+  startMending();
+
+  function loadBeaconsEmailFormEmbed() {
+    var s = document.createElement("script");
+    var t = Math.floor(new Date().getTime() / 120000);
+    s.type = "module";
+    s.async = 1;
+    s.src = "https://beacons.ai/embeds/emailForm.js?v=" + t + "&b=sacredhumanexperience&f=2404c6a3-5ab3-4896-841e-df526765b5f4";
+    (document.head || document.body || document.documentElement).appendChild(s);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadBeaconsEmailFormEmbed, { once: true });
+    return;
+  }
+  loadBeaconsEmailFormEmbed();
+
+})();
+</script></div>
 </div></section>
 <p class="evfoot"><span>A SHE experience · Coming January 2027</span></p>
 </div>

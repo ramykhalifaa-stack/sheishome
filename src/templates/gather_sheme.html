@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% from "_macros.html" import arrow, lines %}
+{% extends "base.html" %}{% from "_macros.html" import arrow, lines, beacons_embed %}
 {# SHE + ME: Dream catcher Workshop. Date is confirmed; location and event time are not, and the page says so. Booking is an interest list until a checkout exists. #}
 {% block content %}
 <div class="evp ev-sheme">
@@ -36,20 +36,7 @@
   <ul class="shm-facts shm-facts-c rv d1"><li><b>{{ g.date }}</b></li><li>{{ g.where }}</li><li>{{ g.ages }}</li><li>{{ g.time }}</li></ul>
   <h2 class="rv d1">{{ g.book_title }}</h2>
   <p class="lede rv d1">{{ g.book_note }}</p>
-  {% if g.url %}
-  <iframe class="modal-frame" src="{{ g.url }}" title="SHE + ME: register your interest" loading="lazy"></iframe>
-  {% else %}
-  <form class="form one rv d2" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Sending..." data-title="{{ g.done_title }}" data-note="{{ g.done_note }}">
-    <label class="evvh" for="shm-name">Name</label>
-    <input id="shm-name" name="name" placeholder="Name" autocomplete="name" required>
-    <label class="evvh" for="shm-email">Email address</label>
-    <input id="shm-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
-    <input type="hidden" name="source" value="{{ g.source }}">
-    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-    <button class="btn" type="submit">{{ g.form_cta }} {{ arrow() }}</button>
-    <p class="msg" role="status">We only use your details to tell you about this workshop. You can leave at any time.</p>
-  </form>
-  {% endif %}
+  <div class="evembed rv d2">{{ beacons_embed(g.form_id, site.beacons_url) }}</div>
 </div></section>
 </div>
 {% endblock %}

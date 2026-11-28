@@ -143,7 +143,7 @@ SHE_ME_PAGE = {
     "book_k": "Your SHE + ME experience", "book_title": "Come and make a memory together.",
     "book_note": "Booking is not open yet. Leave your details and we will contact you first with the time, the location and how to book.",
     "done_title": "You are on the list", "done_note": "We will be in touch with the time, the location and how to book.",
-    "form_cta": "Register Your Interest", "source": SHE_ME_SOURCE, "url": SHE_ME_FORM_URL,
+    "form_cta": "Register Your Interest", "source": SHE_ME_SOURCE, "url": SHE_ME_FORM_URL, "form_id": "e8b9f401-583c-4835-98dd-eb4fe9016cd9",
 }
 TOOLS_CALL = {
     "k": "A gift from me to you", "title": "Create space for\nyour next chapter", "lead": "And now, a little gift from me to you.",
@@ -411,7 +411,7 @@ GATHER_RHG = {
     "wait_kicker": "Coming January 2027",
     "wait_title": "Join the waitlist",
     "wait": "Be among the first to hear when bookings open. Join the waitlist for updates, event details and early access.",
-    "source": _RHG_SOURCE,
+    "source": _RHG_SOURCE, "form_id": "2404c6a3-5ab3-4896-841e-df526765b5f4",
     "done_title": "You are on the waitlist",
     "done_note": "We will be in touch with updates, event details and early access when bookings open.",
     "foot": "A SHE experience · Coming January 2027",
@@ -427,7 +427,7 @@ HOME_EVENTS = [
     {"name": "The SHE Christmas Gathering", "img": "ev-xmas", "href": "/gather/christmas-gathering/", "pos": "22% 50%",
      "date": "Friday 18 December", "place": "The Moat House Teepee, near Alcester",
      "sub": "An evening of connection, conversation and festive celebrations with the SHE community.",
-     "status": "Guest list open", "kind": "open", "cta": "View event"},
+     "status": "Tickets on sale", "kind": "open", "cta": "View event"},
     {"name": "Receiving, Holding & Growing", "img": "ev-rhg", "href": "/gather/receiving-holding-growing/",
      "date": "Coming January 2027", "place": "",
      "sub": "Explore what it means to receive with openness, hold what you create with confidence and grow your capacity for sustainable abundance.",
@@ -518,12 +518,12 @@ XMAS_BEACONS_EMBED = """"""
 XMAS_CHARITY_URL = ""
 XMAS_RAFFLE_URL = "https://checkout.square.site/merchant/MLVB65ENAJTSX/checkout/G3UOMJIJT2ZTF6FGHEVOC5TQ?src=sheet"   # raffle tickets, £5 each, supplied by the founder 28 November 2026
 XMAS_DATE = datetime.date(2026, 12, 18)
-XMAS_REG = "/christmas/register/"
+XMAS_REG = "https://shop.beacons.ai/sacredhumanexperience/dc908453-2059-443e-9d3d-e0ec21506f6d"   # ticket purchase link, founder, 28 November 2026. Every "Book your ticket today" button goes here; the guest-list page is no longer linked
 XMAS = {
     "date_long": "18 December 2026", "weekday": "Friday", "time": "7:30 pm to 10:30 pm",
     "venue": "The Moat House Inn", "area": "Nr Alcester",
     "reg_url": XMAS_REG, "embed": XMAS_BEACONS_EMBED, "charity_url": XMAS_CHARITY_URL,
-    "cta": "Join the Christmas Guest List", "cta_short": "Join the Guest List", "cta2": "Register Your Interest",
+    "cta": "Book your ticket today", "cta_short": "Book your ticket today", "cta2": "Register Your Interest",
     "nav": [("The Evening", "/christmas/", "home"), ("Included", "/christmas/#included", "incl"),
             ("The Businesses", "/christmas/partners/", "partners"), ("Giving Back", "/christmas/charity/", "charity")],
     "tagline": "An evening of connection, celebration and a little Christmas magic.",
@@ -789,7 +789,7 @@ def pages() -> list[dict]:
         page("/gather/create-your-next-chapter/", "event.html", "Create Your Next Chapter, a SHE workshop", "A half-morning workshop to help you pause, reflect and intentionally shape what's next.", "cync-group",
              ev={"kicker": "Workshop", "title": "Create Your\nNext Chapter", "tags": "Vision boarding · Manifestation · Mindset", "tags2": "Coffee. Cake. Clarity. You.",
                  "intro": "A half-morning workshop to help you pause, reflect and intentionally shape what's next, with practical tools, meaningful conversation and a supportive community of women.",
-                 "hero": "cync-group", "about_img": "cync-about", "expect_img": "cync-expect", "bottom": "cync-bottom", "cta": "Register Your Interest", "cta_url": CYNC_TALLY_URL or INTERIM_INTEREST_URL,
+                 "hero": "cync-group", "about_img": "cync-about", "expect_img": "cync-expect", "bottom": "cync-bottom", "cta": "Register Your Interest", "cta_url": "#register", "form_id": "8f8241dd-5c24-4906-a3e0-6403431184f4",
                  "when": "More details to be released soon", "time": "", "where": "To Be Confirmed", "where_sub": "", "group": "A small, intimate group", "extra": "Coffee, tea and cake included", "price": "",
                  "about_title": "About this event", "about": ["Life moves in seasons, and sometimes we find ourselves at a turning point, not knowing exactly what's next, but feeling ready for something different.", "This workshop is an invitation to step out of the everyday, create space for yourself and explore your next chapter with intention. Through vision boarding, reflection, mindset work and meaningful conversation, you'll leave feeling clearer, more grounded and inspired about what's ahead.", "Whether you're navigating a big change or simply want to realign, this is a morning to invest in you."],
                  "expect": [("Vision boarding", "Get clear on what you want and bring your next chapter to life."), ("Mindset", "Explore what's possible and shift the beliefs that may be holding you back."), ("Meaningful conversation", "Share, listen and be inspired by like-minded women."), ("Practical tools", "Leave with clarity, intention and simple next steps.")],

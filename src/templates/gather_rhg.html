@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% from "_macros.html" import arrow, lines %}{% from "_ev.html" import evi %}
+{% extends "base.html" %}{% from "_macros.html" import arrow, lines, beacons_embed %}{% from "_ev.html" import evi %}
 {# Receiving, Holding & Growing: a January 2027 landing page with a waitlist. No date, venue or price is shown because none is confirmed. #}
 {% block content %}
 <div class="evp ev-rhg">
@@ -20,16 +20,7 @@
   <span class="k soft rv">{{ g.wait_kicker }}</span>
   <h2 class="rv d1">{{ g.wait_title }}</h2>
   <p class="lede rv d1">{{ g.wait }}</p>
-  <form class="form one rv d2" method="post" action="{{ site.signup_endpoint }}" data-signup data-busy="Joining..." data-title="{{ g.done_title }}" data-note="{{ g.done_note }}">
-    <label class="evvh" for="rhg-name">First name</label>
-    <input id="rhg-name" name="name" placeholder="First name" autocomplete="given-name" required>
-    <label class="evvh" for="rhg-email">Email address</label>
-    <input id="rhg-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
-    <input type="hidden" name="source" value="{{ g.source }}">
-    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-    <button class="btn" type="submit">{{ g.cta }} {{ arrow() }}</button>
-    <p class="msg" role="status">You can leave the waitlist at any time. We never pass your email on.</p>
-  </form>
+  <div class="evembed rv d2">{{ beacons_embed(g.form_id, site.beacons_url) }}</div>
 </div></section>
 <p class="evfoot"><span>{{ g.foot }}</span></p>
 </div>

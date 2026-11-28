@@ -22,7 +22,7 @@
 <header class="xm-top">
   <div class="wrap">
     <a class="xm-brand" href="/christmas/" aria-label="SHE Christmas, home"><b>SHE</b><i>Christmas</i></a>
-    {% if here != "register" %}<a class="xm-btn xm-navbtn" href="{{ xm.reg_url }}">{{ xm.cta_short }}</a>{% endif %}
+    {% if here != "register" %}<a class="xm-btn xm-navbtn" href="{{ xm.reg_url }}" target="_blank" rel="noopener">{{ xm.cta_short }}</a>{% endif %}
     <nav class="xm-links" aria-label="SHE Christmas">
       {% for label, href, key in xm.nav %}<a href="{{ href }}"{% if key == here %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
     </nav>
@@ -32,7 +32,7 @@
 
 {# Every booking button on the microsite is this one: it goes to the registration page, never to the main SHE site. #}
 {% macro book(xm, cls="", label="") -%}
-<a class="xm-btn {{ cls }}" href="{{ xm.reg_url }}">{{ label or xm.cta }}</a>
+<a class="xm-btn {{ cls }}" href="{{ xm.reg_url }}" target="_blank" rel="noopener">{{ label or xm.cta }}</a>
 {%- endmacro %}
 
 {# The Christmas footer: its own pages and the guest list, nothing from the main site. #}
@@ -42,7 +42,7 @@
     <a class="xm-brand" href="/christmas/" aria-label="SHE Christmas, home"><b>SHE</b><i>Christmas</i></a>
     <p class="xm-foot-meta">{{ xm.weekday }} {{ xm.date_long }} &middot; {{ xm.time }}<br>{{ xm.venue }}, {{ xm.area }}</p>
     <nav aria-label="SHE Christmas pages">
-      {% for label, href, key in xm.nav %}<a href="{{ href }}">{{ label }}</a>{% endfor %}<a href="{{ xm.reg_url }}">Guest List</a>
+      {% for label, href, key in xm.nav %}<a href="{{ href }}">{{ label }}</a>{% endfor %}
     </nav>
     <a class="xm-foot-terms" href="/christmas-terms/">Booking Terms &amp; Conditions</a>
   </div>

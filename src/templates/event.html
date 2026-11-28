@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, ico %}
+{% extends "base.html" %}{% from "_macros.html" import img, arrow, lines, ico, beacons_embed %}
 {% block content %}
 <section class="hero-split" style="min-height:min(80vh,720px)">
   <div class="tx"><nav class="crumb rv"><a href="/gather/">Gather</a> / {{ ev.kicker }}</nav>{{ lines(ev.title, "h1") }}<span class="k soft rv d1">{{ ev.tags }}</span>{% if ev.tags2 %}<p class="serif-lede rv d1">{{ ev.tags2 }}</p>{% endif %}<p class="lede rv d2">{{ ev.intro }}</p><div class="rv d3"><a class="btn" href="{{ ev.cta_url or '/join/#contact' }}"{% if ev.cta_url and ev.cta_url.startswith("http") %} target="_blank" rel="noopener"{% endif %}>{{ ev.cta }} {{ arrow() }}</a></div></div>
@@ -24,9 +24,13 @@
   <div class="stack rv d1"><h2>Questions?</h2><p class="lede">If you have any questions, please get in touch.</p><a class="tlink" href="/join/#contact">Get in touch {{ arrow() }}</a></div>
 </div></section>
 {% endif %}
-<section class="hero" style="min-height:480px">
+<section class="hero"{% if ev.form_id %} id="register"{% endif %} style="min-height:480px">
   <div class="ph parallax grain"><img src="/static/img/{{ ev.bottom }}.webp" alt="" loading="lazy"></div>
   <div class="veil" style="background:rgba(247,244,239,.6)"></div>
+  {% if ev.form_id %}
+  <div class="wrap" style="text-align:center"><div class="evform-card rv">{{ beacons_embed(ev.form_id, site.beacons_url) }}</div></div>
+  {% else %}
   <div class="wrap" style="text-align:center"><h2 class="rv" style="margin-bottom:26px">{{ ev.closing|replace("\n", "<br>")|safe }}</h2><a class="btn rv d1" href="{{ ev.cta_url or '/join/#contact' }}"{% if ev.cta_url and ev.cta_url.startswith("http") %} target="_blank" rel="noopener"{% endif %}>{{ ev.cta }} {{ arrow() }}</a></div>
+{% endif %}
 </section>
 {% endblock %}
